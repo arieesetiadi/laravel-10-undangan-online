@@ -12,15 +12,26 @@ const TIME_FORMAT = 'h:i A';
 const DATE_TIME_FORMAT = DATE_FORMAT . ' ' . TIME_FORMAT;
 
 /**
+ * Get authenticated user (web).
+ * 
+ * @return \App\Models\Customer
+ */
+if (!function_exists('customer')) {
+    function customer()
+    {
+        return auth()->guard('web')->user();
+    }
+}
+
+/**
  * Get authenticated user (cms).
  * 
- * @return \App\Models\Administrator $administrator
+ * @return \App\Models\Administrator
  */
 if (!function_exists('administrator')) {
     function administrator()
     {
-        $administrator = auth()->guard('cms')->user();
-        return $administrator;
+        return auth()->guard('cms')->user();
     }
 }
 

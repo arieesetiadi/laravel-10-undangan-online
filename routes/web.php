@@ -1,15 +1,20 @@
 <?php
 
 use App\Http\Controllers\AppController;
-use App\Http\Controllers\CMS\Auth\ForgotPasswordController;
-use App\Http\Controllers\CMS\Auth\LoginController;
-use App\Http\Controllers\CMS\Auth\LogoutController;
-use App\Http\Controllers\CMS\Auth\RegisterController;
+use App\Http\Controllers\CMS\Auth\ForgotPasswordController as CMSForgotPasswordController;
+use App\Http\Controllers\CMS\Auth\LoginController as CMSLoginController;
+use App\Http\Controllers\CMS\Auth\LogoutController as CMSLogoutController;
+use App\Http\Controllers\CMS\Auth\RegisterController as CMSRegisterController;
 use App\Http\Controllers\CMS\DashboardController;
 use App\Http\Controllers\CMS\Modules\AdministratorController;
-use App\Http\Controllers\CMS\ProfileController;
+use App\Http\Controllers\CMS\ProfileController as CMSProfileController;
 use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\WEB\Auth\ForgotPasswordController as WEBForgotPasswordController;
+use App\Http\Controllers\WEB\Auth\LoginController as WEBLoginController;
+use App\Http\Controllers\WEB\Auth\LogoutController as WEBLogoutController;
+use App\Http\Controllers\WEB\Auth\RegisterController as WEBRegisterController;
 use App\Http\Controllers\WEB\HomeController;
+use App\Http\Controllers\WEB\ProfileController as WEBProfileController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -30,24 +35,24 @@ Route::get('/app/clear', [AppController::class, 'clear'])->name('app.clear');
 */
 
 Route::prefix('/system')->as('cms.')->middleware('locale.use')->group(function () {
-	// Guest
+	// CMS Guest
 	Route::middleware('guest:cms')->group(function () {
 		Route::prefix('/auth')->as('auth.')->group(function () {
-			// Login
-			Route::prefix('/login')->as('login.')->controller(LoginController::class)->group(function () {
+			// CMS Login
+			Route::prefix('/login')->as('login.')->controller(CMSLoginController::class)->group(function () {
 				Route::get('/', 'index')->name('index');
 				Route::post('/process', 'process')->name('process');
 			});
 
-			// Register
-			Route::prefix('/register')->as('register.')->controller(RegisterController::class)->group(function () {
+			// CMS Register
+			Route::prefix('/register')->as('register.')->controller(CMSRegisterController::class)->group(function () {
 				Route::get('/', 'index')->name('index');
 				Route::post('/process', 'process')->name('process');
 				Route::get('/activate', 'activate')->name('activate');
 			});
 
-			// Forget Password
-			Route::prefix('/forgot-password')->as('forgot-password.')->controller(ForgotPasswordController::class)->group(function () {
+			// CMS Forget Password
+			Route::prefix('/forgot-password')->as('forgot-password.')->controller(CMSForgotPasswordController::class)->group(function () {
 				Route::get('/', 'index')->name('index');
 				Route::post('/send', 'send')->name('send');
 				Route::post('/reset', 'reset')->name('reset');
@@ -55,7 +60,7 @@ Route::prefix('/system')->as('cms.')->middleware('locale.use')->group(function (
 		});
 	});
 
-	// Authenticated
+	// CMS Authenticated
 	Route::middleware('auth:cms')->group(function () {
 		// CMS Dashboard
 		Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
@@ -69,13 +74,13 @@ Route::prefix('/system')->as('cms.')->middleware('locale.use')->group(function (
 		});
 
 		// CMS Profile
-		Route::prefix('/profile')->as('profile.')->controller(ProfileController::class)->group(function () {
+		Route::prefix('/profile')->as('profile.')->controller(CMSProfileController::class)->group(function () {
 			Route::get('/', 'index')->name('index');
 			Route::post('/update', 'update')->name('update');
 		});
 
 		// CMS Logout
-		Route::prefix('/auth/logout')->as('logout.')->controller(LogoutController::class)->group(function () {
+		Route::prefix('/auth/logout')->as('logout.')->controller(CMSLogoutController::class)->group(function () {
 			Route::get('/', 'process')->name('process');
 		});
 	});
@@ -91,4 +96,43 @@ Route::prefix('/system')->as('cms.')->middleware('locale.use')->group(function (
 Route::prefix('/')->as('web.')->group(function () {
 	// WEB Home
 	Route::get('/', [HomeController::class, 'home'])->name('home');
+
+	// WEB Guest
+	Route::middleware('guest:web')->group(function () {
+		Route::prefix('/auth')->as('auth.')->group(function () {
+			// WEB Login
+			Route::prefix('/login')->as('login.')->controller(WEBLoginController::class)->group(function () {
+				Route::get('/', 'index')->name('index');
+				Route::post('/process', 'process')->name('process');
+			});
+
+			// WEB Register
+			Route::prefix('/register')->as('register.')->controller(WEBRegisterController::class)->group(function () {
+				Route::get('/', 'index')->name('index');
+				Route::post('/process', 'process')->name('process');
+				Route::get('/activate', 'activate')->name('activate');
+			});
+
+			// WEB Forget Password
+			Route::prefix('/forgot-password')->as('forgot-password.')->controller(WEBForgotPasswordController::class)->group(function () {
+				Route::get('/', 'index')->name('index');
+				Route::post('/send', 'send')->name('send');
+				Route::post('/reset', 'reset')->name('reset');
+			});
+		});
+	});
+
+	// WEB Authenticated
+	Route::middleware('auth:web')->group(function () {
+		// WEB Profile
+		Route::prefix('/profile')->as('profile.')->controller(WEBProfileController::class)->group(function () {
+			Route::get('/', 'index')->name('index');
+			Route::post('/update', 'update')->name('update');
+		});
+
+		// WEB Logout
+		Route::prefix('/auth/logout')->as('logout.')->controller(WEBLogoutController::class)->group(function () {
+			Route::get('/', 'process')->name('process');
+		});
+	});
 });
