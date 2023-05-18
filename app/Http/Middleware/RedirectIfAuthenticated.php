@@ -20,15 +20,17 @@ class RedirectIfAuthenticated
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
-            switch ($guard) {
-                case 'web':
-                    return redirect()->route($guard . '.home');
+            if (Auth::guard($guard)->check()) {
+                switch ($guard) {
+                    case 'web':
+                        return redirect()->route($guard . '.home');
 
-                case 'cms':
-                    return redirect()->route($guard . '.dashboard');
+                    case 'cms':
+                        return redirect()->route($guard . '.dashboard');
 
-                default:
-                    return redirect()->route($guard . '.home');
+                    default:
+                        return redirect()->route('web.home');
+                }
             }
         }
 
