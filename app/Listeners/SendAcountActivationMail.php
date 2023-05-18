@@ -27,7 +27,6 @@ class SendAcountActivationMail
     public function handle(AdministratorRegistered $event)
     {
         // Queue | Send account-activation email
-        $credentials = $event->credentials;
-        Mail::queue(new AccountActivationMail($credentials));
+        Mail::queue(new AccountActivationMail($event->credentials));
     }
 }

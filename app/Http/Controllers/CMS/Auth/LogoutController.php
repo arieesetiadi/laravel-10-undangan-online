@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\CMS\Auth;
 
+use App\Http\Controllers\CMS\ResponseController;
 use App\Http\Controllers\Controller;
 
 class LogoutController extends Controller
@@ -13,9 +14,15 @@ class LogoutController extends Controller
      */
     public function process()
     {
-        // Logout cms user
-        auth()->guard('cms')->logout();
-
-        return redirect()->route('cms.auth.login.index');
+        try {
+            // Logout cms user
+            auth()->guard('cms')->logout();
+    
+            return redirect()->route('cms.auth.login.index');
+		}
+		// 
+		catch (\Throwable $th) {
+			return ResponseController::failed($th->getMessage());
+		}
     }
 }

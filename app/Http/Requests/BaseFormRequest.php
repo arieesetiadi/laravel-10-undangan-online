@@ -11,7 +11,7 @@ class BaseFormRequest
      */
     public static function getI18nAttributes()
     {
-        $i18nAttributes = [
+        return [
             'username' => __('validation.attributes.username'),
             'name' => __('validation.attributes.name'),
             'email' => __('validation.attributes.email'),
@@ -19,8 +19,6 @@ class BaseFormRequest
             'password' => __('validation.attributes.password'),
             'password_confirmation' => __('validation.attributes.password_confirmation'),
         ];
-
-        return $i18nAttributes;
     }
 
     /**
@@ -30,7 +28,7 @@ class BaseFormRequest
      */
     public static function getI18nMessages()
     {
-        $i18nMessages = [
+        return [
             'required' => __('validation.required'),
             'required_if' => __('validation.required_if'),
             'email' => __('validation.email'),
@@ -43,7 +41,5 @@ class BaseFormRequest
             'max' => __('validation.max'),
             'in' => __('validation.in'),
         ];
-
-        return $i18nMessages;
     }
 }

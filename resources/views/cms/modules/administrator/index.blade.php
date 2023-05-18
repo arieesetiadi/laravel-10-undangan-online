@@ -1,6 +1,11 @@
 {{-- Master Template --}}
 @extends('cms.layouts.master')
 
+{{-- Sidebar Configuration --}}
+@section('sidebar.administrator')
+    active-page
+@endsection
+
 {{-- Content --}}
 @section('content')
     <div class="container">
@@ -13,8 +18,8 @@
                     </div>
                     <div class="page-description-actions">
                         <a href="{{ route('cms.administrator.create') }}" class="btn btn-primary">
-                            <i class="material-icons-outlined">add_circle_outline</i>
-                            {{ __('general.action.add') . ' ' . $title }}
+                            <i class="fa-solid fa-circle-plus"></i>
+                            {{ __('general.action.add') }} {{ $title }}
                         </a>
                     </div>
                 </div>
@@ -23,14 +28,11 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h6 class="card-title">{{ __('general.action.list') . ' ' . $title }}</h6>
-                    </div>
                     <div class="card-body">
                         <table class="datatable w-100 nowrap">
                             <thead>
                                 <tr>
-                                    <th>Action</th>
+                                    <th></th>
                                     <th>#</th>
                                     <th>Image</th>
                                     <th>Name</th>
@@ -43,11 +45,9 @@
                                 @forelse ($administrators as $i => $administrator)
                                     <tr>
                                         <td>
-                                            <div class="dropdend">
+                                            <div class="droptop">
                                                 <button type="button" class="btn btn-sm px-1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="material-icons-outlined text-grey mx-0">
-                                                        settings
-                                                    </i>
+                                                    <i class="fa-solid fa-gear text-grey mx-0"></i>
                                                 </button>
                                                 <ul class="dropdown-menu border">
                                                     <li>
@@ -58,7 +58,7 @@
                                                         <a class="dropdown-item btn btn-sm" href="{{ route('cms.administrator.show', $administrator->id) }}">Detail</a>
                                                     </li>
                                                     <li>
-                                                        <form action="{{ route('cms.administrator.toggle-status', $administrator->id) }}" method="POST">
+                                                        <form action="{{ route('cms.administrator.toggle', $administrator->id) }}" method="POST">
                                                             @csrf
                                                             <button type="button" class="dropdown-item btn btn-sm {{ $administrator->status ? 'btn-danger' : 'btn-success' }}" onclick="swalConfirm(event)">
                                                                 {{ $administrator->status ? 'Inactivate' : 'Activate' }}
@@ -85,7 +85,7 @@
                                         </td>
                                         <td>{{ $administrator->name }}</td>
                                         <td>{{ $administrator->email }}</td>
-                                        <td>{!! \App\Constants\GeneralStatus::htmlLabel(false) !!}</td>
+                                        <td>{!! \App\Constants\GeneralStatus::htmlLabel($administrator->status) !!}</td>
                                         <td>{{ human_datetime($administrator->updated_at) }}</td>
                                     </tr>
                                 @empty

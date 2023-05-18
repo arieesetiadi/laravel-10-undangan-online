@@ -45,97 +45,130 @@ class Customer extends Authenticatable
         'avatar_path',
     ];
 
+    /*
+    |--------------------------------------------------------------------------
+    | Accessors
+    |--------------------------------------------------------------------------
+    */
+
     /**
-     * Get all customers data.
+     * Get administrator avatar image path | src.
+     * 
+     * @return string $avatarPath
+     */
+    public function getAvatarPathAttribute()
+    {
+        $avatar = $this->avatar ?? 'default.png';
+        $avatarPath = asset('storage/uploads/images/avatars/' . $avatar);
+
+        return $avatarPath;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Relations
+    |--------------------------------------------------------------------------
+    */
+
+    // 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Scopes
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Filter the active administrator.
+     * 
+     * @param object
+     * @return object
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('status', GeneralStatus::ACTIVE);
+    }
+
+    /**
+     * Filter the inactive administrator.
+     * 
+     * @param object
+     * @return object
+     */
+    public function scopeInactive($query)
+    {
+        return $query->where('status', GeneralStatus::INACTIVE);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Methods
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Get all administrators data.
      * 
      * @return array
      */
     public static function getAll()
     {
-        $customers = self::latest()->get();
-        return $customers;
+        return self::latest()->get();
     }
 
     /**
-     * Get customer status.
+     * Get administrator by id.
      * 
-     * @param array
-     * @return boolean
+     * @param int $id
+     * @return array
+     */
+    public static function getById($id)
+    {
+        return self::findOrFail($id);
+    }
+
+    /**
+     * Get administrator status.
+     * 
+     * @param array $credentials
+     * @return boolean $status
      */
     public static function getStatus($credentials)
     {
-        $customer = self::where('username', $credentials['username'])->first();
-        $status = $customer->status;
+        $administrator = self::where('username', $credentials['username'])->first();
+        $status = $administrator->status;
 
         return $status;
     }
 
     /**
-     * Set customer status.
+     * Set administrator status.
      * 
-     * @param array,boolean
-     * @return array
+     * @param array $credentials
+     * @param boolean $status
+     * 
+     * @return mixed $result
      */
     public static function setStatus($credentials, $status)
     {
-        $customer = self::where('email', $credentials['email']);
-        $result = $customer->update(['status' => $status]);
+        $administrator = self::where('email', $credentials['email']);
+        $result = $administrator->update(['status' => $status]);
 
         return $result;
     }
 
     /**
-     * Reset customer password.
+     * Reset administrator password.
      * 
-     * @param array
-     * @return array
+     * @param array $credentials
+     * @return mixed $result
      */
-    public static function resetPassword($credentials)
+    public static function setPassword($credentials)
     {
-        $newPassword = $credentials['password'];
-        $newPasswordHashed = Hash::make($newPassword);
-        $customer = self::where('email', $credentials['email']);
-        $result = $customer->update(['password' => $newPasswordHashed]);
+        $password = Hash::make($credentials['password']);
+        $administrator = self::where('email', $credentials['email']);
+        $result = $administrator->update(['password' => $password]);
 
         return $result;
-    }
-
-    /**
-     * Get customer profile image path | src.
-     * 
-     * @return string
-     */
-    public function getProfileImagePathAttribute()
-    {
-        $default = 'default.png';
-        $profilePath = 'assets/uploads/images/profiles/';
-        $profileImage = $this->avatar ?? $default;
-        $profileImagePath = asset($profilePath . $profileImage);
-
-        return $profileImagePath;
-    }
-
-    /**
-     * Filter the active customer.
-     * 
-     * @param object
-     * @return array
-     */
-    public function scopeActive($query)
-    {
-        $query = $query->where('status', GeneralStatus::ACTIVE);
-        return $query;
-    }
-
-    /**
-     * Filter the inactive customer.
-     * 
-     * @param object
-     * @return array
-     */
-    public function scopeInactive($query)
-    {
-        $query = $query->where('status', GeneralStatus::INACTIVE);
-        return $query;
     }
 }

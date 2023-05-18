@@ -1,7 +1,7 @@
 {{-- Sidebar --}}
 <div class="app-sidebar">
     <div class="logo">
-        <a href="{{ route('cms.index') }}" class="logo-icon">
+        <a href="{{ route('cms.dashboard') }}" class="logo-icon">
             <span class="logo-text">CMS</span>
         </a>
         <div class="sidebar-user-switcher user-activity-online">
@@ -19,15 +19,15 @@
             <li class="sidebar-title">
                 Main
             </li>
-            <li class="{{ Request::is('system') ? 'active-page' : '' }}">
-                <a href="{{ route('cms.index') }}">
+            <li class="@yield('sidebar.dashboard')}">
+                <a href="{{ route('cms.dashboard') }}">
                     <i class="material-icons-outlined text-dark">dashboard</i> Dashboard
                 </a>
             </li>
             <li class="sidebar-title">
                 Master
             </li>
-            <li class="{{ Request::is('system/administrator') ? 'active-page' : '' }}">
+            <li class="@yield('sidebar.administrator')">
                 <a href="{{ route('cms.administrator.index') }}">
                     <i class="material-icons-outlined text-dark">people</i> Administrators
                 </a>

@@ -12,12 +12,13 @@ class FileController extends Controller
      * @param \Illuminate\Http\UploadedFile $file
      * @param string $path
      * @param string $old 
+     * 
      * @return string $name
      */
     public static function uploadImage($file, $path, $old = null)
     {
         /** @var Illuminate\Filesystem\FilesystemAdapter */
-        $storage = Storage::disk('images');
+        $storage = Storage::disk('public');
 
         // Upload new image
         $name = time() . '-' . $file->hashName();

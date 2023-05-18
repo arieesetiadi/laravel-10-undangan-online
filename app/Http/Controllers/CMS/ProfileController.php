@@ -7,15 +7,23 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\CMS\ResponseController;
 use App\Http\Requests\CMS\ProfileUpdateRequest;
 use App\Models\Administrator;
+use Exception;
 
 class ProfileController extends Controller
 {
     /**
-     * General upload directory for images | documents.
+     * Controller module path.
      * 
      * @var string
      */
-    private $uploadPath = '/profiles';
+    private $module = 'cms';
+
+    /**
+     * Controller module title.
+     * 
+     * @var string
+     */
+    private $title = 'Profile';
 
     /**
      * Display profile page.
@@ -24,9 +32,16 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $data['title'] = 'Profile';
+        try {
+            $view = $this->module . '.profile';
+            $data['title'] = $this->title;
 
-        return view('cms.profile')->with($data);
+            return view($view, $data);
+        }
+        // 
+        catch (\Throwable $th) {
+            return ResponseController::failed($th->getMessage());
+        }
     }
 
     /**
@@ -43,16 +58,14 @@ class ProfileController extends Controller
 
             // Upload image if exist
             if ($request->avatar) {
-                $profileImageName = FileController::uploadImage($request->avatar, $this->uploadPath, $administrator->avatar);
+                $profileImageName = FileController::uploadImage($request->avatar, $this->imagesPath . '/avatars', $administrator->avatar);
                 $credentials['avatar'] = $profileImageName;
             }
 
             // Check update result
             $result = $administrator->update($credentials);
 
-            if (!$result) {
-                return ResponseController::failed(__('auth.profile.update.failed'));
-            }
+            if (!$result) throw new Exception(__('auth.profile.update.failed'));
 
             return ResponseController::success(__('auth.profile.update.success'));
         }

@@ -33,8 +33,8 @@ class AccountActivationMail extends Mailable
     {
         // Mail data
         $mailTitle = 'Account Activation';
-        $mailSubject = $mailTitle . ' | ' . env('APP_NAME');
-        $mailFrom = env('MAIL_FROM_ADDRESS');
+        $mailSubject = $mailTitle . ' | ' . config('app.name');
+        $mailFrom = config('mail.from.address');
         $mailTo = $this->data['email'];
         $mailMarkdown = 'mail.account-activation';
         $mailData = [

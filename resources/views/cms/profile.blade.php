@@ -111,7 +111,7 @@
                                             <div class="m-b-md">
                                                 <label for="profile-image" class="form-label d-block">Profile Image</label>
                                                 <input name="avatar" type="file" class="form-control"
-                                                    id="profile-image" aria-describedby="Profile image" onchange="previewImage(event, 'profile-image-preview')">
+                                                    id="profile-image" aria-describedby="Profile image" onchange="previewImage(event, 'avatar-preview')">
                                                 @error('avatar')
                                                     <label for="avatar" class="mt-2 text-danger">
                                                         {{ $message }}
@@ -157,7 +157,7 @@
 
                         <div class="col-12 col-md-7 col-lg-5">
                             <div class="d-flex justify-content-center pt-5">
-                                <img id="profile-image-preview" width="200px" src="{{ administrator()->avatar_path }}"
+                                <img id="avatar-preview" width="200px" src="{{ administrator()->avatar_path }}"
                                     alt="Administrator profile image" class="rounded-circle cursor-pointer" data-bs-toggle="modal"
                                     data-bs-target="#modal-image-preview" onclick="previewImageModal(event)">
                             </div>

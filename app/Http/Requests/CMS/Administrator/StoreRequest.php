@@ -26,8 +26,7 @@ class StoreRequest extends FormRequest
      */
     public function attributes()
     {
-        $attributes = BaseFormRequest::getI18nAttributes();
-        return $attributes;
+        return BaseFormRequest::getI18nAttributes();
     }
 
     /**
@@ -37,8 +36,7 @@ class StoreRequest extends FormRequest
      */
     public function messages()
     {
-        $messages = BaseFormRequest::getI18nMessages();
-        return $messages;
+        return BaseFormRequest::getI18nMessages();
     }
 
     /**
@@ -48,15 +46,13 @@ class StoreRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
+        return [
             'username' => 'required|unique:Administrators,username',
             'name' => 'required',
             'email' => 'required|unique:Administrators,email',
             'avatar' => 'file|mimes:jpeg,jpg,png|max:1024',
             'password' => 'required',
         ];
-
-        return $rules;
     }
 
     /**
@@ -66,14 +62,12 @@ class StoreRequest extends FormRequest
      */
     public function credentials()
     {
-        $credentials = [
+        return [
             'username' => $this->username,
             'name' => $this->name,
             'email' => $this->email,
             'password' => Hash::make($this->password),
             'status' => GeneralStatus::ACTIVE,
         ];
-
-        return $credentials;
     }
 }

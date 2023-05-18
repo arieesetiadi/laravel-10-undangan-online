@@ -25,8 +25,7 @@ class ProfileUpdateRequest extends FormRequest
      */
     public function attributes()
     {
-        $attributes = BaseFormRequest::getI18nAttributes();
-        return $attributes;
+        return BaseFormRequest::getI18nAttributes();
     }
 
     /**
@@ -36,8 +35,7 @@ class ProfileUpdateRequest extends FormRequest
      */
     public function messages()
     {
-        $messages = BaseFormRequest::getI18nMessages();
-        return $messages;
+        return BaseFormRequest::getI18nMessages();
     }
 
     /**
@@ -47,15 +45,13 @@ class ProfileUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
+        return [
             'username' => 'required|unique:Administrators,username,' . administrator()->id,
             'email' => 'required|unique:Administrators,email,' . administrator()->id,
             'avatar' => 'file|mimes:jpeg,jpg,png|max:1024',
             'password' => 'confirmed',
             'password_confirmation' => 'required_if:password,string',
         ];
-
-        return $rules;
     }
 
     /**

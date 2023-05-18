@@ -24,8 +24,7 @@ class LoginRequest extends FormRequest
      */
     public function attributes()
     {
-        $attributes = BaseFormRequest::getI18nAttributes();
-        return $attributes;
+        return BaseFormRequest::getI18nAttributes();
     }
 
     /**
@@ -35,8 +34,7 @@ class LoginRequest extends FormRequest
      */
     public function messages()
     {
-        $messages = BaseFormRequest::getI18nMessages();
-        return $messages;
+        return BaseFormRequest::getI18nMessages();
     }
 
     /**
@@ -46,12 +44,10 @@ class LoginRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
+        return [
             'username' => 'required|exists:Administrators,username',
             'password' => 'required',
         ];
-
-        return $rules;
     }
 
     /**
@@ -61,11 +57,9 @@ class LoginRequest extends FormRequest
      */
     public function credentials()
     {
-        $credentials = [
+        return [
             'username' => $this->username,
             'password' => $this->password,
         ];
-
-        return $credentials;
     }
 }

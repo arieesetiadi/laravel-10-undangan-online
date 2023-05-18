@@ -24,8 +24,7 @@ class ForgotPasswordRequest extends FormRequest
      */
     public function attributes()
     {
-        $attributes = BaseFormRequest::getI18nAttributes();
-        return $attributes;
+        return BaseFormRequest::getI18nAttributes();
     }
 
     /**
@@ -35,8 +34,7 @@ class ForgotPasswordRequest extends FormRequest
      */
     public function messages()
     {
-        $messages = BaseFormRequest::getI18nMessages();
-        return $messages;
+        return BaseFormRequest::getI18nMessages();
     }
 
     /**
@@ -46,11 +44,9 @@ class ForgotPasswordRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
+        return [
             'email' => 'required|email|exists:Administrators,email',
         ];
-
-        return $rules;
     }
 
     /**
@@ -60,10 +56,8 @@ class ForgotPasswordRequest extends FormRequest
      */
     public function credentials()
     {
-        $credentials = [
+        return [
             'email' => $this->email,
         ];
-
-        return $credentials;
     }
 }

@@ -25,8 +25,7 @@ class ResetPasswordRequest extends FormRequest
      */
     public function attributes()
     {
-        $attributes = BaseFormRequest::getI18nAttributes();
-        return $attributes;
+        return BaseFormRequest::getI18nAttributes();
     }
 
     /**
@@ -36,8 +35,7 @@ class ResetPasswordRequest extends FormRequest
      */
     public function messages()
     {
-        $messages = BaseFormRequest::getI18nMessages();
-        return $messages;
+        return BaseFormRequest::getI18nMessages();
     }
 
     /**
@@ -47,13 +45,11 @@ class ResetPasswordRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
+        return [
             'email' => 'required|email|exists:Administrators,email',
             'password' => 'required|min:8|confirmed',
             'password_confirmation' => 'required|min:8',
         ];
-
-        return $rules;
     }
 
     /**
@@ -63,11 +59,9 @@ class ResetPasswordRequest extends FormRequest
      */
     public function credentials()
     {
-        $credentials = [
+        return [
             'email' => $this->email,
             'password' => $this->password,
         ];
-
-        return $credentials;
     }
 }

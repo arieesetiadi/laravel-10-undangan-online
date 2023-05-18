@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\CMS\Modules;
 
+use App\Http\Controllers\CMS\ResponseController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FileController;
-use App\Http\Controllers\CMS\ResponseController;
 use App\Http\Requests\CMS\Administrator\StoreRequest;
 use App\Http\Requests\CMS\Administrator\UpdateRequest;
 use App\Models\Administrator;
@@ -13,13 +13,18 @@ use Exception;
 class AdministratorController extends Controller
 {
 	/**
-	 * Controller properties.
-	 *
+	 * Controller module path.
+	 * 
 	 * @var string
 	 */
-	private $viewPath = 'cms.modules.administrator';
-	private $viewTitle = 'Administrator';
-	private $uploadPath = '/profiles';
+	private $module = 'cms.modules.administrator';
+
+	/**
+	 * Controller module title.
+	 * 
+	 * @var string
+	 */
+	private $title = 'Administrator';
 
 	/**
 	 * Display a listing of the resource.
@@ -28,13 +33,20 @@ class AdministratorController extends Controller
 	 */
 	public function index()
 	{
-		$title = $this->viewTitle;
-		$administrators = Administrator::getAll();
+		try {
+			$administrators = Administrator::getAll();
+			$view = $this->module . '.index';
+			$data = [
+				'title' => $this->title,
+				'administrators' => $administrators,
+			];
 
-		$viewPath = $this->viewPath . '.index';
-		$viewData = compact('title', 'administrators');
-
-		return view($viewPath)->with($viewData);
+			return view($view, $data);
+		}
+		// 
+		catch (\Throwable $th) {
+			return ResponseController::failed($th->getMessage());
+		}
 	}
 
 	/**
@@ -44,19 +56,25 @@ class AdministratorController extends Controller
 	 */
 	public function create()
 	{
-		$title = $this->viewTitle;
-		$onEdit = false;
+		try {
+			$view = $this->module . '.create-or-edit';
+			$data = [
+				'title' => $this->title,
+				'edit' => false,
+			];
 
-		$viewPath = $this->viewPath . '.create-or-edit';
-		$viewData = compact('title', 'onEdit');
-
-		return view($viewPath)->with($viewData);
+			return view($view, $data);
+		}
+		// 
+		catch (\Throwable $th) {
+			return ResponseController::failed($th->getMessage());
+		}
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \App\Http\Requests\CMS\Administrator\StoreRequest  $request
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(StoreRequest $request)
@@ -64,18 +82,16 @@ class AdministratorController extends Controller
 		try {
 			$credentials = $request->credentials();
 
-			// Upload image if exist
+			// Upload avatar if exist
 			if ($request->avatar) {
-				$profileImageName = FileController::uploadImage($request->avatar, $this->uploadPath);
-				$credentials['avatar'] = $profileImageName;
+				$avatarName = FileController::uploadImage($request->avatar, $this->imagesPath . '/avatars');
+				$credentials['avatar'] = $avatarName;
 			}
 
-			// Check store result
+			// Store administrator data
 			$result = Administrator::create($credentials);
 
-			if (!$result) {
-				return ResponseController::failed(__('general.process.failed'));
-			}
+			if (!$result) throw new Exception(__('general.process.failed'));
 
 			return ResponseController::success(__('general.process.success'), route('cms.administrator.index'));
 		}
@@ -93,13 +109,20 @@ class AdministratorController extends Controller
 	 */
 	public function show($id)
 	{
-		$title = $this->viewTitle;
-		$administrator = Administrator::find($id);
+		try {
+			$administrator = Administrator::findOrFail($id);
+			$view = $this->module . '.detail';
+			$data = [
+				'title' => $this->title,
+				'administrator' => $administrator,
+			];
 
-		$viewPath = $this->viewPath . '.detail';
-		$viewData = compact('title', 'administrator');
-
-		return view($viewPath)->with($viewData);
+			return view($view, $data);
+		}
+		// 
+		catch (\Throwable $th) {
+			return ResponseController::failed($th->getMessage());
+		}
 	}
 
 	/**
@@ -110,20 +133,27 @@ class AdministratorController extends Controller
 	 */
 	public function edit($id)
 	{
-		$title = $this->viewTitle;
-		$administrator = Administrator::find($id);
-		$onEdit = true;
+		try {
+			$administrator = Administrator::findOrFail($id);
+			$view = $this->module . '.create-or-edit';
+			$data = [
+				'title' => $this->title,
+				'administrator' => $administrator,
+				'edit' => true,
+			];
 
-		$viewPath = $this->viewPath . '.create-or-edit';
-		$viewData = compact('title', 'administrator', 'onEdit');
-
-		return view($viewPath)->with($viewData);
+			return view($view, $data);
+		}
+		// 
+		catch (\Throwable $th) {
+			return ResponseController::failed($th->getMessage());
+		}
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \App\Http\Requests\CMS\Administrator\UpdateRequest  $request
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
@@ -131,19 +161,17 @@ class AdministratorController extends Controller
 	{
 		try {
 			$credentials = $request->credentials();
-			// Upload image if exist
 
+			// Upload avatar if exist
 			if ($request->avatar) {
-				$profileImageName = FileController::uploadImage($request->avatar, $this->uploadPath);
-				$credentials['avatar'] = $profileImageName;
+				$avatarName = FileController::uploadImage($request->avatar, $this->imagesPath . '/avatars');
+				$credentials['avatar'] = $avatarName;
 			}
 
-			// Check update result
-			$result = Administrator::find($id)->update($credentials);
+			// Update administrator data
+			$result = Administrator::findOrFail($id)->update($credentials);
 
-			if (!$result) {
-				return ResponseController::failed(__('general.process.failed'));
-			}
+			if (!$result) throw new Exception(__('general.process.failed'));
 
 			return ResponseController::success(__('general.process.success'), route('cms.administrator.index'));
 		}
@@ -162,13 +190,10 @@ class AdministratorController extends Controller
 	public function destroy($id)
 	{
 		try {
-			// Check update result
-			$administrator = Administrator::find($id);
-			$result = $administrator->delete();
+			// Delete administrator data
+			$result = Administrator::findOrFail($id)->delete();
 
-			if (!$result) {
-				return ResponseController::failed(__('general.process.failed'));
-			}
+			if (!$result) throw new Exception(__('general.process.failed'));
 
 			return ResponseController::success(__('general.process.success'), route('cms.administrator.index'));
 		}
@@ -184,14 +209,11 @@ class AdministratorController extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function toggleStatus($id)
+	public function toggle($id)
 	{
 		try {
 			// Toggle administrator status
-			$administrator = Administrator::find($id);
-			$result = $administrator->update([
-				'status' => !$administrator->status,
-			]);
+			$result = Administrator::findOrFail($id)->toggle('status');
 
 			if (!$result) throw new Exception(__('general.process.failed'));
 

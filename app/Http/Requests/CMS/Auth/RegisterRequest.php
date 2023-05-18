@@ -26,8 +26,7 @@ class RegisterRequest extends FormRequest
      */
     public function attributes()
     {
-        $attributes = BaseFormRequest::getI18nAttributes();
-        return $attributes;
+        return BaseFormRequest::getI18nAttributes();
     }
 
     /**
@@ -37,8 +36,7 @@ class RegisterRequest extends FormRequest
      */
     public function messages()
     {
-        $messages = BaseFormRequest::getI18nMessages();
-        return $messages;
+        return BaseFormRequest::getI18nMessages();
     }
 
     /**
@@ -48,14 +46,12 @@ class RegisterRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
+        return [
             'username' => 'required|unique:Administrators,username',
             'name' => 'required',
             'email' => 'required|unique:Administrators,email',
             'password' => 'required',
         ];
-
-        return $rules;
     }
 
     /**
@@ -65,13 +61,11 @@ class RegisterRequest extends FormRequest
      */
     public function credentials()
     {
-        $credentials = [
+        return [
             'username' => $this->username,
             'name' => $this->name,
             'email' => $this->email,
             'password' => Hash::make($this->password),
         ];
-
-        return $credentials;
     }
 }

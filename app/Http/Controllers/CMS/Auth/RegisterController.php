@@ -9,11 +9,24 @@ use App\Models\Administrator;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CMS\ResponseController;
 use App\Http\Requests\CMS\Auth\RegisterRequest;
-use App\Mail\CMS\Auth\AccountActivationMail;
-use Illuminate\Support\Facades\Mail;
+use Exception;
 
 class RegisterController extends Controller
 {
+    /**
+     * Controller module path.
+     * 
+     * @var string
+     */
+    private $module = 'cms.auth';
+
+    /**
+     * Controller module title.
+     * 
+     * @var string
+     */
+    private $title = 'Register';
+
     /**
      * Display register page.
      *
@@ -21,9 +34,16 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        $data['title'] = 'Register';
+        try {
+            $view = $this->module . '.register';
+            $data['title'] = $this->title;
 
-        return view('cms.auth.register')->with($data);
+            return view($view, $data);
+        }
+        // 
+        catch (\Throwable $th) {
+            return ResponseController::failed($th->getMessage());
+        }
     }
 
     /**
@@ -40,9 +60,7 @@ class RegisterController extends Controller
             // Check registration result
             $result = Administrator::create($credentials);
 
-            if (!$result) {
-                return ResponseController::failed(__('auth.register.failed'));
-            }
+            if (!$result) throw new Exception(__('auth.register.failed'));
 
             // Event when administrator registered
             event(new AdministratorRegistered($credentials));
@@ -69,9 +87,7 @@ class RegisterController extends Controller
             // Check registration result
             $result = Administrator::setStatus($credentials, GeneralStatus::ACTIVE);
 
-            if (!$result) {
-                return ResponseController::failed(__('auth.register.failed'));
-            }
+            if (!$result) throw new Exception(__('auth.register.failed'));
 
             return ResponseController::success(__('auth.register.success'), route('cms.auth.login.index'));
         }

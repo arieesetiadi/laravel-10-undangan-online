@@ -5,12 +5,11 @@ use App\Http\Controllers\CMS\Auth\ForgotPasswordController;
 use App\Http\Controllers\CMS\Auth\LoginController;
 use App\Http\Controllers\CMS\Auth\LogoutController;
 use App\Http\Controllers\CMS\Auth\RegisterController;
-use App\Http\Controllers\CMS\HomeController as CMSHomeController;
+use App\Http\Controllers\CMS\DashboardController;
 use App\Http\Controllers\CMS\Modules\AdministratorController;
 use App\Http\Controllers\CMS\ProfileController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\WEB\HomeController;
-use App\Http\Controllers\WEB\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -30,7 +29,7 @@ Route::get('/app/clear', [AppController::class, 'clear'])->name('app.clear');
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('/cms')->as('cms.')->middleware('locale.use')->group(function () {
+Route::prefix('/system')->as('cms.')->middleware('locale.use')->group(function () {
 	// Guest
 	Route::middleware('guest:cms')->group(function () {
 		Route::prefix('/auth')->as('auth.')->group(function () {
@@ -58,13 +57,13 @@ Route::prefix('/cms')->as('cms.')->middleware('locale.use')->group(function () {
 
 	// Authenticated
 	Route::middleware('auth:cms')->group(function () {
-		// CMS Home
-		Route::get('/', [CMSHomeController::class, 'index'])->name('index');
+		// CMS Dashboard
+		Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
 
 		// CMS Module Administrator
 		Route::controller(AdministratorController::class)->group(function () {
 			Route::prefix('/administrator')->as('administrator.')->group(function () {
-				Route::post('/{administrator}/toggle-status', 'toggleStatus')->name('toggle-status');
+				Route::post('/{administrator}/toggle', 'toggle')->name('toggle');
 			});
 			Route::resource('/administrator', AdministratorController::class);
 		});
@@ -91,10 +90,5 @@ Route::prefix('/cms')->as('cms.')->middleware('locale.use')->group(function () {
 
 Route::prefix('/')->as('web.')->group(function () {
 	// WEB Home
-	Route::get('/', [HomeController::class, 'index'])->name('index');
-
-	// WEB Payment
-	Route::prefix('/payment')->as('payment.')->group(function () {
-		Route::post('/', [PaymentController::class, 'index'])->name('index');
-	});
+	Route::get('/', [HomeController::class, 'home'])->name('home');
 });

@@ -27,8 +27,7 @@ class UpdateRequest extends FormRequest
      */
     public function attributes()
     {
-        $attributes = BaseFormRequest::getI18nAttributes();
-        return $attributes;
+        return BaseFormRequest::getI18nAttributes();
     }
 
     /**
@@ -38,8 +37,7 @@ class UpdateRequest extends FormRequest
      */
     public function messages()
     {
-        $messages = BaseFormRequest::getI18nMessages();
-        return $messages;
+        return BaseFormRequest::getI18nMessages();
     }
 
     /**
@@ -49,14 +47,12 @@ class UpdateRequest extends FormRequest
      */
     public function rules(Request $request)
     {
-        $rules = [
+        return [
             'username' => 'required|unique:Administrators,username,' . $request->administrator,
             'name' => 'required',
             'email' => 'required|unique:Administrators,email,' . $request->administrator,
             'avatar' => 'file|mimes:jpeg,jpg,png|max:1024',
         ];
-
-        return $rules;
     }
 
     /**

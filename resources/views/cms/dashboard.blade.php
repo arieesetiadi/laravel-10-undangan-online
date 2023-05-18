@@ -1,6 +1,11 @@
 {{-- Master Template --}}
 @extends('cms.layouts.master')
 
+{{-- Sidebar Configuration --}}
+@section('sidebar.dashboard')
+    active-page
+@endsection
+
 {{-- Content --}}
 @section('content')
     <div class="container">
