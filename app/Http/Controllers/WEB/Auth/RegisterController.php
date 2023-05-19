@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\WEB\Auth;
 
 use App\Constants\GeneralStatus;
-use App\Events\AdministratorRegistered;
 use Illuminate\Http\Request;
-use App\Models\Administrator;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\WEB\ResponseController;
 use App\Http\Requests\WEB\Auth\RegisterRequest;
+use App\Models\Customer;
 use Exception;
 
 class RegisterController extends Controller
@@ -18,14 +17,23 @@ class RegisterController extends Controller
      * 
      * @var string
      */
-    private $module = 'cms.auth';
+    private $module;
 
     /**
      * Controller module title.
      * 
      * @var string
      */
-    private $title = 'Register';
+    private $title;
+
+    /**
+     * Initiate controller properties value.
+     */
+    public function __construct()
+    {
+        $this->module = 'web.auth';
+        $this->title = __('auth.register.word');
+    }
 
     /**
      * Display register page.
@@ -47,7 +55,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * Register new administrator data.
+     * Register new customer data.
      *
      * @param \App\Http\Requests\WEB\Auth\RegisterRequest $request
      * @return \Illuminate\Http\RedirectResponse
@@ -58,14 +66,11 @@ class RegisterController extends Controller
             $credentials = $request->credentials();
 
             // Check registration result
-            $result = Administrator::create($credentials);
+            $result = Customer::create($credentials);
 
             if (!$result) throw new Exception(__('auth.register.failed'));
 
-            // Event when administrator registered
-            event(new AdministratorRegistered($credentials));
-
-            return ResponseController::success(__('auth.register.sent'), route('cms.auth.login.index'));
+            return ResponseController::success(__('auth.register.sent'), route('web.auth.login.index'));
         }
         // 
         catch (\Throwable $th) {
@@ -74,7 +79,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * Activate new administrator status.
+     * Activate new customer status.
      *
      * @param \App\Http\Requests $request
      * @return \Illuminate\Http\RedirectResponse
@@ -85,11 +90,11 @@ class RegisterController extends Controller
             $credentials = $request->all();
 
             // Check registration result
-            $result = Administrator::setStatus($credentials, GeneralStatus::ACTIVE);
+            $result = Customer::setStatus($credentials, GeneralStatus::ACTIVE);
 
             if (!$result) throw new Exception(__('auth.register.failed'));
 
-            return ResponseController::success(__('auth.register.success'), route('cms.auth.login.index'));
+            return ResponseController::success(__('auth.register.success'), route('web.auth.login.index'));
         }
         // 
         catch (\Throwable $th) {

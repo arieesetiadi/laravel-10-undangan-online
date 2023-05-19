@@ -98,3 +98,101 @@
         </div>
     </div>
 @endsection
+
+{{-- Custom Scripts --}}
+@pushOnce('after-scripts')
+    {{-- Form Validation --}}
+    <script>
+        $('form#administrator-create').validate({
+            rules: {
+                username: {
+                    required: true,
+                },
+                name: {
+                    required: true,
+                },
+                email: {
+                    required: true,
+                    email: true,
+                },
+                'profile-image': {
+                    extension: "png|jpe?g",
+                    filesize: 1048576 // Max 1MB (1024 * 1024)
+                },
+                password: {
+                    required: true,
+                    minlength: 4,
+                }
+            },
+            messages: {
+                username: {
+                    required: messageRequired('username'),
+                },
+                name: {
+                    required: messageRequired('name'),
+                },
+                email: {
+                    required: messageRequired('email address'),
+                    email: messageEmail(),
+                },
+                'profile-image': {
+                    extension: messageExtension('profile image', 'PNG or JPG'),
+                    filesize: messageFileSize('profile image', '1MB'),
+                },
+                password: {
+                    required: messageRequired('password'),
+                    minlength: messageMinLength('password', 4),
+                }
+            },
+            errorPlacement: function(label, element) {
+                label.addClass(errorMessageClasses());
+                label.insertAfter(element);
+            },
+        });
+
+        $('form#administrator-edit').validate({
+            rules: {
+                username: {
+                    required: true,
+                },
+                name: {
+                    required: true,
+                },
+                email: {
+                    required: true,
+                    email: true,
+                },
+                'profile-image': {
+                    extension: "png|jpe?g",
+                    filesize: 1048576 // Max 1MB (1024 * 1024)
+                },
+                password: {
+                    minlength: 4,
+                }
+            },
+            messages: {
+                username: {
+                    required: messageRequired('username'),
+                },
+                name: {
+                    required: messageRequired('name'),
+                },
+                email: {
+                    required: messageRequired('email address'),
+                    email: messageEmail(),
+                },
+                'profile-image': {
+                    extension: messageExtension('profile image', 'PNG or JPG'),
+                    filesize: messageFileSize('profile image', '1MB'),
+                },
+                password: {
+                    minlength: messageMinLength('password', 4),
+                }
+            },
+            errorPlacement: function(label, element) {
+                label.addClass(errorMessageClasses());
+                label.insertAfter(element);
+            },
+        });
+    </script>
+@endPushOnce

@@ -14,8 +14,8 @@
                     <p class="mb-4">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
 
                     <div class="pt-2">
-                        <a href="#" class="btn btn-light mr-2">Get Started</a>
-                        <a href="#" class="btn btn-info">Learn more <i class="mdi mdi-arrow-right ml-1"></i></a>
+                        <a href="{{ route('web.auth.login.index') }}" class="btn btn-light mr-2">{{ __('auth.login.word') }}</a>
+                        <a href="{{ route('web.auth.register.index') }}" class="btn btn-info">{{ __('auth.register.word') }} <i class="mdi mdi-arrow-right ml-1"></i></a>
                     </div>
 
                     <div class="home-img mt-5">

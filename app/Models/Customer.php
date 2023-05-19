@@ -24,7 +24,7 @@ class Customer extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'name', 'email', 'phone', 'password', 'avatar', 'status',
+        'username', 'name', 'email', 'phone', 'password', 'status',
     ];
 
     /**
@@ -52,7 +52,7 @@ class Customer extends Authenticatable
     */
 
     /**
-     * Get administrator avatar image path | src.
+     * Get customer avatar image path | src.
      * 
      * @return string $avatarPath
      */
@@ -79,7 +79,7 @@ class Customer extends Authenticatable
     */
 
     /**
-     * Filter the active administrator.
+     * Filter the active customer.
      * 
      * @param object
      * @return object
@@ -90,7 +90,7 @@ class Customer extends Authenticatable
     }
 
     /**
-     * Filter the inactive administrator.
+     * Filter the inactive customer.
      * 
      * @param object
      * @return object
@@ -107,7 +107,7 @@ class Customer extends Authenticatable
     */
 
     /**
-     * Get all administrators data.
+     * Get all customers data.
      * 
      * @return array
      */
@@ -117,7 +117,7 @@ class Customer extends Authenticatable
     }
 
     /**
-     * Get administrator by id.
+     * Get customer by id.
      * 
      * @param int $id
      * @return array
@@ -128,21 +128,21 @@ class Customer extends Authenticatable
     }
 
     /**
-     * Get administrator status.
+     * Get customer status.
      * 
      * @param array $credentials
      * @return boolean $status
      */
     public static function getStatus($credentials)
     {
-        $administrator = self::where('username', $credentials['username'])->first();
-        $status = $administrator->status;
+        $customer = self::where('username', $credentials['username'])->first();
+        $status = $customer->status;
 
         return $status;
     }
 
     /**
-     * Set administrator status.
+     * Set customer status.
      * 
      * @param array $credentials
      * @param boolean $status
@@ -151,14 +151,14 @@ class Customer extends Authenticatable
      */
     public static function setStatus($credentials, $status)
     {
-        $administrator = self::where('email', $credentials['email']);
-        $result = $administrator->update(['status' => $status]);
+        $customer = self::where('email', $credentials['email']);
+        $result = $customer->update(['status' => $status]);
 
         return $result;
     }
 
     /**
-     * Reset administrator password.
+     * Reset customer password.
      * 
      * @param array $credentials
      * @return mixed $result
@@ -166,8 +166,8 @@ class Customer extends Authenticatable
     public static function setPassword($credentials)
     {
         $password = Hash::make($credentials['password']);
-        $administrator = self::where('email', $credentials['email']);
-        $result = $administrator->update(['password' => $password]);
+        $customer = self::where('email', $credentials['email']);
+        $result = $customer->update(['password' => $password]);
 
         return $result;
     }

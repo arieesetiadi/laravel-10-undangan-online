@@ -5,7 +5,7 @@ namespace App\Http\Controllers\WEB\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\WEB\ResponseController;
 use App\Http\Requests\WEB\Auth\LoginRequest;
-use App\Models\Administrator;
+use App\Models\Customer;
 use Exception;
 
 class LoginController extends Controller
@@ -15,14 +15,23 @@ class LoginController extends Controller
      * 
      * @var string
      */
-    private $module = 'cms.auth';
+    private $module;
 
     /**
      * Controller module title.
      * 
      * @var string
      */
-    private $title = 'Login';
+    private $title;
+
+    /**
+     * Initiate controller properties value.
+     */
+    public function __construct()
+    {
+        $this->module = 'web.auth';
+        $this->title = __('auth.login.word');
+    }
 
     /**
      * Display login page.
@@ -54,18 +63,18 @@ class LoginController extends Controller
         try {
             $credentials = $request->credentials();
 
-            // Check administrator status
-            $status = Administrator::getStatus($credentials);
+            // Check customer status
+            $status = Customer::getStatus($credentials);
 
             if (!$status) throw new Exception(__('auth.account.inactive'));
 
             // Check auth result
-            $result = auth()->guard('cms')->attempt($credentials);
+            $result = auth()->guard('web')->attempt($credentials);
 
             if (!$result) throw new Exception(__('auth.login.failed'));
 
-            // Redirect to CMS Dashboard
-            return ResponseController::success(__('auth.login.success'), route('cms.dashboard'));
+            // Redirect to WEB home
+            return ResponseController::success(__('auth.login.success'), route('web.home'));
         }
         // 
         catch (\Throwable $th) {

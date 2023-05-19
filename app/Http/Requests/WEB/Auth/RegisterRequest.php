@@ -66,6 +66,7 @@ class RegisterRequest extends FormRequest
             'name' => $this->name,
             'email' => $this->email,
             'password' => Hash::make($this->password),
+            'status' => true,
         ];
     }
 }
