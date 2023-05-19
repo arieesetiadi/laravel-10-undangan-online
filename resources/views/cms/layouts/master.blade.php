@@ -9,7 +9,7 @@
     @include('cms.layouts.styles')
 
     <!-- Title -->
-    <title>{{ $title ?? 'Title' }} | Content Management System</title>
+    <title>{{ $title ?? 'Title' }} | CMS {{ config('app.name') }}</title>
 </head>
 
 <body>

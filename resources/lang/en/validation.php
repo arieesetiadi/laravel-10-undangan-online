@@ -151,7 +151,7 @@ return [
         'name' => 'name',
         'email' => 'email address',
         'phone' => 'phone number',
-        'profile_image' => 'profile image',
+        'avatar' => 'profile avatar',
         'password' => 'password',
         'password_confirmation' => 'password confirmation',
     ],

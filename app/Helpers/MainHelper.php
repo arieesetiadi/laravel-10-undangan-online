@@ -19,7 +19,7 @@ const DATE_TIME_FORMAT = DATE_FORMAT . ' ' . TIME_FORMAT;
 if (!function_exists('customer')) {
     function customer()
     {
-        return auth()->guard('web')->user();
+        return auth('web')->user();
     }
 }
 
@@ -31,7 +31,7 @@ if (!function_exists('customer')) {
 if (!function_exists('administrator')) {
     function administrator()
     {
-        return auth()->guard('cms')->user();
+        return auth('cms')->user();
     }
 }
 
@@ -97,7 +97,7 @@ if (!function_exists('human_datetime')) {
  * 
  * @param string $datetime
  * @param string $locale
- * @return string $datetime
+ * @return string $diff
  */
 if (!function_exists('human_datetime_diff')) {
     function human_datetime_diff($datetime, $locale = null)

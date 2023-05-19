@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\CMS\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\CMS\ResponseController;
+use App\Http\Controllers\ResponseController;
 use App\Http\Requests\CMS\Auth\LoginRequest;
 use App\Models\Administrator;
 use Exception;
@@ -60,7 +60,7 @@ class LoginController extends Controller
             if (!$status) throw new Exception(__('auth.account.inactive'));
 
             // Check auth result
-            $result = auth()->guard('cms')->attempt($credentials);
+            $result = auth('cms')->attempt($credentials);
 
             if (!$result) throw new Exception(__('auth.login.failed'));
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\WEB\Auth;
 use App\Constants\GeneralStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\WEB\ResponseController;
+use App\Http\Controllers\ResponseController;
 use App\Http\Requests\WEB\Auth\RegisterRequest;
 use App\Models\Customer;
 use Exception;
@@ -70,7 +70,10 @@ class RegisterController extends Controller
 
             if (!$result) throw new Exception(__('auth.register.failed'));
 
-            return ResponseController::success(__('auth.register.sent'), route('web.auth.login.index'));
+            // If using account activation
+            // return ResponseController::success(__('auth.register.sent'), route('web.auth.login.index'));
+
+            return ResponseController::success(__('auth.register.success'), route('web.auth.login.index'));
         }
         // 
         catch (\Throwable $th) {

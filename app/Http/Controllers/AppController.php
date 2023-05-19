@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\CMS\ResponseController;
+use App\Http\Controllers\ResponseController;
 use Illuminate\Support\Facades\Artisan;
 
 class AppController extends Controller

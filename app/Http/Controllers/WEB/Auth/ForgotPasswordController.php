@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\WEB\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\WEB\ResponseController;
+use App\Http\Controllers\ResponseController;
 use App\Http\Requests\WEB\Auth\ForgotPasswordRequest;
 use App\Http\Requests\WEB\Auth\ResetPasswordRequest;
 use App\Mail\WEB\Auth\ForgotPasswordMail;

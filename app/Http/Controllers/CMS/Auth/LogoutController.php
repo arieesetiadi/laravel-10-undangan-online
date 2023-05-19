@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\CMS\Auth;
 
-use App\Http\Controllers\CMS\ResponseController;
+use App\Http\Controllers\ResponseController;
 use App\Http\Controllers\Controller;
 
 class LogoutController extends Controller
@@ -16,7 +16,7 @@ class LogoutController extends Controller
     {
         try {
             // Logout cms user
-            auth()->guard('cms')->logout();
+            auth('cms')->logout();
     
             return redirect()->route('cms.auth.login.index');
 		}

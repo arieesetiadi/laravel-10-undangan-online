@@ -13,10 +13,12 @@
 
                     <p class="mb-4">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
 
-                    <div class="pt-2">
-                        <a href="{{ route('web.auth.login.index') }}" class="btn btn-light mr-2">{{ __('auth.login.word') }}</a>
-                        <a href="{{ route('web.auth.register.index') }}" class="btn btn-info">{{ __('auth.register.word') }} <i class="mdi mdi-arrow-right ml-1"></i></a>
-                    </div>
+                    @if (!auth('web')->check())
+                        <div class="pt-2">
+                            <a href="{{ route('web.auth.login.index') }}" class="btn btn-light mr-2">{{ __('auth.login.word') }}</a>
+                            <a href="{{ route('web.auth.register.index') }}" class="btn btn-info">{{ __('auth.register.word') }} <i class="mdi mdi-arrow-right ml-1"></i></a>
+                        </div>
+                    @endif
 
                     <div class="home-img mt-5">
                         <img src="{{ asset('assets/web/images/home-img.png') }}" alt="" class="img-fluid mx-auto d-block" />

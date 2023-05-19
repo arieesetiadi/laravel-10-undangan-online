@@ -12,16 +12,31 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-
     'process' => [
         'success' => 'Proses telah berhasil diselesaikan.',
         'failed' => 'Maaf, kami tidak dapat menyelesaikan prosesnya. Silakan coba lagi.',
     ],
-    'action' => [
+    'actions' => [
         'add' => 'Tambah',
         'edit' => 'Ubah',
         'list' => 'Daftar',
         'submit' => 'Simpan',
         'update' => 'Ubah',
     ],
+    'words' => [
+        'home' => 'Beranda',
+        'about' => 'Tentang',
+        'pricing' => 'Harga',
+        'contact' => 'Kontak',
+        'attributes' => [
+            'username' => 'Username',
+            'name' => 'Nama',
+            'email' => 'Alamat Email',
+            'password' => 'Kata Sandi',
+            'password_confirmation' => 'Konfirmasi Kata Sandi',
+            'image' => 'Gambar',
+            'status' => 'Status',
+            'updated_at' => 'Diubah Pada',
+        ]
+    ]
 ];

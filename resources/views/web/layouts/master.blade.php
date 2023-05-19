@@ -9,7 +9,7 @@
     @include('web.layouts.styles')
 
     <!-- Title -->
-    <title>{{ $title ?? 'Title' }} | Online Wedding Invitation</title>
+    <title>{{ $title ?? 'Title' }} | {{ config('app.name') }}</title>
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="58">

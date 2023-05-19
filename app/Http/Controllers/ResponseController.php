@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\CMS;
+namespace App\Http\Controllers;
 
 use App\Constants\SwalButton;
 use App\Constants\SwalIcon;

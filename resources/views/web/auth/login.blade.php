@@ -9,7 +9,7 @@
     @include('cms.layouts.styles')
 
     {{-- Title --}}
-    <title>{{ $title ?? 'Title' }} | {{ __('general.app.names.web') }}</title>
+    <title>{{ $title ?? 'Title' }} | {{ config('app.name') }}</title>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
 
                 <div class="auth-credentials m-b-xxl">
                     <div class="m-b-md">
-                        <label for="username" class="form-label d-block">{{ __('general.words.fields.username') }}</label>
+                        <label for="username" class="form-label d-block">{{ __('general.words.attributes.username') }}</label>
                         <input name="username" type="text" class="form-control" id="username" aria-describedby="username" placeholder="e.g. robert">
                         @error('username')
                             <label for="username" class="mt-2 text-danger">
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="m-b-md">
-                        <label for="password" class="form-label d-block">{{ __('general.words.fields.password') }}</label>
+                        <label for="password" class="form-label d-block">{{ __('general.words.attributes.password') }}</label>
                         <input name="password" type="password" class="form-control" id="password" aria-describedby="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
                         @error('password')
                             <label for="password" class="mt-2 text-danger">
@@ -58,34 +58,34 @@
     {{-- Include Scripts --}}
     @include('cms.layouts.scripts')
 
-    {{-- Custom Scripts --}}
-    @pushOnce('after-scripts')
-        {{-- Form Validation --}}
-        <script>
-            $('form#login').validate({
-                rules: {
-                    username: {
-                        required: true
-                    },
-                    password: {
-                        required: true
-                    }
+    {{-- Include Sweet Alert --}}
+    @include('cms.layouts.swals')
+
+    {{-- Form Validation --}}
+    <script>
+        $('form#login').validate({
+            rules: {
+                username: {
+                    required: true
                 },
-                messages: {
-                    username: {
-                        required: messageRequired('username'),
-                    },
-                    password: {
-                        required: messageRequired('password'),
-                    }
+                password: {
+                    required: true
+                }
+            },
+            messages: {
+                username: {
+                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.username')]) }}`,
                 },
-                errorPlacement: function(label, element) {
-                    label.addClass(errorMessageClasses());
-                    label.insertAfter(element);
-                },
-            });
-        </script>
-    @endPushOnce
+                password: {
+                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.password')]) }}`,
+                }
+            },
+            errorPlacement: function(label, element) {
+                label.addClass(errorMessageClasses());
+                label.insertAfter(element);
+            },
+        });
+    </script>
 </body>
 
 </html>

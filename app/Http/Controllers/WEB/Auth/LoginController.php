@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\WEB\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\WEB\ResponseController;
+use App\Http\Controllers\ResponseController;
 use App\Http\Requests\WEB\Auth\LoginRequest;
 use App\Models\Customer;
 use Exception;
@@ -69,7 +69,7 @@ class LoginController extends Controller
             if (!$status) throw new Exception(__('auth.account.inactive'));
 
             // Check auth result
-            $result = auth()->guard('web')->attempt($credentials);
+            $result = auth('web')->attempt($credentials);
 
             if (!$result) throw new Exception(__('auth.login.failed'));
 

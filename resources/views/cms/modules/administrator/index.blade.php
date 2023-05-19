@@ -19,7 +19,7 @@
                     <div class="page-description-actions">
                         <a href="{{ route('cms.administrator.create') }}" class="btn btn-primary">
                             <i class="fa-solid fa-circle-plus"></i>
-                            {{ __('general.action.add') }} {{ $title }}
+                            {{ __('general.actions.add') }} {{ $title }}
                         </a>
                     </div>
                 </div>
@@ -34,11 +34,11 @@
                                 <tr>
                                     <th></th>
                                     <th>#</th>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Status</th>
-                                    <th>Last Updated</th>
+                                    <th>{{ __('general.words.attributes.image') }}</th>
+                                    <th>{{ __('general.words.attributes.name') }}</th>
+                                    <th>{{ __('general.words.attributes.email') }}</th>
+                                    <th>{{ __('general.words.attributes.status') }}</th>
+                                    <th>{{ __('general.words.attributes.updated_at') }}</th>
                                 </tr>
                             </thead>
                             <tbody>

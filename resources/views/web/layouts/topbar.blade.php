@@ -25,7 +25,9 @@
                         <a href="#contact" class="nav-link">{{ __('general.words.contact') }}</a>
                     </li>
                 </ul>
-                <a href="{{ route('web.auth.register.index') }}" class="btn btn-info btn-sm navbar-btn my-lg-0 my-2">{{ __('auth.register.word') }}</a>
+                @if (!auth('web')->check())
+                    <a href="{{ route('web.auth.register.index') }}" class="btn btn-info btn-sm navbar-btn my-lg-0 my-2">{{ __('auth.register.word') }}</a>
+                @endif
             </div>
         </div>
     </nav>

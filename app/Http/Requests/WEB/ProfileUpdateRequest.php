@@ -15,7 +15,7 @@ class ProfileUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->guard('web')->check();
+        return auth('web')->check();
     }
 
     /**

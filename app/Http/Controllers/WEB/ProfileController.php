@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\CMS;
+namespace App\Http\Controllers\WEB;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\ResponseController;
-use App\Http\Requests\CMS\ProfileUpdateRequest;
+use App\Http\Requests\WEB\ProfileUpdateRequest;
 use App\Models\Administrator;
 use Exception;
 
@@ -16,7 +16,7 @@ class ProfileController extends Controller
      * 
      * @var string
      */
-    private $module = 'cms';
+    private $module = 'web';
 
     /**
      * Controller module title.
@@ -47,7 +47,7 @@ class ProfileController extends Controller
     /**
      * Update profile data.
      * 
-     * @param \App\Http\Requests\CMS\ProfileUpdateRequest $request
+     * @param \App\Http\Requests\WEB\ProfileUpdateRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(ProfileUpdateRequest $request)

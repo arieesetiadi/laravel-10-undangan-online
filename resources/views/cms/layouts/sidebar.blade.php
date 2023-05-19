@@ -34,35 +34,25 @@
             </li>
             <li class="">
                 <a href="">
-                    <i class="material-icons-outlined text-dark">image</i> Banners
+                    <i class="material-icons-outlined text-dark">image</i> Dropdown
                     <i class="material-icons has-sub-menu">keyboard_arrow_right</i>
                 </a>
                 <ul class="sub-menu">
                     <li>
                         <a href="#" class="">
-                            Home Banners
+                            Sub Menu
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            Page Banner
+                            Other Sub Menu
                         </a>
                     </li>
                 </ul>
             </li>
-            <li class="sidebar-title">
-                Content
-            </li>
-            <li>
-                <a href="#">
-                    <i class="material-icons-outlined text-dark">book</i> Articles
-                </a>
-            </li>
+
             <li class="sidebar-title">
                 Other
-            </li>
-            <li>
-                <a href="#"><i class="material-icons-outlined text-dark">access_time</i> Activity Log</a>
             </li>
             <li>
                 <a href="{{ route('cms.logout.process') }}" data-type="link" onclick="swalConfirm(event)">

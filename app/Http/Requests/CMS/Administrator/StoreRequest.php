@@ -16,7 +16,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->guard('cms')->check();
+        return auth('cms')->check();
     }
 
     /**

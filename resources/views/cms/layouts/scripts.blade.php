@@ -17,7 +17,6 @@
 <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 {{-- Form Validation --}}
-<script type="application/javascript" src="{{ asset('assets/cms/js/pages/form-validation-messages.js') }}"></script>
 <script type="application/javascript" src="{{ asset('assets/cms/js/pages/form-validation.js') }}"></script>
 
 @stack('after-scripts')

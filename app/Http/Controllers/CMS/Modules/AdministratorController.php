@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\CMS\Modules;
 
-use App\Http\Controllers\CMS\ResponseController;
+use App\Http\Controllers\ResponseController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FileController;
 use App\Http\Requests\CMS\Administrator\StoreRequest;

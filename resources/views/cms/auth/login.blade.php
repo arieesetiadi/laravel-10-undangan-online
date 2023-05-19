@@ -21,8 +21,7 @@
                     <a href="{{ Request::url() }}">CMS Login</a>
                 </div>
                 <p class="auth-description">
-                    Please login to your account and continue to the dashboard.<br>Don't have an account?
-                    <a href="{{ route('cms.auth.register.index') }}" class="text-decoration-none">Register</a>
+                    Please login to your account and continue to the dashboard!
                 </p>
 
                 <div class="auth-credentials m-b-xxl">
@@ -49,7 +48,6 @@
 
                 <div class="auth-submit">
                     <button type="submit" class="btn btn-primary">Login</button>
-                    <a href="{{ route('cms.auth.forgot-password.index') }}" class="auth-forgot-password float-end">Forgot password?</a>
                 </div>
             </form>
         </div>
@@ -58,34 +56,31 @@
     {{-- Include Scripts --}}
     @include('cms.layouts.scripts')
 
-    {{-- Custom Scripts --}}
-    @pushOnce('after-scripts')
-        {{-- Form Validation --}}
-        <script>
-            $('form#login').validate({
-                rules: {
-                    username: {
-                        required: true
-                    },
-                    password: {
-                        required: true
-                    }
+    {{-- Form Validation --}}
+    <script>
+        $('form#login').validate({
+            rules: {
+                username: {
+                    required: true
                 },
-                messages: {
-                    username: {
-                        required: messageRequired('username'),
-                    },
-                    password: {
-                        required: messageRequired('password'),
-                    }
+                password: {
+                    required: true
+                }
+            },
+            messages: {
+                username: {
+                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.username')]) }}`,
                 },
-                errorPlacement: function(label, element) {
-                    label.addClass(errorMessageClasses());
-                    label.insertAfter(element);
-                },
-            });
-        </script>
-    @endPushOnce
+                password: {
+                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.password')]) }}`,
+                }
+            },
+            errorPlacement: function(label, element) {
+                label.addClass(errorMessageClasses());
+                label.insertAfter(element);
+            },
+        });
+    </script>
 </body>
 
 </html>

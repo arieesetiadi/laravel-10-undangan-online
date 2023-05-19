@@ -14,28 +14,36 @@ return [
     */
 
     'account' => [
-        'inactive' => 'Your account is inactive. Please contact the team support for assistance.',
+        'word' => 'Akun',
+        'inactive' => 'Akun anda tidak aktif. Silahkan hubungi tim support untuk bantuan.',
+        'question' => [
+            'registered' => 'Sudah memiliki akun?',
+            'unregistered' => 'Belum memiliki akun?'
+        ]
     ],
     'profile' => [
+        'word' => 'Profile',
         'update' => [
-            'success' => 'Your profile has been updated successfully.',
-            'failed' => 'Sorry, we could not complete your profile update at this time. Please check your information and try again.',
+            'success' => 'Profile anda berhasil diperbarui.',
+            'failed' => 'Maaf, kami tidak dapat menyelesaikan pembaruan profil Anda saat ini. Harap periksa informasi Anda dan coba lagi.',
         ],
     ],
     'login' => [
-        'success' => 'Welcome, you are logged in successfully.',
-        'failed' => 'Invalid username or password. Please try again.',
-        'throttle' => 'Too many login attempts. Please try again later.',
+        'word' => 'Masuk',
+        'success' => 'Selamat datang, anda berhasil masuk.',
+        'failed' => 'Username atau kata sandi tidak valid. Silahkan coba lagi.',
+        'throttle' => 'Terlalu banyak percobaan. Silahkan coba beberapa saat lagi.',
     ],
     'register' => [
-        'success' => 'Congratulations, your account has been registered successfully. You can now login using your new account.',
-        'failed' => 'Sorry, we could not complete your registration at this time. Please check your information and try again.',
-        'sent' => 'Activation link has been sent to your email. Please check your inbox and follow the instructions to activate your account.',
+        'word' => 'Daftar',
+        'success' => 'Selamat, akun Anda telah berhasil didaftarkan. Anda sekarang dapat masuk menggunakan akun baru Anda.',
+        'failed' => 'Maaf, kami tidak dapat menyelesaikan pendaftaran Anda saat ini. Harap periksa informasi Anda dan coba lagi.',
+        'sent' => 'Tautan aktivasi telah dikirim ke alamat email Anda. Silakan periksa kotak masuk Anda dan ikuti petunjuk untuk mengaktifkan akun Anda.',
     ],
     'password_reset' => [
-        'success' => 'Your password has been reset successfully. You can now login to your account using your new password.',
-        'failed' => 'Sorry, we could not complete your password reset at this time.',
-        'sent' => 'We have sent the password reset link to your email address. Please check your mail inbox.',
-    ]
-
+        'word' => 'Lupa Kata Sandi',
+        'success' => 'Kata sandi Anda telah berhasil diatur ulang. Anda sekarang dapat masuk ke akun Anda menggunakan kata sandi baru Anda.',
+        'failed' => 'Maaf, kami tidak dapat menyelesaikan pengaturan ulang kata sandi Anda saat ini.',
+        'sent' => 'Kami telah mengirimkan tautan pengaturan ulang kata sandi ke alamat email Anda. Silakan periksa kotak masuk email Anda.',
+    ],
 ];

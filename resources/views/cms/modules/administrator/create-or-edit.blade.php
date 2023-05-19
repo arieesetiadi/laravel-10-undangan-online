@@ -14,7 +14,7 @@
                 <div class="page-description">
                     <h1>{{ $title }}</h1>
                     <h6 class="mt-2">
-                        {{ Breadcrumbs::render('cms.administrator.action', $edit ? __('general.action.edit') : __('general.action.add')) }}
+                        {{ Breadcrumbs::render('cms.administrator.action', $edit ? __('general.actions.edit') : __('general.actions.add')) }}
                     </h6>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                             <div class="mt-4">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa-solid fa-circle-check"></i>
-                                    {{ $edit ? __('general.action.update') : __('general.action.submit') }}
+                                    {{ $edit ? __('general.actions.update') : __('general.actions.submit') }}
                                 </button>
                             </div>
                         </form>

@@ -12,17 +12,11 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'app' => [
-        'names' => [
-            'web' => 'Online Wedding Invitation',
-            'cms' => 'Content Management System',
-        ],
-    ],
     'process' => [
         'success' => 'The process has been completed successfully.',
         'failed' => 'Sorry, we could not complete the process. Please try again.',
     ],
-    'action' => [
+    'actions' => [
         'add' => 'Add',
         'edit' => 'Edit',
         'list' => 'List',
@@ -34,12 +28,15 @@ return [
         'about' => 'About',
         'pricing' => 'Pricing',
         'contact' => 'Contact',
-        'fields' => [
+        'attributes' => [
             'username' => 'Username',
             'name' => 'Name',
             'email' => 'Email',
             'password' => 'Password',
             'password_confirmation' => 'Password Confirmation',
+            'image' => 'Image',
+            'status' => 'Status',
+            'updated_at' => 'Last Updated',
         ]
     ]
 ];

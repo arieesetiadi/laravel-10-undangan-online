@@ -1,10 +1,8 @@
 <?php
 
 use App\Http\Controllers\AppController;
-use App\Http\Controllers\CMS\Auth\ForgotPasswordController as CMSForgotPasswordController;
 use App\Http\Controllers\CMS\Auth\LoginController as CMSLoginController;
 use App\Http\Controllers\CMS\Auth\LogoutController as CMSLogoutController;
-use App\Http\Controllers\CMS\Auth\RegisterController as CMSRegisterController;
 use App\Http\Controllers\CMS\DashboardController;
 use App\Http\Controllers\CMS\Modules\AdministratorController;
 use App\Http\Controllers\CMS\ProfileController as CMSProfileController;
@@ -34,7 +32,7 @@ Route::get('/app/clear', [AppController::class, 'clear'])->name('app.clear');
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('/system')->as('cms.')->middleware('locale.use')->group(function () {
+Route::prefix('/system')->as('cms.')->middleware('locale.use:en')->group(function () {
 	// CMS Guest
 	Route::middleware('guest:cms')->group(function () {
 		Route::prefix('/auth')->as('auth.')->group(function () {
@@ -42,20 +40,6 @@ Route::prefix('/system')->as('cms.')->middleware('locale.use')->group(function (
 			Route::prefix('/login')->as('login.')->controller(CMSLoginController::class)->group(function () {
 				Route::get('/', 'index')->name('index');
 				Route::post('/process', 'process')->name('process');
-			});
-
-			// CMS Register
-			Route::prefix('/register')->as('register.')->controller(CMSRegisterController::class)->group(function () {
-				Route::get('/', 'index')->name('index');
-				Route::post('/process', 'process')->name('process');
-				Route::get('/activate', 'activate')->name('activate');
-			});
-
-			// CMS Forget Password
-			Route::prefix('/forgot-password')->as('forgot-password.')->controller(CMSForgotPasswordController::class)->group(function () {
-				Route::get('/', 'index')->name('index');
-				Route::post('/send', 'send')->name('send');
-				Route::post('/reset', 'reset')->name('reset');
 			});
 		});
 	});
@@ -93,7 +77,7 @@ Route::prefix('/system')->as('cms.')->middleware('locale.use')->group(function (
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('/')->as('web.')->group(function () {
+Route::prefix('/')->as('web.')->middleware('locale.use')->group(function () {
 	// WEB Home
 	Route::get('/', [HomeController::class, 'home'])->name('home');
 

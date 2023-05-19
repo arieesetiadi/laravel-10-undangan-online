@@ -15,9 +15,12 @@ class UseLocale
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $locale)
     {
-        $locale = session('locale') ?? Locale::EN;
+        if (!$locale) {
+            $locale = session('locale') ?? Locale::ID;
+        }
+        
         app()->setLocale($locale);
 
         return $next($request, $locale);

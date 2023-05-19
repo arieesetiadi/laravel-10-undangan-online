@@ -9,7 +9,7 @@
     @include('cms.layouts.styles')
 
     {{-- Target --}}
-    <title>{{ $title ?? 'Title' }} | {{ __('general.app.names.web') }}</title>
+    <title>{{ $title ?? 'Title' }} | {{ config('app.name') }}</title>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
 
                 <div class="auth-credentials m-b-xxl">
                     <div class="m-b-md">
-                        <label for="username" class="form-label d-block">{{ __('general.words.fields.username') }}</label>
+                        <label for="username" class="form-label d-block">{{ __('general.words.attributes.username') }}</label>
                         <input name="username" type="text" class="form-control" id="username" aria-describedby="username" placeholder="e.g. robert" value="{{ old('username') }}">
                         @error('username')
                             <label for="username" class="mt-2 text-danger">
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="m-b-md">
-                        <label for="name" class="form-label d-block">{{ __('general.words.fields.name') }}</label>
+                        <label for="name" class="form-label d-block">{{ __('general.words.attributes.name') }}</label>
                         <input name="name" type="text" class="form-control" id="name" aria-describedby="name" placeholder="e.g. Robert Emerson" value="{{ old('name') }}">
                         @error('name')
                             <label for="name" class="mt-2 text-danger">
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="m-b-md">
-                        <label for="email" class="form-label d-block">{{ __('general.words.fields.email') }}</label>
+                        <label for="email" class="form-label d-block">{{ __('general.words.attributes.email') }}</label>
                         <input name="email" type="email" class="form-control" id="email" aria-describedby="email" placeholder="e.g. email@example.com" value="{{ old('email') }}">
                         @error('email')
                             <label for="email" class="mt-2 text-danger">
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="m-b-md">
-                        <label for="password" class="form-label d-block">{{ __('general.words.fields.password') }}</label>
+                        <label for="password" class="form-label d-block">{{ __('general.words.attributes.password') }}</label>
                         <input name="password" type="password" class="form-control" id="password" aria-describedby="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
                         @error('password')
                             <label for="password" class="mt-2 text-danger">
@@ -77,50 +77,50 @@
     {{-- Include Scripts --}}
     @include('cms.layouts.scripts')
 
-    {{-- Custom Scripts --}}
-    @pushOnce('after-scripts')
-        {{-- Form Validation --}}
-        <script>
-            $('form#register').validate({
-                rules: {
-                    username: {
-                        required: true,
-                    },
-                    name: {
-                        required: true,
-                    },
-                    email: {
-                        required: true,
-                        email: true,
-                    },
-                    password: {
-                        required: true,
-                        minlength: 4,
-                    }
+    {{-- Include Sweet Alert --}}
+    @include('cms.layouts.swals')
+
+    {{-- Form Validation --}}
+    <script>
+        $('form#register').validate({
+            rules: {
+                username: {
+                    required: true,
                 },
-                messages: {
-                    username: {
-                        required: messageRequired('username'),
-                    },
-                    name: {
-                        required: messageRequired('name'),
-                    },
-                    email: {
-                        required: messageRequired('email address'),
-                        email: messageEmail(),
-                    },
-                    password: {
-                        required: messageRequired('password'),
-                        minlength: messageMinLength('password', 4),
-                    }
+                name: {
+                    required: true,
                 },
-                errorPlacement: function(label, element) {
-                    label.addClass(errorMessageClasses());
-                    label.insertAfter(element);
+                email: {
+                    required: true,
+                    email: true,
                 },
-            });
-        </script>
-    @endPushOnce
+                password: {
+                    required: true,
+                    minlength: 4,
+                }
+            },
+            messages: {
+                username: {
+                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.username')]) }}`,
+                },
+                name: {
+                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.name')]) }}`,
+                },
+                email: {
+                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.email')]) }}`,
+                    email: `{{ __('validation.email', ['attribute' => __('validation.attributes.email')]) }}`,
+                },
+                password: {
+                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.password')]) }}`,
+                    minlength: `{{ __('validation.min.string', ['attribute' => __('validation.attributes.password'), 'min' => 4]) }}`,
+                }
+            },
+            errorPlacement: function(label, element) {
+                label.addClass(errorMessageClasses());
+                label.insertAfter(element);
+            },
+        });
+    </script>
 </body>
 
 </html>
