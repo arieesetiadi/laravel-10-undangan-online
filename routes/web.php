@@ -10,6 +10,7 @@ use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\WEB\Auth\ForgotPasswordController as WEBForgotPasswordController;
 use App\Http\Controllers\WEB\Auth\LoginController as WEBLoginController;
 use App\Http\Controllers\WEB\Auth\LogoutController as WEBLogoutController;
+use App\Http\Controllers\WEB\Auth\OAuthController;
 use App\Http\Controllers\WEB\Auth\RegisterController as WEBRegisterController;
 use App\Http\Controllers\WEB\HomeController;
 use App\Http\Controllers\WEB\ProfileController as WEBProfileController;
@@ -85,6 +86,11 @@ Route::prefix('/')->as('web.')->middleware('locale.use')->group(function () {
 
 	// WEB Guest
 	Route::middleware('guest:web')->group(function () {
+		Route::prefix('/oauth')->as('oauth.')->controller(OAuthController::class)->group(function () {
+			Route::get('/{driver}/redirect', 'redirect')->name('redirect');
+			Route::get('/{driver}/callback', 'callback')->name('callback');
+		});
+
 		Route::prefix('/auth')->as('auth.')->group(function () {
 			// WEB Login
 			Route::prefix('/login')->as('login.')->controller(WEBLoginController::class)->group(function () {

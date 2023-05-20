@@ -1,3 +1,7 @@
+@php
+    use App\Constants\OAuthDriver;
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,6 +73,12 @@
                                             <button class="btn btn-primary" type="submit">
                                                 <i class="fa-solid fa-right-to-bracket d-inline-block mr-1"></i> {{ __('auth.login.word') }}
                                             </button>
+                                        </div>
+
+                                        <div class="mt-3 d-grid">
+                                            <a href="{{ route('web.oauth.redirect', OAuthDriver::GOOGLE) }}" class="btn btn-outline-primary" type="submit">
+                                                {!! OAuthDriver::htmlLabel(OAuthDriver::GOOGLE) !!}
+                                            </a>
                                         </div>
 
                                         <div class="mt-4 text-center">

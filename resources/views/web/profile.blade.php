@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mt-3">
                     <h6 class="text-center">{{ __('general.words.attributes.phone') }}</h6>
-                    <p class="mb-2 text-center">{{ customer()->phone }}</p>
+                    <p class="mb-2 text-center">{{ customer()->phone ?? '-' }}</p>
                 </div>
             </div>
         </div>
@@ -93,7 +93,7 @@
                     <h6>{{ __('general.words.attributes.phone') }}</h6>
                     <p class="mb-2">
                         <span class="uim-icon-info mr-2 align-middle"><i class="uim uim-check-circle"></i></span>
-                        {{ customer()->phone }}
+                        {{ customer()->phone ?? '-' }}
                     </p>
                 </div>
             </div>

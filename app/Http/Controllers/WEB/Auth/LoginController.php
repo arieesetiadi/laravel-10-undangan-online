@@ -75,7 +75,7 @@ class LoginController extends Controller
             if (!$result) throw new Exception(__('auth.login.failed'));
 
             // Redirect to WEB home
-            return ResponseController::success(__('auth.login.success'), route('web.profile.index'));
+            return ResponseController::success(__('auth.login.success'), route('web.home'));
         }
         // 
         catch (\Throwable $th) {

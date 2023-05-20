@@ -1,3 +1,7 @@
+@php
+    use App\Constants\GeneralStatus;
+@endphp
+
 {{-- Master Template --}}
 @extends('cms.layouts.master')
 
@@ -66,7 +70,7 @@
                                         </td>
                                         <td>{{ $administrator->name }}</td>
                                         <td>{{ $administrator->email }}</td>
-                                        <td>{!! \App\Constants\GeneralStatus::htmlLabel($administrator->status) !!}</td>
+                                        <td>{!! GeneralStatus::htmlLabel($administrator->status) !!}</td>
                                         <td>{{ human_datetime($administrator->updated_at) }}</td>
                                     </tr>
                                 @empty
