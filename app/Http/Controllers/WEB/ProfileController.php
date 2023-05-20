@@ -33,6 +33,7 @@ class ProfileController extends Controller
     public function index()
     {
         try {
+            dd('PROFILE');
             $view = $this->module . '.profile';
             $data['title'] = $this->title;
 

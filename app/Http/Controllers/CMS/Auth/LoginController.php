@@ -15,14 +15,23 @@ class LoginController extends Controller
      * 
      * @var string
      */
-    private $module = 'cms.auth';
+    private $module;
 
     /**
      * Controller module title.
      * 
      * @var string
      */
-    private $title = 'Login';
+    private $title;
+
+    /**
+     * Initiate controller properties value.
+     */
+    public function __construct()
+    {
+        $this->module = 'cms.auth';
+        $this->title = __('auth.login.word');
+    }
 
     /**
      * Display login page.

@@ -26,7 +26,21 @@
                     </li>
                 </ul>
                 @if (!auth('web')->check())
-                    <a href="{{ route('web.auth.register.index') }}" class="btn btn-info btn-sm navbar-btn my-lg-0 my-2">{{ __('auth.register.word') }}</a>
+                    <a href="{{ route('web.auth.login.index') }}" class="btn btn-primary btn-sm navbar-btn my-lg-0 my-2">
+                        {{ __('auth.login.word') }}
+                    </a>
+                    <a href="{{ route('web.auth.register.index') }}" class="btn btn-info btn-sm navbar-btn my-lg-0 my-2">
+                        {{ __('auth.register.word') }} <i class="mdi mdi-arrow-right ml-1"></i>
+                    </a>
+                @else
+                    <div class="btn-group">
+                        <a href="{{ route('web.profile.index') }}" class="btn btn-sm btn-primary my-lg-0 my-2 @yield('topbar.profile')" aria-current="page">
+                            <i class="fa-solid fa-user d-inline-block mr-1"></i> {{ customer()->name }}
+                        </a>
+                        <a href="{{ route('web.logout.process') }}" class="btn btn-sm btn-primary my-lg-0 my-2">
+                            <i class="fa-solid fa-power-off d-inline-block mr-1"></i> {{ __('auth.logout.word') }}
+                        </a>
+                    </div>
                 @endif
             </div>
         </div>

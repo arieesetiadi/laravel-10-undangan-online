@@ -45,6 +45,9 @@ return [
         'failed' => 'Maaf, kami tidak dapat menyelesaikan pendaftaran Anda saat ini. Harap periksa informasi Anda dan coba lagi.',
         'sent' => 'Tautan aktivasi telah dikirim ke alamat email Anda. Silakan periksa kotak masuk Anda dan ikuti petunjuk untuk mengaktifkan akun Anda.',
     ],
+    'logout' => [
+        'word' => 'Keluar',
+    ],
     'password_reset' => [
         'word' => 'Lupa Kata Sandi',
         'success' => 'Kata sandi Anda telah berhasil diatur ulang. Anda sekarang dapat masuk ke akun Anda menggunakan kata sandi baru Anda.',

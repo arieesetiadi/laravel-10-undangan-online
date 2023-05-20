@@ -24,6 +24,7 @@ return [
         'update' => 'Ubah',
     ],
     'words' => [
+        'web' => 'Website',
         'home' => 'Beranda',
         'about' => 'Tentang',
         'pricing' => 'Harga',
