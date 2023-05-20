@@ -16,14 +16,23 @@ class ProfileController extends Controller
      * 
      * @var string
      */
-    private $module = 'web';
+    private $module;
 
     /**
      * Controller module title.
      * 
      * @var string
      */
-    private $title = 'Profile';
+    private $title;
+
+        /**
+     * Initiate controller properties value.
+     */
+    public function __construct()
+    {
+        $this->module = 'web';
+        $this->title = __('auth.profile.word');
+    }
 
     /**
      * Display profile page.
@@ -33,7 +42,6 @@ class ProfileController extends Controller
     public function index()
     {
         try {
-            dd('PROFILE');
             $view = $this->module . '.profile';
             $data['title'] = $this->title;
 

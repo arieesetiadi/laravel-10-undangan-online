@@ -25,6 +25,8 @@ return [
     ],
     'words' => [
         'web' => 'Website',
+        'detail' => 'Detail',
+        'transaction' => 'Transaksi',
         'home' => 'Beranda',
         'about' => 'Tentang',
         'pricing' => 'Harga',
@@ -33,6 +35,7 @@ return [
             'username' => 'Username',
             'name' => 'Nama',
             'email' => 'Alamat Email',
+            'phone' => 'Nomor Telepon',
             'password' => 'Kata Sandi',
             'password_confirmation' => 'Konfirmasi Kata Sandi',
             'image' => 'Gambar',
