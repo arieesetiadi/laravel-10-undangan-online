@@ -47,8 +47,8 @@ class ProfileUpdateRequest extends FormRequest
     {
         return [
             'username' => 'required|unique:customers,username,' . customer()->id,
+            'name' => 'required',
             'email' => 'required|unique:customers,email,' . customer()->id,
-            'avatar' => 'file|mimes:jpeg,jpg,png|max:1024',
             'password' => 'confirmed',
             'password_confirmation' => 'required_if:password,string',
         ];
@@ -65,6 +65,7 @@ class ProfileUpdateRequest extends FormRequest
             'username' => $this->username,
             'name' => $this->name,
             'email' => $this->email,
+            'phone' => $this->phone,
         ];
 
         // Include new password if its edited

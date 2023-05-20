@@ -25,3 +25,21 @@ function previewImageModal(event) {
     imageTarget.attr('src', imageSrc);
     imageTarget.attr('alt', imageAlt);
 }
+
+// Validate number input only
+$('input.input-number').each(function () {
+    const value = parseFloat($(this).val());
+    if (!isNaN(value)) {
+        $(this).val(Math.floor(value));
+    }
+});
+
+$('input.input-number').keypress(function (e) {
+    const keyCode = e.which ? e.which : e.keyCode;
+    const inputChar = String.fromCharCode(keyCode);
+
+    // Allow numeric characters only
+    if (!/^\d+$/.test(inputChar)) {
+        e.preventDefault();
+    }
+});

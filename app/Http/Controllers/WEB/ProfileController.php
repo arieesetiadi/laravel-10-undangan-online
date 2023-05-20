@@ -7,6 +7,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\ResponseController;
 use App\Http\Requests\WEB\ProfileUpdateRequest;
 use App\Models\Administrator;
+use App\Models\Customer;
 use Exception;
 
 class ProfileController extends Controller
@@ -63,16 +64,10 @@ class ProfileController extends Controller
     {
         try {
             $credentials = $request->credentials();
-            $administrator = Administrator::find(administrator()->id);
-
-            // Upload image if exist
-            if ($request->avatar) {
-                $profileImageName = FileController::uploadImage($request->avatar, $this->imagesPath . '/avatars', $administrator->avatar);
-                $credentials['avatar'] = $profileImageName;
-            }
-
+            $customer = Customer::find(customer()->id);
+            
             // Check update result
-            $result = $administrator->update($credentials);
+            $result = $customer->update($credentials);
 
             if (!$result) throw new Exception(__('auth.profile.update.failed'));
 

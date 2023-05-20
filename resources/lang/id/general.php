@@ -23,7 +23,8 @@ return [
         'submit' => 'Simpan',
         'update' => 'Ubah',
         'detail' => 'Detail',
-        'back' => 'Kembali'
+        'back' => 'Kembali',
+        'cancel' => 'Batal'
     ],
     'words' => [
         'web' => 'Website',

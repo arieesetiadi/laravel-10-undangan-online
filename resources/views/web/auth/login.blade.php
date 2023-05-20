@@ -55,7 +55,12 @@
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label" for="password">{{ __('general.words.attributes.password') }}</label>
+                                            <div class="d-flex">
+                                                <label class="form-label" for="password">{{ __('general.words.attributes.password') }}</label>
+                                                <div class="d-inline-block px-5 form-check form-switch">
+                                                    <input name="toggle-password" class="form-check-input" type="checkbox" tabindex="-1" id="toggle-password" onchange="togglePassword(event, 'password')">
+                                                </div>
+                                            </div>
                                             <input name="password" type="password" class="form-control" id="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
                                             @error('password')
                                                 <label for="password" class="mt-2 text-danger">

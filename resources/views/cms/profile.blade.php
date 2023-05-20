@@ -161,7 +161,7 @@
                     required: true,
                     email: true,
                 },
-                'profile-image': {
+                avatar: {
                     extension: "png|jpe?g",
                     filesize: 1048576 // Max 1MB (1024 * 1024)
                 },
@@ -180,7 +180,7 @@
                     required: messageRequired('email address'),
                     email: messageEmail(),
                 },
-                'profile-image': {
+                avatar: {
                     extension: messageExtension('profile image', 'PNG or JPG'),
                     filesize: messageFileSize('profile image', '1MB'),
                 },
