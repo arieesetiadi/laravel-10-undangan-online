@@ -13,14 +13,8 @@
             <div class="col">
                 <div class="page-description d-flex align-items-center">
                     <div class="page-description-content flex-grow-1">
-                        <h1>{{ $title }}</h1>
+                        <h2 class="fw-bold">{{ $title }}</h2>
                         <h6 class="mt-2 text-dark">{{ Breadcrumbs::render('cms.administrator.index') }}</h6>
-                    </div>
-                    <div class="page-description-actions">
-                        <a href="{{ route('cms.administrator.create') }}" class="btn btn-primary">
-                            <i class="fa-solid fa-circle-plus"></i>
-                            {{ __('general.actions.add') }} {{ $title }}
-                        </a>
                     </div>
                 </div>
             </div>
@@ -28,8 +22,15 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
+                    <div class="card-header d-flex justify-content-start gap-2">
+                        <a href="{{ route('cms.administrator.create') }}" class="btn btn-sm btn-light">
+                            {{ __('general.actions.add') }} {{ $title }}
+                        </a>
+                        <a href="{{ route('cms.administrator.pdf') }}" target="_blank" class="btn btn-sm btn-light">Export PDF</button>
+                        <a href="{{ route('cms.administrator.excel') }}" target="_blank" class="btn btn-sm btn-light">Export Excel</a>
+                    </div>
                     <div class="card-body">
-                        <table class="datatable w-100 nowrap">
+                        <table class="datatable w-100">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -53,7 +54,7 @@
                                             </a>
                                             <form action="{{ route('cms.administrator.toggle', $administrator->id) }}" method="POST">
                                                 @csrf
-                                                <button type="button" class="btn btn-sm {{ $administrator->status ? 'btn-danger' : 'btn-success' }}" onclick="swalConfirm(event)">
+                                                <button type="button" class="btn btn-sm {{ $administrator->status ? 'btn-dark' : 'btn-success' }}" onclick="swalConfirm(event)">
                                                     {{ $administrator->status ? 'Inactivate' : 'Activate' }}
                                                 </button>
                                             </form>

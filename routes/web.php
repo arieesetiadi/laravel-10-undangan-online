@@ -53,6 +53,8 @@ Route::prefix('/system')->as('cms.')->middleware('locale.use:en')->group(functio
 		Route::controller(AdministratorController::class)->group(function () {
 			Route::prefix('/administrator')->as('administrator.')->group(function () {
 				Route::post('/{administrator}/toggle', 'toggle')->name('toggle');
+				Route::get('/pdf', 'pdf')->name('pdf');
+				Route::get('/excel', 'excel')->name('excel');
 			});
 			Route::resource('/administrator', AdministratorController::class);
 		});

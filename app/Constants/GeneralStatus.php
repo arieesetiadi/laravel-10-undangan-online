@@ -50,7 +50,7 @@ class GeneralStatus
     {
         $htmlLabels = [
             self::ACTIVE => '<span class="badge badge-success w-100">' . self::label(self::ACTIVE) . '</span>',
-            self::INACTIVE => '<span class="badge badge-danger w-100">' . self::label(self::INACTIVE) . '</span>',
+            self::INACTIVE => '<span class="badge badge-dark w-100">' . self::label(self::INACTIVE) . '</span>',
         ];
 
         return $htmlLabels;

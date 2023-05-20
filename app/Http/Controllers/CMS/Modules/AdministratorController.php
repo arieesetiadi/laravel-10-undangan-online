@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\CMS\Modules;
 
-use App\Http\Controllers\ResponseController;
+use App\Exports\AdministratorsExport;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\ResponseController;
 use App\Http\Requests\CMS\Administrator\StoreRequest;
 use App\Http\Requests\CMS\Administrator\UpdateRequest;
 use App\Models\Administrator;
@@ -219,6 +220,38 @@ class AdministratorController extends Controller
 			if (!$result) throw new Exception(__('general.process.failed'));
 
 			return ResponseController::success(__('general.process.success'), route('cms.administrator.index'));
+		}
+		// 
+		catch (\Throwable $th) {
+			return ResponseController::failed($th->getMessage());
+		}
+	}
+
+	/**
+	 * Export as PDF.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function pdf()
+	{
+		try {
+			return \Maatwebsite\Excel\Facades\Excel::download(new AdministratorsExport(), 'administrators.pdf');
+		}
+		// 
+		catch (\Throwable $th) {
+			return ResponseController::failed($th->getMessage());
+		}
+	}
+
+	/**
+	 * Export as Excel.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function excel()
+	{
+		try {
+			return \Maatwebsite\Excel\Facades\Excel::download(new AdministratorsExport(), 'administrators-' . now()->timestamp . '.xlsx');
 		}
 		// 
 		catch (\Throwable $th) {
