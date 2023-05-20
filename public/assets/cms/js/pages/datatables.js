@@ -5,6 +5,7 @@ $(document).ready(function () {
         ],
         order: []
     });
+
     $('.datatable.scroll-x').DataTable({
         columnDefs: [
             { "orderable": false, "targets": [0] },

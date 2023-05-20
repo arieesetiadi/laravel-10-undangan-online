@@ -44,39 +44,19 @@
                             <tbody>
                                 @forelse ($administrators as $i => $administrator)
                                     <tr>
-                                        <td>
-                                            <div class="droptop">
-                                                <button type="button" class="btn btn-sm px-1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fa-solid fa-gear text-grey mx-0"></i>
+                                        <td class="d-flex gap-2">
+                                            <a class="btn btn-sm btn-light" href="{{ route('cms.administrator.edit', $administrator->id) }}">
+                                                {{ __('general.actions.edit') }}
+                                            </a>
+                                            <a class="btn btn-sm btn-info" href="{{ route('cms.administrator.show', $administrator->id) }}">
+                                                {{ __('general.actions.detail') }}
+                                            </a>
+                                            <form action="{{ route('cms.administrator.toggle', $administrator->id) }}" method="POST">
+                                                @csrf
+                                                <button type="button" class="btn btn-sm {{ $administrator->status ? 'btn-danger' : 'btn-success' }}" onclick="swalConfirm(event)">
+                                                    {{ $administrator->status ? 'Inactivate' : 'Activate' }}
                                                 </button>
-                                                <ul class="dropdown-menu border">
-                                                    <li>
-                                                        <a class="dropdown-item btn btn-sm" href="{{ route('cms.administrator.edit', $administrator->id) }}">
-                                                            Edit</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item btn btn-sm" href="{{ route('cms.administrator.show', $administrator->id) }}">Detail</a>
-                                                    </li>
-                                                    <li>
-                                                        <form action="{{ route('cms.administrator.toggle', $administrator->id) }}" method="POST">
-                                                            @csrf
-                                                            <button type="button" class="dropdown-item btn btn-sm {{ $administrator->status ? 'btn-danger' : 'btn-success' }}" onclick="swalConfirm(event)">
-                                                                {{ $administrator->status ? 'Inactivate' : 'Activate' }}
-                                                            </button>
-                                                        </form>
-                                                    </li>
-                                                    <li>
-                                                        <hr class="dropdown-divider">
-                                                    </li>
-                                                    <li>
-                                                        <form action="{{ route('cms.administrator.destroy', $administrator->id) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="button" class="dropdown-item btn btn-sm btn-danger" onclick="swalConfirm(event)">Delete</button>
-                                                        </form>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            </form>
                                         </td>
                                         <td>{{ $i + 1 }}</td>
                                         <td>

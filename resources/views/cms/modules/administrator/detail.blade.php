@@ -51,6 +51,13 @@
                                 <label for="updated-at" class="form-label d-block">Updated At</label>
                                 <input name="updated_at" type="text" class="form-control" id="updated-at" aria-describedby="updated_at" value="{{ human_datetime($administrator->updated_at) }}" disabled aria-disabled="true">
                             </div>
+
+                            <div class="mt-4 d-flex gap-2">
+                                <a href="{{ route('cms.administrator.index') }}" type="submit" class="btn btn-light">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                    {{ __('general.actions.back') }}
+                                </a>
+                            </div>
                         </form>
                     </div>
                 </div>

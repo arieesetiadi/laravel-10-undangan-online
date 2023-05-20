@@ -213,7 +213,8 @@ class AdministratorController extends Controller
 	{
 		try {
 			// Toggle administrator status
-			$result = Administrator::findOrFail($id)->toggle('status');
+			$administrator = Administrator::findOrFail($id);
+			$result = $administrator->update(['status' => !$administrator->status]);
 
 			if (!$result) throw new Exception(__('general.process.failed'));
 

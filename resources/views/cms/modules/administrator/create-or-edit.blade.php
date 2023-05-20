@@ -85,7 +85,11 @@
                                 @enderror
                             </div>
 
-                            <div class="mt-4">
+                            <div class="mt-4 d-flex gap-2">
+                                <a href="{{ route('cms.administrator.index') }}" type="submit" class="btn btn-light">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                    {{ __('general.actions.back') }}
+                                </a>
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa-solid fa-circle-check"></i>
                                     {{ $edit ? __('general.actions.update') : __('general.actions.submit') }}

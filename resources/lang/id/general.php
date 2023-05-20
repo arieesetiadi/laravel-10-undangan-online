@@ -22,6 +22,8 @@ return [
         'list' => 'Daftar',
         'submit' => 'Simpan',
         'update' => 'Ubah',
+        'detail' => 'Detail',
+        'back' => 'Kembali'
     ],
     'words' => [
         'web' => 'Website',

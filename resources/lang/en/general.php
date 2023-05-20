@@ -22,8 +22,13 @@ return [
         'list' => 'List',
         'submit' => 'Submit',
         'update' => 'Update',
+        'detail' => 'Detail',
+        'back' => 'Back'
     ],
     'words' => [
+        'web' => 'Website',
+        'detail' => 'Detail',
+        'transaction' => 'Transaction',
         'home' => 'Home',
         'about' => 'About',
         'pricing' => 'Pricing',
@@ -32,6 +37,7 @@ return [
             'username' => 'Username',
             'name' => 'Name',
             'email' => 'Email',
+            'phone' => 'Phone Number',
             'password' => 'Password',
             'password_confirmation' => 'Password Confirmation',
             'image' => 'Image',
