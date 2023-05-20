@@ -19,7 +19,7 @@ class ForgotPasswordController extends Controller
      * 
      * @var string
      */
-    private $module = 'cms.auth';
+    private $module = 'web.auth';
 
     /**
      * Controller module title.
@@ -54,7 +54,7 @@ class ForgotPasswordController extends Controller
     /**
      * Send email with forgot password request.
      *
-     * @param \App\Http\Requests\CMS\Auth\ForgotPasswordRequest $request
+     * @param \App\Http\Requests\WEB\Auth\ForgotPasswordRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function send(ForgotPasswordRequest $request)
@@ -64,7 +64,7 @@ class ForgotPasswordController extends Controller
 
             Mail::send(new ForgotPasswordMail($credentials));
 
-            return ResponseController::success(__('auth.password_reset.sent'), route('cms.auth.login.index'));
+            return ResponseController::success(__('auth.password_reset.sent'), route('web.auth.login.index'));
         }
         // 
         catch (\Throwable $th) {
@@ -75,7 +75,7 @@ class ForgotPasswordController extends Controller
     /**
      * Reset the administrator password.
      *
-     * @param \App\Http\Requests\CMS\Auth\ResetPasswordRequest $request
+     * @param \App\Http\Requests\WEB\Auth\ResetPasswordRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function reset(ResetPasswordRequest $request)
@@ -86,7 +86,7 @@ class ForgotPasswordController extends Controller
 
             if (!$result) throw new Exception(__('auth.password_reset.failed'));
 
-            return ResponseController::success(__('auth.password_reset.success'), route('cms.auth.login.index'));
+            return ResponseController::success(__('auth.password_reset.success'), route('web.auth.login.index'));
         }
         // 
         catch (\Throwable $th) {

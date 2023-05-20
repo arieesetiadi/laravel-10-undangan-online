@@ -46,8 +46,8 @@ class ProfileUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|unique:Administrators,username,' . administrator()->id,
-            'email' => 'required|unique:Administrators,email,' . administrator()->id,
+            'username' => 'required|unique:administrators,username,' . administrator()->id,
+            'email' => 'required|unique:administrators,email,' . administrator()->id,
             'avatar' => 'file|mimes:jpeg,jpg,png|max:1024',
             'password' => 'confirmed',
             'password_confirmation' => 'required_if:password,string',

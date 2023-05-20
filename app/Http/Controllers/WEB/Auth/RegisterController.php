@@ -9,6 +9,7 @@ use App\Http\Controllers\ResponseController;
 use App\Http\Requests\WEB\Auth\RegisterRequest;
 use App\Models\Customer;
 use Exception;
+use Illuminate\Support\Arr;
 
 class RegisterController extends Controller
 {
@@ -70,10 +71,10 @@ class RegisterController extends Controller
 
             if (!$result) throw new Exception(__('auth.register.failed'));
 
-            // If using account activation
-            // return ResponseController::success(__('auth.register.sent'), route('web.auth.login.index'));
+            // Login programmatically
+            auth('web')->attempt($request->only(['username', 'password']));
 
-            return ResponseController::success(__('auth.register.success'), route('web.auth.login.index'));
+            return ResponseController::success(__('auth.register.success'), route('web.home'));
         }
         // 
         catch (\Throwable $th) {

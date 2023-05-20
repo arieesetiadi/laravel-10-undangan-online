@@ -62,6 +62,7 @@ class LoginController extends Controller
     {
         try {
             $credentials = $request->credentials();
+            $remember = $request->remember();
 
             // Check customer status
             $status = Customer::getStatus($credentials);
@@ -69,7 +70,7 @@ class LoginController extends Controller
             if (!$status) throw new Exception(__('auth.account.inactive'));
 
             // Check auth result
-            $result = auth('web')->attempt($credentials);
+            $result = auth('web')->attempt($credentials, $remember);
 
             if (!$result) throw new Exception(__('auth.login.failed'));
 

@@ -190,7 +190,7 @@
             },
             errorPlacement: function(label, element) {
                 label.addClass(errorMessageClasses());
-                label.insertAfter(element);
+                element.parent().append(label);
             },
         });
     </script>

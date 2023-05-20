@@ -62,4 +62,14 @@ class LoginRequest extends FormRequest
             'password' => $this->password,
         ];
     }
+
+    /**
+     * Remember me value.
+     *
+     * @return boolean
+     */
+    public function remember()
+    {
+        return $this->remember == 'on';
+    }
 }

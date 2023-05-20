@@ -48,9 +48,9 @@ class UpdateRequest extends FormRequest
     public function rules(Request $request)
     {
         return [
-            'username' => 'required|unique:Administrators,username,' . $request->administrator,
+            'username' => 'required|unique:administrators,username,' . $request->administrator,
             'name' => 'required',
-            'email' => 'required|unique:Administrators,email,' . $request->administrator,
+            'email' => 'required|unique:administrators,email,' . $request->administrator,
             'avatar' => 'file|mimes:jpeg,jpg,png|max:1024',
         ];
     }

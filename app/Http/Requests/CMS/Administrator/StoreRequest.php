@@ -47,9 +47,9 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|unique:Administrators,username',
+            'username' => 'required|unique:administrators,username',
             'name' => 'required',
-            'email' => 'required|unique:Administrators,email',
+            'email' => 'required|unique:administrators,email',
             'avatar' => 'file|mimes:jpeg,jpg,png|max:1024',
             'password' => 'required',
         ];
