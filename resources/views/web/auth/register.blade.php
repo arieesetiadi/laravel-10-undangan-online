@@ -98,7 +98,7 @@
                                         </div>
 
                                         <div class="mt-3 d-grid">
-                                            <a href="{{ route('web.oauth.redirect', OAuthDriver::GOOGLE) }}" class="btn btn-outline-primary" type="submit">
+                                            <a href="{{ route('web.oauth.redirect', ['locale' => app()->getLocale(), 'driver' => OAuthDriver::GOOGLE]) }}" class="btn btn-outline-primary" type="submit">
                                                 {!! OAuthDriver::htmlLabel(OAuthDriver::GOOGLE) !!}
                                             </a>
                                         </div>
@@ -111,7 +111,7 @@
                         <div class="mt-4 text-center text-white-50">
                             <p>
                                 {{ __('auth.account.question.registered') }}
-                                <a href="{{ route('web.auth.login.index') }}" class="font-weight-semibold text-white">{{ __('auth.login.word') }}</a>
+                                <a href="{{ route('web.auth.login.index', app()->getLocale()) }}" class="font-weight-semibold text-white">{{ __('auth.login.word') }}</a>
                             </p>
                         </div>
 

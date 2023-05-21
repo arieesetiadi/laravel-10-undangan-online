@@ -5,6 +5,7 @@ namespace App\Http\Controllers\WEB\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResponseController;
 use App\Models\Customer;
+use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 
 class OAuthController extends Controller
@@ -14,18 +15,18 @@ class OAuthController extends Controller
      * 
      * @param string $driver
      */
-    public function redirect($driver)
+    public function redirect(Request $request)
     {
-        return Socialite::driver($driver)->redirect();
+        return Socialite::driver($request->driver)->redirect();
     }
 
     /**
      * Retrieve request from socialite driver
      */
-    public function callback($driver)
+    public function callback(Request $request)
     {
         try {
-            $user = Socialite::driver($driver)->user();
+            $user = Socialite::driver($request->driver)->user();
             $customer = Customer::where('email', $user->email)->first();
 
             // Register new customer if not already
@@ -40,11 +41,11 @@ class OAuthController extends Controller
                 $message = __('auth.register.success');
             }
 
-            
+
             $message ??= __('auth.login.success');
-            
+
             auth('web')->login($customer);
-            
+
             // Redirect to WEB home
             return ResponseController::success($message, route('web.home'));
         }

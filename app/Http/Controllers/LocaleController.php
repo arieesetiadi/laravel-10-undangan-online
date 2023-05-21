@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Constants\Locale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 
 class LocaleController extends Controller
@@ -23,8 +24,13 @@ class LocaleController extends Controller
 
             session()->put('locale', $locale);
 
-            return redirect()->back();
-        } catch (\Throwable $th) {
+            $referer = $request->headers->get('Referer');
+            $routeName = Route::getRoutes()->match(request()->create($referer))->getName();
+
+            return redirect()->route($routeName, $locale);
+        } 
+        // 
+        catch (\Throwable $th) {
             return ResponseController::failed($th->getMessage());
         }
     }

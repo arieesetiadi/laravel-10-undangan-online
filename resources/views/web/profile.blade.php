@@ -63,7 +63,7 @@ divdivdivdiv{{-- Master Template --}}
                 </div>
             </div>
 
-            <form id="profile-edit" action="{{ route('web.profile.update') }}" method="POST" class="row justify-content-center d-none">
+            <form id="profile-edit" action="{{ route('web.profile.update', app()->getLocale()) }}" method="POST" class="row justify-content-center d-none">
                 @csrf
                 <div class="col-12 d-flex justify-content-center">
                     <div class="mb-3">

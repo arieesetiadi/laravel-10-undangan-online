@@ -81,13 +81,13 @@
                                         </div>
 
                                         <div class="mt-3 d-grid">
-                                            <a href="{{ route('web.oauth.redirect', OAuthDriver::GOOGLE) }}" class="btn btn-outline-primary" type="submit">
+                                            <a href="{{ route('web.oauth.redirect', ['locale' => app()->getLocale(), 'driver' => OAuthDriver::GOOGLE]) }}" class="btn btn-outline-primary" type="submit">
                                                 {!! OAuthDriver::htmlLabel(OAuthDriver::GOOGLE) !!}
                                             </a>
                                         </div>
 
                                         <div class="mt-4 text-center">
-                                            <a href="{{ route('web.auth.forgot-password.index') }}" class="text-body">
+                                            <a href="{{ route('web.auth.forgot-password.index', app()->getLocale()) }}" class="text-body">
                                                 <i class="mdi mdi-lock mr-1"></i> {{ __('auth.password_reset.word') }}?
                                             </a>
                                         </div>
@@ -100,7 +100,7 @@
                         <div class="mt-4 text-center text-white-50">
                             <p>
                                 {{ __('auth.account.question.unregistered') }}
-                                <a href="{{ route('web.auth.register.index') }}" class="font-weight-semibold text-white">{{ __('auth.register.word') }}</a>
+                                <a href="{{ route('web.auth.register.index', app()->getLocale()) }}" class="font-weight-semibold text-white">{{ __('auth.register.word') }}</a>
                             </p>
                         </div>
 

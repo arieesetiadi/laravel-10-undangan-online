@@ -9,8 +9,8 @@ class Locale
      *
      * @var int
      */
-    const EN = 'en';
     const ID = 'id';
+    const EN = 'en';
 
     /**
      * Get all the locale value.
@@ -20,8 +20,8 @@ class Locale
     public static function values()
     {
         $values = [
-            self::EN,
             self::ID,
+            self::EN,
         ];
 
         return $values;
@@ -35,8 +35,8 @@ class Locale
     public static function labels()
     {
         $labels = [
-            self::EN => 'English',
-            self::ID => 'Bahasa',
+            self::ID => 'ID',
+            self::EN => 'EN',
         ];
 
         return $labels;
