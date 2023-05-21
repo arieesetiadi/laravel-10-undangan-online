@@ -23,7 +23,8 @@ return [
         'submit' => 'Submit',
         'update' => 'Update',
         'detail' => 'Detail',
-        'back' => 'Back'
+        'back' => 'Back',
+        'cancel' => 'Cancel'
     ],
     'words' => [
         'web' => 'Website',
@@ -42,6 +43,7 @@ return [
             'password_confirmation' => 'Password Confirmation',
             'image' => 'Image',
             'status' => 'Status',
+            'created_at' => 'Created At',
             'updated_at' => 'Last Updated',
         ]
     ]

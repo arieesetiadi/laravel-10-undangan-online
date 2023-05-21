@@ -185,6 +185,13 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'GeneralStatus' => App\Constants\GeneralStatus::class,
+        'HttpStatus' => App\Constants\HttpStatus::class,
+        'AppLocale' => App\Constants\AppLocale::class,
+        'OAuthDriver' => App\Constants\OAuthDriver::class,
+        'PaymentGateway' => App\Constants\PaymentGateway::class,
+        'SwalButton' => App\Constants\SwalButton::class,
+        'SwalIcon' => App\Constants\SwalIcon::class,
     ])->toArray(),
 
 ];

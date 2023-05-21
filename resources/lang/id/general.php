@@ -43,6 +43,7 @@ return [
             'password_confirmation' => 'Konfirmasi Kata Sandi',
             'image' => 'Gambar',
             'status' => 'Status',
+            'created_at' => 'Dibuat Pada',
             'updated_at' => 'Diubah Pada',
         ]
     ]

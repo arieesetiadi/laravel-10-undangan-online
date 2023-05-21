@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Constants\Locale;
+use App\Constants\AppLocale;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -23,7 +23,7 @@ class UseLocale
         $locale = $locale ?? $request->locale;
 
         // Validate locale
-        if (!in_array($locale, Locale::values())) {
+        if (!in_array($locale, AppLocale::values())) {
             return redirect()->route($request->route()->getName(), $defaultLocale);
         }
 

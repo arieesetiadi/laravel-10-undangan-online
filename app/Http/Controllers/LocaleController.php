@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Constants\Locale;
+use App\Constants\AppLocale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +19,7 @@ class LocaleController extends Controller
     public function switch(Request $request)
     {
         try {
-            $locales = Locale::values();
+            $locales = AppLocale::values();
             $locale = in_array($request->locale, $locales) ? $request->locale : $locales[0];
 
             session()->put('locale', $locale);

@@ -1,7 +1,3 @@
-@php
-    use App\Constants\Locale;
-@endphp
-
 <!--Navbar Start-->
 <nav class="navbar @yield('topbar.variant') navbar-expand-lg fixed-top sticky" id="navbar">
     <div class="container">
@@ -55,9 +51,9 @@
 
             {{-- Locale Switcher --}}
             <div class="btn-group navbar-btn my-lg-0 my-2" role="group" aria-label="Locale switcher button group">
-                @foreach (Locale::values() as $locale)
+                @foreach (AppLocale::values() as $locale)
                     <a href="{{ route('locale.switch', $locale) }}" type="button" class="btn btn-sm {{ app()->getLocale() == $locale ? 'btn-info' : 'btn-outline-info' }}">
-                        {{ Locale::label($locale) }}
+                        {{ AppLocale::label($locale) }}
                     </a>
                 @endforeach
             </div>

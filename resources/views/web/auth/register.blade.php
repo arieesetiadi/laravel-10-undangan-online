@@ -1,7 +1,3 @@
-@php
-    use App\Constants\OAuthDriver;
-@endphp
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,12 +23,23 @@
             <div class="row justify-content-center mt-sm-5">
                 <div class="col-md-8">
                     <div>
-                        <div class="text-center mb-5">
+                        <div class="text-center">
                             <a href="" class="mb-3 d-block auth-logo">
                                 <img src="{{ asset('assets/web/images/logo-light.png') }}" alt="Main Logo" height="22" class="logo">
                             </a>
-                            <h5 class="font-16 text-white-50">{{ config('app.name') }}</h5>
+                            <h5 class="font-16 text-white-50 mb-3">{{ config('app.name') }}</h5>
                         </div>
+
+                        {{-- Locale Switcher --}}
+                        <center>
+                            <div class="btn-group navbar-btn mb-3" role="group" aria-label="Locale switcher button group">
+                                @foreach (AppLocale::values() as $locale)
+                                    <a href="{{ route('locale.switch', $locale) }}" type="button" class="btn btn-sm {{ app()->getLocale() == $locale ? 'btn-info' : 'btn-outline-info' }}">
+                                        {{ AppLocale::label($locale) }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        </center>
 
                         <div class="card">
                             <div class="card-body p-4">

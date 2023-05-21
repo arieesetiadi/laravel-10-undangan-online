@@ -235,7 +235,7 @@ class AdministratorController extends Controller
 	public function pdf()
 	{
 		try {
-			return \Maatwebsite\Excel\Facades\Excel::download(new AdministratorsExport(), 'administrators.pdf');
+			return 'Adminsitrator PDF';
 		}
 		// 
 		catch (\Throwable $th) {

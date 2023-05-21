@@ -1,7 +1,3 @@
-@php
-    use App\Constants\GeneralStatus;
-@endphp
-
 {{-- Master Template --}}
 @extends('cms.layouts.master')
 

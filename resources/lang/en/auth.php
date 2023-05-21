@@ -30,12 +30,17 @@ return [
     ],
     'login' => [
         'word' => 'Sign In',
+        'title' => 'Welcome',
+        'description' => 'Please login to access the website.',
+        'remember' => 'Remember me',
         'success' => 'Welcome, you are logged in successfully.',
         'failed' => 'Invalid username or password. Please try again.',
         'throttle' => 'Too many login attempts. Please try again later.',
     ],
     'register' => [
         'word' => 'Sign Up',
+        'title' => 'Create Account',
+        'description' => 'Please enter your new account credentials.',
         'success' => 'Congratulations, your account has been registered successfully. You can now login using your new account.',
         'failed' => 'Sorry, we could not complete your registration at this time. Please check your information and try again.',
         'sent' => 'Activation link has been sent to your email. Please check your inbox and follow the instructions to activate your account.',

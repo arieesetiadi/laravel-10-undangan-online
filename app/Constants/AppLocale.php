@@ -2,7 +2,7 @@
 
 namespace App\Constants;
 
-class Locale
+class AppLocale
 {
     /**
      * General locale value.
