@@ -18,16 +18,16 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav ml-auto navbar-center mt-lg-0 mt-2" id="navbar-navlist">
                 <li class="nav-item">
-                    <a href="{{ route('web.home') }}#home" class="nav-link" id="scrollElement">{{ __('general.words.home') }}</a>
+                    <a href="{{ route('web.home', app()->getLocale()) }}" class="nav-link" id="scrollElement">{{ __('general.words.home') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('web.home') }}#about" class="nav-link">{{ __('general.words.about') }}</a>
+                    <a href="{{ route('web.home', app()->getLocale()) }}#about" class="nav-link">{{ __('general.words.about') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('web.home') }}#pricing" class="nav-link">{{ __('general.words.pricing') }}</a>
+                    <a href="{{ route('web.home', app()->getLocale()) }}#pricing" class="nav-link">{{ __('general.words.pricing') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('web.home') }}#contact" class="nav-link">{{ __('general.words.contact') }}</a>
+                    <a href="{{ route('web.home', app()->getLocale()) }}#contact" class="nav-link">{{ __('general.words.contact') }}</a>
                 </li>
             </ul>
 
