@@ -40,6 +40,9 @@ return [
         'failed' => 'Sorry, we could not complete your registration at this time. Please check your information and try again.',
         'sent' => 'Activation link has been sent to your email. Please check your inbox and follow the instructions to activate your account.',
     ],
+    'logout' => [
+        'word' => 'Sign Out',
+    ],
     'password_reset' => [
         'word' => 'Forgot Password',
         'success' => 'Your password has been reset successfully. You can now login to your account using your new password.',

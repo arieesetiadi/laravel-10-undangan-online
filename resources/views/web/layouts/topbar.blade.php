@@ -2,7 +2,7 @@
     <nav class="navbar @yield('topbar.variant') navbar-expand-lg fixed-top sticky" id="navbar">
         <div class="container">
             <!-- LOGO -->
-            <a class="logo text-uppercase" href="index-1.html">
+            <a class="logo text-uppercase" href="{{ route('web.home') }}">
                 <img src="{{ asset('assets/web/images/logo-light.png') }}" alt="" class="logo-light" height="20" />
                 <img src="{{ asset('assets/web/images/logo-dark.png') }}" alt="" class="logo-dark" height="20" />
             </a>
@@ -45,7 +45,7 @@
 
                     {{-- Topbar Logout --}}
                     <a href="{{ route('web.logout.process') }}" class="btn btn-sm btn-primary navbar-btn my-lg-0 my-2">
-                        <i class="fa-solid fa-power-off d-inline-block px-0"></i>
+                        <i class="fa-solid fa-power-off d-inline-block mr-1"></i> {{ __('auth.logout.word') }}
                     </a>
                 @endif
             </div>

@@ -189,6 +189,7 @@ divdivdivdiv{{-- Master Template --}}
                 },
                 password_confirmation: {
                     minlength: 4,
+                    equalTo: '#password',
                 }
             },
             messages: {
@@ -206,7 +207,8 @@ divdivdivdiv{{-- Master Template --}}
                     minlength: `{{ __('validation.min.string', ['attribute' => __('validation.attributes.password'), 'min' => '4']) }}`
                 },
                 password_confirmation: {
-                    minlength: `{{ __('validation.min.string', ['attribute' => __('validation.attributes.password_confirmation'), 'min' => '4']) }}`
+                    minlength: `{{ __('validation.min.string', ['attribute' => __('validation.attributes.password_confirmation'), 'min' => '4']) }}`,
+                    equalTo: `{{ __('validation.confirmed', ['attribute' => __('validation.attributes.password')]) }}`,
                 }
             },
             errorPlacement: function(label, element) {
