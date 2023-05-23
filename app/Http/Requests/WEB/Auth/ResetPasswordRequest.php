@@ -18,26 +18,6 @@ class ResetPasswordRequest extends FormRequest
     }
 
     /**
-     * Global form request attributes, with internationalization.
-     *
-     * @return array
-     */
-    public function attributes()
-    {
-        return BaseFormRequest::getI18nAttributes();
-    }
-
-    /**
-     * Global form request messages, with internationalization.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return BaseFormRequest::getI18nMessages();
-    }
-
-    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -62,5 +42,25 @@ class ResetPasswordRequest extends FormRequest
             'email' => $this->email,
             'password' => $this->password,
         ];
+    }
+
+    /**
+     * Global form request attributes, with internationalization.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return BaseFormRequest::getI18nAttributes();
+    }
+
+    /**
+     * Global form request messages, with internationalization.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return BaseFormRequest::getI18nMessages();
     }
 }

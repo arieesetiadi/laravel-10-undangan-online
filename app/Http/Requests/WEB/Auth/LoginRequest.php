@@ -9,7 +9,6 @@ class LoginRequest extends FormRequest
 {
     /**
      * Customer login type.
-     * Posibbly username|email|phone.
      *
      * @var string
      * */
@@ -23,26 +22,6 @@ class LoginRequest extends FormRequest
     public function authorize()
     {
         return true;
-    }
-
-    /**
-     * Global form request attributes, with internationalization.
-     *
-     * @return array
-     */
-    public function attributes()
-    {
-        return BaseFormRequest::getI18nAttributes();
-    }
-
-    /**
-     * Global form request messages, with internationalization.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return BaseFormRequest::getI18nMessages();
     }
 
     /**
@@ -82,5 +61,25 @@ class LoginRequest extends FormRequest
     public function remember()
     {
         return $this->remember == 'on';
+    }
+
+    /**
+     * Global form request attributes, with internationalization.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return BaseFormRequest::getI18nAttributes();
+    }
+
+    /**
+     * Global form request messages, with internationalization.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return BaseFormRequest::getI18nMessages();
     }
 }
