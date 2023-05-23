@@ -5,15 +5,12 @@ namespace App\Exports;
 use App\Constants\GeneralStatus;
 use App\Models\Administrator;
 
-class AdministratorsExport implements
-    \Maatwebsite\Excel\Concerns\FromCollection,
-    \Maatwebsite\Excel\Concerns\WithHeadings,
-    \Maatwebsite\Excel\Concerns\WithMapping,
-    \Maatwebsite\Excel\Concerns\WithColumnWidths
+class AdministratorsExport implements \Maatwebsite\Excel\Concerns\FromCollection, \Maatwebsite\Excel\Concerns\WithHeadings, \Maatwebsite\Excel\Concerns\WithMapping, \Maatwebsite\Excel\Concerns\WithColumnWidths
 {
     /**
      * Map counter.
-     * @var int $counter
+     *
+     * @var int
      */
     private $counter;
 

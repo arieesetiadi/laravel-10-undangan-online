@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Constants\SwalButton;
 use App\Constants\SwalIcon;
-use App\Http\Controllers\Controller;
 
 class ResponseController extends Controller
 {
     /**
      * Get flash session with success sweet alert data.
-     * 
-     * @param string $text
-     * @param string $redirectUrl
+     *
+     * @param  string  $text
+     * @param  string  $redirectUrl
      * @return \Illuminate\Http\RedirectResponse
      */
     public static function success($text, $redirectUrl = null)
@@ -27,15 +26,15 @@ class ResponseController extends Controller
             'title' => $title,
             'text' => $text,
             'icon' => $icon,
-            'button' => $button
+            'button' => $button,
         ]);
     }
 
     /**
      * Get flash session with failed sweet alert data.
-     * 
-     * @param string $text
-     * @param string $redirectUrl
+     *
+     * @param  string  $text
+     * @param  string  $redirectUrl
      * @return \Illuminate\Http\RedirectResponse
      */
     public static function failed($text, $redirectUrl = null)
@@ -50,7 +49,7 @@ class ResponseController extends Controller
             'title' => $title,
             'text' => $text,
             'icon' => $icon,
-            'button' => $button
+            'button' => $button,
         ]);
     }
 }

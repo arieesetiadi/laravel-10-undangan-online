@@ -18,7 +18,6 @@ class RegisterRequest extends FormRequest
         return true;
     }
 
-
     /**
      * Global form request attributes, with internationalization.
      *

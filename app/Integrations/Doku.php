@@ -12,18 +12,22 @@ class Doku
 {
     /**
      * DOKU Credentials.
-     * 
+     *
      * @var string
      */
     private $clientId;
-    private $secretKey;
-    private $baseUrl;
-    private $apiPath;
-    private $notificationPath;
 
+    private $secretKey;
+
+    private $baseUrl;
+
+    private $apiPath;
+
+    private $notificationPath;
 
     /**
      * Set DOKU Credentials.
+     *
      * @return void
      */
     public function __construct()
@@ -37,8 +41,8 @@ class Doku
 
     /**
      * Verify payment data and get payment checkout URL from DOKU API.
-     * 
-     * @param array $payment
+     *
+     * @param  array  $payment
      * @return array $checkout
      */
     public function checkout($data)
@@ -54,7 +58,7 @@ class Doku
                         'name' => 'Product 1',
                         'price' => 100000,
                         'quantity' => 1,
-                    ]
+                    ],
                 ],
                 'language' => 'ID',
             ],
@@ -66,18 +70,18 @@ class Doku
                 'name' => 'Robert Emerson',
                 'email' => 'robert@gmail.com',
                 'phone' => '082123456789',
-            ]
+            ],
         ];
 
         // Generate headers
         $headers = $this->generateHeaders($data);
 
         // Make POST request to DOKU Checkout API
-        $url = $this->baseUrl . $this->apiPath;
+        $url = $this->baseUrl.$this->apiPath;
         $response = Http::withHeaders($headers)->post($url, $data);
         $checkout = $response->json();
 
-        if (!$checkout) {
+        if (! $checkout) {
             throw new Exception('PAYMENT_CHECKOUT_FAILED', HttpStatus::BAD_REQUEST);
         }
 
@@ -87,9 +91,10 @@ class Doku
     /**
      * Generate DOKU headers.
      * Using example code by DOKU official github repository.
+     *
      * @link https://github.com/PTNUSASATUINTIARTHA-DOKU/jokul-php-example
-     * 
-     * @param array $data
+     *
+     * @param  array  $data
      * @return array $headers
      */
     public function generateHeaders($data)
@@ -110,7 +115,7 @@ class Doku
             'Client-Id' => $options['client_id'],
             'Request-Id' => $options['request_id'],
             'Request-Timestamp' => $options['request_datetime'],
-            'Signature' => $signature
+            'Signature' => $signature,
         ];
 
         return $headers;
@@ -119,9 +124,10 @@ class Doku
     /**
      * Generate DOKU signature.
      * Using example code by DOKU docs.
+     *
      * @link https://dashboard.doku.com/docs/docs/http-notification/http-notification-best-practice
-     * 
-     * @param array $options
+     *
+     * @param  array  $options
      * @return string $signature
      */
     public function generateSignature($options)
@@ -138,14 +144,14 @@ class Doku
 
         // Prepare signature component
         $signature =
-            "Client-Id:$clientId\n" .
-            "Request-Id:$requestId\n" .
-            "Request-Timestamp:$requestDatetime\n" .
-            "Request-Target:$requestTarget\n" .
+            "Client-Id:$clientId\n".
+            "Request-Id:$requestId\n".
+            "Request-Timestamp:$requestDatetime\n".
+            "Request-Target:$requestTarget\n".
             "Digest:$digest";
 
         // Generate signature
-        $signature = "HMACSHA256=" . base64_encode(hash_hmac('sha256', $signature, $this->secretKey, true));
+        $signature = 'HMACSHA256='.base64_encode(hash_hmac('sha256', $signature, $this->secretKey, true));
 
         return $signature;
     }
@@ -153,8 +159,7 @@ class Doku
     /**
      * DOKU HTTP Notification.
      * Retrieve callback from DOKU.
-     * 
-     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response $response
      */
     public function notification(Request $request)

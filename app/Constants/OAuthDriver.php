@@ -28,7 +28,7 @@ class OAuthDriver
     /**
      * Get the string version base on int value.
      *
-     * @param int $key
+     * @param  int  $key
      * @return string $label
      */
     public static function label($key)
@@ -47,7 +47,7 @@ class OAuthDriver
     public static function htmlLabels()
     {
         $htmlLabels = [
-            self::GOOGLE => '<i class="fa-brands fa-google"></i> ' . self::label(self::GOOGLE),
+            self::GOOGLE => '<i class="fa-brands fa-google"></i> '.self::label(self::GOOGLE),
         ];
 
         return $htmlLabels;
@@ -56,7 +56,7 @@ class OAuthDriver
     /**
      * Get the html version base on int value.
      *
-     * @param int $key
+     * @param  int  $key
      * @return string $htmlLabel
      */
     public static function htmlLabel($key)

@@ -28,7 +28,7 @@ class SwalButton
     /**
      * Get the string version base on int value.
      *
-     * @param int $key
+     * @param  int  $key
      * @return string $label
      */
     public static function label($key)

@@ -6,14 +6,13 @@ use App\Constants\AppLocale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\URL;
 
 class LocaleController extends Controller
 {
     /**
      * Switch app locale / language.
      *
-     * @param \App\Http\Requests\LocaleRequest $request
+     * @param  \App\Http\Requests\LocaleRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function switch(Request $request)
@@ -28,8 +27,8 @@ class LocaleController extends Controller
             $routeName = Route::getRoutes()->match(request()->create($referer))->getName();
 
             return redirect()->route($routeName, $locale);
-        } 
-        // 
+        }
+        //
         catch (\Throwable $th) {
             return ResponseController::failed($th->getMessage());
         }

@@ -46,9 +46,9 @@ class ProfileUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|unique:customers,username,' . customer()->id,
+            'username' => 'required|unique:customers,username,'.customer()->id,
             'name' => 'required',
-            'email' => 'required|unique:customers,email,' . customer()->id,
+            'email' => 'required|unique:customers,email,'.customer()->id,
             'password' => 'confirmed',
             'password_confirmation' => 'required_if:password,string',
         ];

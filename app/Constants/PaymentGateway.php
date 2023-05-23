@@ -10,7 +10,9 @@ class PaymentGateway
      * @var int
      */
     const DOKU = 'DOKU';
+
     const XENDIT = 'XENDIT';
+
     const MID_TRANS = 'MID_TRANS';
 
     /**
@@ -32,7 +34,7 @@ class PaymentGateway
     /**
      * Get the slug version base on int value.
      *
-     * @param int $key
+     * @param  int  $key
      * @return string $slug
      */
     public static function slug($key)

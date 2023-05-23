@@ -18,8 +18,8 @@ return [
         'inactive' => 'Akun Anda tidak aktif. Silahkan hubungi tim support untuk bantuan.',
         'question' => [
             'registered' => 'Sudah memiliki akun?',
-            'unregistered' => 'Belum memiliki akun?'
-        ]
+            'unregistered' => 'Belum memiliki akun?',
+        ],
     ],
     'profile' => [
         'word' => 'Profile',
@@ -34,7 +34,7 @@ return [
         'description' => 'Silahkan login untuk masuk ke website.',
         'remember' => 'Ingat saya',
         'success' => 'Selamat datang, Anda berhasil masuk.',
-        'failed' => 'Username atau kata sandi tidak valid. Silahkan coba lagi.',
+        'failed' => 'Informasi login atau kata sandi tidak valid. Silahkan coba lagi.',
         'throttle' => 'Terlalu banyak percobaan. Silahkan coba beberapa saat lagi.',
     ],
     'register' => [

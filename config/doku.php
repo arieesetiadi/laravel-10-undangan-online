@@ -32,7 +32,7 @@ return [
     */
     'api_path' => env('DOKU_API_PATH', '/checkout/v1/payment'),
     'notification_path' => env('DOKU_NOTIFICATION_PATH', '/api/v1.0/payment/doku/notitication'),
-    
+
     /*
     |--------------------------------------------------------------------------
     | DOKU Checkout expired time in minutes.

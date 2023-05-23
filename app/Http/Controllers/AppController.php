@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\ResponseController;
 use Illuminate\Support\Facades\Artisan;
 
 class AppController extends Controller
@@ -16,6 +15,7 @@ class AppController extends Controller
     {
         try {
             Artisan::call('app:clear');
+
             return ResponseController::success(__('general.process.success'));
         } catch (\Throwable $th) {
             return ResponseController::failed($th->getMessage());

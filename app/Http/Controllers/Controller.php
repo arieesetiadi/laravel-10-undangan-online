@@ -10,7 +10,8 @@ class Controller extends BaseController
 {
     // Global controller properties
     protected $imagesPath = '/images';
-	protected $filesPath = '/files';
-    
+
+    protected $filesPath = '/files';
+
     use AuthorizesRequests, ValidatesRequests;
 }

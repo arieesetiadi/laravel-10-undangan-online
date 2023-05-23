@@ -12,14 +12,14 @@ class LoginController extends Controller
 {
     /**
      * Controller module path.
-     * 
+     *
      * @var string
      */
     private $module;
 
     /**
      * Controller module title.
-     * 
+     *
      * @var string
      */
     private $title;
@@ -41,12 +41,12 @@ class LoginController extends Controller
     public function index()
     {
         try {
-            $view = $this->module . '.login';
+            $view = $this->module.'.login';
             $data['title'] = $this->title;
 
             return view($view, $data);
         }
-        // 
+        //
         catch (\Throwable $th) {
             return ResponseController::failed($th->getMessage());
         }
@@ -55,7 +55,6 @@ class LoginController extends Controller
     /**
      * Attempt the login credentials.
      *
-     * @param \App\Http\Requests\WEB\Auth\LoginRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function process(LoginRequest $request)
@@ -67,17 +66,21 @@ class LoginController extends Controller
             // Check customer status
             $status = Customer::getStatus($credentials);
 
-            if (!$status) throw new Exception(__('auth.account.inactive'));
+            if (! $status) {
+                throw new Exception(__('auth.account.inactive'));
+            }
 
             // Check auth result
             $result = auth('web')->attempt($credentials, $remember);
 
-            if (!$result) throw new Exception(__('auth.login.failed'));
+            if (! $result) {
+                throw new Exception(__('auth.login.failed'));
+            }
 
             // Redirect to WEB home
             return ResponseController::success(__('auth.login.success'), route('web.home'));
         }
-        // 
+        //
         catch (\Throwable $th) {
             return ResponseController::failed($th->getMessage());
         }

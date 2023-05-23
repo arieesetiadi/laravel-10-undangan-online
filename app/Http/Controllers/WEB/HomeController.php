@@ -7,45 +7,45 @@ use App\Http\Controllers\ResponseController;
 
 class HomeController extends Controller
 {
-	/**
-	 * Controller module path.
-	 * 
-	 * @var string
-	 */
-	private $module;
+    /**
+     * Controller module path.
+     *
+     * @var string
+     */
+    private $module;
 
-	/**
-	 * Controller module title.
-	 * 
-	 * @var string
-	 */
-	private $title;
+    /**
+     * Controller module title.
+     *
+     * @var string
+     */
+    private $title;
 
-	/**
-	 * Initiate controller properties value.
-	 */
-	public function __construct()
-	{
-		$this->module = 'web';
-		$this->title = __('general.words.home');
-	}
+    /**
+     * Initiate controller properties value.
+     */
+    public function __construct()
+    {
+        $this->module = 'web';
+        $this->title = __('general.words.home');
+    }
 
-	/**
-	 * Display web homepage.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function home()
-	{
-		try {
-			$view = $this->module . '.home';
-			$data['title'] = $this->title;
+    /**
+     * Display web homepage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function home()
+    {
+        try {
+            $view = $this->module.'.home';
+            $data['title'] = $this->title;
 
-			return view($view, $data);
-		}
-		// 
-		catch (\Throwable $th) {
-			return ResponseController::failed($th->getMessage());
-		}
-	}
+            return view($view, $data);
+        }
+        //
+        catch (\Throwable $th) {
+            return ResponseController::failed($th->getMessage());
+        }
+    }
 }

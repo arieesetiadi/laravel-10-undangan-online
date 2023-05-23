@@ -3,7 +3,6 @@
 namespace App\Mail\WEB\Auth;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -16,7 +15,6 @@ class ForgotPasswordMail extends Mailable
      *
      * @return void
      */
-
     private $data;
 
     public function __construct($data)
@@ -33,7 +31,7 @@ class ForgotPasswordMail extends Mailable
     {
         // Mail data
         $mailTitle = 'Request for Password Reset';
-        $mailSubject = $mailTitle . ' | ' . config('app.name');
+        $mailSubject = $mailTitle.' | '.config('app.name');
         $mailFrom = config('mail.from.address');
         $mailTo = $this->data['email'];
         $mailMarkdown = 'mail.forgot-password';

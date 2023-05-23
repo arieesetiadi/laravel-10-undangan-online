@@ -18,8 +18,8 @@ return [
         'inactive' => 'Your account is inactive. Please contact the team support for assistance.',
         'question' => [
             'registered' => 'Already have an account?',
-            'unregistered' => 'Don\'t have an account?'
-        ]
+            'unregistered' => 'Don\'t have an account?',
+        ],
     ],
     'profile' => [
         'word' => 'Profile',
@@ -34,7 +34,7 @@ return [
         'description' => 'Please login to access the website.',
         'remember' => 'Remember me',
         'success' => 'Welcome, you are logged in successfully.',
-        'failed' => 'Invalid username or password. Please try again.',
+        'failed' => 'Invalid credential or password. Please try again.',
         'throttle' => 'Too many login attempts. Please try again later.',
     ],
     'register' => [

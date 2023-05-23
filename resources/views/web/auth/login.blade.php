@@ -49,13 +49,17 @@
                                 </div>
 
                                 <div class="p-2 mt-4">
-                                    <form id="login" action="{{ route('web.auth.login.process') }}" method="POST">
+                                    <form id="login" action="{{ route('web.auth.login.process', ['locale' => app()->getLocale()]) }}" method="POST">
                                         @csrf
                                         <div class="mb-3">
-                                            <label class="form-label" for="username">{{ __('general.words.attributes.username') }}</label>
-                                            <input name="username" type="text" class="form-control" id="username" placeholder="e.g. robert">
-                                            @error('username')
-                                                <label for="username" class="mt-2 text-danger">
+                                            <label class="form-label" for="username">
+                                                {{ __('general.words.attributes.username') }} /
+                                                {{ __('general.words.attributes.email') }} /
+                                                {{ __('general.words.attributes.phone') }}
+                                            </label>
+                                            <input name="credential" type="text" class="form-control" id="credential" placeholder="e.g. robert">
+                                            @error('credential')
+                                                <label for="credential" class="mt-2 text-danger">
                                                     {{ $message }}
                                                 </label>
                                             @enderror

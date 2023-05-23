@@ -24,7 +24,7 @@ return [
         'update' => 'Update',
         'detail' => 'Detail',
         'back' => 'Back',
-        'cancel' => 'Cancel'
+        'cancel' => 'Cancel',
     ],
     'words' => [
         'web' => 'Website',
@@ -45,6 +45,6 @@ return [
             'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Last Updated',
-        ]
-    ]
+        ],
+    ],
 ];

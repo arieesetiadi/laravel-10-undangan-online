@@ -49,10 +49,10 @@
                                 </div>
 
                                 <div class="p-2 mt-4">
-                                    <form id="register" action="{{ route('web.auth.register.process') }}" method="POST">
+                                    <form id="register" action="{{ route('web.auth.register.process', ['locale' => app()->getLocale()]) }}" method="POST">
                                         @csrf
                                         <div class="row">
-                                            <div class="mb-3 col-6">
+                                            <div class="mb-3 col-12 col-md-12 col-md-6 col-lg-6">
                                                 <label class="form-label" for="username">{{ __('general.words.attributes.username') }}</label>
                                                 <input name="username" type="text" class="form-control" id="username" placeholder="e.g. robert">
                                                 @error('username')
@@ -62,7 +62,7 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="mb-3 col-6">
+                                            <div class="mb-3 col-12 col-md-12 col-md-6 col-lg-6">
                                                 <label class="form-label" for="name">{{ __('general.words.attributes.name') }}</label>
                                                 <input name="name" type="text" class="form-control" id="name" placeholder="e.g. Robert Emerson">
                                                 @error('name')
@@ -72,7 +72,7 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="mb-3 col-6">
+                                            <div class="mb-3 col-12 col-md-12 col-md-6 col-lg-6">
                                                 <label class="form-label" for="email">{{ __('general.words.attributes.email') }}</label>
                                                 <input name="email" type="text" class="form-control" id="email" placeholder="e.g. robert@example.com">
                                                 @error('email')
@@ -82,7 +82,7 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="mb-3 col-6">
+                                            <div class="mb-3 col-12 col-md-12 col-md-6 col-lg-6">
                                                 <div class="d-flex">
                                                     <label class="form-label" for="password">{{ __('general.words.attributes.password') }}</label>
                                                     <div class="d-inline-block px-5 form-check form-switch">

@@ -24,7 +24,7 @@ return [
         'update' => 'Ubah',
         'detail' => 'Detail',
         'back' => 'Kembali',
-        'cancel' => 'Batal'
+        'cancel' => 'Batal',
     ],
     'words' => [
         'web' => 'Website',
@@ -45,6 +45,6 @@ return [
             'status' => 'Status',
             'created_at' => 'Dibuat Pada',
             'updated_at' => 'Diubah Pada',
-        ]
-    ]
+        ],
+    ],
 ];

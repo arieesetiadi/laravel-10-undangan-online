@@ -12,6 +12,7 @@ class BaseFormRequest
     public static function getI18nAttributes()
     {
         return [
+            'credential' => __('validation.attributes.credential'),
             'username' => __('validation.attributes.username'),
             'name' => __('validation.attributes.name'),
             'email' => __('validation.attributes.email'),

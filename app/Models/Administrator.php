@@ -13,14 +13,14 @@ class Administrator extends Authenticatable
 
     /**
      * Table name.
-     * 
+     *
      * @var string
      */
     public $table = 'administrators';
 
     /**
      * Allowed field for mass assignment.
-     * 
+     *
      * @var array
      */
     protected $fillable = [
@@ -29,7 +29,7 @@ class Administrator extends Authenticatable
 
     /**
      * Hidden field while get data.
-     * 
+     *
      * @var array
      */
     protected $hidden = [
@@ -38,7 +38,7 @@ class Administrator extends Authenticatable
 
     /**
      * New field for the result.
-     * 
+     *
      * @var array
      */
     protected $append = [
@@ -53,13 +53,13 @@ class Administrator extends Authenticatable
 
     /**
      * Get administrator avatar image path | src.
-     * 
+     *
      * @return string $avatarPath
      */
     public function getAvatarPathAttribute()
     {
         $avatar = $this->avatar ?? 'default.png';
-        $avatarPath = asset('storage/uploads/images/avatars/' . $avatar);
+        $avatarPath = asset('storage/uploads/images/avatars/'.$avatar);
 
         return $avatarPath;
     }
@@ -70,7 +70,7 @@ class Administrator extends Authenticatable
     |--------------------------------------------------------------------------
     */
 
-    // 
+    //
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ class Administrator extends Authenticatable
 
     /**
      * Filter the active administrator.
-     * 
+     *
      * @param object
      * @return object
      */
@@ -91,7 +91,7 @@ class Administrator extends Authenticatable
 
     /**
      * Filter the inactive administrator.
-     * 
+     *
      * @param object
      * @return object
      */
@@ -108,7 +108,7 @@ class Administrator extends Authenticatable
 
     /**
      * Get all administrators data.
-     * 
+     *
      * @return array
      */
     public static function getAll()
@@ -118,8 +118,8 @@ class Administrator extends Authenticatable
 
     /**
      * Get administrator by id.
-     * 
-     * @param int $id
+     *
+     * @param  int  $id
      * @return array
      */
     public static function getById($id)
@@ -129,9 +129,9 @@ class Administrator extends Authenticatable
 
     /**
      * Get administrator status.
-     * 
-     * @param array $credentials
-     * @return boolean $status
+     *
+     * @param  array  $credentials
+     * @return bool $status
      */
     public static function getStatus($credentials)
     {
@@ -143,10 +143,9 @@ class Administrator extends Authenticatable
 
     /**
      * Set administrator status.
-     * 
-     * @param array $credentials
-     * @param boolean $status
-     * 
+     *
+     * @param  array  $credentials
+     * @param  bool  $status
      * @return mixed $result
      */
     public static function setStatus($credentials, $status)
@@ -159,8 +158,8 @@ class Administrator extends Authenticatable
 
     /**
      * Reset administrator password.
-     * 
-     * @param array $credentials
+     *
+     * @param  array  $credentials
      * @return mixed $result
      */
     public static function setPassword($credentials)

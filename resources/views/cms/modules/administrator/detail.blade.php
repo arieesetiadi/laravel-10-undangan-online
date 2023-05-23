@@ -24,7 +24,7 @@
                 <div class="card">
                     <div class="card-body">
                         <form>
-                            <img id="avatar-preview" width="100px" src="{{ $administrator->avatar_path ?? asset('assets/cms/uploads/images/profiles/default.png') }}" alt="{{ $administrator->name ?? 'Administrator' }} profile image"
+                            <img id="avatar-preview" width="100px" src="{{ $administrator->avatar_path ?? asset('storage/uploads/images/avatars/default.png') }}" alt="{{ $administrator->name ?? 'Administrator' }} profile image"
                                 class="rounded-circle shadow m-b-md cursor-pointer" data-bs-toggle="modal" data-bs-target="#modal-image-preview" onclick="previewImageModal(event)">
 
                             <div class="m-b-md">

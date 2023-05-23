@@ -13,32 +13,32 @@ class ProfileController extends Controller
 {
     /**
      * Controller module path.
-     * 
+     *
      * @var string
      */
     private $module = 'cms';
 
     /**
      * Controller module title.
-     * 
+     *
      * @var string
      */
     private $title = 'Profile';
 
     /**
      * Display profile page.
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         try {
-            $view = $this->module . '.profile';
+            $view = $this->module.'.profile';
             $data['title'] = $this->title;
 
             return view($view, $data);
         }
-        // 
+        //
         catch (\Throwable $th) {
             return ResponseController::failed($th->getMessage());
         }
@@ -46,8 +46,7 @@ class ProfileController extends Controller
 
     /**
      * Update profile data.
-     * 
-     * @param \App\Http\Requests\CMS\ProfileUpdateRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(ProfileUpdateRequest $request)
@@ -58,18 +57,20 @@ class ProfileController extends Controller
 
             // Upload image if exist
             if ($request->avatar) {
-                $profileImageName = FileController::uploadImage($request->avatar, $this->imagesPath . '/avatars', $administrator->avatar);
+                $profileImageName = FileController::uploadImage($request->avatar, $this->imagesPath.'/avatars', $administrator->avatar);
                 $credentials['avatar'] = $profileImageName;
             }
 
             // Check update result
             $result = $administrator->update($credentials);
 
-            if (!$result) throw new Exception(__('auth.profile.update.failed'));
+            if (! $result) {
+                throw new Exception(__('auth.profile.update.failed'));
+            }
 
             return ResponseController::success(__('auth.profile.update.success'));
         }
-        // 
+        //
         catch (\Throwable $th) {
             return ResponseController::failed($th->getMessage());
         }

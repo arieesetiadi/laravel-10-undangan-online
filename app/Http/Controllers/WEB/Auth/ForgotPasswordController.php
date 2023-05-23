@@ -16,14 +16,14 @@ class ForgotPasswordController extends Controller
 {
     /**
      * Controller module path.
-     * 
+     *
      * @var string
      */
     private $module = 'web.auth';
 
     /**
      * Controller module title.
-     * 
+     *
      * @var string
      */
     private $title = 'Forgot Password';
@@ -31,13 +31,13 @@ class ForgotPasswordController extends Controller
     /**
      * Display forgot password page.
      *
-     * @param \App\Http\Requests $request
+     * @param  \App\Http\Requests  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
         try {
-            $view = $this->module . '.forgot-password';
+            $view = $this->module.'.forgot-password';
             $data = [
                 'title' => $this->title,
                 'email' => $request->email,
@@ -45,7 +45,7 @@ class ForgotPasswordController extends Controller
 
             return view($view, $data);
         }
-        // 
+        //
         catch (\Throwable $th) {
             return ResponseController::failed($th->getMessage());
         }
@@ -54,7 +54,6 @@ class ForgotPasswordController extends Controller
     /**
      * Send email with forgot password request.
      *
-     * @param \App\Http\Requests\WEB\Auth\ForgotPasswordRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function send(ForgotPasswordRequest $request)
@@ -66,7 +65,7 @@ class ForgotPasswordController extends Controller
 
             return ResponseController::success(__('auth.password_reset.sent'), route('web.auth.login.index'));
         }
-        // 
+        //
         catch (\Throwable $th) {
             return ResponseController::failed($th->getMessage());
         }
@@ -75,7 +74,6 @@ class ForgotPasswordController extends Controller
     /**
      * Reset the administrator password.
      *
-     * @param \App\Http\Requests\WEB\Auth\ResetPasswordRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function reset(ResetPasswordRequest $request)
@@ -84,11 +82,13 @@ class ForgotPasswordController extends Controller
             $credentials = $request->credentials();
             $result = Administrator::setPassword($credentials);
 
-            if (!$result) throw new Exception(__('auth.password_reset.failed'));
+            if (! $result) {
+                throw new Exception(__('auth.password_reset.failed'));
+            }
 
             return ResponseController::success(__('auth.password_reset.success'), route('web.auth.login.index'));
         }
-        // 
+        //
         catch (\Throwable $th) {
             return ResponseController::failed($th->getMessage());
         }

@@ -10,6 +10,7 @@ class GeneralStatus
      * @var int
      */
     const ACTIVE = true;
+
     const INACTIVE = false;
 
     /**
@@ -19,8 +20,11 @@ class GeneralStatus
      */
     public static function labels()
     {
+
         $labels = [
+
             self::ACTIVE => 'Active',
+
             self::INACTIVE => 'Inactive',
         ];
 
@@ -30,7 +34,7 @@ class GeneralStatus
     /**
      * Get the string version base on int value.
      *
-     * @param int $key
+     * @param  int  $key
      * @return string $label
      */
     public static function label($key)
@@ -49,8 +53,8 @@ class GeneralStatus
     public static function htmlLabels()
     {
         $htmlLabels = [
-            self::ACTIVE => '<span class="badge badge-success w-100">' . self::label(self::ACTIVE) . '</span>',
-            self::INACTIVE => '<span class="badge badge-dark w-100">' . self::label(self::INACTIVE) . '</span>',
+            self::ACTIVE => '<span class="badge badge-success w-100">'.self::label(self::ACTIVE).'</span>',
+            self::INACTIVE => '<span class="badge badge-dark w-100">'.self::label(self::INACTIVE).'</span>',
         ];
 
         return $htmlLabels;
@@ -59,7 +63,7 @@ class GeneralStatus
     /**
      * Get the html version base on int value.
      *
-     * @param int $key
+     * @param  int  $key
      * @return string $htmlLabel
      */
     public static function htmlLabel($key)

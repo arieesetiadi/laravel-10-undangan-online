@@ -10,9 +10,13 @@ class SwalIcon
      * @var string
      */
     const SUCCESS = 'success';
+
     const ERROR = 'error';
+
     const WARNING = 'warning';
+
     const INFO = 'info';
+
     const QUESTION = 'question';
 
     /**
@@ -27,7 +31,7 @@ class SwalIcon
             self::ERROR => 'Failed',
             self::WARNING => 'Warning',
             self::INFO => 'Info',
-            self::QUESTION => 'Confirmation'
+            self::QUESTION => 'Confirmation',
         ];
 
         return $labels;
@@ -36,14 +40,14 @@ class SwalIcon
     /**
      * Get the string version base on int value.
      *
-     * @param int $key
+     * @param  int  $key
      * @return string $label
      */
     public static function label($key)
     {
         $labels = self::labels();
         $label = $labels[$key];
-        
+
         return $label;
     }
 }

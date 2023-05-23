@@ -4,7 +4,6 @@ namespace App\Http\Controllers\CMS;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -19,7 +18,7 @@ class DashboardController extends Controller
         $data['count'] = [
             'customers' => Customer::count(),
         ];
-        
+
         return view('cms.dashboard', $data);
     }
 }

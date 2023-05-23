@@ -3,7 +3,6 @@
 namespace App\Mail\CMS\Auth;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -16,7 +15,6 @@ class AccountActivationMail extends Mailable
      *
      * @return void
      */
-
     private $data;
 
     public function __construct($data)
@@ -33,7 +31,7 @@ class AccountActivationMail extends Mailable
     {
         // Mail data
         $mailTitle = 'Account Activation';
-        $mailSubject = $mailTitle . ' | ' . config('app.name');
+        $mailSubject = $mailTitle.' | '.config('app.name');
         $mailFrom = config('mail.from.address');
         $mailTo = $this->data['email'];
         $mailMarkdown = 'mail.account-activation';

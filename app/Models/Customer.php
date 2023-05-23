@@ -13,14 +13,14 @@ class Customer extends Authenticatable
 
     /**
      * Table name.
-     * 
+     *
      * @var string
      */
     public $table = 'customers';
 
     /**
      * Allowed field for mass assignment.
-     * 
+     *
      * @var array
      */
     protected $fillable = [
@@ -29,20 +29,11 @@ class Customer extends Authenticatable
 
     /**
      * Hidden field while get data.
-     * 
+     *
      * @var array
      */
     protected $hidden = [
         'password',
-    ];
-
-    /**
-     * New field for the result.
-     * 
-     * @var array
-     */
-    protected $append = [
-        'avatar_path',
     ];
 
     /*
@@ -51,18 +42,7 @@ class Customer extends Authenticatable
     |--------------------------------------------------------------------------
     */
 
-    /**
-     * Get customer avatar image path | src.
-     * 
-     * @return string $avatarPath
-     */
-    public function getAvatarPathAttribute()
-    {
-        $avatar = $this->avatar ?? 'default.png';
-        $avatarPath = asset('storage/uploads/images/avatars/' . $avatar);
-
-        return $avatarPath;
-    }
+    //
 
     /*
     |--------------------------------------------------------------------------
@@ -70,7 +50,7 @@ class Customer extends Authenticatable
     |--------------------------------------------------------------------------
     */
 
-    // 
+    //
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +60,7 @@ class Customer extends Authenticatable
 
     /**
      * Filter the active customer.
-     * 
+     *
      * @param object
      * @return object
      */
@@ -91,7 +71,7 @@ class Customer extends Authenticatable
 
     /**
      * Filter the inactive customer.
-     * 
+     *
      * @param object
      * @return object
      */
@@ -108,7 +88,7 @@ class Customer extends Authenticatable
 
     /**
      * Get all customers data.
-     * 
+     *
      * @return array
      */
     public static function getAll()
@@ -118,8 +98,8 @@ class Customer extends Authenticatable
 
     /**
      * Get customer by id.
-     * 
-     * @param int $id
+     *
+     * @param  int  $id
      * @return array
      */
     public static function getById($id)
@@ -129,13 +109,23 @@ class Customer extends Authenticatable
 
     /**
      * Get customer status.
-     * 
-     * @param array $credentials
-     * @return boolean $status
+     *
+     * @param  array  $credentials
+     * @return bool $status
      */
     public static function getStatus($credentials)
     {
-        $customer = self::where('username', $credentials['username'])->first();
+        $customer = self::when(isset($credentials['username']), function ($query) use ($credentials) {
+            return $query->where('username', $credentials['username']);
+        })
+                ->when(isset($credentials['email']), function ($query) use ($credentials) {
+                    return $query->orWhere('email', $credentials['email']);
+                })
+                ->when(isset($credentials['phone']), function ($query) use ($credentials) {
+                    return $query->orWhere('phone', $credentials['phone']);
+                })
+                ->first();
+
         $status = $customer->status;
 
         return $status;
@@ -143,10 +133,9 @@ class Customer extends Authenticatable
 
     /**
      * Set customer status.
-     * 
-     * @param array $credentials
-     * @param boolean $status
-     * 
+     *
+     * @param  array  $credentials
+     * @param  bool  $status
      * @return mixed $result
      */
     public static function setStatus($credentials, $status)
@@ -159,8 +148,8 @@ class Customer extends Authenticatable
 
     /**
      * Reset customer password.
-     * 
-     * @param array $credentials
+     *
+     * @param  array  $credentials
      * @return mixed $result
      */
     public static function setPassword($credentials)

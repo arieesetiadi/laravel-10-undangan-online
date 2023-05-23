@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,10 +22,10 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 switch ($guard) {
                     case 'web':
-                        return redirect()->route($guard . '.home');
+                        return redirect()->route($guard.'.home');
 
                     case 'cms':
-                        return redirect()->route($guard . '.dashboard');
+                        return redirect()->route($guard.'.dashboard');
 
                     default:
                         return redirect()->route('web.home');

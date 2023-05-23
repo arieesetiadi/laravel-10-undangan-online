@@ -18,7 +18,6 @@ class RegisterRequest extends FormRequest
         return true;
     }
 
-
     /**
      * Global form request attributes, with internationalization.
      *
@@ -49,7 +48,8 @@ class RegisterRequest extends FormRequest
         return [
             'username' => 'required|unique:customers,username',
             'name' => 'required',
-            'email' => 'required|unique:customers,email',
+            'phone' => 'required_without:email|unique:customers,email',
+            'email' => 'required_without:phone|unique:customers,phone',
             'password' => 'required',
         ];
     }

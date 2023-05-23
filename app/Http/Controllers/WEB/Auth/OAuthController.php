@@ -12,8 +12,8 @@ class OAuthController extends Controller
 {
     /**
      * Redirect with Socialite
-     * 
-     * @param string $driver
+     *
+     * @param  string  $driver
      */
     public function redirect(Request $request)
     {
@@ -30,7 +30,7 @@ class OAuthController extends Controller
             $customer = Customer::where('email', $user->email)->first();
 
             // Register new customer if not already
-            if (!$customer) {
+            if (! $customer) {
                 $username = $user->nickname ?? explode('@', $user->email)[0];
                 $customer = Customer::create([
                     'username' => $username,
@@ -41,7 +41,6 @@ class OAuthController extends Controller
                 $message = __('auth.register.success');
             }
 
-
             $message ??= __('auth.login.success');
 
             auth('web')->login($customer);
@@ -49,7 +48,7 @@ class OAuthController extends Controller
             // Redirect to WEB home
             return ResponseController::success($message, route('web.home'));
         }
-        // 
+        //
         catch (\Throwable $th) {
             return ResponseController::failed($th->getMessage());
         }

@@ -41,7 +41,7 @@ return [
     'distinct' => 'Isian :attribute memiliki nilai yang duplikat.',
     'email' => 'Isian :attribute harus berupa alamat surel yang valid.',
     'ends_with' => 'Isian :attribute harus diakhiri dengan: :values.',
-    'exists' => 'Isian :attribute yang dipilih tidak valid.',
+    'exists' => 'Isian :attribute yang anda masukan tidak terdaftar pada sistem.',
     'file' => 'Isian :attribute harus berupa file.',
     'filled' => 'Isian :attribute wajib diisi.',
     'gt' => [
@@ -147,6 +147,7 @@ return [
     */
 
     'attributes' => [
+        'credential' => 'informasi login',
         'username' => 'username',
         'name' => 'nama',
         'email' => 'alamat email',

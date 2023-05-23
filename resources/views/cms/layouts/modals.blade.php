@@ -4,7 +4,7 @@
     <div class="modal-dialog">
         <div class="modal-content bg-transparent shadow-none">
             <div class="modal-body d-flex justify-content-center">
-                <img width="100%" src="{{ asset('assets/cms/uploads/images/profiles/default.png') }}" alt="Image Preview" class="rounded-circle">
+                <img width="100%" src="{{ asset('storage/uploads/images/avatars/default.png') }}" alt="Image Preview" class="rounded-circle">
             </div>
         </div>
     </div>

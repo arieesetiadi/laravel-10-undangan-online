@@ -8,6 +8,14 @@ use Illuminate\Foundation\Http\FormRequest;
 class LoginRequest extends FormRequest
 {
     /**
+     * Customer login type.
+     * Posibbly username|email|phone.
+     *
+     * @var string
+     * */
+    private $type;
+
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
@@ -44,8 +52,11 @@ class LoginRequest extends FormRequest
      */
     public function rules()
     {
+        // Check login type
+        $this->type = is_email($this->credential) ? 'email' : (is_phone(normalize_phone($this->credential)) ? 'phone' : 'username');
+
         return [
-            'username' => 'required|exists:customers,username',
+            'credential' => 'required|exists:customers,'.$this->type,
             'password' => 'required',
         ];
     }
@@ -58,7 +69,7 @@ class LoginRequest extends FormRequest
     public function credentials()
     {
         return [
-            'username' => $this->username,
+            $this->type => $this->credential,
             'password' => $this->password,
         ];
     }
@@ -66,7 +77,7 @@ class LoginRequest extends FormRequest
     /**
      * Remember me value.
      *
-     * @return boolean
+     * @return bool
      */
     public function remember()
     {

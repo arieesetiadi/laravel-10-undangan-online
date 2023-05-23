@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\WEB\Auth;
 
-use App\Http\Controllers\ResponseController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ResponseController;
 
 class LogoutController extends Controller
 {
@@ -20,7 +20,7 @@ class LogoutController extends Controller
 
             return redirect()->route('web.home');
         }
-        // 
+        //
         catch (\Throwable $th) {
             return ResponseController::failed($th->getMessage());
         }

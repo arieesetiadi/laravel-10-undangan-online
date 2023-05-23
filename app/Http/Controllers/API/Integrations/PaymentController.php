@@ -13,8 +13,8 @@ class PaymentController extends Controller
 {
     /**
      * API for making payment base on payment gateway
-     * 
-     * @param Illuminate\Http\Request $request
+     *
+     * @param  Illuminate\Http\Request  $request
      * @return Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -32,12 +32,12 @@ class PaymentController extends Controller
                     ];
 
                     return ResponseController::success('PAYMENT_CHECKOUT_GENERATED', $data);
-                    // 
+                    //
                 default:
                     throw new Exception('PAYMENT_GATEWAY_INVALID');
             }
         }
-        // 
+        //
         catch (\Throwable $error) {
             $message = $error->getMessage();
             $data = $error->getTrace();
@@ -49,8 +49,7 @@ class PaymentController extends Controller
 
     /**
      * API for making payment base on payment gateway
-     * 
-     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function callback(Request $request)
@@ -65,12 +64,12 @@ class PaymentController extends Controller
                     $response = $doku->notification($request);
 
                     return ResponseController::success('PAYMENT_CALLBACK_SUCCESS', $response);
-                    // 
+                    //
                 default:
                     throw new Exception('PAYMENT_GATEWAY_INVALID');
             }
         }
-        // 
+        //
         catch (\Throwable $error) {
             $message = $error->getMessage();
             $data = $error->getTrace();

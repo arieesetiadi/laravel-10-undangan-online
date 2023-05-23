@@ -10,6 +10,7 @@ class AppLocale
      * @var int
      */
     const ID = 'id';
+
     const EN = 'en';
 
     /**
@@ -19,8 +20,10 @@ class AppLocale
      */
     public static function values()
     {
+
         $values = [
             self::ID,
+
             self::EN,
         ];
 
@@ -45,7 +48,7 @@ class AppLocale
     /**
      * Get the string version base on const value.
      *
-     * @param string $key
+     * @param  string  $key
      * @return string $label
      */
     public static function label($key)
