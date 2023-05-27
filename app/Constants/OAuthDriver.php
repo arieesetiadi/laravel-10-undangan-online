@@ -9,7 +9,7 @@ class OAuthDriver
      *
      * @var string
      */
-    const GOOGLE = 'google';
+    public const GOOGLE = 'google';
 
     /**
      * Get all the string version of the value.

@@ -9,11 +9,11 @@ class PaymentGateway
      *
      * @var int
      */
-    const DOKU = 'DOKU';
+    public const DOKU = 'DOKU';
 
-    const XENDIT = 'XENDIT';
+    public const XENDIT = 'XENDIT';
 
-    const MID_TRANS = 'MID_TRANS';
+    public const MID_TRANS = 'MID_TRANS';
 
     /**
      * Get all the slug version of the payment gateway.

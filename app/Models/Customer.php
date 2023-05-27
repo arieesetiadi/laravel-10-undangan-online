@@ -118,13 +118,13 @@ class Customer extends Authenticatable
         $customer = self::when(isset($credentials['username']), function ($query) use ($credentials) {
             return $query->where('username', $credentials['username']);
         })
-                ->when(isset($credentials['email']), function ($query) use ($credentials) {
-                    return $query->orWhere('email', $credentials['email']);
-                })
-                ->when(isset($credentials['phone']), function ($query) use ($credentials) {
-                    return $query->orWhere('phone', $credentials['phone']);
-                })
-                ->first();
+            ->when(isset($credentials['email']), function ($query) use ($credentials) {
+                return $query->orWhere('email', $credentials['email']);
+            })
+            ->when(isset($credentials['phone']), function ($query) use ($credentials) {
+                return $query->orWhere('phone', $credentials['phone']);
+            })
+            ->first();
 
         $status = $customer->status;
 

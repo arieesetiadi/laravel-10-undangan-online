@@ -147,7 +147,7 @@ return [
     */
 
     'attributes' => [
-        'credential' => 'informasi login',
+        'credential' => 'informasi pengguna',
         'username' => 'username',
         'name' => 'nama',
         'email' => 'alamat email',

@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Hash;
 class RegisterRequest extends FormRequest
 {
     /**
+     * Customer register type.
+     *
+     * @var string
+     * */
+    private $type;
+
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
@@ -25,12 +32,14 @@ class RegisterRequest extends FormRequest
      */
     public function rules()
     {
+        // Check login type
+        $this->type = is_email($this->credential) ? 'email' : (is_phone(normalize_phone($this->credential)) ? 'phone' : 'username');
+
         return [
-            'username' => 'required|unique:customers,username',
+            'credential' => 'required|unique:customers,'.$this->type,
             'name' => 'required',
-            'phone' => 'required_without:email|unique:customers,email',
-            'email' => 'required_without:phone|unique:customers,phone',
-            'password' => 'required',
+            'password' => 'required|min:4|confirmed',
+            'password_confirmation' => 'required|min:4',
         ];
     }
 
@@ -42,9 +51,8 @@ class RegisterRequest extends FormRequest
     public function credentials()
     {
         return [
-            'username' => $this->username,
+            $this->type => is_phone($this->credential) ? normalize_phone($this->credentials) : $this->credentials,
             'name' => $this->name,
-            'email' => $this->email,
             'password' => Hash::make($this->password),
             'status' => true,
         ];

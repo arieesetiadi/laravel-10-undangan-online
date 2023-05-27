@@ -9,9 +9,9 @@ class AppLocale
      *
      * @var int
      */
-    const ID = 'id';
+    public const ID = 'id';
 
-    const EN = 'en';
+    public const EN = 'en';
 
     /**
      * Get all the locale value.
@@ -23,7 +23,6 @@ class AppLocale
 
         $values = [
             self::ID,
-
             self::EN,
         ];
 

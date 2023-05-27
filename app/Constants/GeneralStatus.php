@@ -9,9 +9,9 @@ class GeneralStatus
      *
      * @var int
      */
-    const ACTIVE = true;
+    public const ACTIVE = true;
 
-    const INACTIVE = false;
+    public const INACTIVE = false;
 
     /**
      * Get all the string version of the status.

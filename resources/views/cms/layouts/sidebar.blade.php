@@ -19,7 +19,7 @@
             <li class="sidebar-title">
                 Main
             </li>
-            <li class="@yield('sidebar.dashboard')}">
+            <li class="{{ $sidebar['dashboard'] ?? '' }}">
                 <a href="{{ route('cms.dashboard') }}">
                     <i class="material-icons-outlined text-dark">dashboard</i> Dashboard
                 </a>
@@ -27,7 +27,7 @@
             <li class="sidebar-title">
                 Master
             </li>
-            <li class="@yield('sidebar.administrator')">
+            <li class="{{ $sidebar['administrator'] ?? '' }}">
                 <a href="{{ route('cms.administrator.index') }}">
                     <i class="material-icons-outlined text-dark">people</i> Administrators
                 </a>

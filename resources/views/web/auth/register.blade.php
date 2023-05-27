@@ -53,10 +53,14 @@
                                         @csrf
                                         <div class="row">
                                             <div class="mb-3 col-12 col-md-12 col-md-6 col-lg-6">
-                                                <label class="form-label" for="username">{{ __('general.words.attributes.username') }}</label>
-                                                <input name="username" type="text" class="form-control" id="username" placeholder="e.g. robert">
-                                                @error('username')
-                                                    <label for="username" class="mt-2 text-danger">
+                                                <label class="form-label" for="credential">
+                                                    {{ __('general.words.attributes.username') }} /
+                                                    {{ __('general.words.attributes.email') }} /
+                                                    {{ __('general.words.attributes.phone') }}
+                                                </label>
+                                                <input name="credential" type="text" class="form-control" id="credential" placeholder="e.g. robert">
+                                                @error('credential')
+                                                    <label for="credential" class="mt-2 text-danger">
                                                         {{ $message }}
                                                     </label>
                                                 @enderror
@@ -73,16 +77,6 @@
                                             </div>
 
                                             <div class="mb-3 col-12 col-md-12 col-md-6 col-lg-6">
-                                                <label class="form-label" for="email">{{ __('general.words.attributes.email') }}</label>
-                                                <input name="email" type="text" class="form-control" id="email" placeholder="e.g. robert@example.com">
-                                                @error('email')
-                                                    <label for="email" class="mt-2 text-danger">
-                                                        {{ $message }}
-                                                    </label>
-                                                @enderror
-                                            </div>
-
-                                            <div class="mb-3 col-12 col-md-12 col-md-6 col-lg-6">
                                                 <div class="d-flex">
                                                     <label class="form-label" for="password">{{ __('general.words.attributes.password') }}</label>
                                                     <div class="d-inline-block px-5 form-check form-switch">
@@ -92,6 +86,21 @@
                                                 <input name="password" type="password" class="form-control" id="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
                                                 @error('password')
                                                     <label for="password" class="mt-2 text-danger">
+                                                        {{ $message }}
+                                                    </label>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-3 col-12 col-md-12 col-md-6 col-lg-6">
+                                                <div class="d-flex">
+                                                    <label class="form-label" for="password_confirmation">{{ __('general.words.attributes.password_confirmation') }}</label>
+                                                    <div class="d-inline-block px-5 form-check form-switch">
+                                                        <input name="toggle-password" class="form-check-input" type="checkbox" tabindex="-1" id="toggle-password" onchange="togglePassword(event, 'password_confirmation')">
+                                                    </div>
+                                                </div>
+                                                <input name="password_confirmation" type="password" class="form-control" id="password_confirmation" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+                                                @error('password_confirmation')
+                                                    <label for="password_confirmation" class="mt-2 text-danger">
                                                         {{ $message }}
                                                     </label>
                                                 @enderror
@@ -152,6 +161,11 @@
                 password: {
                     required: true,
                     minlength: 4,
+                },
+                password_confirmation: {
+                    required: true,
+                    minlength: 4,
+                    equalTo: '#password',
                 }
             },
             messages: {
@@ -168,7 +182,12 @@
                 password: {
                     required: `{{ __('validation.required', ['attribute' => __('validation.attributes.password')]) }}`,
                     minlength: `{{ __('validation.min.string', ['attribute' => __('validation.attributes.password'), 'min' => 4]) }}`,
-                }
+                },
+                password_confirmation: {
+                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.password_confirmation')]) }}`,
+                    minlength: `{{ __('validation.min.string', ['attribute' => __('validation.attributes.password_confirmation'), 'min' => 4]) }}`,
+                    equalTo: `{{ __('validation.confirmed', ['attribute' => __('validation.attributes.password')]) }}`,
+                },
             },
             errorPlacement: function(label, element) {
                 label.addClass(errorMessageClasses());

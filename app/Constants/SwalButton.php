@@ -9,7 +9,7 @@ class SwalButton
      *
      * @var string
      */
-    const OK = 'OK';
+    public const OK = 'OK';
 
     /**
      * Get all the string version of the status.

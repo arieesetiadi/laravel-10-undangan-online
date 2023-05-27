@@ -61,7 +61,6 @@ class RegisterController extends Controller
      */
     public function process(RegisterRequest $request)
     {
-        dd($request->all());
         try {
             $credentials = $request->credentials();
 
@@ -73,7 +72,7 @@ class RegisterController extends Controller
             }
 
             // Login programmatically
-            auth('web')->attempt($request->only(['username', 'password']));
+            auth('web')->login($result);
 
             return ResponseController::success(__('auth.register.success'), route('web.home'));
         }

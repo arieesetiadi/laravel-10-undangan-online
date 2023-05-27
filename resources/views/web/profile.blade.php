@@ -41,19 +41,19 @@ divdivdivdiv{{-- Master Template --}}
                 {{-- Info Username --}}
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-3">
                     <h6 class="text-center">{{ __('general.words.attributes.username') }}</h6>
-                    <p class="mb-2 text-center">{{ customer()->username }}</p>
+                    <p class="mb-2 text-center">{{ customer()->username ?? '-' }}</p>
                 </div>
 
                 {{-- Info Name --}}
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-3">
                     <h6 class="text-center">{{ __('general.words.attributes.name') }}</h6>
-                    <p class="mb-2 text-center">{{ customer()->name }}</p>
+                    <p class="mb-2 text-center">{{ customer()->name ?? '-' }}</p>
                 </div>
 
                 {{-- Info Email --}}
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-3">
                     <h6 class="text-center">{{ __('general.words.attributes.email') }}</h6>
-                    <p class="mb-2 text-center">{{ customer()->email }} </p>
+                    <p class="mb-2 text-center">{{ customer()->email ?? '-' }} </p>
                 </div>
 
                 {{-- Info Phone --}}

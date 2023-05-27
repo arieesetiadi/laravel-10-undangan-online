@@ -2,9 +2,9 @@
 @extends('cms.layouts.master')
 
 {{-- Sidebar Configuration --}}
-@section('sidebar.administrator')
-    active-page
-@endsection
+@php
+    $sidebar['administrator'] = 'active-page';
+@endphp
 
 {{-- Content --}}
 @section('content')
@@ -26,8 +26,10 @@
                         <a href="{{ route('cms.administrator.create') }}" class="btn btn-sm btn-light">
                             {{ __('general.actions.add') }} {{ $title }}
                         </a>
-                        <a href="{{ route('cms.administrator.pdf') }}" target="_blank" class="btn btn-sm btn-light">Export PDF</button>
-                        <a href="{{ route('cms.administrator.excel') }}" target="_blank" class="btn btn-sm btn-light">Export Excel</a>
+                        <a href="{{ route('cms.administrator.pdf') }}" target="_blank" class="btn btn-sm btn-light">Export
+                            PDF</button>
+                            <a href="{{ route('cms.administrator.excel') }}" target="_blank"
+                                class="btn btn-sm btn-light">Export Excel</a>
                     </div>
                     <div class="card-body">
                         <table class="datatable w-100">
@@ -46,22 +48,29 @@
                                 @forelse ($administrators as $i => $administrator)
                                     <tr>
                                         <td class="d-flex gap-2">
-                                            <a class="btn btn-sm btn-light" href="{{ route('cms.administrator.edit', $administrator->id) }}">
+                                            <a class="btn btn-sm btn-light"
+                                                href="{{ route('cms.administrator.edit', $administrator->id) }}">
                                                 {{ __('general.actions.edit') }}
                                             </a>
-                                            <a class="btn btn-sm btn-info" href="{{ route('cms.administrator.show', $administrator->id) }}">
+                                            <a class="btn btn-sm btn-info"
+                                                href="{{ route('cms.administrator.show', $administrator->id) }}">
                                                 {{ __('general.actions.detail') }}
                                             </a>
-                                            <form action="{{ route('cms.administrator.toggle', $administrator->id) }}" method="POST">
+                                            <form action="{{ route('cms.administrator.toggle', $administrator->id) }}"
+                                                method="POST">
                                                 @csrf
-                                                <button type="button" class="btn btn-sm {{ $administrator->status ? 'btn-dark' : 'btn-success' }}" onclick="swalConfirm(event)">
+                                                <button type="button"
+                                                    class="btn btn-sm {{ $administrator->status ? 'btn-dark' : 'btn-success' }}"
+                                                    onclick="swalConfirm(event)">
                                                     {{ $administrator->status ? 'Inactivate' : 'Activate' }}
                                                 </button>
                                             </form>
                                         </td>
                                         <td>{{ $i + 1 }}</td>
                                         <td>
-                                            <img src="{{ $administrator->avatar_path }}" alt="{{ $administrator->name . ' profile image.' }}" width="30px" class="rounded-circle cursor-pointer" data-bs-toggle="modal"
+                                            <img src="{{ $administrator->avatar_path }}"
+                                                alt="{{ $administrator->name . ' profile image.' }}" width="30px"
+                                                class="rounded-circle cursor-pointer" data-bs-toggle="modal"
                                                 data-bs-target="#modal-image-preview" onclick="previewImageModal(event)">
                                         </td>
                                         <td>{{ $administrator->name }}</td>

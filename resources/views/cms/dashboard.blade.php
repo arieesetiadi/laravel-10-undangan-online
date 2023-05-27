@@ -2,9 +2,9 @@
 @extends('cms.layouts.master')
 
 {{-- Sidebar Configuration --}}
-@section('sidebar.dashboard')
-    active-page
-@endsection
+@php
+    $sidebar['dashboard'] = 'active-page';
+@endphp
 
 {{-- Content --}}
 @section('content')
