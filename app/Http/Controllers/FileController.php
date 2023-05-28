@@ -20,12 +20,12 @@ class FileController extends Controller
         $storage = Storage::disk('public');
 
         // Upload new image
-        $name = time().'-'.$file->hashName();
+        $name = time() . '-' . $file->hashName();
         $result = $storage->putFileAs($path, $file, $name);
 
         // Remove old image
         if ($result && $old) {
-            $oldPath = $path.'/'.$old;
+            $oldPath = $path . '/' . $old;
             $oldExist = $storage->exists($oldPath);
 
             // Remove old image if exist in the storage

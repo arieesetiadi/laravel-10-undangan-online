@@ -8,11 +8,18 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\ResponseController;
 use App\Http\Requests\CMS\Administrator\StoreRequest;
 use App\Http\Requests\CMS\Administrator\UpdateRequest;
-use App\Models\Administrator;
+use App\Services\AdministratorService;
 use Exception;
 
 class AdministratorController extends Controller
 {
+    /**
+     * Default service class.
+     * 
+     * @var \App\Services\AdministratorService $administratorService
+     */
+    protected $administratorService;
+
     /**
      * Controller module path.
      *
@@ -28,6 +35,14 @@ class AdministratorController extends Controller
     private $title = 'Administrator';
 
     /**
+     * Initiate resource service class.
+     */
+    public function __construct(AdministratorService $administratorService)
+    {
+        $this->administratorService = $administratorService;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -35,8 +50,8 @@ class AdministratorController extends Controller
     public function index()
     {
         try {
-            $administrators = Administrator::getAll();
-            $view = $this->module.'.index';
+            $administrators = $this->administratorService->all();
+            $view = $this->module . '.index';
             $data = [
                 'title' => $this->title,
                 'administrators' => $administrators,
@@ -58,7 +73,7 @@ class AdministratorController extends Controller
     public function create()
     {
         try {
-            $view = $this->module.'.create-or-edit';
+            $view = $this->module . '.create-or-edit';
             $data = [
                 'title' => $this->title,
                 'edit' => false,
@@ -84,14 +99,14 @@ class AdministratorController extends Controller
 
             // Upload avatar if exist
             if ($request->avatar) {
-                $avatarName = FileController::uploadImage($request->avatar, $this->imagesPath.'/avatars');
+                $avatarName = FileController::uploadImage($request->avatar, $this->uploadImagesPath . '/avatars');
                 $credentials['avatar'] = $avatarName;
             }
 
             // Store administrator data
-            $result = Administrator::create($credentials);
+            $result = $this->administratorService->create($credentials);
 
-            if (! $result) {
+            if (!$result) {
                 throw new Exception(__('general.process.failed'));
             }
 
@@ -112,8 +127,8 @@ class AdministratorController extends Controller
     public function show($id)
     {
         try {
-            $administrator = Administrator::findOrFail($id);
-            $view = $this->module.'.detail';
+            $administrator = $this->administratorService->find($id);
+            $view = $this->module . '.detail';
             $data = [
                 'title' => $this->title,
                 'administrator' => $administrator,
@@ -136,8 +151,8 @@ class AdministratorController extends Controller
     public function edit($id)
     {
         try {
-            $administrator = Administrator::findOrFail($id);
-            $view = $this->module.'.create-or-edit';
+            $administrator = $this->administratorService->find($id);
+            $view = $this->module . '.create-or-edit';
             $data = [
                 'title' => $this->title,
                 'administrator' => $administrator,
@@ -165,14 +180,14 @@ class AdministratorController extends Controller
 
             // Upload avatar if exist
             if ($request->avatar) {
-                $avatarName = FileController::uploadImage($request->avatar, $this->imagesPath.'/avatars');
+                $avatarName = FileController::uploadImage($request->avatar, $this->uploadImagesPath . '/avatars');
                 $credentials['avatar'] = $avatarName;
             }
 
             // Update administrator data
-            $result = Administrator::findOrFail($id)->update($credentials);
+            $result = $this->administratorService->update($id, $credentials);
 
-            if (! $result) {
+            if (!$result) {
                 throw new Exception(__('general.process.failed'));
             }
 
@@ -194,9 +209,9 @@ class AdministratorController extends Controller
     {
         try {
             // Delete administrator data
-            $result = Administrator::findOrFail($id)->delete();
+            $result = $this->administratorService->delete($id);
 
-            if (! $result) {
+            if (!$result) {
                 throw new Exception(__('general.process.failed'));
             }
 
@@ -218,10 +233,9 @@ class AdministratorController extends Controller
     {
         try {
             // Toggle administrator status
-            $administrator = Administrator::findOrFail($id);
-            $result = $administrator->update(['status' => ! $administrator->status]);
+            $result = $this->administratorService->toggleStatus($id);
 
-            if (! $result) {
+            if (!$result) {
                 throw new Exception(__('general.process.failed'));
             }
 
@@ -257,7 +271,7 @@ class AdministratorController extends Controller
     public function excel()
     {
         try {
-            return \Maatwebsite\Excel\Facades\Excel::download(new AdministratorsExport(), 'administrators-'.now()->timestamp.'.xlsx');
+            return \Maatwebsite\Excel\Facades\Excel::download(new AdministratorsExport(), 'export-administrators-' . now()->timestamp . '.xlsx');
         }
         //
         catch (\Throwable $th) {

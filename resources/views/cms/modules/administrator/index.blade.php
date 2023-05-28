@@ -32,7 +32,7 @@
                                 class="btn btn-sm btn-light">Export Excel</a>
                     </div>
                     <div class="card-body">
-                        <table class="datatable w-100">
+                        <table class="table table-borderless">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -70,7 +70,7 @@
                                         <td>
                                             <img src="{{ $administrator->avatar_path }}"
                                                 alt="{{ $administrator->name . ' profile image.' }}" width="30px"
-                                                class="rounded-circle cursor-pointer" data-bs-toggle="modal"
+                                                height="30px" class="rounded-circle cursor-pointer" data-bs-toggle="modal"
                                                 data-bs-target="#modal-image-preview" onclick="previewImageModal(event)">
                                         </td>
                                         <td>{{ $administrator->name }}</td>

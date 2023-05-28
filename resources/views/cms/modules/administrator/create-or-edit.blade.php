@@ -27,7 +27,7 @@
                             action="{{ $edit ? route('cms.administrator.update', $administrator->id) : route('cms.administrator.store') }}"
                             method="POST" enctype="multipart/form-data">
                             @csrf
-                            @method($edit ? 'PUT' : '')
+                            @method($edit ? 'PUT' : 'POST')
 
                             <img id="avatar-preview" width="100px"
                                 src="{{ $administrator->avatar_path ?? asset('storage/uploads/images/avatars/default.png') }}"

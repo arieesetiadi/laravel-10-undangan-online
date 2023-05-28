@@ -49,14 +49,12 @@ Route::prefix('/system')->as('cms.')->middleware('locale.use:en')->group(functio
         Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
 
         // CMS Module Administrator
-        Route::controller(AdministratorController::class)->group(function () {
-            Route::prefix('/administrator')->as('administrator.')->group(function () {
-                Route::post('/{administrator}/toggle', 'toggle')->name('toggle');
-                Route::get('/pdf', 'pdf')->name('pdf');
-                Route::get('/excel', 'excel')->name('excel');
-            });
-            Route::resource('/administrator', AdministratorController::class);
+        Route::prefix('/administrator')->as('administrator.')->controller(AdministratorController::class)->group(function () {
+            Route::post('/{administrator}/toggle', 'toggle')->name('toggle');
+            Route::get('/pdf', 'pdf')->name('pdf');
+            Route::get('/excel', 'excel')->name('excel');
         });
+        Route::resource('/administrator', AdministratorController::class);
 
         // CMS Profile
         Route::prefix('/profile')->as('profile.')->controller(CMSProfileController::class)->group(function () {

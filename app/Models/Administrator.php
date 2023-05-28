@@ -5,14 +5,13 @@ namespace App\Models;
 use App\Constants\GeneralStatus;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
 
 class Administrator extends Authenticatable
 {
     use Notifiable;
 
     /**
-     * Table name.
+     * Model table name.
      *
      * @var string
      */
@@ -59,7 +58,7 @@ class Administrator extends Authenticatable
     public function getAvatarPathAttribute()
     {
         $avatar = $this->avatar ?? 'default.png';
-        $avatarPath = asset('storage/uploads/images/avatars/'.$avatar);
+        $avatarPath = asset('storage/uploads/images/avatars/' . $avatar);
 
         return $avatarPath;
     }
@@ -98,76 +97,5 @@ class Administrator extends Authenticatable
     public function scopeInactive($query)
     {
         return $query->where('status', GeneralStatus::INACTIVE);
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Methods
-    |--------------------------------------------------------------------------
-    */
-
-    /**
-     * Get all administrators data.
-     *
-     * @return array
-     */
-    public static function getAll()
-    {
-        return self::latest()->get();
-    }
-
-    /**
-     * Get administrator by id.
-     *
-     * @param  int  $id
-     * @return array
-     */
-    public static function getById($id)
-    {
-        return self::findOrFail($id);
-    }
-
-    /**
-     * Get administrator status.
-     *
-     * @param  array  $credentials
-     * @return bool $status
-     */
-    public static function getStatus($credentials)
-    {
-        $administrator = self::where('username', $credentials['username'])->first();
-        $status = $administrator->status;
-
-        return $status;
-    }
-
-    /**
-     * Set administrator status.
-     *
-     * @param  array  $credentials
-     * @param  bool  $status
-     * @return mixed $result
-     */
-    public static function setStatus($credentials, $status)
-    {
-        $administrator = self::where('email', $credentials['email']);
-        $result = $administrator->update(['status' => $status]);
-
-        return $result;
-    }
-
-    /**
-     * Reset administrator password.
-     *
-     * @param  array  $credentials
-     * @return mixed $result
-     */
-    public static function setPassword($credentials)
-    {
-        $password = Hash::make($credentials['password']);
-        $administrator = self::where('email', $credentials['email']);
-        $result = $administrator->update(['password' => $password]);
-
-        return $result;
     }
 }
