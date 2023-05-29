@@ -32,6 +32,11 @@
                     <i class="material-icons-outlined text-dark">people</i> Administrators
                 </a>
             </li>
+            <li class="{{ $sidebar['customer'] ?? '' }}">
+                <a href="{{ route('cms.customer.index') }}">
+                    <i class="material-icons-outlined text-dark">people</i> Customers
+                </a>
+            </li>
             <li class="">
                 <a href="">
                     <i class="material-icons-outlined text-dark">image</i> Dropdown

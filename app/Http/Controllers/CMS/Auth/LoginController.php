@@ -13,8 +13,8 @@ class LoginController extends Controller
 {
     /**
      * Default service class.
-     * 
-     * @var \App\Services\AdministratorService $administratorService
+     *
+     * @var \App\Services\AdministratorService
      */
     protected $administratorService;
 
@@ -50,7 +50,7 @@ class LoginController extends Controller
     public function index()
     {
         try {
-            $view = $this->module . '.login';
+            $view = $this->module.'.login';
             $data['title'] = $this->title;
 
             return view($view, $data);
@@ -74,14 +74,14 @@ class LoginController extends Controller
             // Check administrator status
             $status = $this->administratorService->getStatus($credentials);
 
-            if (!$status) {
+            if (! $status) {
                 throw new Exception(__('auth.account.inactive'));
             }
 
             // Check auth result
             $result = auth('cms')->attempt($credentials);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception(__('auth.login.failed'));
             }
 

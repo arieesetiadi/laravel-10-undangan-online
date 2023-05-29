@@ -5,6 +5,7 @@ use App\Http\Controllers\CMS\Auth\LoginController as CMSLoginController;
 use App\Http\Controllers\CMS\Auth\LogoutController as CMSLogoutController;
 use App\Http\Controllers\CMS\DashboardController;
 use App\Http\Controllers\CMS\Modules\AdministratorController;
+use App\Http\Controllers\CMS\Modules\CustomerController;
 use App\Http\Controllers\CMS\ProfileController as CMSProfileController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\WEB\Auth\ForgotPasswordController as WEBForgotPasswordController;
@@ -55,6 +56,14 @@ Route::prefix('/system')->as('cms.')->middleware('locale.use:en')->group(functio
             Route::get('/excel', 'excel')->name('excel');
         });
         Route::resource('/administrator', AdministratorController::class);
+
+        // CMS Module Customer
+        Route::prefix('/customer')->as('customer.')->controller(CustomerController::class)->group(function () {
+            Route::post('/{customer}/toggle', 'toggle')->name('toggle');
+            Route::get('/pdf', 'pdf')->name('pdf');
+            Route::get('/excel', 'excel')->name('excel');
+        });
+        Route::resource('/customer', CustomerController::class);
 
         // CMS Profile
         Route::prefix('/profile')->as('profile.')->controller(CMSProfileController::class)->group(function () {

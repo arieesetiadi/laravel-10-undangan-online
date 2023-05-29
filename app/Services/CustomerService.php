@@ -2,59 +2,59 @@
 
 namespace App\Services;
 
-use App\Models\Administrator;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
 
-class AdministratorService
+class CustomerService
 {
     /**
      * Default service class model.
      *
-     * @var \App\Models\Administrator
+     * @var \App\Models\Customer
      */
-    protected $administrator;
+    protected $customer;
 
     /**
      * Init
      */
-    public function __construct(Administrator $administrator)
+    public function __construct(Customer $customer)
     {
-        $this->administrator = $administrator;
+        $this->customer = $customer;
     }
 
     /**
-     * Get all administrators data.
+     * Get all customers data.
      *
      * @return array
      */
     public function all()
     {
-        return $this->administrator->latest()->get();
+        return $this->customer->latest()->get();
     }
 
     /**
-     * Get administrator by id.
+     * Get customer by id.
      *
      * @param  int  $id
      * @return object
      */
     public function find($id)
     {
-        return $this->administrator->findOrFail($id);
+        return $this->customer->findOrFail($id);
     }
 
     /**
-     * Store new administrator data.
+     * Store new customer data.
      *
      * @param  array  $credentials
      */
     public function create($credentials)
     {
-        return $this->administrator->create($credentials);
+        return $this->customer->create($credentials);
     }
 
     /**
-     * Update administrator data.
+     * Update customer data.
      *
      * @param  int  $id
      * @param  array  $credentials
@@ -65,7 +65,7 @@ class AdministratorService
     }
 
     /**
-     * Update administrator data.
+     * Update customer data.
      *
      * @param  int  $id
      */
@@ -75,21 +75,21 @@ class AdministratorService
     }
 
     /**
-     * Get administrator status.
+     * Get customer status.
      *
      * @param  array  $credentials
      * @return bool $status
      */
     public function getStatus($credentials)
     {
-        $administrator = $this->administrator->where('username', $credentials['username'])->first();
-        $status = $administrator->status;
+        $customer = $this->customer->where('username', $credentials['username'])->first();
+        $status = $customer->status;
 
         return $status;
     }
 
     /**
-     * Set administrator status.
+     * Set customer status.
      *
      * @param  array  $credentials
      * @param  bool  $status
@@ -97,14 +97,14 @@ class AdministratorService
      */
     public function setStatus($credentials, $status)
     {
-        $administrator = $this->administrator->where('email', $credentials['email']);
-        $result = $administrator->update(['status' => $status]);
+        $customer = $this->customer->where('email', $credentials['email']);
+        $result = $customer->update(['status' => $status]);
 
         return $result;
     }
 
     /**
-     * Reset administrator password.
+     * Reset customer password.
      *
      * @param  array  $credentials
      * @return mixed $result
@@ -112,22 +112,22 @@ class AdministratorService
     public function setPassword($credentials)
     {
         $password = Hash::make($credentials['password']);
-        $administrator = $this->administrator->where('email', $credentials['email']);
-        $result = $administrator->update(['password' => $password]);
+        $customer = $this->customer->where('email', $credentials['email']);
+        $result = $customer->update(['password' => $password]);
 
         return $result;
     }
 
     /**
-     * Toggle administrator status.
+     * Toggle customer status.
      *
      * @param  array  $credentials
      * @return mixed $result
      */
     public function toggleStatus($id)
     {
-        $administrator = $this->find($id);
-        $result = $administrator->update(['status' => ! $administrator->status]);
+        $customer = $this->find($id);
+        $result = $customer->update(['status' => ! $customer->status]);
 
         return $result;
     }

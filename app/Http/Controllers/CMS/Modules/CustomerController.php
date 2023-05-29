@@ -2,44 +2,43 @@
 
 namespace App\Http\Controllers\CMS\Modules;
 
-use App\Exports\AdministratorsExport;
+use App\Exports\CustomersExport;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\FileController;
 use App\Http\Controllers\ResponseController;
-use App\Http\Requests\CMS\Administrator\StoreRequest;
-use App\Http\Requests\CMS\Administrator\UpdateRequest;
-use App\Services\AdministratorService;
+use App\Http\Requests\CMS\Customer\StoreRequest;
+use App\Http\Requests\CMS\Customer\UpdateRequest;
+use App\Services\CustomerService;
 use Exception;
 
-class AdministratorController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Default service class.
      *
-     * @var \App\Services\AdministratorService
+     * @var \App\Services\CustomerService
      */
-    protected $administratorService;
+    protected $customerService;
 
     /**
      * Controller module path.
      *
      * @var string
      */
-    private $module = 'cms.modules.administrator';
+    private $module = 'cms.modules.customer';
 
     /**
      * Controller module title.
      *
      * @var string
      */
-    private $title = 'Administrator';
+    private $title = 'Customer';
 
     /**
      * Initiate resource service class.
      */
-    public function __construct(AdministratorService $administratorService)
+    public function __construct(CustomerService $customerService)
     {
-        $this->administratorService = $administratorService;
+        $this->customerService = $customerService;
     }
 
     /**
@@ -50,11 +49,11 @@ class AdministratorController extends Controller
     public function index()
     {
         try {
-            $administrators = $this->administratorService->all();
+            $customers = $this->customerService->all();
             $view = $this->module.'.index';
             $data = [
                 'title' => $this->title,
-                'administrators' => $administrators,
+                'customers' => $customers,
             ];
 
             return view($view, $data);
@@ -97,20 +96,14 @@ class AdministratorController extends Controller
         try {
             $credentials = $request->credentials();
 
-            // Upload avatar if exist
-            if ($request->avatar) {
-                $avatarName = FileController::uploadImage($request->avatar, $this->uploadImagesPath.'/avatars');
-                $credentials['avatar'] = $avatarName;
-            }
-
-            // Store administrator data
-            $result = $this->administratorService->create($credentials);
+            // Store customer data
+            $result = $this->customerService->create($credentials);
 
             if (! $result) {
                 throw new Exception(__('general.process.failed'));
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.administrator.index'));
+            return ResponseController::success(__('general.process.success'), route('cms.customer.index'));
         }
         //
         catch (\Throwable $th) {
@@ -127,11 +120,11 @@ class AdministratorController extends Controller
     public function show($id)
     {
         try {
-            $administrator = $this->administratorService->find($id);
+            $customer = $this->customerService->find($id);
             $view = $this->module.'.detail';
             $data = [
                 'title' => $this->title,
-                'administrator' => $administrator,
+                'customer' => $customer,
             ];
 
             return view($view, $data);
@@ -151,11 +144,11 @@ class AdministratorController extends Controller
     public function edit($id)
     {
         try {
-            $administrator = $this->administratorService->find($id);
+            $customer = $this->customerService->find($id);
             $view = $this->module.'.create-or-edit';
             $data = [
                 'title' => $this->title,
-                'administrator' => $administrator,
+                'customer' => $customer,
                 'edit' => true,
             ];
 
@@ -178,20 +171,14 @@ class AdministratorController extends Controller
         try {
             $credentials = $request->credentials();
 
-            // Upload avatar if exist
-            if ($request->avatar) {
-                $avatarName = FileController::uploadImage($request->avatar, $this->uploadImagesPath.'/avatars');
-                $credentials['avatar'] = $avatarName;
-            }
-
-            // Update administrator data
-            $result = $this->administratorService->update($id, $credentials);
+            // Update customer data
+            $result = $this->customerService->update($id, $credentials);
 
             if (! $result) {
                 throw new Exception(__('general.process.failed'));
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.administrator.index'));
+            return ResponseController::success(__('general.process.success'), route('cms.customer.index'));
         }
         //
         catch (\Throwable $th) {
@@ -208,14 +195,14 @@ class AdministratorController extends Controller
     public function destroy($id)
     {
         try {
-            // Delete administrator data
-            $result = $this->administratorService->delete($id);
+            // Delete customer data
+            $result = $this->customerService->delete($id);
 
             if (! $result) {
                 throw new Exception(__('general.process.failed'));
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.administrator.index'));
+            return ResponseController::success(__('general.process.success'), route('cms.customer.index'));
         }
         //
         catch (\Throwable $th) {
@@ -232,14 +219,14 @@ class AdministratorController extends Controller
     public function toggle($id)
     {
         try {
-            // Toggle administrator status
-            $result = $this->administratorService->toggleStatus($id);
+            // Toggle customer status
+            $result = $this->customerService->toggleStatus($id);
 
             if (! $result) {
                 throw new Exception(__('general.process.failed'));
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.administrator.index'));
+            return ResponseController::success(__('general.process.success'), route('cms.customer.index'));
         }
         //
         catch (\Throwable $th) {
@@ -255,7 +242,7 @@ class AdministratorController extends Controller
     public function pdf()
     {
         try {
-            return 'Adminsitrator PDF';
+            return 'Customers PDF';
         }
         //
         catch (\Throwable $th) {
@@ -271,7 +258,7 @@ class AdministratorController extends Controller
     public function excel()
     {
         try {
-            return \Maatwebsite\Excel\Facades\Excel::download(new AdministratorsExport(), 'export-administrators-'.now()->timestamp.'.xlsx');
+            return \Maatwebsite\Excel\Facades\Excel::download(new CustomersExport(), 'export-customers-'.now()->timestamp.'.xlsx');
         }
         //
         catch (\Throwable $th) {

@@ -19,3 +19,15 @@ Breadcrumbs::for('cms.administrator.action', function (BreadcrumbTrail $trail, $
     $trail->parent('cms.administrator.index');
     $trail->push($action);
 });
+
+// Dashboard > Customer
+Breadcrumbs::for('cms.customer.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('cms.dashboard');
+    $trail->push('Customer', route('cms.customer.index'));
+});
+
+// Dashboard > Customer > [Action]
+Breadcrumbs::for('cms.customer.action', function (BreadcrumbTrail $trail, $action) {
+    $trail->parent('cms.customer.index');
+    $trail->push($action);
+});

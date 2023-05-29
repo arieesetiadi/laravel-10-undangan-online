@@ -58,7 +58,7 @@ class Administrator extends Authenticatable
     public function getAvatarPathAttribute()
     {
         $avatar = $this->avatar ?? 'default.png';
-        $avatarPath = asset('storage/uploads/images/avatars/' . $avatar);
+        $avatarPath = asset('storage/uploads/images/avatars/'.$avatar);
 
         return $avatarPath;
     }

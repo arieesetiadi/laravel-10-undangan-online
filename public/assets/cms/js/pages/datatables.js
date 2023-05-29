@@ -1,8 +1,6 @@
-$(document).ready(function () {
-    $('.datatable').DataTable({
-        columnDefs: [
-            { "orderable": false, "targets": [0] },
-        ],
-        order: [],
-    });
+const datatable = $('.datatable').DataTable({
+    columnDefs: [
+        { "orderable": false, "targets": [0] },
+    ],
+    order: [],
 });

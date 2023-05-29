@@ -12,5 +12,6 @@ class Controller extends BaseController
     use ValidatesRequests;
 
     protected $uploadImagesPath = '/uploads/images';
+
     protected $uploadFilesPath = '/uploads/files';
 }

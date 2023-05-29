@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\CMS\Administrator;
+namespace App\Http\Requests\CMS\Customer;
 
 use App\Constants\GeneralStatus;
 use App\Http\Requests\BaseFormRequest;
@@ -28,10 +28,9 @@ class UpdateRequest extends FormRequest
     public function rules(Request $request)
     {
         return [
-            'username' => 'required|unique:administrators,username,'.$request->administrator,
+            'username' => 'required|unique:customers,username,'.$request->customer,
             'name' => 'required',
-            'email' => 'required|unique:administrators,email,'.$request->administrator,
-            'avatar' => 'file|mimes:jpeg,jpg,png|max:1024',
+            'email' => 'required|unique:customers,email,'.$request->customer,
         ];
     }
 
