@@ -6,10 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResponseController;
 use App\Http\Requests\CMS\Auth\LoginRequest;
 use App\Models\Administrator;
+use App\Services\AdministratorService;
 use Exception;
 
 class LoginController extends Controller
 {
+    /**
+     * Default service class.
+     * 
+     * @var \App\Services\AdministratorService $administratorService
+     */
+    protected $administratorService;
+
     /**
      * Controller module path.
      *
@@ -27,8 +35,9 @@ class LoginController extends Controller
     /**
      * Initiate controller properties value.
      */
-    public function __construct()
+    public function __construct(AdministratorService $administratorService)
     {
+        $this->administratorService = $administratorService;
         $this->module = 'cms.auth';
         $this->title = __('auth.login.word');
     }
@@ -41,7 +50,7 @@ class LoginController extends Controller
     public function index()
     {
         try {
-            $view = $this->module.'.login';
+            $view = $this->module . '.login';
             $data['title'] = $this->title;
 
             return view($view, $data);
@@ -63,16 +72,16 @@ class LoginController extends Controller
             $credentials = $request->credentials();
 
             // Check administrator status
-            $status = Administrator::getStatus($credentials);
+            $status = $this->administratorService->getStatus($credentials);
 
-            if (! $status) {
+            if (!$status) {
                 throw new Exception(__('auth.account.inactive'));
             }
 
             // Check auth result
             $result = auth('cms')->attempt($credentials);
 
-            if (! $result) {
+            if (!$result) {
                 throw new Exception(__('auth.login.failed'));
             }
 

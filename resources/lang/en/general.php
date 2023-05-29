@@ -35,6 +35,7 @@ return [
         'pricing' => 'Pricing',
         'contact' => 'Contact',
         'attributes' => [
+            'actions' => 'Actions',
             'username' => 'Username',
             'name' => 'Name',
             'email' => 'Email',

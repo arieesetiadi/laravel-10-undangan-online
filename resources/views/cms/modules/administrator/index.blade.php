@@ -29,13 +29,14 @@
                         <a href="{{ route('cms.administrator.pdf') }}" target="_blank" class="btn btn-sm btn-light">Export
                             PDF</button>
                             <a href="{{ route('cms.administrator.excel') }}" target="_blank"
-                                class="btn btn-sm btn-light">Export Excel</a>
+                                class="btn btn-sm btn-light">Export
+                                Excel</a>
                     </div>
-                    <div class="card-body">
-                        <table class="table table-borderless">
+                    <div class="card-body table-responsive">
+                        <table class="datatable table w-100">
                             <thead>
                                 <tr>
-                                    <th></th>
+                                    <th>{{ __('general.words.attributes.actions') }}</th>
                                     <th>#</th>
                                     <th>{{ __('general.words.attributes.image') }}</th>
                                     <th>{{ __('general.words.attributes.name') }}</th>
@@ -47,7 +48,7 @@
                             <tbody>
                                 @forelse ($administrators as $i => $administrator)
                                     <tr>
-                                        <td class="d-flex gap-2">
+                                        <td class="d-flex gap-2 text-nowrap">
                                             <a class="btn btn-sm btn-light"
                                                 href="{{ route('cms.administrator.edit', $administrator->id) }}">
                                                 {{ __('general.actions.edit') }}
@@ -62,21 +63,21 @@
                                                 <button type="button"
                                                     class="btn btn-sm {{ $administrator->status ? 'btn-dark' : 'btn-success' }}"
                                                     onclick="swalConfirm(event)">
-                                                    {{ $administrator->status ? 'Inactivate' : 'Activate' }}
+                                                    {{ $administrator->status ? 'In-activate' : 'Activate' }}
                                                 </button>
                                             </form>
                                         </td>
-                                        <td>{{ $i + 1 }}</td>
-                                        <td>
+                                        <td class="text-nowrap">{{ $i + 1 }}</td>
+                                        <td class="text-nowrap">
                                             <img src="{{ $administrator->avatar_path }}"
                                                 alt="{{ $administrator->name . ' profile image.' }}" width="30px"
                                                 height="30px" class="rounded-circle cursor-pointer" data-bs-toggle="modal"
                                                 data-bs-target="#modal-image-preview" onclick="previewImageModal(event)">
                                         </td>
-                                        <td>{{ $administrator->name }}</td>
-                                        <td>{{ $administrator->email }}</td>
-                                        <td>{!! GeneralStatus::htmlLabel($administrator->status) !!}</td>
-                                        <td>{{ human_datetime($administrator->updated_at) }}</td>
+                                        <td class="text-nowrap">{{ $administrator->name }}</td>
+                                        <td class="text-nowrap">{{ $administrator->email }}</td>
+                                        <td class="text-nowrap">{!! GeneralStatus::htmlLabel($administrator->status) !!}</td>
+                                        <td class="text-nowrap">{{ human_datetime($administrator->updated_at) }}</td>
                                     </tr>
                                 @empty
                                     <tr>

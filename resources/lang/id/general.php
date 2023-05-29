@@ -35,6 +35,7 @@ return [
         'pricing' => 'Harga',
         'contact' => 'Kontak',
         'attributes' => [
+            'actions' => 'Aksi',
             'username' => 'Username',
             'name' => 'Nama',
             'email' => 'Alamat Email',
