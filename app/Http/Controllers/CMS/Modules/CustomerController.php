@@ -24,14 +24,14 @@ class CustomerController extends Controller
      *
      * @var string
      */
-    private $module = 'cms.modules.customer';
+    private $module;
 
     /**
      * Controller module title.
      *
      * @var string
      */
-    private $title = 'Customer';
+    private $title;
 
     /**
      * Initiate resource service class.
@@ -39,6 +39,8 @@ class CustomerController extends Controller
     public function __construct(CustomerService $customerService)
     {
         $this->customerService = $customerService;
+        $this->module = 'cms.modules.customer';
+        $this->title = 'Customer';
     }
 
     /**

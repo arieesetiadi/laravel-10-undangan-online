@@ -32,13 +32,13 @@ class ForgotPasswordMail extends Mailable
     {
         // Mail data
         $mailTitle = 'Request for Password Reset';
-        $mailSubject = $mailTitle.' | '.config('app.name');
+        $mailSubject = $mailTitle . ' | ' . config('app.name');
         $mailFrom = config('mail.from.address');
         $mailTo = $this->data['email'];
         $mailMarkdown = 'mail.forgot-password';
         $mailData = [
             'title' => $mailTitle,
-            'url' => route('web.auth.forgot-password.index', ['email' => $mailTo]),
+            'url' => route('web.auth.forgot-password.index', ['email' => $mailTo, 'locale' => app()->getLocale()]),
         ];
 
         return $this

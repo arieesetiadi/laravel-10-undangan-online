@@ -15,7 +15,7 @@ return [
 
     'account' => [
         'word' => 'Akun',
-        'inactive' => 'Akun Anda tidak aktif. Silahkan hubungi tim support untuk bantuan.',
+        'inactive' => 'Akun Anda tidak aktif. Silahkan hubungi tim Administrator untuk bantuan.',
         'question' => [
             'registered' => 'Sudah memiliki akun?',
             'unregistered' => 'Belum memiliki akun?',
@@ -36,6 +36,7 @@ return [
         'success' => 'Selamat datang, Anda berhasil masuk.',
         'failed' => 'Informasi login atau kata sandi tidak valid. Silahkan coba lagi.',
         'throttle' => 'Terlalu banyak percobaan. Silahkan coba beberapa saat lagi.',
+        'back' => 'Kembali ke halaman Login',
     ],
     'register' => [
         'word' => 'Daftar',
@@ -53,5 +54,7 @@ return [
         'success' => 'Kata sandi Anda telah berhasil diatur ulang. Anda sekarang dapat masuk ke akun Anda menggunakan kata sandi baru Anda.',
         'failed' => 'Maaf, kami tidak dapat menyelesaikan pengaturan ulang kata sandi Anda saat ini.',
         'sent' => 'Kami telah mengirimkan tautan pengaturan ulang kata sandi ke alamat email Anda. Silakan periksa kotak masuk email Anda.',
+        'description_1' => 'Silakan masukkan alamat email Anda untuk melanjutkan proses pengaturan ulang kata sandi.',
+        'description_2' => 'Silakan masukkan kata sandi baru Anda pada kolom yang tersedia di bawah ini.',
     ],
 ];

@@ -12,8 +12,6 @@ class OAuthController extends Controller
 {
     /**
      * Redirect with Socialite
-     *
-     * @param  string  $driver
      */
     public function redirect(Request $request)
     {

@@ -38,7 +38,7 @@ class ForgotPasswordMail extends Mailable
         $mailMarkdown = 'mail.forgot-password';
         $mailData = [
             'title' => $mailTitle,
-            'url' => route('cms.auth.forgot-password.index', ['email' => $mailTo]),
+            'url' => route('cms.auth.forgot-password.index', ['email' => $mailTo, 'locale' => app()->getLocale()]),
         ];
 
         return $this

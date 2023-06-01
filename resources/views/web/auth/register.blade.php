@@ -145,6 +145,7 @@
     {{-- Include Sweet Alert --}}
     @include('web.layouts.swals')
 
+    {{-- Form Validation --}}
     <script>
         $('form#register').validate({
             rules: {

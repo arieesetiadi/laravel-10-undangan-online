@@ -42,6 +42,8 @@ return [
             'phone' => 'Nomor Telepon',
             'password' => 'Kata Sandi',
             'password_confirmation' => 'Konfirmasi Kata Sandi',
+            'new_password' => 'Kata Sandi Baru',
+            'new_password_confirmation' => 'Konfirmasi Kata Sandi Baru',
             'image' => 'Gambar',
             'status' => 'Status',
             'created_at' => 'Dibuat Pada',

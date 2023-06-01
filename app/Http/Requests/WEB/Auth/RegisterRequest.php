@@ -38,8 +38,8 @@ class RegisterRequest extends FormRequest
         return [
             'credential' => 'required|unique:customers,'.$this->type,
             'name' => 'required',
-            'password' => 'required|min:4|confirmed',
-            'password_confirmation' => 'required|min:4',
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required',
         ];
     }
 
@@ -51,7 +51,7 @@ class RegisterRequest extends FormRequest
     public function credentials()
     {
         return [
-            $this->type => is_phone($this->credential) ? normalize_phone($this->credentials) : $this->credentials,
+            $this->type => is_phone($this->credential) ? normalize_phone($this->credential) : $this->credential,
             'name' => $this->name,
             'password' => Hash::make($this->password),
             'status' => true,

@@ -38,7 +38,7 @@ class AccountActivationMail extends Mailable
         $mailMarkdown = 'mail.account-activation';
         $mailData = [
             'title' => $mailTitle,
-            'url' => route('cms.auth.register.activate', ['email' => $mailTo]),
+            'url' => route('cms.auth.register.activate', ['email' => $mailTo, 'locale' => app()->getLocale()]),
         ];
 
         return $this

@@ -25,14 +25,14 @@ class AdministratorController extends Controller
      *
      * @var string
      */
-    private $module = 'cms.modules.administrator';
+    private $module;
 
     /**
      * Controller module title.
      *
      * @var string
      */
-    private $title = 'Administrator';
+    private $title;
 
     /**
      * Initiate resource service class.
@@ -40,6 +40,8 @@ class AdministratorController extends Controller
     public function __construct(AdministratorService $administratorService)
     {
         $this->administratorService = $administratorService;
+        $this->module = 'cms.modules.administrator';
+        $this->title = 'Administrator';
     }
 
     /**

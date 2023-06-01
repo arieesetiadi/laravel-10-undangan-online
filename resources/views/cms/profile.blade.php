@@ -100,8 +100,7 @@
                                             </div>
 
                                             <div class="m-b-md">
-                                                <label for="password" class="form-label d-block">Password
-                                                    (Optional)</label>
+                                                <label for="password" class="form-label d-block">Password (Optional)</label>
                                                 <input name="password" type="password" class="form-control" id="password" aria-describedby="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
                                                 @error('password')
                                                     <label for="password" class="mt-2 text-danger">
@@ -111,8 +110,7 @@
                                             </div>
 
                                             <div class="m-b-md">
-                                                <label for="password_confirmation" class="form-label d-block">Password
-                                                    Confirmation</label>
+                                                <label for="password_confirmation" class="form-label d-block">Password Confirmation</label>
                                                 <input name="password_confirmation" type="password" class="form-control" id="password_confirmation" aria-describedby="password_confirmation"
                                                     placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
                                                 @error('password_confirmation')

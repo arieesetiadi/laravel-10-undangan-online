@@ -5,11 +5,18 @@ namespace App\Http\Controllers\WEB\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResponseController;
 use App\Http\Requests\WEB\Auth\LoginRequest;
-use App\Models\Customer;
+use App\Services\CustomerService;
 use Exception;
 
 class LoginController extends Controller
 {
+    /**
+     * Default service class.
+     *
+     * @var \App\Services\CustomerService
+     */
+    protected $customerService;
+
     /**
      * Controller module path.
      *
@@ -27,8 +34,9 @@ class LoginController extends Controller
     /**
      * Initiate controller properties value.
      */
-    public function __construct()
+    public function __construct(CustomerService $customerService)
     {
+        $this->customerService = $customerService;
         $this->module = 'web.auth';
         $this->title = __('auth.login.word');
     }
@@ -64,7 +72,7 @@ class LoginController extends Controller
             $remember = $request->remember();
 
             // Check customer status
-            $status = Customer::getStatus($credentials);
+            $status = $this->customerService->getStatus($credentials);
 
             if (! $status) {
                 throw new Exception(__('auth.account.inactive'));

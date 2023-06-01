@@ -9,7 +9,7 @@
     @include('cms.layouts.styles')
 
     {{-- Title --}}
-    <title>{{ $title ?? 'Title' }} | Content Management System</title>
+    <title>{{ $title ?? 'Title' }} | {{ config('app.name') }}</title>
 </head>
 
 <body>
@@ -18,12 +18,12 @@
 
         {{-- Input Email --}}
         <div class="app-auth-container {{ $email ? 'd-none' : 'd-block' }}">
-            <form id="forgot-password-email" action="{{ route('cms.auth.forgot-password.send') }}" method="POST"> @csrf
+            <form id="forgot-password-email" action="{{ route('web.auth.forgot-password.send', app()->getLocale()) }}" method="POST"> @csrf
                 <div class="logo">
-                    <a href="">CMS Forgot Password</a>
+                    <a href="">{{ __('auth.password_reset.word') }}</a>
                 </div>
                 <p class="auth-description">
-                    Please enter your email address to proceed with the password reset process.
+                    {{ __('auth.password_reset.description_1') }}
                 </p>
 
                 <div class="auth-credentials m-b-xxl">
@@ -40,8 +40,8 @@
 
                 <div class="auth-submit">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <a href="{{ route('cms.auth.login.index') }}" class="auth-forgot-password float-end">
-                        Back to Login
+                    <a href="{{ route('web.auth.login.index', app()->getLocale()) }}" class="auth-forgot-password float-end">
+                        {{ __('auth.login.back') }}
                     </a>
                 </div>
                 <div class="divider"></div>
@@ -50,19 +50,24 @@
 
         {{-- Input New Password --}}
         <div class="app-auth-container {{ $email ? 'd-block' : 'd-none' }}">
-            <form id="forgot-password-reset" action="{{ route('cms.auth.forgot-password.reset') }}" method="POST"> @csrf
+            <form id="forgot-password-reset" action="{{ route('web.auth.forgot-password.reset', app()->getLocale()) }}" method="POST"> @csrf
                 <div class="logo">
-                    <a href="">CMS New Password</a>
+                    <a href="">{{ __('auth.password_reset.word') }}</a>
                 </div>
                 <p class="auth-description">
-                    Please enter your new password in the field provided below.
+                    {{ __('auth.password_reset.description_2') }}
                 </p>
 
                 <div class="auth-credentials m-b-xxl">
                     <input type="hidden" name="email" value="{{ $email }}">
 
                     <div class="m-b-md">
-                        <label for="password" class="form-label d-block">New Password</label>
+                        <div class="d-flex">
+                            <label for="password" class="form-label d-block">{{ __('general.words.attributes.new_password') }}</label>
+                            <div class="d-inline-block px-5 form-check form-switch">
+                                <input name="toggle-password" class="form-check-input" type="checkbox" tabindex="-1" id="toggle-password" onchange="togglePassword(event, 'password')">
+                            </div>
+                        </div>
                         <input name="password" type="password" class="form-control" id="password" aria-describedby="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
                         @error('password')
                             <label for="password" class="mt-2 text-danger">
@@ -72,7 +77,12 @@
                     </div>
 
                     <div class="m-b-md">
-                        <label for="password_confirmation" class="form-label d-block">Confirm new Password</label>
+                        <div class="d-flex">
+                            <label for="password_confirmation" class="form-label d-block">{{ __('general.words.attributes.new_password_confirmation') }}</label>
+                            <div class="d-inline-block px-5 form-check form-switch">
+                                <input name="toggle-password" class="form-check-input" type="checkbox" tabindex="-1" id="toggle-password" onchange="togglePassword(event, 'password_confirmation')">
+                            </div>
+                        </div>
                         <input name="password_confirmation" type="password" class="form-control" id="password_confirmation" aria-describedby="password_confirmation" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
                         @error('password')
                             <label for="password_confirmation" class="mt-2 text-danger">
@@ -83,9 +93,9 @@
                 </div>
 
                 <div class="auth-submit">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <a href="{{ route('cms.auth.login.index') }}" class="auth-forgot-password float-end">
-                        Back to Login
+                    <button type="submit" class="btn btn-primary">{{ __('general.actions.submit') }}</button>
+                    <a href="{{ route('web.auth.login.index', app()->getLocale()) }}" class="auth-forgot-password float-end">
+                        {{ __('auth.login.back') }}
                     </a>
                 </div>
                 <div class="divider"></div>
@@ -96,59 +106,56 @@
     {{-- Include Scripts --}}
     @include('cms.layouts.scripts')
 
-    {{-- Custom Scripts --}}
-    @pushOnce('after-scripts')
-        {{-- Form Validation --}}
-        <script>
-            $('form#forgot-password-email').validate({
-                rules: {
-                    email: {
-                        required: true,
-                        email: true,
-                    },
+    {{-- Form Validation --}}
+    <script>
+        $('form#forgot-password-email').validate({
+            rules: {
+                email: {
+                    required: true,
+                    email: true,
                 },
-                messages: {
-                    email: {
-                        required: messageRequired('email address'),
-                        email: messageEmail(),
-                    },
+            },
+            messages: {
+                email: {
+                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.email')]) }}`,
+                    email: `{{ __('validation.email', ['attribute' => __('validation.attributes.email')]) }}`,
                 },
-                errorPlacement: function(label, element) {
-                    label.addClass(errorMessageClasses());
-                    element.parent().append(label);
-                },
-            });
+            },
+            errorPlacement: function(label, element) {
+                label.addClass(errorMessageClasses());
+                element.parent().append(label);
+            },
+        });
 
-            $('form#forgot-password-reset').validate({
-                rules: {
-                    password: {
-                        required: true,
-                        minlength: 4,
-                    },
-                    password_confirmation: {
-                        required: true,
-                        minlength: 4,
-                        equalTo: 'input[name=password]',
-                    },
+        $('form#forgot-password-reset').validate({
+            rules: {
+                password: {
+                    required: true,
+                    minlength: 4,
                 },
-                messages: {
-                    password: {
-                        required: messageRequired('password'),
-                        minlength: messageMinLength('password', 4),
-                    },
-                    password_confirmation: {
-                        required: messageRequired('password confirmation'),
-                        minlength: messageMinLength('password confirmation', 4),
-                        equalTo: messageEqualTo('password'),
-                    },
+                password_confirmation: {
+                    required: true,
+                    minlength: 4,
+                    equalTo: '#password',
                 },
-                errorPlacement: function(label, element) {
-                    label.addClass(errorMessageClasses());
-                    element.parent().append(label);
+            },
+            messages: {
+                password: {
+                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.password')]) }}`,
+                    minlength: `{{ __('validation.min.string', ['attribute' => __('validation.attributes.password'), 'min' => 4]) }}`,
                 },
-            });
-        </script>
-    @endPushOnce
+                password_confirmation: {
+                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.password_confirmation')]) }}`,
+                    minlength: `{{ __('validation.min.string', ['attribute' => __('validation.attributes.password_confirmation'), 'min' => 4]) }}`,
+                    equalTo: `{{ __('validation.confirmed', ['attribute' => __('validation.attributes.password')]) }}`,
+                },
+            },
+            errorPlacement: function(label, element) {
+                label.addClass(errorMessageClasses());
+                element.parent().append(label);
+            },
+        });
+    </script>
 </body>
 
 </html>

@@ -7,7 +7,7 @@ use App\Http\Controllers\ResponseController;
 use App\Http\Requests\WEB\Auth\ForgotPasswordRequest;
 use App\Http\Requests\WEB\Auth\ResetPasswordRequest;
 use App\Mail\WEB\Auth\ForgotPasswordMail;
-use App\Models\Administrator;
+use App\Services\CustomerService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -15,18 +15,35 @@ use Illuminate\Support\Facades\Mail;
 class ForgotPasswordController extends Controller
 {
     /**
+     * Default service class.
+     *
+     * @var \App\Services\CustomerService
+     */
+    protected $customerService;
+
+    /**
      * Controller module path.
      *
      * @var string
      */
-    private $module = 'web.auth';
+    private $module;
 
     /**
      * Controller module title.
      *
      * @var string
      */
-    private $title = 'Forgot Password';
+    private $title;
+
+    /**
+     * Initiate resource service class.
+     */
+    public function __construct(CustomerService $customerService)
+    {
+        $this->customerService = $customerService;
+        $this->module = 'web.auth';
+        $this->title = 'Forgot Password';
+    }
 
     /**
      * Display forgot password page.
@@ -63,7 +80,7 @@ class ForgotPasswordController extends Controller
 
             Mail::send(new ForgotPasswordMail($credentials));
 
-            return ResponseController::success(__('auth.password_reset.sent'), route('web.auth.login.index'));
+            return ResponseController::success(__('auth.password_reset.sent'), route('web.auth.login.index', app()->getLocale()));
         }
         //
         catch (\Throwable $th) {
@@ -80,13 +97,13 @@ class ForgotPasswordController extends Controller
     {
         try {
             $credentials = $request->credentials();
-            $result = Administrator::setPassword($credentials);
+            $result = $this->customerService->setPassword($credentials);
 
             if (! $result) {
                 throw new Exception(__('auth.password_reset.failed'));
             }
 
-            return ResponseController::success(__('auth.password_reset.success'), route('web.auth.login.index'));
+            return ResponseController::success(__('auth.password_reset.success'), route('web.auth.login.index', app()->getLocale()));
         }
         //
         catch (\Throwable $th) {

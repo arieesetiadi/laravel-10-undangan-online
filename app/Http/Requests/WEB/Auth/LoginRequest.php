@@ -48,7 +48,7 @@ class LoginRequest extends FormRequest
     public function credentials()
     {
         return [
-            $this->type => is_phone($this->credential) ? normalize_phone($this->credentials) : $this->credentials,
+            $this->type => is_phone($this->credential) ? normalize_phone($this->credential) : $this->credential,
             'password' => $this->password,
         ];
     }

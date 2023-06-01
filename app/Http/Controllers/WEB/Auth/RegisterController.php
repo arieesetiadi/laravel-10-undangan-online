@@ -6,12 +6,19 @@ use App\Constants\GeneralStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResponseController;
 use App\Http\Requests\WEB\Auth\RegisterRequest;
-use App\Models\Customer;
+use App\Services\CustomerService;
 use Exception;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
+    /**
+     * Default service class.
+     *
+     * @var \App\Services\CustomerService
+     */
+    protected $customerService;
+
     /**
      * Controller module path.
      *
@@ -29,8 +36,9 @@ class RegisterController extends Controller
     /**
      * Initiate controller properties value.
      */
-    public function __construct()
+    public function __construct(CustomerService $customerService)
     {
+        $this->customerService = $customerService;
         $this->module = 'web.auth';
         $this->title = __('auth.register.word');
     }
@@ -65,7 +73,7 @@ class RegisterController extends Controller
             $credentials = $request->credentials();
 
             // Check registration result
-            $result = Customer::create($credentials);
+            $result = $this->customerService->create($credentials);
 
             if (! $result) {
                 throw new Exception(__('auth.register.failed'));
@@ -94,7 +102,7 @@ class RegisterController extends Controller
             $credentials = $request->all();
 
             // Check registration result
-            $result = Customer::setStatus($credentials, GeneralStatus::ACTIVE);
+            $result = $this->customerService->setStatus($credentials, GeneralStatus::ACTIVE);
 
             if (! $result) {
                 throw new Exception(__('auth.register.failed'));

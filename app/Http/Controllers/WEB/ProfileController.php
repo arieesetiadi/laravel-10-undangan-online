@@ -5,11 +5,18 @@ namespace App\Http\Controllers\WEB;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResponseController;
 use App\Http\Requests\WEB\ProfileUpdateRequest;
-use App\Models\Customer;
+use App\Services\CustomerService;
 use Exception;
 
 class ProfileController extends Controller
 {
+    /**
+     * Default service class.
+     *
+     * @var \App\Services\CustomerService
+     */
+    protected $customerService;
+
     /**
      * Controller module path.
      *
@@ -27,8 +34,9 @@ class ProfileController extends Controller
     /**
      * Initiate controller properties value.
      */
-    public function __construct()
+    public function __construct(CustomerService $customerService)
     {
+        $this->customerService = $customerService;
         $this->module = 'web';
         $this->title = __('auth.profile.word');
     }
@@ -61,7 +69,7 @@ class ProfileController extends Controller
     {
         try {
             $credentials = $request->credentials();
-            $customer = Customer::find(customer()->id);
+            $customer = $this->customerService->find(customer()->id);
 
             // Check update result
             $result = $customer->update($credentials);

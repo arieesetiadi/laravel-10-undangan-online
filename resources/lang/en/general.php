@@ -42,6 +42,8 @@ return [
             'phone' => 'Phone Number',
             'password' => 'Password',
             'password_confirmation' => 'Password Confirmation',
+            'new_password' => 'New Password',
+            'new_password_confirmation' => 'New Password Confirmation',
             'image' => 'Image',
             'status' => 'Status',
             'created_at' => 'Created At',
