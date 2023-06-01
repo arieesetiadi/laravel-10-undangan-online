@@ -1,11 +1,11 @@
 @extends('web.layouts.master')
 
 @section('content')
-    <!-- Hero section Start -->
+    <!-- Hero Section -->
     @include('web.sections.hero')
-    <!-- Hero section End -->
+    <!-- End Hero Section -->
 
-    <!-- Start About -->
+    <!-- About Section -->
     <section class="section" id="about">
         <div class="container">
             <div class="row justify-content-center">
@@ -59,9 +59,9 @@
         </div>
         <!-- end container -->
     </section>
-    <!-- end About -->
+    <!-- End About Section -->
 
-    <!-- Start Features -->
+    <!-- Features Section -->
     <section class="section bg-light" id="features">
         <div class="container">
             <div class="row justify-content-center">
@@ -134,9 +134,9 @@
         </div>
         <!-- end container -->
     </section>
-    <!-- End Features -->
+    <!-- End Features Section -->
 
-    <!-- Start Clients -->
+    <!-- Clients Section -->
     <section class="section mt-5" id="clients">
         <div class="container">
             <div class="row pb-5 align-items-center">
@@ -240,9 +240,9 @@
         </div>
         <!-- end container -->
     </section>
-    <!-- End Clients -->
+    <!-- End Clients Section -->
 
-    <!-- Start cta section -->
+    <!-- CTA Section -->
     <section class="py-5 bg-primary">
         <div class="container">
             <div class="row align-items-center">
@@ -263,9 +263,9 @@
         </div>
         <!-- end container -->
     </section>
-    <!-- End cta section -->
+    <!-- End CTA Section -->
 
-    <!-- Start pricing -->
+    <!-- Pricing Section -->
     <section class="section bg-light" id="pricing">
         <div class="container">
             <div class="row justify-content-center">
@@ -370,7 +370,7 @@
             <!-- end plans row -->
 
             <!-- start faq -->
-            <div class="row mb-5 pb-4">
+            <div class="row pb-4">
                 <div class="col-lg-6 col-md-6">
                     <div class="mt-5 d-flex">
                         <div class="mr-3">
@@ -431,70 +431,63 @@
         </div>
         <!-- end container -->
     </section>
-    <!-- end pricing -->
+    <!-- End Pricing Section -->
 
-    <!-- Start contact -->
-    <section id="contact">
+    <!-- Contact Section -->
+    <section class="section" id="contact">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-lg-12">
-                    <div class="card contact-section-card mb-0">
-                        <div class="card-body p-md-5">
-                            <div class="text-center title mb-5">
-                                <p class="text-muted text-uppercase fw-normal mb-2">Contact</p>
-                                <h3 class="mb-3">Have any Questions ?</h3>
-                                <div class="title-icon position-relative">
-                                    <div class="position-relative">
-                                        <i class="uim uim-arrow-circle-down"></i>
-                                    </div>
-                                </div>
+                    <div class="text-center title mb-5">
+                        <p class="text-muted text-uppercase fw-normal mb-2">Contact</p>
+                        <h3 class="mb-3">Have any Questions ?</h3>
+                        <div class="title-icon position-relative">
+                            <div class="position-relative">
+                                <i class="uim uim-arrow-circle-down"></i>
                             </div>
-
-                            <!-- start form -->
-                            <form method="post" name="myForm" onsubmit="return validateForm()" href="javascript: void(0);">
-                                <p id="error-msg"></p>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="name">Name</label>
-                                            <input name="name" id="name" type="text" class="form-control" placeholder="Enter your name..." />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="email">Email address</label>
-                                            <input name="email" id="email" type="email" class="form-control" placeholder="Enter your email..." />
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end row -->
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="subject">Subject</label>
-                                    <input name="subject" id="subject" type="text" class="form-control" placeholder="Enter Subject..." />
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="comments">Message</label>
-                                    <textarea name="comments" id="comments" rows="3" class="form-control" placeholder="Enter your message..."></textarea>
-                                </div>
-
-                                <div class="text-right">
-                                    <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Send message" />
-
-                                </div>
-                            </form>
                         </div>
                     </div>
+
+                    <form method="post" name="myForm" onsubmit="return validateForm()" href="javascript: void(0);">
+                        <p id="error-msg"></p>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="name">Name</label>
+                                    <input name="name" id="name" type="text" class="form-control" placeholder="Enter your name..." />
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="email">Email address</label>
+                                    <input name="email" id="email" type="email" class="form-control" placeholder="Enter your email..." />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                        <div class="mb-3">
+                            <label class="form-label" for="subject">Subject</label>
+                            <input name="subject" id="subject" type="text" class="form-control" placeholder="Enter Subject..." />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="comments">Message</label>
+                            <textarea name="comments" id="comments" rows="3" class="form-control" placeholder="Enter your message..."></textarea>
+                        </div>
+
+                        <div class="text-right">
+                            <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Send message" />
+
+                        </div>
+                    </form>
                 </div>
             </div>
-            <!-- end row -->
         </div>
-        <!-- end container -->
     </section>
-    <!-- end contact -->
+    <!-- End Contact Section -->
 
-    <!-- start footer -->
+    <!-- Footer Section -->
     <footer class="footer bg-dark text-white-50">
         <div class="container">
             <div class="row">
@@ -551,9 +544,9 @@
         </div>
         <!-- end container -->
     </footer>
-    <!-- end footer -->
+    <!-- End Footer Section -->
 
-    <!-- Start footer-alt -->
+    <!-- Footer-alt Section -->
     <section class="footer-alt py-3">
         <div class="container">
             <div class="row">
@@ -567,5 +560,5 @@
         </div>
         <!-- end container -->
     </section>
-    <!-- end footer-alt -->
+    <!-- End Footer-alt Section -->
 @endsection

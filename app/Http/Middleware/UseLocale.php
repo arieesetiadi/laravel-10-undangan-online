@@ -19,13 +19,15 @@ class UseLocale
         // Define default locale
         $defaultLocale = (session('locale') ?? app()->getLocale());
 
+        $locales = AppLocale::values();
         $locale = $locale ?? $request->locale;
 
         // Validate locale
-        if (! in_array($locale, AppLocale::values())) {
+        if (!in_array($locale, $locales)) {
             return redirect()->route($request->route()->getName(), $defaultLocale);
         }
 
+        // Use locale on current request
         app()->setLocale($locale);
 
         return $next($request, $locale);

@@ -24,7 +24,7 @@
                 <div class="col-md-8 col-lg-6 col-xl-5">
                     <div>
                         <div class="text-center">
-                            <a href="" class="mb-3 d-block auth-logo">
+                            <a href="{{ route('web.home') }}" class="mb-3 d-block auth-logo">
                                 <img src="{{ asset('assets/web/images/logo-light.png') }}" alt="Main Logo" height="22" class="logo">
                             </a>
                             <h5 class="font-16 text-white-50 mb-3">{{ config('app.name') }}</h5>

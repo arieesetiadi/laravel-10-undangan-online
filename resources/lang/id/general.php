@@ -20,7 +20,7 @@ return [
         'add' => 'Tambah',
         'edit' => 'Ubah',
         'list' => 'Daftar',
-        'submit' => 'Simpan',
+        'submit' => 'Submit',
         'update' => 'Ubah',
         'detail' => 'Detail',
         'back' => 'Kembali',
@@ -49,5 +49,9 @@ return [
             'created_at' => 'Dibuat Pada',
             'updated_at' => 'Diubah Pada',
         ],
+        'thank' => 'Terimakasih'
     ],
+    'sentences' => [
+        'noreply' => 'Ini adalah pesan otomatis. Mohon untuk tidak membalas email ini.'
+    ]
 ];

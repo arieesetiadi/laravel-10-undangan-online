@@ -56,5 +56,9 @@ return [
         'sent' => 'We have sent the password reset link to your email address. Please check your mail inbox.',
         'description_1' => 'Please enter your email address to proceed with the password reset process.',
         'description_2' => 'Please enter your new password in the field provided below.',
+        'mail' => [
+            'title' => 'Request for Password Reset',
+            'description' => 'Please click the button below to continue the password reset process.',
+        ]
     ],
 ];

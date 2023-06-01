@@ -89,30 +89,4 @@ class RegisterController extends Controller
             return ResponseController::failed($th->getMessage());
         }
     }
-
-    /**
-     * Activate new customer status.
-     *
-     * @param  \App\Http\Requests  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function activate(Request $request)
-    {
-        try {
-            $credentials = $request->all();
-
-            // Check registration result
-            $result = $this->customerService->setStatus($credentials, GeneralStatus::ACTIVE);
-
-            if (! $result) {
-                throw new Exception(__('auth.register.failed'));
-            }
-
-            return ResponseController::success(__('auth.register.success'), route('web.auth.login.index'));
-        }
-        //
-        catch (\Throwable $th) {
-            return ResponseController::failed($th->getMessage());
-        }
-    }
 }

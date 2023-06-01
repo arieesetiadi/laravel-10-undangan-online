@@ -20,7 +20,6 @@ class AppLocale
      */
     public static function values()
     {
-
         $values = [
             self::ID,
             self::EN,

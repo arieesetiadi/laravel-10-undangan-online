@@ -5,6 +5,6 @@
     - [x] Forgot Password
     - [x] Status checker
     - [x] Adjust all wording (web auth)
-- [ ] Adjust dynamic locale on URL
+- [ ] Implement queue on mail
 - [ ] New github repository
 - [ ] Database migration

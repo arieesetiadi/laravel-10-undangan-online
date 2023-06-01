@@ -1,23 +1,30 @@
-{{-- Start --}}
 @component('mail::message')
-# {{ $title }}
+{{-- Title --}}
+# {{ __('auth.password_reset.mail.title') }}
     
 @component('mail::panel')
-Please click the button below to continue the password reset process.
+{{-- Description --}}
+{{ __('auth.password_reset.mail.description') }}
 @endcomponent
 
-@component('mail::button', ['url' => $url])
-Reset Password
+{{-- Button --}}
+@component('mail::button', ['url' => route('web.auth.forgot-password.index', ['email' => $to, 'locale' => app()->getLocale()])])
+{{ __('general.actions.update') }} {{ __('general.words.attributes.password') }}
 @endcomponent
     
 <br>
-This is an automated message. Please do not reply to this email. <br>
+
+{{-- Noreply --}}
+{{ __('general.sentences.noreply') }} 
+
+<br>
 <br>
 
-Thanks,
+{{-- Regard --}}
+{{ __('general.words.thank') }},
+
 <br>
 
 <strong>{{ config('app.name') }}</strong>
 @endcomponent
-{{-- End --}}
 

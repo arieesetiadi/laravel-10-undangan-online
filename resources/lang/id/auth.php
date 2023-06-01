@@ -56,5 +56,9 @@ return [
         'sent' => 'Kami telah mengirimkan tautan pengaturan ulang kata sandi ke alamat email Anda. Silakan periksa kotak masuk email Anda.',
         'description_1' => 'Silakan masukkan alamat email Anda untuk melanjutkan proses pengaturan ulang kata sandi.',
         'description_2' => 'Silakan masukkan kata sandi baru Anda pada kolom yang tersedia di bawah ini.',
+        'mail' => [
+            'title' => 'Permohonan Reset Kata Sandi',
+            'description' => 'Silakan klik tombol di bawah ini untuk melanjutkan proses pengaturan ulang kata sandi.',
+        ]
     ],
 ];

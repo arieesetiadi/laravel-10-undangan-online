@@ -78,7 +78,7 @@ class ForgotPasswordController extends Controller
         try {
             $credentials = $request->credentials();
 
-            Mail::send(new ForgotPasswordMail($credentials));
+            Mail::queue(new ForgotPasswordMail($credentials));
 
             return ResponseController::success(__('auth.password_reset.sent'), route('web.auth.login.index', app()->getLocale()));
         }
