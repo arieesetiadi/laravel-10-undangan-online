@@ -3,27 +3,52 @@
 namespace App\Http\Controllers\CMS;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\FileController;
 use App\Http\Controllers\ResponseController;
 use App\Http\Requests\CMS\ProfileUpdateRequest;
-use App\Models\Administrator;
+use App\Services\AdministratorService;
+use App\Services\FileService;
 use Exception;
 
 class ProfileController extends Controller
 {
     /**
+     * Default service class.
+     *
+     * @var \App\Services\AdministratorService
+     */
+    protected $administratorService;
+
+    /**
+     * File service class.
+     *
+     * @var \App\Services\FileService
+     */
+    protected $fileService;
+
+    /**
      * Controller module path.
      *
      * @var string
      */
-    private $module = 'cms';
+    private $module;
 
     /**
      * Controller module title.
      *
      * @var string
      */
-    private $title = 'Profile';
+    private $title;
+
+    /**
+     * Initiate resource service class.
+     */
+    public function __construct()
+    {
+        $this->administratorService = new AdministratorService();
+        $this->fileService = new FileService();
+        $this->module = 'cms';
+        $this->title = 'Profile';
+    }
 
     /**
      * Display profile page.
@@ -53,12 +78,12 @@ class ProfileController extends Controller
     {
         try {
             $credentials = $request->credentials();
-            $administrator = Administrator::find(administrator()->id);
+            $administrator = $this->administratorService->find(administrator()->id);
 
-            // Upload image if exist
+            // Upload avatar if exist
             if ($request->avatar) {
-                $profileImageName = FileController::uploadImage($request->avatar, $this->imagesPath.'/avatars', $administrator->avatar);
-                $credentials['avatar'] = $profileImageName;
+                $avatar = $this->fileService->uploadImage($request->avatar, 'avatars', $administrator->avatar);
+                $credentials['avatar'] = $avatar;
             }
 
             // Check update result

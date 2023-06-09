@@ -5,6 +5,8 @@
     - [x] Forgot Password
     - [x] Status checker
     - [x] Adjust all wording (web auth)
-- [ ] Implement queue on mail
+- [x] Implement queue on mail
+- [ ] Use Intervention Image library
+  - [ ] Implement queue
 - [ ] New github repository
 - [ ] Database migration

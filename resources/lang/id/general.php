@@ -49,9 +49,9 @@ return [
             'created_at' => 'Dibuat Pada',
             'updated_at' => 'Diubah Pada',
         ],
-        'thank' => 'Terimakasih'
+        'thank' => 'Terimakasih',
     ],
     'sentences' => [
-        'noreply' => 'Ini adalah pesan otomatis. Mohon untuk tidak membalas email ini.'
-    ]
+        'noreply' => 'Ini adalah pesan otomatis. Mohon untuk tidak membalas email ini.',
+    ],
 ];

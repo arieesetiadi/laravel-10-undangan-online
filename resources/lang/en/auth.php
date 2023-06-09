@@ -59,6 +59,6 @@ return [
         'mail' => [
             'title' => 'Request for Password Reset',
             'description' => 'Please click the button below to continue the password reset process.',
-        ]
+        ],
     ],
 ];

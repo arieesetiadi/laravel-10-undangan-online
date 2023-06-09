@@ -59,6 +59,6 @@ return [
         'mail' => [
             'title' => 'Permohonan Reset Kata Sandi',
             'description' => 'Silakan klik tombol di bawah ini untuk melanjutkan proses pengaturan ulang kata sandi.',
-        ]
+        ],
     ],
 ];

@@ -17,9 +17,9 @@ class CustomerService
     /**
      * Init
      */
-    public function __construct(Customer $customer)
+    public function __construct()
     {
-        $this->customer = $customer;
+        $this->customer = new Customer();
     }
 
     /**

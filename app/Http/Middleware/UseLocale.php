@@ -23,7 +23,7 @@ class UseLocale
         $locale = $locale ?? $request->locale;
 
         // Validate locale
-        if (!in_array($locale, $locales)) {
+        if (! in_array($locale, $locales)) {
             return redirect()->route($request->route()->getName(), $defaultLocale);
         }
 

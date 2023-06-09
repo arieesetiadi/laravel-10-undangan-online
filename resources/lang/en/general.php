@@ -49,9 +49,9 @@ return [
             'created_at' => 'Created At',
             'updated_at' => 'Last Updated',
         ],
-        'thank' => 'Thank You'
+        'thank' => 'Thank You',
     ],
     'sentences' => [
-        'noreply' => 'This is an automated message. Please do not reply to this email.'
-    ]
+        'noreply' => 'This is an automated message. Please do not reply to this email.',
+    ],
 ];

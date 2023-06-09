@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\WEB\Auth;
 
-use App\Constants\GeneralStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResponseController;
 use App\Http\Requests\WEB\Auth\RegisterRequest;
 use App\Services\CustomerService;
 use Exception;
-use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {

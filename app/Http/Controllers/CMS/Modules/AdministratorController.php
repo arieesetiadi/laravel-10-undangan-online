@@ -4,11 +4,11 @@ namespace App\Http\Controllers\CMS\Modules;
 
 use App\Exports\AdministratorsExport;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\FileController;
 use App\Http\Controllers\ResponseController;
 use App\Http\Requests\CMS\Administrator\StoreRequest;
 use App\Http\Requests\CMS\Administrator\UpdateRequest;
 use App\Services\AdministratorService;
+use App\Services\FileService;
 use Exception;
 
 class AdministratorController extends Controller
@@ -19,6 +19,13 @@ class AdministratorController extends Controller
      * @var \App\Services\AdministratorService
      */
     protected $administratorService;
+
+    /**
+     * File service class.
+     *
+     * @var \App\Services\FileService
+     */
+    protected $fileService;
 
     /**
      * Controller module path.
@@ -37,9 +44,10 @@ class AdministratorController extends Controller
     /**
      * Initiate resource service class.
      */
-    public function __construct(AdministratorService $administratorService)
+    public function __construct()
     {
-        $this->administratorService = $administratorService;
+        $this->administratorService = new AdministratorService();
+        $this->fileService = new FileService();
         $this->module = 'cms.modules.administrator';
         $this->title = 'Administrator';
     }
@@ -101,8 +109,8 @@ class AdministratorController extends Controller
 
             // Upload avatar if exist
             if ($request->avatar) {
-                $avatarName = FileController::uploadImage($request->avatar, $this->uploadImagesPath.'/avatars');
-                $credentials['avatar'] = $avatarName;
+                $avatar = $this->fileService->uploadImage($request->avatar, 'avatars');
+                $credentials['avatar'] = $avatar;
             }
 
             // Store administrator data
@@ -179,15 +187,16 @@ class AdministratorController extends Controller
     {
         try {
             $credentials = $request->credentials();
+            $administrator = $this->administratorService->find($id);
 
             // Upload avatar if exist
             if ($request->avatar) {
-                $avatarName = FileController::uploadImage($request->avatar, $this->uploadImagesPath.'/avatars');
-                $credentials['avatar'] = $avatarName;
+                $avatar = $this->fileService->uploadImage($request->avatar, 'avatars', $administrator->avatar);
+                $credentials['avatar'] = $avatar;
             }
 
             // Update administrator data
-            $result = $this->administratorService->update($id, $credentials);
+            $result = $administrator->update($credentials);
 
             if (! $result) {
                 throw new Exception(__('general.process.failed'));

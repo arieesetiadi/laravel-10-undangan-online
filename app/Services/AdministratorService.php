@@ -17,9 +17,9 @@ class AdministratorService
     /**
      * Init
      */
-    public function __construct(Administrator $administrator)
+    public function __construct()
     {
-        $this->administrator = $administrator;
+        $this->administrator = new Administrator();
     }
 
     /**
