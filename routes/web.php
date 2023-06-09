@@ -90,7 +90,7 @@ Route::prefix('/{locale?}')->as('web.')->middleware('locale.use')->group(functio
 
     // WEB Guest
     Route::middleware('guest:web')->group(function () {
-        // WEB OAuth - Socialite
+        // WEB OAuth
         Route::prefix('/oauth')->as('oauth.')->controller(OAuthController::class)->group(function () {
             Route::get('/{driver}/redirect', 'redirect')->name('redirect');
             Route::get('/{driver}/callback', 'callback')->name('callback');

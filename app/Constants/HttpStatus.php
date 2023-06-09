@@ -14,7 +14,6 @@ class HttpStatus
     public const EARLY_HINTS = 103;
 
     // 2xx Success
-
     public const OK = 200;
 
     public const CREATED = 201;

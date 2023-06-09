@@ -4,8 +4,12 @@ namespace App\Exports;
 
 use App\Constants\GeneralStatus;
 use App\Models\Administrator;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
 
-class AdministratorsExport implements \Maatwebsite\Excel\Concerns\FromCollection, \Maatwebsite\Excel\Concerns\WithHeadings, \Maatwebsite\Excel\Concerns\WithMapping, \Maatwebsite\Excel\Concerns\WithColumnWidths
+class AdministratorsExport implements FromCollection, WithHeadings, WithMapping, WithColumnWidths
 {
     /**
      * Map counter.

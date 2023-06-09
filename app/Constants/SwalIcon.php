@@ -5,49 +5,64 @@ namespace App\Constants;
 class SwalIcon
 {
     /**
-     * Available icons for sweet alert.
+     * Success icons for sweet alert.
      *
      * @var string
      */
     public const SUCCESS = 'success';
 
+    /**
+     * Failed icons for sweet alert.
+     *
+     * @var string
+     */
     public const ERROR = 'error';
 
+    /**
+     * Warning icons for sweet alert.
+     *
+     * @var string
+     */
     public const WARNING = 'warning';
 
+    /**
+     * Info icons for sweet alert.
+     *
+     * @var string
+     */
     public const INFO = 'info';
 
+    /**
+     * Question icons for sweet alert.
+     *
+     * @var string
+     */
     public const QUESTION = 'question';
 
     /**
      * Get all the string version of the status.
      *
-     * @return array $labels
+     * @return array
      */
     public static function labels()
     {
-        $labels = [
+        return [
             self::SUCCESS => 'Success',
             self::ERROR => 'Failed',
             self::WARNING => 'Warning',
             self::INFO => 'Info',
             self::QUESTION => 'Confirmation',
         ];
-
-        return $labels;
     }
 
     /**
-     * Get the string version base on int value.
+     * Get the string version base on key value.
      *
-     * @param  int  $key
-     * @return string $label
+     * @param  string  $key
+     * @return string
      */
     public static function label($key)
     {
-        $labels = self::labels();
-        $label = $labels[$key];
-
-        return $label;
+        return self::labels()[$key];
     }
 }

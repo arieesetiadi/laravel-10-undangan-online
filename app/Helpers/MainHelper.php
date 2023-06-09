@@ -3,12 +3,24 @@
 use Carbon\Carbon;
 
 /**
- * Date and Time format.
+ * Date format.
  *
  * @var string
  */
 const DATE_FORMAT = 'l, j F Y';
+
+/**
+ * Time format.
+ *
+ * @var string
+ */
 const TIME_FORMAT = 'h:i A';
+
+/**
+ * Date and Time format.
+ *
+ * @var string
+ */
 const DATE_TIME_FORMAT = DATE_FORMAT.' '.TIME_FORMAT;
 
 /**
@@ -16,9 +28,11 @@ const DATE_TIME_FORMAT = DATE_FORMAT.' '.TIME_FORMAT;
  *
  * @return \App\Models\Customer
  */
-function customer()
-{
-    return auth('web')->user();
+if (! function_exists('customer')) {
+    function customer()
+    {
+        return auth('web')->user();
+    }
 }
 
 /**
@@ -26,9 +40,11 @@ function customer()
  *
  * @return \App\Models\Administrator
  */
-function administrator()
-{
-    return auth('cms')->user();
+if (! function_exists('administrator')) {
+    function administrator()
+    {
+        return auth('cms')->user();
+    }
 }
 
 /**
@@ -36,16 +52,18 @@ function administrator()
  *
  * @param  string  $datetime
  * @param  string  $locale
- * @return string $date
+ * @return string  $date
  */
-function human_date($datetime, $locale = null)
-{
-    $carbon = Carbon::make($datetime);
-    $carbon->setLocale($locale);
-    $carbon->settings(['formatFunction' => 'translatedFormat']);
-    $date = $carbon->format(DATE_FORMAT);
+if (! function_exists('human_date')) {
+    function human_date($datetime, $locale = null)
+    {
+        $carbon = Carbon::make($datetime);
+        $carbon->setLocale($locale);
+        $carbon->settings(['formatFunction' => 'translatedFormat']);
+        $date = $carbon->format(DATE_FORMAT);
 
-    return $date;
+        return $date;
+    }
 }
 
 /**
@@ -53,16 +71,18 @@ function human_date($datetime, $locale = null)
  *
  * @param  string  $datetime
  * @param  string  $locale
- * @return string $time
+ * @return string  $time
  */
-function human_time($datetime, $locale = null)
-{
-    $carbon = Carbon::make($datetime);
-    $carbon->setLocale($locale);
-    $carbon->settings(['formatFunction' => 'translatedFormat']);
-    $time = $carbon->format(TIME_FORMAT);
+if (! function_exists('human_time')) {
+    function human_time($datetime, $locale = null)
+    {
+        $carbon = Carbon::make($datetime);
+        $carbon->setLocale($locale);
+        $carbon->settings(['formatFunction' => 'translatedFormat']);
+        $time = $carbon->format(TIME_FORMAT);
 
-    return $time;
+        return $time;
+    }
 }
 
 /**
@@ -70,16 +90,18 @@ function human_time($datetime, $locale = null)
  *
  * @param  string  $datetime
  * @param  string  $locale
- * @return string $datetime
+ * @return string  $datetime
  */
-function human_datetime($datetime, $locale = null)
-{
-    $carbon = Carbon::make($datetime);
-    $carbon->setLocale($locale);
-    $carbon->settings(['formatFunction' => 'translatedFormat']);
-    $datetime = $carbon->format(DATE_TIME_FORMAT);
+if (! function_exists('human_datetime')) {
+    function human_datetime($datetime, $locale = null)
+    {
+        $carbon = Carbon::make($datetime);
+        $carbon->setLocale($locale);
+        $carbon->settings(['formatFunction' => 'translatedFormat']);
+        $datetime = $carbon->format(DATE_TIME_FORMAT);
 
-    return $datetime;
+        return $datetime;
+    }
 }
 
 /**
@@ -87,15 +109,17 @@ function human_datetime($datetime, $locale = null)
  *
  * @param  string  $datetime
  * @param  string  $locale
- * @return string $diff
+ * @return string  $diff
  */
-function human_datetime_diff($datetime, $locale = null)
-{
-    $carbon = Carbon::make($datetime);
-    $carbon->setLocale($locale);
-    $diff = $carbon->diffForHumans();
+if (! function_exists('human_datetime_diff')) {
+    function human_datetime_diff($datetime, $locale = null)
+    {
+        $carbon = Carbon::make($datetime);
+        $carbon->setLocale($locale);
+        $diff = $carbon->diffForHumans();
 
-    return $diff;
+        return $diff;
+    }
 }
 
 /**
@@ -104,13 +128,15 @@ function human_datetime_diff($datetime, $locale = null)
  * @param  string  $string
  * @return bool $result
  */
-function is_email($string)
-{
-    // Email regular expression pattern
-    $pattern = '/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/';
-    $result = preg_match($pattern, $string);
+if (! function_exists('is_email')) {
+    function is_email($string)
+    {
+        // Email regular expression pattern
+        $pattern = '/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/';
+        $result = preg_match($pattern, $string);
 
-    return $result;
+        return $result;
+    }
 }
 
 /**
@@ -119,31 +145,35 @@ function is_email($string)
  * @param  string  $string
  * @return bool $result
  */
-function is_phone($string)
-{
-    // Phone number regular expression pattern
-    $pattern = '/^\+?[1-9]\d{1,14}$/';
-    $result = preg_match($pattern, $string);
+if (! function_exists('is_phone')) {
+    function is_phone($string)
+    {
+        // Phone number regular expression pattern
+        $pattern = '/^\+?[1-9]\d{1,14}$/';
+        $result = preg_match($pattern, $string);
 
-    return $result;
+        return $result;
+    }
 }
 
 /**
  * Normalize phone number format (+62).
  *
  * @param  string  $phone
- * @return string $phone
+ * @return string  $phone
  */
-function normalize_phone($phone)
-{
-    // Remove any non-digit characters from the phone number
-    $phone = preg_replace('/\D/', '', $phone);
+if (! function_exists('normalize_phone')) {
+    function normalize_phone($phone)
+    {
+        // Remove any non-digit characters from the phone number
+        $phone = preg_replace('/\D/', '', $phone);
 
-    // Check if the phone number starts with '0'
-    if (substr($phone, 0, 1) === '0') {
-        // Replace the leading '0' with '+62'
-        $phone = '+62'.substr($phone, 1);
+        // Check if the phone number starts with '0'
+        if (substr($phone, 0, 1) === '0') {
+            // Replace the leading '0' with '+62'
+            $phone = '+62'.substr($phone, 1);
+        }
+
+        return $phone;
     }
-
-    return $phone;
 }

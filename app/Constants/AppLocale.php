@@ -5,55 +5,53 @@ namespace App\Constants;
 class AppLocale
 {
     /**
-     * General locale value.
+     * ID locale value.
      *
-     * @var int
+     * @var string
      */
     public const ID = 'id';
 
+    /**
+     * EN locale value.
+     *
+     * @var string
+     */
     public const EN = 'en';
 
     /**
      * Get all the locale value.
      *
-     * @return array $values
+     * @return array
      */
     public static function values()
     {
-        $values = [
+        return [
             self::ID,
             self::EN,
         ];
-
-        return $values;
     }
 
     /**
      * Get all the string version of the locale.
      *
-     * @return array $labels
+     * @return array
      */
     public static function labels()
     {
-        $labels = [
+        return [
             self::ID => 'ID',
             self::EN => 'EN',
         ];
-
-        return $labels;
     }
 
     /**
      * Get the string version base on const value.
      *
      * @param  string  $key
-     * @return string $label
+     * @return string
      */
     public static function label($key)
     {
-        $labels = self::labels();
-        $label = $labels[$key];
-
-        return $label;
+        return self::labels()[$key];
     }
 }

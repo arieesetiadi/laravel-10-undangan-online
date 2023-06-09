@@ -6,7 +6,8 @@
     - [x] Status checker
     - [x] Adjust all wording (web auth)
 - [x] Implement queue on mail
-- [ ] Use Intervention Image library
-  - [ ] Implement queue
+- [x] Use Intervention Image library
+- [ ] Auth/OAuthController > Integrations/SocialiteController
+- [ ] Use service class - SocialiteController
 - [ ] New github repository
 - [ ] Database migration

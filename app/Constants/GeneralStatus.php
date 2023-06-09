@@ -5,72 +5,64 @@ namespace App\Constants;
 class GeneralStatus
 {
     /**
-     * General status value.
+     * Active status value.
      *
-     * @var int
+     * @var bool
      */
     public const ACTIVE = true;
 
+    /**
+     * Inactive status value.
+     *
+     * @var bool
+     */
     public const INACTIVE = false;
 
     /**
      * Get all the string version of the status.
      *
-     * @return array $labels
+     * @return array
      */
     public static function labels()
     {
-
-        $labels = [
-
+        return [
             self::ACTIVE => 'Active',
-
             self::INACTIVE => 'Inactive',
         ];
-
-        return $labels;
     }
 
     /**
      * Get the string version base on int value.
      *
      * @param  int  $key
-     * @return string $label
+     * @return string
      */
     public static function label($key)
     {
-        $labels = self::labels();
-        $label = $labels[$key];
-
-        return $label;
+        return self::labels()[$key];
     }
 
     /**
      * Get all the html version of the status.
      *
-     * @return array $htmlLabels
+     * @return array
      */
     public static function htmlLabels()
     {
-        $htmlLabels = [
+        return [
             self::ACTIVE => '<span class="badge badge-success w-100">'.self::label(self::ACTIVE).'</span>',
             self::INACTIVE => '<span class="badge badge-dark w-100">'.self::label(self::INACTIVE).'</span>',
         ];
-
-        return $htmlLabels;
     }
 
     /**
      * Get the html version base on int value.
      *
      * @param  int  $key
-     * @return string $htmlLabel
+     * @return string
      */
     public static function htmlLabel($key)
     {
-        $htmlLabels = self::htmlLabels();
-        $htmlLabel = $htmlLabels[$key];
-
-        return $htmlLabel;
+        return self::htmlLabels()[$key];
     }
 }

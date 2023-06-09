@@ -5,7 +5,7 @@ namespace App\Constants;
 class OAuthDriver
 {
     /**
-     * OAuth driver value.
+     * Google driver value.
      *
      * @var string
      */
@@ -14,56 +14,46 @@ class OAuthDriver
     /**
      * Get all the string version of the value.
      *
-     * @return array $labels
+     * @return array
      */
     public static function labels()
     {
-        $labels = [
+        return [
             self::GOOGLE => 'Google',
         ];
-
-        return $labels;
     }
 
     /**
-     * Get the string version base on int value.
+     * Get the string version base on key value.
      *
-     * @param  int  $key
-     * @return string $label
+     * @param  string  $key
+     * @return string
      */
     public static function label($key)
     {
-        $labels = self::labels();
-        $label = $labels[$key];
-
-        return $label;
+        return self::labels()[$key];
     }
 
     /**
      * Get all the html version of the status.
      *
-     * @return array $htmlLabels
+     * @return array
      */
     public static function htmlLabels()
     {
-        $htmlLabels = [
+        return [
             self::GOOGLE => '<i class="fa-brands fa-google"></i> '.self::label(self::GOOGLE),
         ];
-
-        return $htmlLabels;
     }
 
     /**
-     * Get the html version base on int value.
+     * Get the html version base on key value.
      *
-     * @param  int  $key
-     * @return string $htmlLabel
+     * @param  string  $key
+     * @return string
      */
     public static function htmlLabel($key)
     {
-        $htmlLabels = self::htmlLabels();
-        $htmlLabel = $htmlLabels[$key];
-
-        return $htmlLabel;
+        return self::htmlLabels()[$key];
     }
 }

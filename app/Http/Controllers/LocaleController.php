@@ -12,7 +12,6 @@ class LocaleController extends Controller
     /**
      * Switch app locale / language.
      *
-     * @param  \App\Http\Requests\LocaleRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function switch(Request $request)

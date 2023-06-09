@@ -11,18 +11,38 @@ use Illuminate\Support\Str;
 class Doku
 {
     /**
-     * DOKU Credentials.
+     * DOKU Client ID.
      *
      * @var string
      */
     private $clientId;
 
+    /**
+     * DOKU Secret Key.
+     *
+     * @var string
+     */
     private $secretKey;
 
+    /**
+     * DOKU Base URL.
+     *
+     * @var string
+     */
     private $baseUrl;
 
+    /**
+     * DOKU API Path.
+     *
+     * @var string
+     */
     private $apiPath;
 
+    /**
+     * DOKU Notification URL.
+     *
+     * @var string
+     */
     private $notificationPath;
 
     /**

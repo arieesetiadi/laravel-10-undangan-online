@@ -5,7 +5,7 @@ namespace App\Constants;
 class SwalButton
 {
     /**
-     * Available button text for sweet alert.
+     * OK button text for sweet alert.
      *
      * @var string
      */
@@ -14,28 +14,23 @@ class SwalButton
     /**
      * Get all the string version of the status.
      *
-     * @return array $labels
+     * @return array
      */
     public static function labels()
     {
-        $labels = [
+        return [
             self::OK => 'OK',
         ];
-
-        return $labels;
     }
 
     /**
-     * Get the string version base on int value.
+     * Get the string version base on key value.
      *
-     * @param  int  $key
-     * @return string $label
+     * @param  string  $key
+     * @return string
      */
     public static function label($key)
     {
-        $labels = self::labels();
-        $label = $labels[$key];
-
-        return $label;
+        return self::labels()[$key];
     }
 }
