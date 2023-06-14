@@ -47,6 +47,7 @@ return [
             'new_password' => 'Kata Sandi Baru',
             'new_password_confirmation' => 'Konfirmasi Kata Sandi Baru',
             'image' => 'Gambar',
+            'avatar' => 'Avatar',
             'status' => 'Status',
             'created_at' => 'Dibuat Pada',
             'updated_at' => 'Diubah Pada',

@@ -21,7 +21,7 @@
             </li>
             <li class="{{ $sidebar['dashboard'] ?? '' }}">
                 <a href="{{ route('cms.dashboard') }}">
-                    <i class="material-icons-outlined text-dark">dashboard</i> Dashboard
+                    <i class="material-icons text-dark">dashboard</i> Dashboard
                 </a>
             </li>
             <li class="sidebar-title">
@@ -29,17 +29,17 @@
             </li>
             <li class="{{ $sidebar['administrators'] ?? '' }}">
                 <a href="{{ route('cms.administrators.index') }}">
-                    <i class="material-icons-outlined text-dark">people</i> Administrators
+                    <i class="material-icons text-dark">people</i> Administrators
                 </a>
             </li>
             <li class="{{ $sidebar['customers'] ?? '' }}">
                 <a href="{{ route('cms.customers.index') }}">
-                    <i class="material-icons-outlined text-dark">people</i> Customers
+                    <i class="material-icons text-dark">people</i> Customers
                 </a>
             </li>
             <li class="">
                 <a href="">
-                    <i class="material-icons-outlined text-dark">image</i> Dropdown
+                    <i class="material-icons text-dark">image</i> Dropdown
                     <i class="material-icons has-sub-menu">keyboard_arrow_right</i>
                 </a>
                 <ul class="sub-menu">
@@ -61,7 +61,7 @@
             </li>
             <li>
                 <a href="{{ route('cms.logout.process') }}" data-type="link" onclick="swalConfirm(event)">
-                    <i class="material-icons-outlined text-dark pointer-events-none">power_settings_new</i> Logout
+                    <i class="material-icons text-dark pointer-events-none">power_settings_new</i> Logout
                 </a>
             </li>
         </ul>

@@ -152,7 +152,7 @@ return [
         'name' => 'nama',
         'email' => 'alamat email',
         'phone' => 'nomor telepon',
-        'avatar' => 'foto profile',
+        'avatar' => 'avatar',
         'password' => 'kata sandi',
         'password_confirmation' => 'konfirmasi kata sandi',
     ],

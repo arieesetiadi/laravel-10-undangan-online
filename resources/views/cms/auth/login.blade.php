@@ -9,7 +9,7 @@
     @include('cms.layouts.styles')
 
     {{-- Title --}}
-    <title>CMS {{ config('app.name') }}</title>
+    <title>{{ config('app.name') }}</title>
 </head>
 
 <body>
@@ -20,16 +20,14 @@
                 @csrf
 
                 <div class="logo">
-                    <a href="{{ Request::url() }}">
-                        @if (app()->getLocale() == \AppLocale::EN)
-                            CMS {{ __('auth.login.word') }}
-                        @else
-                            {{ __('auth.login.word') }} CMS
-                        @endif
+                    <a href="{{ request()->url() }}">
+                        {{ __('auth.login.word') }}
                     </a>
                 </div>
 
-                <p class="auth-description">{{ __('auth.login.description') }}</p>
+                <p class="auth-description">
+                    {{ __('auth.login.description') }}
+                </p>
 
                 <div class="auth-credentials m-b-xxl">
                     {{-- Input Username --}}
@@ -46,7 +44,9 @@
                     {{-- Input Password --}}
                     <div class="m-b-md">
                         <div class="d-flex">
-                            <label class="form-label d-block" id="label-password" for="password">{{ __('general.words.attributes.password') }}</label>
+                            <label class="form-label d-block" id="label-password" for="password">
+                                {{ __('general.words.attributes.password') }}
+                            </label>
                             <div class="d-inline-block form-check form-switch px-5">
                                 <input class="form-check-input" id="toggle-password" name="toggle-password" type="checkbox" tabindex="-1" onchange="togglePassword(event, 'password')">
                             </div>
@@ -61,7 +61,10 @@
                 </div>
 
                 <div class="auth-submit">
-                    <button class="btn btn-primary" type="submit" role="button">{{ __('auth.login.word') }}</button>
+                    {{-- Submit Button --}}
+                    <button class="btn btn-primary" type="submit" role="button">
+                        {{ __('auth.login.word') }}
+                    </button>
                 </div>
             </form>
         </div>
@@ -83,14 +86,14 @@
             },
             messages: {
                 username: {
-                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.username')]) }}`,
+                    required: validatorRequiredMessage(`{{ __('validation.attributes.username') }}`),
                 },
                 password: {
-                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.password')]) }}`,
+                    required: validatorRequiredMessage(`{{ __('validation.attributes.password') }}`),
                 }
             },
             errorPlacement: function(label, element) {
-                label.addClass(errorMessageClasses());
+                label.addClass(errorClasses());
                 element.parent().append(label);
             },
         });

@@ -34,7 +34,7 @@ class ForgotPasswordMail extends Mailable
         $mail['subject'] = __('auth.password_reset.mail.title').' | '.config('app.name');
         $mail['from'] = config('mail.from.address');
         $mail['to'] = $this->data['email'];
-        $mail['markdown'] = 'mail.forgot-password';
+        $mail['markdown'] = 'mail.auth.forgot-password';
 
         return $this
             ->subject($mail['subject'])

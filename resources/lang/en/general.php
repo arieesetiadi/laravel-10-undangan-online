@@ -47,6 +47,7 @@ return [
             'new_password' => 'New Password',
             'new_password_confirmation' => 'New Password Confirmation',
             'image' => 'Image',
+            'avatar' => 'Avatar',
             'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Last Updated',

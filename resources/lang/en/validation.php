@@ -152,7 +152,7 @@ return [
         'name' => 'name',
         'email' => 'email address',
         'phone' => 'phone number',
-        'avatar' => 'profile avatar',
+        'avatar' => 'avatar',
         'password' => 'password',
         'password_confirmation' => 'password confirmation',
     ],

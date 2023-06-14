@@ -132,7 +132,7 @@
                 }
             },
             errorPlacement: function(label, element) {
-                label.addClass(errorMessageClasses());
+                label.addClass(errorClasses());
                 element.parent().append(label);
             },
         });
@@ -169,7 +169,7 @@
                 }
             },
             errorPlacement: function(label, element) {
-                label.addClass(errorMessageClasses());
+                label.addClass(errorClasses());
                 element.parent().append(label);
             },
         });
