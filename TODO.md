@@ -7,7 +7,15 @@
     - [x] Adjust all wording (web auth)
 - [x] Implement queue on mail
 - [x] Use Intervention Image library
-- [ ] Auth/OAuthController > Integrations/SocialiteController
-- [ ] Use service class - SocialiteController
+- [x] Use service class - OAuthController
+- [ ] Cross-check all views 
+- [ ] Check jquery validator messages
+- [ ] Adjust active-sidebar style
+- [ ] Implement API Authentication
+- [ ] Make API with Guard
+    - [ ] Get Administrators
+    - [ ] Get Customers
+- [ ] W3 Validator
+- [ ] Check URL Speed
 - [ ] New github repository
 - [ ] Database migration

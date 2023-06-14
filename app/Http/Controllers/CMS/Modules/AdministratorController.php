@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\CMS\Modules;
 
-use App\Exports\AdministratorsExport;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\ResponseController;
-use App\Http\Requests\CMS\Administrator\StoreRequest;
-use App\Http\Requests\CMS\Administrator\UpdateRequest;
-use App\Services\AdministratorService;
-use App\Services\FileService;
 use Exception;
+use App\Services\FileService;
+use App\Services\AdministratorService;
+use App\Http\Requests\CMS\Administrator\UpdateRequest;
+use App\Http\Requests\CMS\Administrator\StoreRequest;
+use App\Http\Controllers\ResponseController;
+use App\Http\Controllers\Controller;
+use App\Exports\AdministratorsExport;
 
 class AdministratorController extends Controller
 {
@@ -35,11 +35,11 @@ class AdministratorController extends Controller
     private $module;
 
     /**
-     * Controller module title.
+     * Controller module titles.
      *
-     * @var string
+     * @var array
      */
-    private $title;
+    private $titles;
 
     /**
      * Initiate resource service class.
@@ -48,8 +48,11 @@ class AdministratorController extends Controller
     {
         $this->administratorService = new AdministratorService();
         $this->fileService = new FileService();
-        $this->module = 'cms.modules.administrator';
-        $this->title = 'Administrator';
+        $this->module = 'cms.modules.administrators';
+        $this->titles = [
+            'singular' => 'Administrator',
+            'plural' => 'Administrators',
+        ];
     }
 
     /**
@@ -61,9 +64,9 @@ class AdministratorController extends Controller
     {
         try {
             $administrators = $this->administratorService->all();
-            $view = $this->module.'.index';
+            $view = $this->module . '.index';
             $data = [
-                'title' => $this->title,
+                'titles' => $this->titles,
                 'administrators' => $administrators,
             ];
 
@@ -83,9 +86,9 @@ class AdministratorController extends Controller
     public function create()
     {
         try {
-            $view = $this->module.'.create-or-edit';
+            $view = $this->module . '.create-or-edit';
             $data = [
-                'title' => $this->title,
+                'titles' => $this->titles,
                 'edit' => false,
             ];
 
@@ -116,11 +119,11 @@ class AdministratorController extends Controller
             // Store administrator data
             $result = $this->administratorService->create($credentials);
 
-            if (! $result) {
+            if (!$result) {
                 throw new Exception(__('general.process.failed'));
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.administrator.index'));
+            return ResponseController::success(__('general.process.success'), route('cms.administrators.index'));
         }
         //
         catch (\Throwable $th) {
@@ -138,9 +141,9 @@ class AdministratorController extends Controller
     {
         try {
             $administrator = $this->administratorService->find($id);
-            $view = $this->module.'.detail';
+            $view = $this->module . '.detail';
             $data = [
-                'title' => $this->title,
+                'titles' => $this->titles,
                 'administrator' => $administrator,
             ];
 
@@ -162,9 +165,9 @@ class AdministratorController extends Controller
     {
         try {
             $administrator = $this->administratorService->find($id);
-            $view = $this->module.'.create-or-edit';
+            $view = $this->module . '.create-or-edit';
             $data = [
-                'title' => $this->title,
+                'titles' => $this->titles,
                 'administrator' => $administrator,
                 'edit' => true,
             ];
@@ -198,11 +201,11 @@ class AdministratorController extends Controller
             // Update administrator data
             $result = $administrator->update($credentials);
 
-            if (! $result) {
+            if (!$result) {
                 throw new Exception(__('general.process.failed'));
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.administrator.index'));
+            return ResponseController::success(__('general.process.success'), route('cms.administrators.index'));
         }
         //
         catch (\Throwable $th) {
@@ -222,11 +225,11 @@ class AdministratorController extends Controller
             // Delete administrator data
             $result = $this->administratorService->delete($id);
 
-            if (! $result) {
+            if (!$result) {
                 throw new Exception(__('general.process.failed'));
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.administrator.index'));
+            return ResponseController::success(__('general.process.success'), route('cms.administrators.index'));
         }
         //
         catch (\Throwable $th) {
@@ -246,11 +249,11 @@ class AdministratorController extends Controller
             // Toggle administrator status
             $result = $this->administratorService->toggleStatus($id);
 
-            if (! $result) {
+            if (!$result) {
                 throw new Exception(__('general.process.failed'));
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.administrator.index'));
+            return ResponseController::success(__('general.process.success'), route('cms.administrators.index'));
         }
         //
         catch (\Throwable $th) {
@@ -266,7 +269,7 @@ class AdministratorController extends Controller
     public function pdf()
     {
         try {
-            return 'Adminsitrator PDF';
+            return 'Adminsitrators PDF';
         }
         //
         catch (\Throwable $th) {
@@ -282,7 +285,7 @@ class AdministratorController extends Controller
     public function excel()
     {
         try {
-            return \Maatwebsite\Excel\Facades\Excel::download(new AdministratorsExport(), 'export-administrators-'.now()->timestamp.'.xlsx');
+            return \Maatwebsite\Excel\Facades\Excel::download(new AdministratorsExport(), 'export-administrators-' . now()->timestamp . '.xlsx');
         }
         //
         catch (\Throwable $th) {

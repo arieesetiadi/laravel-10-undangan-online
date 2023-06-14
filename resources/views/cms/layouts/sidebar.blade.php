@@ -27,13 +27,13 @@
             <li class="sidebar-title">
                 Master
             </li>
-            <li class="{{ $sidebar['administrator'] ?? '' }}">
-                <a href="{{ route('cms.administrator.index') }}">
+            <li class="{{ $sidebar['administrators'] ?? '' }}">
+                <a href="{{ route('cms.administrators.index') }}">
                     <i class="material-icons-outlined text-dark">people</i> Administrators
                 </a>
             </li>
-            <li class="{{ $sidebar['customer'] ?? '' }}">
-                <a href="{{ route('cms.customer.index') }}">
+            <li class="{{ $sidebar['customers'] ?? '' }}">
+                <a href="{{ route('cms.customers.index') }}">
                     <i class="material-icons-outlined text-dark">people</i> Customers
                 </a>
             </li>

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\CMS\Modules;
 
-use App\Exports\CustomersExport;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\ResponseController;
-use App\Http\Requests\CMS\Customer\StoreRequest;
-use App\Http\Requests\CMS\Customer\UpdateRequest;
-use App\Services\CustomerService;
 use Exception;
+use App\Services\CustomerService;
+use App\Http\Requests\CMS\Customer\UpdateRequest;
+use App\Http\Requests\CMS\Customer\StoreRequest;
+use App\Http\Controllers\ResponseController;
+use App\Http\Controllers\Controller;
+use App\Exports\CustomersExport;
 
 class CustomerController extends Controller
 {
@@ -29,18 +29,21 @@ class CustomerController extends Controller
     /**
      * Controller module title.
      *
-     * @var string
+     * @var array
      */
-    private $title;
+    private $titles;
 
     /**
      * Initiate resource service class.
      */
-    public function __construct(CustomerService $customerService)
+    public function __construct()
     {
-        $this->customerService = $customerService;
-        $this->module = 'cms.modules.customer';
-        $this->title = 'Customer';
+        $this->customerService = new CustomerService();
+        $this->module = 'cms.modules.customers';
+        $this->titles = [
+            'singular' => 'Customer',
+            'plural' => 'Customers',
+        ];
     }
 
     /**
@@ -54,7 +57,7 @@ class CustomerController extends Controller
             $customers = $this->customerService->all();
             $view = $this->module.'.index';
             $data = [
-                'title' => $this->title,
+                'titles' => $this->titles,
                 'customers' => $customers,
             ];
 
@@ -76,7 +79,7 @@ class CustomerController extends Controller
         try {
             $view = $this->module.'.create-or-edit';
             $data = [
-                'title' => $this->title,
+                'titles' => $this->titles,
                 'edit' => false,
             ];
 
@@ -105,7 +108,7 @@ class CustomerController extends Controller
                 throw new Exception(__('general.process.failed'));
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.customer.index'));
+            return ResponseController::success(__('general.process.success'), route('cms.customers.index'));
         }
         //
         catch (\Throwable $th) {
@@ -125,7 +128,7 @@ class CustomerController extends Controller
             $customer = $this->customerService->find($id);
             $view = $this->module.'.detail';
             $data = [
-                'title' => $this->title,
+                'titles' => $this->titles,
                 'customer' => $customer,
             ];
 
@@ -149,7 +152,7 @@ class CustomerController extends Controller
             $customer = $this->customerService->find($id);
             $view = $this->module.'.create-or-edit';
             $data = [
-                'title' => $this->title,
+                'titles' => $this->titles,
                 'customer' => $customer,
                 'edit' => true,
             ];
@@ -180,7 +183,7 @@ class CustomerController extends Controller
                 throw new Exception(__('general.process.failed'));
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.customer.index'));
+            return ResponseController::success(__('general.process.success'), route('cms.customers.index'));
         }
         //
         catch (\Throwable $th) {
@@ -204,7 +207,7 @@ class CustomerController extends Controller
                 throw new Exception(__('general.process.failed'));
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.customer.index'));
+            return ResponseController::success(__('general.process.success'), route('cms.customers.index'));
         }
         //
         catch (\Throwable $th) {
@@ -228,7 +231,7 @@ class CustomerController extends Controller
                 throw new Exception(__('general.process.failed'));
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.customer.index'));
+            return ResponseController::success(__('general.process.success'), route('cms.customers.index'));
         }
         //
         catch (\Throwable $th) {

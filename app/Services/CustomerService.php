@@ -89,6 +89,17 @@ class CustomerService
     }
 
     /**
+     * Get customer by email.
+     *
+     * @param  string  $email
+     * @return \App\Models\Customer|null
+     */
+    public function getByEmail($email)
+    {
+        return $this->customer->where('email', $email)->first();
+    }
+
+    /**
      * Set customer status.
      *
      * @param  array  $credentials
@@ -127,7 +138,7 @@ class CustomerService
     public function toggleStatus($id)
     {
         $customer = $this->find($id);
-        $result = $customer->update(['status' => ! $customer->status]);
+        $result = $customer->update(['status' => !$customer->status]);
 
         return $result;
     }

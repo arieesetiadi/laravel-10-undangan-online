@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\Integrations;
+namespace App\Http\Controllers\API\V1\Payment;
 
 use App\Constants\PaymentGateway;
 use App\Http\Controllers\API\ResponseController;
@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class PaymentController extends Controller
 {
     /**
-     * API for making payment base on payment gateway
+     * API for making payment base on payment gateway.
      *
      * @param  Illuminate\Http\Request  $request
      * @return Illuminate\Http\Response
@@ -48,7 +48,7 @@ class PaymentController extends Controller
     }
 
     /**
-     * API for making payment base on payment gateway
+     * API for retrieving callback base on payment gateway.
      *
      * @return \Illuminate\Http\Response
      */

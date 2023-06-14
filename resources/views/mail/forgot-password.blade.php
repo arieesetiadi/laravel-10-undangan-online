@@ -15,7 +15,7 @@
 <br>
 
 {{-- Noreply --}}
-{{ __('general.sentences.noreply') }} 
+{{ __('general.sentences.no-reply') }} 
 
 <br>
 <br>

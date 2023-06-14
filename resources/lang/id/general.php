@@ -25,6 +25,8 @@ return [
         'detail' => 'Detail',
         'back' => 'Kembali',
         'cancel' => 'Batal',
+        'download' => 'Unduh',
+        'toggle' => 'Toggle',
     ],
     'words' => [
         'web' => 'Website',
@@ -52,6 +54,7 @@ return [
         'thank' => 'Terimakasih',
     ],
     'sentences' => [
-        'noreply' => 'Ini adalah pesan otomatis. Mohon untuk tidak membalas email ini.',
+        'no-reply' => 'Ini adalah pesan otomatis. Mohon untuk tidak membalas email ini.',
+        'no-content' => 'Data sedang tidak tersedia saat ini.',
     ],
 ];

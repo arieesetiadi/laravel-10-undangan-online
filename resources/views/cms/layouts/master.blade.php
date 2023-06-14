@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 
 <head>
     {{-- Include Page Meta --}}
@@ -9,7 +9,7 @@
     @include('cms.layouts.styles')
 
     <!-- Title -->
-    <title>{{ $title ?? 'Title' }} | CMS {{ config('app.name') }}</title>
+    <title>CMS {{ config('app.name') }}</title>
 </head>
 
 <body>

@@ -4,12 +4,27 @@ namespace App\Http\Controllers\WEB\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResponseController;
-use App\Models\Customer;
+use App\Services\CustomerService;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 
 class OAuthController extends Controller
 {
+    /**
+     * Default service class.
+     *
+     * @var \App\Services\CustomerService
+     */
+    protected $customerService;
+
+    /**
+     * Initiate resource service class.
+     */
+    public function __construct()
+    {
+        $this->customerService = new CustomerService();
+    }
+
     /**
      * Redirect with Socialite
      */
@@ -25,12 +40,12 @@ class OAuthController extends Controller
     {
         try {
             $user = Socialite::driver($request->driver)->user();
-            $customer = Customer::where('email', $user->email)->first();
+            $customer = $this->customerService->getByEmail('email', $user->email);
 
             // Register new customer if not already
-            if (! $customer) {
+            if (!$customer) {
                 $username = $user->nickname ?? explode('@', $user->email)[0];
-                $customer = Customer::create([
+                $customer = $this->customerService->create([
                     'username' => $username,
                     'name' => $user->name,
                     'email' => $user->email,

@@ -132,7 +132,7 @@
 
                         <div class="col-12 col-md-7 col-lg-5">
                             <div class="d-flex justify-content-center pt-5">
-                                <img id="avatar-preview" width="200px" src="{{ administrator()->avatar_path }}" alt="Administrator profile image" class="rounded-circle cursor-pointer" data-bs-toggle="modal"
+                                <img id="avatar-preview" width="200px" src="{{ administrator()->avatar_path }}" alt="{{ administrator()->name }} avatar" class="rounded-circle cursor-pointer" data-bs-toggle="modal"
                                     data-bs-target="#modal-image-preview" onclick="previewImageModal(event)">
                             </div>
                         </div>

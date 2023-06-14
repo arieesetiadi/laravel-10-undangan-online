@@ -3,7 +3,7 @@
 
 {{-- Sidebar Configuration --}}
 @php
-    $sidebar['customer'] = 'active-page';
+    $sidebar['customers'] = 'active-page';
 @endphp
 
 {{-- Content --}}
@@ -13,8 +13,8 @@
             <div class="col">
                 <div class="page-description d-flex align-items-center">
                     <div class="page-description-content flex-grow-1">
-                        <h2 class="fw-bold">{{ $title }}</h2>
-                        <h6 class="mt-2 text-dark">{{ Breadcrumbs::render('cms.customer.index') }}</h6>
+                        <h2 class="fw-bold">{{ $titles['plural'] }}</h2>
+                        <h6 class="text-dark mt-2">{{ Breadcrumbs::render('cms.customers.index') }}</h6>
                     </div>
                 </div>
             </div>
@@ -23,14 +23,18 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-start gap-2">
-                        <a href="{{ route('cms.customer.create') }}" class="btn btn-sm btn-light">
-                            {{ __('general.actions.add') }} {{ $title }}
+                        <a class="btn btn-sm btn-light" href="{{ route('cms.customers.create') }}">
+                            {{ __('general.actions.add') }} {{ $titles['singular'] }}
                         </a>
-                        <a href="{{ route('cms.customer.pdf') }}" target="_blank" class="btn btn-sm btn-light">Export PDF</a>
-                        <a href="{{ route('cms.customer.excel') }}" target="_blank" class="btn btn-sm btn-light">Export Excel</a>
+                        <a class="btn btn-sm btn-light" href="{{ route('cms.customers.pdf') }}" target="_blank">
+                            {{ __('general.actions.download') }} PDF
+                        </a>
+                        <a class="btn btn-sm btn-light" href="{{ route('cms.customers.excel') }}" target="_blank">
+                            {{ __('general.actions.download') }} Excel
+                        </a>
                     </div>
                     <div class="card-body table-responsive">
-                        <table class="datatable table w-100">
+                        <table class="datatable w-100 table">
                             <thead>
                                 <tr>
                                     <th>{{ __('general.words.attributes.actions') }}</th>
@@ -44,17 +48,17 @@
                             <tbody>
                                 @forelse ($customers as $i => $customer)
                                     <tr>
-                                        <td class="d-flex gap-2 text-nowrap">
-                                            <a class="btn btn-sm btn-light" href="{{ route('cms.customer.edit', $customer->id) }}">
+                                        <td class="d-flex text-nowrap gap-2">
+                                            <a class="btn btn-sm btn-light" href="{{ route('cms.customers.edit', $customer->id) }}">
                                                 {{ __('general.actions.edit') }}
                                             </a>
-                                            <a class="btn btn-sm btn-info" href="{{ route('cms.customer.show', $customer->id) }}">
+                                            <a class="btn btn-sm btn-info" href="{{ route('cms.customers.show', $customer->id) }}">
                                                 {{ __('general.actions.detail') }}
                                             </a>
-                                            <form action="{{ route('cms.customer.toggle', $customer->id) }}" method="POST">
+                                            <form action="{{ route('cms.customers.toggle', $customer->id) }}" method="POST">
                                                 @csrf
-                                                <button type="button" class="btn btn-sm w-100 {{ $customer->status ? 'btn-dark' : 'btn-success' }}" onclick="swalConfirm(event)">
-                                                    Toggle
+                                                <button class="btn btn-sm w-100 {{ $customer->status ? 'btn-dark' : 'btn-success' }}" type="button" onclick="swalConfirm(event)">
+                                                    {{ __('general.actions.toggle') }}
                                                 </button>
                                             </form>
                                         </td>
@@ -66,8 +70,8 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td id="test" colspan="7" class="text-center">
-                                            Customers data is not available right now.
+                                        <td class="text-center" id="test" colspan="7">
+                                            {{ __('general.sentences.no-content') }}
                                         </td>
                                     </tr>
                                 @endforelse

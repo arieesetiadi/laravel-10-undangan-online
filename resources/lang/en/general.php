@@ -25,6 +25,8 @@ return [
         'detail' => 'Detail',
         'back' => 'Back',
         'cancel' => 'Cancel',
+        'download' => 'Download',
+        'toggle' => 'Toggle',
     ],
     'words' => [
         'web' => 'Website',
@@ -52,6 +54,7 @@ return [
         'thank' => 'Thank You',
     ],
     'sentences' => [
-        'noreply' => 'This is an automated message. Please do not reply to this email.',
+        'no-reply' => 'This is an automated message. Please do not reply to this email.',
+        'no-content' => 'Data is not available right now.',
     ],
 ];

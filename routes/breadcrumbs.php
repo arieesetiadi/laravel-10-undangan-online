@@ -8,26 +8,26 @@ Breadcrumbs::for('cms.dashboard', function (BreadcrumbTrail $trail) {
     $trail->push('Dashboard', route('cms.dashboard'));
 });
 
-// Dashboard > Administrator
-Breadcrumbs::for('cms.administrator.index', function (BreadcrumbTrail $trail) {
+// Dashboard > Administrators
+Breadcrumbs::for('cms.administrators.index', function (BreadcrumbTrail $trail) {
     $trail->parent('cms.dashboard');
-    $trail->push('Administrator', route('cms.administrator.index'));
+    $trail->push('Administrators', route('cms.administrators.index'));
 });
 
-// Dashboard > Administrator > [Action]
-Breadcrumbs::for('cms.administrator.action', function (BreadcrumbTrail $trail, $action) {
-    $trail->parent('cms.administrator.index');
+// Dashboard > Administrators > [Action]
+Breadcrumbs::for('cms.administrators.action', function (BreadcrumbTrail $trail, $action) {
+    $trail->parent('cms.administrators.index');
     $trail->push($action);
 });
 
-// Dashboard > Customer
-Breadcrumbs::for('cms.customer.index', function (BreadcrumbTrail $trail) {
+// Dashboard > Customers
+Breadcrumbs::for('cms.customers.index', function (BreadcrumbTrail $trail) {
     $trail->parent('cms.dashboard');
-    $trail->push('Customer', route('cms.customer.index'));
+    $trail->push('Customers', route('cms.customers.index'));
 });
 
-// Dashboard > Customer > [Action]
-Breadcrumbs::for('cms.customer.action', function (BreadcrumbTrail $trail, $action) {
-    $trail->parent('cms.customer.index');
+// Dashboard > Customers > [Action]
+Breadcrumbs::for('cms.customers.action', function (BreadcrumbTrail $trail, $action) {
+    $trail->parent('cms.customers.index');
     $trail->push($action);
 });
