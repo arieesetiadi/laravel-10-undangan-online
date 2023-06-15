@@ -7,7 +7,7 @@
 <script type="application/javascript" src="{{ asset('assets/cms/js/pages/datatables.js') }}"></script>
 
 <script type="application/javascript" src="https://unicons.iconscout.com/release/v2.1.11/script/monochrome/bundle.js"></script>
-<script type="application/javascript" src="{{ asset('assets/web/js/tiny-slider.js') }}"></script>
+<script type="application/javascript" src="{{ asset('assets/web/js/tiny-slider.min.js') }}"></script>
 <script type="application/javascript" src="{{ asset('assets/web/js/app.js') }}"></script>
 
 {{-- Jquery Validator --}}
@@ -19,6 +19,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 {{-- Sweet Alert 2 --}}
 <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{{-- Animate on Scroll --}}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
 {{-- Validator Helper --}}
 @include('libs.validator')

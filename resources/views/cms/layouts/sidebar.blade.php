@@ -5,8 +5,8 @@
             <span class="logo-text">CMS</span>
         </a>
         <div class="sidebar-user-switcher user-activity-online">
-            <a href="{{ route('cms.profile.index') }}">
-                <img class="rounded-circle" src="{{ administrator()->avatar_path }}">
+            <a href="#">
+                <img class="rounded-circle" src="{{ administrator()->avatar_path }}" alt="Administrator Avatar">
                 <span class="activity-indicator"></span>
                 <span class="user-info-text">{{ administrator()->name }}<br>
                     <span class="user-state-info">Administrator</span>

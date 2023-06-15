@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\CMS\Modules;
 
 use Exception;
-use App\Services\FileService;
 use App\Services\AdministratorService;
 use App\Http\Requests\CMS\Administrator\UpdateRequest;
 use App\Http\Requests\CMS\Administrator\StoreRequest;
@@ -19,13 +18,6 @@ class AdministratorController extends Controller
      * @var \App\Services\AdministratorService
      */
     protected $administratorService;
-
-    /**
-     * File service class.
-     *
-     * @var \App\Services\FileService
-     */
-    protected $fileService;
 
     /**
      * Controller module path.
@@ -47,7 +39,6 @@ class AdministratorController extends Controller
     public function __construct()
     {
         $this->administratorService = new AdministratorService();
-        $this->fileService = new FileService();
         $this->module = 'cms.modules.administrators';
         $this->titles = [
             'singular' => 'Administrator',
@@ -109,12 +100,6 @@ class AdministratorController extends Controller
     {
         try {
             $credentials = $request->credentials();
-
-            // Upload avatar if exist
-            if ($request->avatar) {
-                $avatar = $this->fileService->uploadImage($request->avatar, 'avatars');
-                $credentials['avatar'] = $avatar;
-            }
 
             // Store administrator data
             $result = $this->administratorService->create($credentials);
@@ -190,16 +175,9 @@ class AdministratorController extends Controller
     {
         try {
             $credentials = $request->credentials();
-            $administrator = $this->administratorService->find($id);
-
-            // Upload avatar if exist
-            if ($request->avatar) {
-                $avatar = $this->fileService->uploadImage($request->avatar, 'avatars', $administrator->avatar);
-                $credentials['avatar'] = $avatar;
-            }
 
             // Update administrator data
-            $result = $administrator->update($credentials);
+            $result = $this->administratorService->update($id, $credentials);
 
             if (!$result) {
                 throw new Exception(__('general.process.failed'));
@@ -269,7 +247,7 @@ class AdministratorController extends Controller
     public function pdf()
     {
         try {
-            return 'Adminsitrators PDF';
+            return 'Administrators PDF';
         }
         //
         catch (\Throwable $th) {

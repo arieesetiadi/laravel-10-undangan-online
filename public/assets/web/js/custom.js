@@ -1,3 +1,9 @@
+// Init Animate on Scroll
+AOS.init({
+    once: true,
+    delay: 100
+});
+
 // Toggle password visibility
 function togglePassword(event, target) {
     const checked = event.target.checked;

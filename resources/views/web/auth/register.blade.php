@@ -14,7 +14,6 @@
 
 <body class="bg-primary">
     <div class="authentication-page hero-1 py-5">
-        <!-- bg-overlay-img -->
         <div class="bg-overlay overflow-hidden bg-transparent">
             <div class="hero-1-bg"></div>
         </div>
@@ -119,7 +118,6 @@
                                             </a>
                                         </div>
                                     </form>
-                                    <!-- end-form -->
                                 </div>
                             </div>
                         </div>
@@ -130,13 +128,10 @@
                                 <a href="{{ route('web.auth.login.index', app()->getLocale()) }}" class="font-weight-semibold text-white">{{ __('auth.login.word') }}</a>
                             </p>
                         </div>
-
                     </div>
                 </div>
             </div>
-            <!-- end row -->
         </div>
-        <!-- end container -->
     </div>
 
     {{-- Include Scripts --}}
@@ -149,7 +144,7 @@
     <script>
         $('form#register').validate({
             rules: {
-                username: {
+                credential: {
                     required: true,
                 },
                 name: {
@@ -170,24 +165,24 @@
                 }
             },
             messages: {
-                username: {
-                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.username')]) }}`,
+                credential: {
+                    required: validatorRequiredMessage(`{{ __('validation.attributes.credential') }}`),
                 },
                 name: {
-                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.name')]) }}`,
+                    required: validatorRequiredMessage(`{{ __('validation.attributes.name') }}`),
                 },
                 email: {
-                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.email')]) }}`,
-                    email: `{{ __('validation.email', ['attribute' => __('validation.attributes.email')]) }}`,
+                    required: validatorRequiredMessage(`{{ __('validation.attributes.email') }}`),
+                    email: validatorEmailMessage(`{{ __('validation.attributes.email') }}`),
                 },
                 password: {
-                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.password')]) }}`,
-                    minlength: `{{ __('validation.min.string', ['attribute' => __('validation.attributes.password'), 'min' => 4]) }}`,
+                    required: validatorRequiredMessage(`{{ __('validation.attributes.password') }}`),
+                    minlength: validatorMinMessage(`{{ __('validation.attributes.password') }}`, 4, 'string'),
                 },
                 password_confirmation: {
-                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.password_confirmation')]) }}`,
-                    minlength: `{{ __('validation.min.string', ['attribute' => __('validation.attributes.password_confirmation'), 'min' => 4]) }}`,
-                    equalTo: `{{ __('validation.confirmed', ['attribute' => __('validation.attributes.password')]) }}`,
+                    required: validatorRequiredMessage(`{{ __('validation.attributes.password') }}`),
+                    minlength: validatorMinMessage(`{{ __('validation.attributes.password') }}`, 4, 'string'),
+                    equalTo: validatorConfirmedMessage(`{{ __('validation.attributes.password') }}`),
                 },
             },
             errorPlacement: function(label, element) {

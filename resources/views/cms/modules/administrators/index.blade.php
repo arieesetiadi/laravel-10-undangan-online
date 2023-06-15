@@ -39,7 +39,6 @@
                                 <tr>
                                     <th>{{ __('general.words.attributes.actions') }}</th>
                                     <th>#</th>
-                                    <th>{{ __('general.words.attributes.image') }}</th>
                                     <th>{{ __('general.words.attributes.name') }}</th>
                                     <th>{{ __('general.words.attributes.email') }}</th>
                                     <th>{{ __('general.words.attributes.status') }}</th>
@@ -64,10 +63,6 @@
                                             </form>
                                         </td>
                                         <td class="text-nowrap">{{ $i + 1 }}</td>
-                                        <td class="text-nowrap">
-                                            <img class="rounded-circle cursor-pointer" data-bs-toggle="modal" data-bs-target="#modal-image-preview" src="{{ $administrator->avatar_path }}" alt="{{ $administrator->name . ' profile image.' }}"
-                                                width="25px" height="25px" onclick="previewImageModal(event)">
-                                        </td>
                                         <td class="text-nowrap">{{ $administrator->name }}</td>
                                         <td class="text-nowrap">{{ $administrator->email }}</td>
                                         <td class="text-nowrap">{!! GeneralStatus::htmlLabel($administrator->status) !!}</td>
@@ -75,7 +70,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td class="text-center" id="test" colspan="7">
+                                        <td class="text-center" id="test" colspan="6">
                                             {{ __('general.sentences.no-content') }}
                                         </td>
                                     </tr>

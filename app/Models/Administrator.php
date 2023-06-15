@@ -53,14 +53,11 @@ class Administrator extends Authenticatable
     /**
      * Get administrator avatar image path | src.
      *
-     * @return string $avatarPath
+     * @return string
      */
     public function getAvatarPathAttribute()
     {
-        $avatar = $this->avatar ?? 'default.png';
-        $avatarPath = asset('storage/uploads/images/avatars/'.$avatar);
-
-        return $avatarPath;
+        return asset('storage/uploads/images/avatars/default.png');
     }
 
     /*

@@ -19,6 +19,11 @@
         return `{{ __('validation.mimes', ['attribute' => '${attribute}', 'values' => '${values}']) }}`;
     }
 
+    // Generate validator "confirmed" message
+    const validatorConfirmedMessage = (attribute) => {
+        return `{{ __('validation.confirmed', ['attribute' => '${attribute}']) }}`;
+    }
+
     // Generate validator "min" message
     const validatorMinMessage = (attribute, min, type) => {
         switch (type) {

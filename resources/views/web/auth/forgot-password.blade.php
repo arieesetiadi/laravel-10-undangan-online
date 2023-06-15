@@ -14,18 +14,17 @@
 
 <body class="bg-primary">
     <div class="authentication-page hero-1 py-5">
-        <!-- bg-overlay-img -->
         <div class="bg-overlay overflow-hidden bg-transparent">
             <div class="hero-1-bg"></div>
         </div>
 
         <div class="container">
-            <div class="row justify-content-center  mt-sm-5">
+            <div class="row justify-content-center mt-sm-5">
                 <div class="col-md-8 col-lg-6 col-xl-5">
                     <div>
                         <div class="text-center">
-                            <a href="{{ route('web.home') }}" class="mb-3 d-block auth-logo">
-                                <img src="{{ asset('assets/web/images/logo-light.png') }}" alt="Main Logo" height="22" class="logo">
+                            <a class="d-block auth-logo mb-3" href="{{ route('web.home') }}">
+                                <img class="logo" src="{{ asset('assets/web/images/logo-light.png') }}" alt="Main Logo" height="22">
                             </a>
                             <h5 class="font-16 text-white-50 mb-3">{{ config('app.name') }}</h5>
                         </div>
@@ -34,7 +33,7 @@
                         <center>
                             <div class="btn-group navbar-btn mb-3" role="group" aria-label="Locale switcher button group">
                                 @foreach (AppLocale::values() as $locale)
-                                    <a href="{{ route('locale.switch', $locale) }}" type="button" class="btn btn-sm {{ app()->getLocale() == $locale ? 'btn-info' : 'btn-outline-info' }}">
+                                    <a class="btn btn-sm {{ app()->getLocale() == $locale ? 'btn-info' : 'btn-outline-info' }}" type="button" href="{{ route('locale.switch', $locale) }}">
                                         {{ AppLocale::label($locale) }}
                                     </a>
                                 @endforeach
@@ -43,7 +42,7 @@
 
                         <div class="card">
                             <div class="card-body p-4">
-                                <div class="text-center mt-2">
+                                <div class="mt-2 text-center">
                                     <h5>{{ __('auth.password_reset.word') }}</h5>
                                     <p>
                                         @if (!$email)
@@ -54,7 +53,7 @@
                                     </p>
                                 </div>
 
-                                <div class="p-2 mt-4">
+                                <div class="mt-4 p-2">
                                     @if (!$email)
                                         {{-- First Step --}}
                                         <form id="forgot-password-email" action="{{ route('web.auth.forgot-password.send', app()->getLocale()) }}" method="POST">
@@ -65,22 +64,22 @@
                                                 <label class="form-label" for="email">
                                                     {{ __('general.words.attributes.email') }}
                                                 </label>
-                                                <input name="email" type="email" class="form-control" id="email" placeholder="e.g. email@example.com">
+                                                <input class="form-control" id="email" name="email" type="email" placeholder="e.g. email@example.com">
                                                 @error('email')
-                                                    <label for="email" class="mt-2 text-danger">
+                                                    <label class="text-danger mt-2" for="email">
                                                         {{ $message }}
                                                     </label>
                                                 @enderror
                                             </div>
 
-                                            <div class="mt-3 d-grid">
+                                            <div class="d-grid mt-3">
                                                 <button class="btn btn-primary" type="submit">
                                                     <i class="fa-solid fa-right-to-bracket d-inline-block mr-1"></i> {{ __('general.actions.submit') }}
                                                 </button>
                                             </div>
 
                                             <div class="mt-4 text-center">
-                                                <a href="{{ route('web.auth.login.index', app()->getLocale()) }}" class="text-body">
+                                                <a class="text-body" href="{{ route('web.auth.login.index', app()->getLocale()) }}">
                                                     {{ __('auth.login.back') }}
                                                 </a>
                                             </div>
@@ -90,7 +89,7 @@
                                         <form id="forgot-password-reset" action="{{ route('web.auth.forgot-password.reset', app()->getLocale()) }}" method="POST">
                                             @csrf
                                             {{-- Input Email --}}
-                                            <input type="hidden" name="email" value="{{ $email }}">
+                                            <input name="email" type="hidden" value="{{ $email }}">
 
                                             {{-- Input Password --}}
                                             <div class="mb-3">
@@ -98,13 +97,13 @@
                                                     <label class="form-label" for="password">
                                                         {{ __('general.words.attributes.new_password') }}
                                                     </label>
-                                                    <div class="d-inline-block px-5 form-check form-switch">
-                                                        <input name="toggle-password" class="form-check-input" type="checkbox" tabindex="-1" id="toggle-password" onchange="togglePassword(event, 'password')">
+                                                    <div class="d-inline-block form-check form-switch px-5">
+                                                        <input class="form-check-input" id="toggle-password" name="toggle-password" type="checkbox" tabindex="-1" onchange="togglePassword(event, 'password')">
                                                     </div>
                                                 </div>
-                                                <input name="password" type="password" class="form-control" id="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+                                                <input class="form-control" id="password" name="password" type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
                                                 @error('password')
-                                                    <label for="password" class="mt-2 text-danger">
+                                                    <label class="text-danger mt-2" for="password">
                                                         {{ $message }}
                                                     </label>
                                                 @enderror
@@ -116,26 +115,26 @@
                                                     <label class="form-label" for="username">
                                                         {{ __('general.words.attributes.new_password_confirmation') }}
                                                     </label>
-                                                    <div class="d-inline-block px-5 form-check form-switch">
-                                                        <input name="toggle-password" class="form-check-input" type="checkbox" tabindex="-1" id="toggle-password" onchange="togglePassword(event, 'password_confirmation')">
+                                                    <div class="d-inline-block form-check form-switch px-5">
+                                                        <input class="form-check-input" id="toggle-password" name="toggle-password" type="checkbox" tabindex="-1" onchange="togglePassword(event, 'password_confirmation')">
                                                     </div>
                                                 </div>
-                                                <input name="password_confirmation" type="password" class="form-control" id="password_confirmation" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+                                                <input class="form-control" id="password_confirmation" name="password_confirmation" type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
                                                 @error('password_confirmation')
-                                                    <label for="password_confirmation" class="mt-2 text-danger">
+                                                    <label class="text-danger mt-2" for="password_confirmation">
                                                         {{ $message }}
                                                     </label>
                                                 @enderror
                                             </div>
 
-                                            <div class="mt-3 d-grid">
+                                            <div class="d-grid mt-3">
                                                 <button class="btn btn-primary" type="submit">
                                                     <i class="fa-solid fa-right-to-bracket d-inline-block mr-1"></i> {{ __('general.actions.submit') }}
                                                 </button>
                                             </div>
 
                                             <div class="mt-4 text-center">
-                                                <a href="{{ route('web.auth.login.index', app()->getLocale()) }}" class="text-body">
+                                                <a class="text-body" href="{{ route('web.auth.login.index', app()->getLocale()) }}">
                                                     {{ __('auth.login.back') }}
                                                 </a>
                                             </div>
@@ -147,9 +146,7 @@
                     </div>
                 </div>
             </div>
-            <!-- end row -->
         </div>
-        <!-- end container -->
     </div>
 
     {{-- Include Scripts --}}
@@ -169,8 +166,8 @@
             },
             messages: {
                 email: {
-                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.email')]) }}`,
-                    email: `{{ __('validation.email', ['attribute' => __('validation.attributes.email')]) }}`,
+                    required: validatorRequiredMessage(`{{ __('validation.attributes.email') }}`),
+                    email: validatorEmailMessage(`{{ __('validation.attributes.email') }}`),
                 },
             },
             errorPlacement: function(label, element) {
@@ -193,13 +190,13 @@
             },
             messages: {
                 password: {
-                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.password')]) }}`,
-                    minlength: `{{ __('validation.min.string', ['attribute' => __('validation.attributes.password'), 'min' => 4]) }}`,
+                    required: validatorRequiredMessage(`{{ __('validation.attributes.password') }}`),
+                    minlength: validatorMinMessage(`{{ __('validation.attributes.password') }}`, 4, 'string'),
                 },
                 password_confirmation: {
-                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.password_confirmation')]) }}`,
-                    minlength: `{{ __('validation.min.string', ['attribute' => __('validation.attributes.password_confirmation'), 'min' => 4]) }}`,
-                    equalTo: `{{ __('validation.confirmed', ['attribute' => __('validation.attributes.password')]) }}`,
+                    required: validatorRequiredMessage(`{{ __('validation.attributes.password_confirmation') }}`),
+                    minlength: validatorMinMessage(`{{ __('validation.attributes.password_confirmation') }}`, 4, 'string'),
+                    equalTo: validatorConfirmedMessage(`{{ __('validation.attributes.password') }}`),
                 },
             },
             errorPlacement: function(label, element) {

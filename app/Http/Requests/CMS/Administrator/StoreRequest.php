@@ -30,7 +30,7 @@ class StoreRequest extends FormRequest
             'username' => 'required|unique:administrators,username',
             'name' => 'required',
             'email' => 'required|unique:administrators,email',
-            'avatar' => 'file|mimes:jpeg,jpg,png|max:1024',
+            'phone' => 'nullable|unique:administrators,phone',
             'password' => 'required',
         ];
     }
@@ -46,6 +46,7 @@ class StoreRequest extends FormRequest
             'username' => $this->username,
             'name' => $this->name,
             'email' => $this->email,
+            'phone' => normalize_phone($this->phone),
             'password' => Hash::make($this->password),
             'status' => GeneralStatus::ACTIVE,
         ];

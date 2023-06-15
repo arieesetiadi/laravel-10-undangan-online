@@ -8,9 +8,13 @@
 - [x] Implement queue on mail
 - [x] Use Intervention Image library
 - [x] Use service class - OAuthController
-- [ ] Cross-check all views 
-- [ ] Check jquery validator messages
-- [ ] Adjust active-sidebar style
+- [x] Cross-check CMS views
+- [x] Cross-check WEB views
+- [x] MDI -> FontAwesome
+- [ ] Add tooltips 
+- [x] Implement Animate on Scroll library
+- [x] Check jquery validator messages
+- [x] Adjust active-sidebar style
 - [ ] Implement API Authentication
 - [ ] Make API with Guard
     - [ ] Get Administrators

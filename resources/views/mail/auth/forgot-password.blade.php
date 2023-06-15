@@ -8,7 +8,7 @@
 @endcomponent
 
 {{-- Button --}}
-@component('mail::button', ['url' => route('web.auth.forgot-password.index', ['email' => $to, 'locale' => app()->getLocale()])])
+@component('mail::button', ['url' => $url])
 {{ __('general.actions.update') }} {{ __('general.words.attributes.password') }}
 @endcomponent
     

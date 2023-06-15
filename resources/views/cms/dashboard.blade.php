@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-4">
+            <div class="col-12 col-sm-6 col-lg-4">
                 <div class="card widget widget-stats">
                     <div class="card-body">
                         <div class="widget-stats-container d-flex">

@@ -1,14 +1,11 @@
-divdivdivdiv{{-- Master Template --}}
+{{-- Master Template --}}
 @extends('web.layouts.master')
 
 {{-- Topbar Configuration --}}
-@section('topbar.variant')
-    navbar-light
-@endsection
-
-@section('topbar.profile')
-    active
-@endsection
+@php
+    $topbar['variant'] = 'navbar-light';
+    $topbar['profile'] = 'active';
+@endphp
 
 {{-- Content --}}
 @section('content')

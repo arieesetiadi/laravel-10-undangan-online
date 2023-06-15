@@ -31,6 +31,7 @@ class UpdateRequest extends FormRequest
             'username' => 'required|unique:administrators,username,'.$request->administrator,
             'name' => 'required',
             'email' => 'required|unique:administrators,email,'.$request->administrator,
+            'phone' => 'nullable|unique:administrators,phone,'.$request->administrator,
             'avatar' => 'file|mimes:jpeg,jpg,png|max:1024',
         ];
     }
@@ -46,6 +47,7 @@ class UpdateRequest extends FormRequest
             'username' => $this->username,
             'name' => $this->name,
             'email' => $this->email,
+            'phone' => normalize_phone($this->phone),
             'status' => GeneralStatus::ACTIVE,
         ];
 

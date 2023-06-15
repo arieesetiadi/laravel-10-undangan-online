@@ -70,7 +70,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td class="text-center" id="test" colspan="7">
+                                        <td class="text-center" id="test" colspan="6">
                                             {{ __('general.sentences.no-content') }}
                                         </td>
                                     </tr>

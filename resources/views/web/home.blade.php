@@ -6,11 +6,11 @@
     <!-- End Hero Section -->
 
     <!-- About Section -->
-    <section class="section" id="about">
+    <section class="section" id="about" data-aos="fade-up">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
-                    <div class="text-center mb-5">
+                    <div class="mb-5 text-center">
                         <h3 class="mb-3">A digital web design studio creating modern & engaging online</h3>
                         <p class="text-muted">
                             If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages new common will be more regular than the existing If several is more
@@ -23,7 +23,7 @@
 
             <div class="row">
                 <div class="col-lg-4 col-md-4">
-                    <div class="text-center p-4">
+                    <div class="p-4 text-center">
                         <div class="icons-xl mb-3">
                             <i class="uim uim-ruler"></i>
                         </div>
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="col-lg-4 col-md-4">
-                    <div class="text-center p-4">
+                    <div class="p-4 text-center">
                         <div class="icons-xl mb-3">
                             <i class="uim uim-repeat"></i>
                         </div>
@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="col-lg-4 col-md-4">
-                    <div class="text-center p-4">
+                    <div class="p-4 text-center">
                         <div class="icons-xl mb-3">
                             <i class="uim uim-airplay"></i>
                         </div>
@@ -62,11 +62,11 @@
     <!-- End About Section -->
 
     <!-- Features Section -->
-    <section class="section bg-light" id="features">
+    <section class="section bg-light" id="features" data-aos="fade-up">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="text-center title mb-5">
+                    <div class="title mb-5 text-center">
                         <p class="text-muted text-uppercase fw-normal mb-2">Features</p>
                         <h3 class="mb-3">Key features of the product</h3>
                         <div class="title-icon position-relative">
@@ -80,16 +80,16 @@
             <!-- end row -->
 
             <div class="row align-items-center">
-                <div class="col-lg-5 order-2 order-lg-1">
-                    <div class="mt-4 mt-lg-0">
+                <div class="col-lg-5 order-lg-1 order-2">
+                    <div class="mt-lg-0 mt-4">
                         <h4>Improve your Marketing business</h4>
                         <p class="text-muted mt-3">If several languages coalesce, the grammar of the resulting language is more regular.</p>
 
                         <div>
-                            <p class="mb-2 text-muted">
+                            <p class="text-muted mb-2">
                                 <span class="uim-icon-info mr-2 align-middle"><i class="uim uim-check-circle"></i></span>Donec vitae sapien ut
                             </p>
-                            <p class="mb-2 text-muted">
+                            <p class="text-muted mb-2">
                                 <span class="uim-icon-info mr-2 align-middle"><i class="uim uim-check-circle"></i></span>In enim justo, rhoncus imperdiet
                             </p>
                             <p class="text-muted">
@@ -97,14 +97,14 @@
                             </p>
                         </div>
                         <div class="mt-4">
-                            <a href="#" class="text-primary">Learn more..</a>
+                            <a class="text-primary" href="#">Learn more..</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-6 ml-lg-auto col-sm-8 order-1 order-lg-2">
+                <div class="col-lg-6 ml-lg-auto col-sm-8 order-lg-2 order-1">
                     <div>
-                        <img src="{{ asset('assets/web/images/features/img-1.jpg') }}" alt="" class="img-fluid mx-auto d-block" />
+                        <img class="img-fluid d-block mx-auto" src="{{ asset('assets/web/images/features/img-1.jpg') }}" alt="" />
                     </div>
                 </div>
             </div>
@@ -115,17 +115,17 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-sm-8">
                     <div class="features-img mt-4">
-                        <img src="{{ asset('assets/web/images/features/img-2.jpg') }}" alt="" class="img-fluid mx-auto d-block img-thumbnail" />
+                        <img class="img-fluid d-block img-thumbnail mx-auto" src="{{ asset('assets/web/images/features/img-2.jpg') }}" alt="" />
                     </div>
                 </div>
 
                 <div class="col-lg-5 ml-lg-auto">
-                    <div class="mt-5 mt-lg-4">
+                    <div class="mt-lg-4 mt-5">
                         <h4>Improve your Marketing performance</h4>
                         <p class="text-muted mb-2 mt-3">It will be as simple as in fact, it will be Occidental. To an English person, it will seem like simplified</p>
                         <p class="text-muted">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur velit</p>
                         <div class="mt-4">
-                            <a href="#" class="text-primary">Learn more..</a>
+                            <a class="text-primary" href="#">Learn more..</a>
                         </div>
                     </div>
                 </div>
@@ -137,16 +137,16 @@
     <!-- End Features Section -->
 
     <!-- Clients Section -->
-    <section class="section mt-5" id="clients">
+    <section class="section mt-5" id="clients" data-aos="fade-up">
         <div class="container">
-            <div class="row pb-5 align-items-center">
+            <div class="row align-items-center pb-5">
                 <div class="col-lg-4 col-md-4">
                     <div class="icons-lg mb-4">
                         <i class="uim uim-comment-message"></i>
                     </div>
                     <h3 class="mb-2">2,200<sup>+</sup></h3>
                     <h3 class="mb-4">Satisfied Clients</h3>
-                    <p class="text-muted mb-sm-0 mb-5 pb-sm-0 pb-4">If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual</p>
+                    <p class="text-muted mb-sm-0 pb-sm-0 mb-5 pb-4">If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual</p>
                 </div>
 
                 <div class="col-lg-8 col-md-8">
@@ -160,11 +160,11 @@
                                         <span class="text-muted">- Peyso User</span>
                                     </div>
                                     <div class="text-muted d-inline-block float-right">
-                                        <i class="mdi mdi-star text-warning"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
                                     </div>
                                 </div>
                             </div>
@@ -179,11 +179,11 @@
                                         <span class="text-muted">- Peyso User</span>
                                     </div>
                                     <div class="text-muted d-inline-block float-right">
-                                        <i class="mdi mdi-star text-warning"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                        <i class="mdi mdi-star"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star"></i>
                                     </div>
                                 </div>
                             </div>
@@ -199,11 +199,11 @@
                                         <span class="text-muted">- Peyso User</span>
                                     </div>
                                     <div class="text-muted d-inline-block float-right">
-                                        <i class="mdi mdi-star text-warning"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                        <i class="mdi mdi-star text-warning"></i>
-                                        <i class="mdi mdi-star"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star"></i>
                                     </div>
                                 </div>
                             </div>
@@ -217,22 +217,22 @@
             <div class="row mt-5">
                 <div class="col-lg-3 col-sm-3">
                     <div class="client-images">
-                        <img src="{{ asset('assets/web/images/clients/1.png') }}" alt="client-img" class="mx-auto img-fluid d-block" />
+                        <img class="img-fluid d-block mx-auto" src="{{ asset('assets/web/images/clients/1.png') }}" alt="client-img" />
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                     <div class="client-images">
-                        <img src="{{ asset('assets/web/images/clients/3.png') }}" alt="client-img" class="mx-auto img-fluid d-block" />
+                        <img class="img-fluid d-block mx-auto" src="{{ asset('assets/web/images/clients/3.png') }}" alt="client-img" />
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                     <div class="client-images">
-                        <img src="{{ asset('assets/web/images/clients/4.png') }}" alt="client-img" class="mx-auto img-fluid d-block" />
+                        <img class="img-fluid d-block mx-auto" src="{{ asset('assets/web/images/clients/4.png') }}" alt="client-img" />
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-3">
                     <div class="client-images">
-                        <img src="{{ asset('assets/web/images/clients/6.png') }}" alt="client-img" class="mx-auto img-fluid d-block" />
+                        <img class="img-fluid d-block mx-auto" src="{{ asset('assets/web/images/clients/6.png') }}" alt="client-img" />
                     </div>
                 </div>
             </div>
@@ -243,19 +243,19 @@
     <!-- End Clients Section -->
 
     <!-- CTA Section -->
-    <section class="py-5 bg-primary">
+    <section class="bg-primary py-5">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-9">
                     <div class="text-white-50">
                         <h3 class="text-white">Build your dream website today</h3>
-                        <p class="mb-0 fs-6">If several languages coalesce, the grammar of the resulting</p>
+                        <p class="fs-6 mb-0">If several languages coalesce, the grammar of the resulting</p>
                     </div>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="mt-4 mt-md-0 text-md-right">
-                        <a href="#" class="btn btn-info">Get Started</a>
+                    <div class="mt-md-0 text-md-right mt-4">
+                        <a class="btn btn-info" href="#">Get Started</a>
                     </div>
                 </div>
             </div>
@@ -266,11 +266,11 @@
     <!-- End CTA Section -->
 
     <!-- Pricing Section -->
-    <section class="section bg-light" id="pricing">
+    <section class="section bg-light" id="pricing" data-aos="fade-up">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="text-center title mb-5">
+                    <div class="title mb-5 text-center">
                         <p class="text-muted text-uppercase fw-normal mb-2">Plan</p>
                         <h3 class="mb-3">Our Pricing</h3>
                         <div class="title-icon position-relative">
@@ -285,7 +285,7 @@
 
             <div class="row pb-4">
                 <div class="col-lg-4 col-md-6">
-                    <div class="card plan-box text-center p-2">
+                    <div class="card plan-box p-2 text-center">
                         <div class="card-body">
                             <div class="icons-xl pt-4">
                                 <i class="uim uim-box"></i>
@@ -304,14 +304,14 @@
                                     <sup><small>$</small></sup>19 / <span class="font-16 text-muted">Month</span>
                                 </h3>
                                 <div class="mt-4 mb-4">
-                                    <a href="#" class="btn btn-info btn-block">Join now</a>
+                                    <a class="btn btn-info btn-block" href="#">Join now</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                    <div class="card plan-box text-center p-2">
+                    <div class="card plan-box p-2 text-center">
                         <div class="card-body">
                             <div>
                                 <div class="icons-xl pt-4">
@@ -331,7 +331,7 @@
                                         <sup><small>$</small></sup>29 / <span class="font-16 text-muted">Month</span>
                                     </h3>
                                     <div class="mt-4 mb-4">
-                                        <a href="#" class="btn btn-info btn-block">Join now</a>
+                                        <a class="btn btn-info btn-block" href="#">Join now</a>
                                     </div>
                                 </div>
                             </div>
@@ -339,7 +339,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                    <div class="card plan-box text-center p-2">
+                    <div class="card plan-box p-2 text-center">
                         <div class="card-body">
                             <div>
                                 <div class="icons-xl pt-4">
@@ -359,7 +359,7 @@
                                         <sup><small>$</small></sup>39 / <span class="font-16 text-muted">Month</span>
                                     </h3>
                                     <div class="mt-4 mb-4">
-                                        <a href="#" class="btn btn-info btn-block">Join now</a>
+                                        <a class="btn btn-info btn-block" href="#">Join now</a>
                                     </div>
                                 </div>
                             </div>
@@ -372,10 +372,10 @@
             <!-- start faq -->
             <div class="row pb-4">
                 <div class="col-lg-6 col-md-6">
-                    <div class="mt-5 d-flex">
+                    <div class="d-flex mt-5">
                         <div class="mr-3">
                             <div class="avatar-title rounded-circle bg-soft-primary avatar-md text-primary">
-                                <i class="mdi mdi-help"></i>
+                                <i class="fa-solid fa-question"></i>
                             </div>
                         </div>
 
@@ -385,10 +385,10 @@
                         </div>
                     </div>
 
-                    <div class="mt-4 d-flex">
+                    <div class="d-flex mt-4">
                         <div class="mr-3">
                             <div class="avatar-title rounded-circle bg-soft-primary avatar-md text-primary">
-                                <i class="mdi mdi-help"></i>
+                                <i class="fa-solid fa-question"></i>
                             </div>
                         </div>
 
@@ -400,10 +400,10 @@
                 </div>
 
                 <div class="col-lg-6 col-md-6">
-                    <div class="mt-sm-5 mt-4 d-flex">
+                    <div class="mt-sm-5 d-flex mt-4">
                         <div class="mr-3">
                             <div class="avatar-title rounded-circle bg-soft-primary avatar-md text-primary">
-                                <i class="mdi mdi-help"></i>
+                                <i class="fa-solid fa-question"></i>
                             </div>
                         </div>
 
@@ -413,10 +413,10 @@
                         </div>
                     </div>
 
-                    <div class="mt-4 d-flex">
+                    <div class="d-flex mt-4">
                         <div class="mr-3">
                             <div class="avatar-title rounded-circle bg-soft-primary avatar-md text-primary">
-                                <i class="mdi mdi-help"></i>
+                                <i class="fa-solid fa-question"></i>
                             </div>
                         </div>
 
@@ -434,11 +434,11 @@
     <!-- End Pricing Section -->
 
     <!-- Contact Section -->
-    <section class="section" id="contact">
+    <section class="section" id="contact" data-aos="fade-up">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-12">
-                    <div class="text-center title mb-5">
+                    <div class="title mb-5 text-center">
                         <p class="text-muted text-uppercase fw-normal mb-2">Contact</p>
                         <h3 class="mb-3">Have any Questions ?</h3>
                         <div class="title-icon position-relative">
@@ -448,19 +448,19 @@
                         </div>
                     </div>
 
-                    <form method="post" name="myForm" onsubmit="return validateForm()" href="javascript: void(0);">
+                    <form name="myForm" href="javascript: void(0);" method="post" onsubmit="return validateForm()">
                         <p id="error-msg"></p>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="name">Name</label>
-                                    <input name="name" id="name" type="text" class="form-control" placeholder="Enter your name..." />
+                                    <input class="form-control" id="name" name="name" type="text" placeholder="Enter your name..." />
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="email">Email address</label>
-                                    <input name="email" id="email" type="email" class="form-control" placeholder="Enter your email..." />
+                                    <input class="form-control" id="email" name="email" type="email" placeholder="Enter your email..." />
                                 </div>
                             </div>
                         </div>
@@ -468,16 +468,16 @@
 
                         <div class="mb-3">
                             <label class="form-label" for="subject">Subject</label>
-                            <input name="subject" id="subject" type="text" class="form-control" placeholder="Enter Subject..." />
+                            <input class="form-control" id="subject" name="subject" type="text" placeholder="Enter Subject..." />
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label" for="comments">Message</label>
-                            <textarea name="comments" id="comments" rows="3" class="form-control" placeholder="Enter your message..."></textarea>
+                            <textarea class="form-control" id="comments" name="comments" rows="3" placeholder="Enter your message..."></textarea>
                         </div>
 
                         <div class="text-right">
-                            <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary" value="Send message" />
+                            <input class="submitBnt btn btn-primary" id="submit" name="send" type="submit" value="Send message" />
 
                         </div>
                     </form>
@@ -492,15 +492,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
-                    <a href="#" class="d-block mb-3">
+                    <a class="d-block mb-3" href="#">
                         <img src="{{ asset('assets/web/images/logo-light.png') }}" alt="" height="20" />
                     </a>
                     <p>Bootstrap 5 Landing Page Template</p>
                 </div>
 
                 <div class="col-lg-2 col-sm-6">
-                    <div class="mt-4 mt-lg-0">
-                        <h5 class="mb-4 font-18 text-white">Links</h5>
+                    <div class="mt-lg-0 mt-4">
+                        <h5 class="font-18 mb-4 text-white">Links</h5>
                         <ul class="list-unstyled footer-list-menu">
                             <li><a href="#">Home</a></li>
                             <li><a href="#">About us</a></li>
@@ -511,8 +511,8 @@
                 </div>
 
                 <div class="col-lg-3 col-sm-6">
-                    <div class="mt-4 mt-lg-0">
-                        <h5 class="mb-4 font-18 text-white">Resources</h5>
+                    <div class="mt-lg-0 mt-4">
+                        <h5 class="font-18 mb-4 text-white">Resources</h5>
                         <ul class="list-unstyled footer-list-menu">
                             <li><a href="#">Help Center</a></li>
                             <li><a href="#">Privacy Policy</a></li>
@@ -521,20 +521,28 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
-                    <div class="mt-4 mt-lg-0">
-                        <h5 class="mb-4 font-18 text-white">Social</h5>
+                    <div class="mt-lg-0 mt-4">
+                        <h5 class="font-18 mb-4 text-white">Social</h5>
                         <ul class="list-inline social-icons-list">
                             <li class="list-inline-item">
-                                <a href="#"><i class="mdi mdi-facebook"></i></a>
+                                <a href="#">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#"><i class="mdi mdi-twitter"></i></a>
+                                <a href="#">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#"><i class="mdi mdi-linkedin"></i></a>
+                                <a href="#">
+                                    <i class="fa-brands fa-twitter"></i>
+                                </a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#"><i class="mdi mdi-google-plus"></i></a>
+                                <a href="#">
+                                    <i class="fa-brands fa-linkedin-in"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -551,7 +559,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="text-center text-white-50">
+                    <div class="text-white-50 text-center">
                         <p class="mb-0">2020 © Peyso. Create by Themesdesign</p>
                     </div>
                 </div>

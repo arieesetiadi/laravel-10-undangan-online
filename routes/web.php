@@ -9,7 +9,6 @@ use App\Http\Controllers\WEB\Auth\LogoutController as WEBLogoutController;
 use App\Http\Controllers\WEB\Auth\LoginController as WEBLoginController;
 use App\Http\Controllers\WEB\Auth\ForgotPasswordController as WEBForgotPasswordController;
 use App\Http\Controllers\LocaleController;
-use App\Http\Controllers\CMS\ProfileController as CMSProfileController;
 use App\Http\Controllers\CMS\Modules\CustomerController;
 use App\Http\Controllers\CMS\Modules\AdministratorController;
 use App\Http\Controllers\CMS\DashboardController;
@@ -64,12 +63,6 @@ Route::prefix('/system')->as('cms.')->middleware('locale.use:en')->group(functio
             Route::get('/excel', [CustomerController::class, 'excel'])->name('excel');
         });
         Route::resource('/customers', CustomerController::class);
-
-        // CMS Profile
-        Route::prefix('/profile')->as('profile.')->group(function () {
-            Route::get('/', [CMSProfileController::class, 'index'])->name('index');
-            Route::post('/update', [CMSProfileController::class, 'update'])->name('update');
-        });
 
         // CMS Logout
         Route::prefix('/auth/logout')->as('logout.')->group(function () {

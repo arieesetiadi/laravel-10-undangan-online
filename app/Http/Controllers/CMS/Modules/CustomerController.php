@@ -55,7 +55,7 @@ class CustomerController extends Controller
     {
         try {
             $customers = $this->customerService->all();
-            $view = $this->module.'.index';
+            $view = $this->module . '.index';
             $data = [
                 'titles' => $this->titles,
                 'customers' => $customers,
@@ -77,7 +77,7 @@ class CustomerController extends Controller
     public function create()
     {
         try {
-            $view = $this->module.'.create-or-edit';
+            $view = $this->module . '.create-or-edit';
             $data = [
                 'titles' => $this->titles,
                 'edit' => false,
@@ -104,7 +104,7 @@ class CustomerController extends Controller
             // Store customer data
             $result = $this->customerService->create($credentials);
 
-            if (! $result) {
+            if (!$result) {
                 throw new Exception(__('general.process.failed'));
             }
 
@@ -126,7 +126,7 @@ class CustomerController extends Controller
     {
         try {
             $customer = $this->customerService->find($id);
-            $view = $this->module.'.detail';
+            $view = $this->module . '.detail';
             $data = [
                 'titles' => $this->titles,
                 'customer' => $customer,
@@ -150,7 +150,7 @@ class CustomerController extends Controller
     {
         try {
             $customer = $this->customerService->find($id);
-            $view = $this->module.'.create-or-edit';
+            $view = $this->module . '.create-or-edit';
             $data = [
                 'titles' => $this->titles,
                 'customer' => $customer,
@@ -179,7 +179,7 @@ class CustomerController extends Controller
             // Update customer data
             $result = $this->customerService->update($id, $credentials);
 
-            if (! $result) {
+            if (!$result) {
                 throw new Exception(__('general.process.failed'));
             }
 
@@ -203,7 +203,7 @@ class CustomerController extends Controller
             // Delete customer data
             $result = $this->customerService->delete($id);
 
-            if (! $result) {
+            if (!$result) {
                 throw new Exception(__('general.process.failed'));
             }
 
@@ -227,7 +227,7 @@ class CustomerController extends Controller
             // Toggle customer status
             $result = $this->customerService->toggleStatus($id);
 
-            if (! $result) {
+            if (!$result) {
                 throw new Exception(__('general.process.failed'));
             }
 
@@ -263,7 +263,7 @@ class CustomerController extends Controller
     public function excel()
     {
         try {
-            return \Maatwebsite\Excel\Facades\Excel::download(new CustomersExport(), 'export-customers-'.now()->timestamp.'.xlsx');
+            return \Maatwebsite\Excel\Facades\Excel::download(new CustomersExport(), 'export-customers-' . now()->timestamp . '.xlsx');
         }
         //
         catch (\Throwable $th) {

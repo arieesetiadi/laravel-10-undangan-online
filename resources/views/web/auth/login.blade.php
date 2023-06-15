@@ -14,7 +14,6 @@
 
 <body class="bg-primary">
     <div class="authentication-page hero-1 py-5">
-        <!-- bg-overlay-img -->
         <div class="bg-overlay overflow-hidden bg-transparent">
             <div class="hero-1-bg"></div>
         </div>
@@ -52,7 +51,7 @@
                                     <form id="login" action="{{ route('web.auth.login.process', ['locale' => app()->getLocale()]) }}" method="POST">
                                         @csrf
                                         <div class="mb-3">
-                                            <label class="form-label" for="username">
+                                            <label class="form-label" for="credential">
                                                 {{ __('general.words.attributes.username') }} /
                                                 {{ __('general.words.attributes.email') }} /
                                                 {{ __('general.words.attributes.phone') }}
@@ -99,11 +98,10 @@
 
                                         <div class="mt-4 text-center">
                                             <a href="{{ route('web.auth.forgot-password.index', app()->getLocale()) }}" class="text-body">
-                                                <i class="mdi mdi-lock mr-1"></i> {{ __('auth.password_reset.word') }}?
+                                                <i class="fa-solid fa-lock"></i> {{ __('auth.password_reset.word') }}?
                                             </a>
                                         </div>
                                     </form>
-                                    <!-- end-form -->
                                 </div>
                             </div>
                         </div>
@@ -114,13 +112,10 @@
                                 <a href="{{ route('web.auth.register.index', app()->getLocale()) }}" class="font-weight-semibold text-white">{{ __('auth.register.word') }}</a>
                             </p>
                         </div>
-
                     </div>
                 </div>
             </div>
-            <!-- end row -->
         </div>
-        <!-- end container -->
     </div>
 
     {{-- Include Scripts --}}
@@ -133,7 +128,7 @@
     <script>
         $('form#login').validate({
             rules: {
-                username: {
+                credential: {
                     required: true
                 },
                 password: {
@@ -141,11 +136,11 @@
                 }
             },
             messages: {
-                username: {
-                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.username')]) }}`,
+                credential: {
+                    required: validatorRequiredMessage(`{{ __('validation.attributes.credential') }}`),
                 },
                 password: {
-                    required: `{{ __('validation.required', ['attribute' => __('validation.attributes.password')]) }}`,
+                    required: validatorRequiredMessage(`{{ __('validation.attributes.password') }}`),
                 }
             },
             errorPlacement: function(label, element) {

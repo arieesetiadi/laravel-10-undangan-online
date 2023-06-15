@@ -30,6 +30,7 @@ class StoreRequest extends FormRequest
             'username' => 'required|unique:customers,username',
             'name' => 'required',
             'email' => 'required|unique:customers,email',
+            'phone' => 'nullable|unique:customers,phone',
             'password' => 'required',
         ];
     }
@@ -45,6 +46,7 @@ class StoreRequest extends FormRequest
             'username' => $this->username,
             'name' => $this->name,
             'email' => $this->email,
+            'phone' => normalize_phone($this->phone),
             'password' => Hash::make($this->password),
             'status' => GeneralStatus::ACTIVE,
         ];

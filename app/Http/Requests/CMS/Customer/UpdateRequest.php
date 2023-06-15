@@ -31,6 +31,7 @@ class UpdateRequest extends FormRequest
             'username' => 'required|unique:customers,username,'.$request->customer,
             'name' => 'required',
             'email' => 'required|unique:customers,email,'.$request->customer,
+            'phone' => 'nullable|unique:customers,phone,'.$request->customer,
         ];
     }
 
@@ -45,6 +46,7 @@ class UpdateRequest extends FormRequest
             'username' => $this->username,
             'name' => $this->name,
             'email' => $this->email,
+            'phone' => normalize_phone($this->phone),
             'status' => GeneralStatus::ACTIVE,
         ];
 

@@ -19,7 +19,6 @@ return new class() extends Migration
             $table->string('email')->unique();
             $table->string('phone', 15)->nullable();
             $table->string('password')->default(Hash::make('admin'));
-            $table->string('avatar')->nullable();
             $table->boolean('status')->nullable(false)->default(false);
             $table->timestamps();
         });
