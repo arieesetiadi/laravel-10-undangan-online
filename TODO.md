@@ -11,13 +11,12 @@
 - [x] Cross-check CMS views
 - [x] Cross-check WEB views
 - [x] MDI -> FontAwesome
-- [ ] Add tooltips 
 - [x] Implement Animate on Scroll library
 - [x] Check jquery validator messages
 - [x] Adjust active-sidebar style
 - [ ] Implement API Authentication
 - [ ] Make API with Guard
-    - [ ] Get Administrators
+    - [x] Get Administrators
     - [ ] Get Customers
 - [ ] W3 Validator
 - [ ] Check URL Speed

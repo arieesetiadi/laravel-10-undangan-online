@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\V1\Payment;
 
+use App\Constants\HttpStatus;
 use App\Constants\PaymentGateway;
 use App\Http\Controllers\API\ResponseController;
 use App\Http\Controllers\Controller;
@@ -31,19 +32,23 @@ class PaymentController extends Controller
                         'checkout' => $checkout,
                     ];
 
-                    return ResponseController::success('PAYMENT_CHECKOUT_GENERATED', $data);
+                    return ResponseController::success(
+                        code: HttpStatus::OK,
+                        message: __('response.payment.checkout.success'),
+                        data: $data
+                    );
                     //
                 default:
-                    throw new Exception('PAYMENT_GATEWAY_INVALID');
+                    throw new Exception(__('response.payment.payment_gateway.invalid'));
             }
         }
         //
         catch (\Throwable $error) {
-            $message = $error->getMessage();
-            $data = $error->getTrace();
-            $code = $error->getCode();
-
-            return ResponseController::failed($message, $data, $code);
+            return ResponseController::failed(
+                code: $error->getCode(),
+                message: $error->getMessage(),
+                errors: $error->getTrace(),
+            );
         }
     }
 
@@ -71,11 +76,11 @@ class PaymentController extends Controller
         }
         //
         catch (\Throwable $error) {
-            $message = $error->getMessage();
-            $data = $error->getTrace();
-            $code = $error->getCode();
-
-            return ResponseController::failed($message, $data, $code);
+            return ResponseController::failed(
+                code: $error->getCode(),
+                message: $error->getMessage(),
+                errors: $error->getTrace(),
+            );
         }
     }
 }

@@ -23,6 +23,7 @@ return [
     ],
     'profile' => [
         'word' => 'Profile',
+        'subtitle' => 'Online',
         'update' => [
             'success' => 'Profile Anda berhasil diperbarui.',
             'failed' => 'Maaf, kami tidak dapat menyelesaikan pembaruan profil Anda saat ini. Harap periksa informasi Anda dan coba lagi.',

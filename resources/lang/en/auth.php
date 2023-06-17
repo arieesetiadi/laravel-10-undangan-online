@@ -23,6 +23,7 @@ return [
     ],
     'profile' => [
         'word' => 'Profile',
+        'subtitle' => 'Online',
         'update' => [
             'success' => 'Your profile has been updated successfully.',
             'failed' => 'Sorry, we could not complete your profile update at this time. Please check your information and try again.',

@@ -2,7 +2,11 @@
 
 namespace App\Exceptions;
 
+use App\Constants\HttpStatus;
+use App\Http\Controllers\API\ResponseController;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -25,6 +29,27 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+
+        // Handle auth exception
+        $this->renderable(function (AuthenticationException $e, $request) {
+            if ($request->is('api/*')) {
+                throw ResponseController::failed(
+                    code: HttpStatus::UNAUTHORIZED,
+                    message: $e->getMessage()
+                );
+            }
+        });
+
+        // Handle validation exception
+        $this->renderable(function (ValidationException $e, $request) {
+            if ($request->is('api/*')) {
+                throw ResponseController::failed(
+                    code: HttpStatus::UNPROCESSABLE_ENTITY,
+                    message: $e->getMessage(),
+                    errors: $e->validator->errors()
+                );
+            }
         });
     }
 }

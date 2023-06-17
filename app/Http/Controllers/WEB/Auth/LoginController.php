@@ -34,9 +34,9 @@ class LoginController extends Controller
     /**
      * Initiate controller properties value.
      */
-    public function __construct(CustomerService $customerService)
+    public function __construct()
     {
-        $this->customerService = $customerService;
+        $this->customerService = new CustomerService();
         $this->module = 'web.auth';
         $this->title = __('auth.login.word');
     }

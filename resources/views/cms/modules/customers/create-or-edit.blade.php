@@ -99,11 +99,9 @@
 
                             <div class="d-flex mt-4 gap-2">
                                 <a class="btn btn-light" type="submit" href="{{ route('cms.customers.index') }}">
-                                    <i class="fa-solid fa-arrow-left"></i>
                                     {{ __('general.actions.back') }}
                                 </a>
                                 <button class="btn btn-primary" type="submit">
-                                    <i class="fa-solid fa-circle-check"></i>
                                     {{ $edit ? __('general.actions.update') : __('general.actions.submit') }}
                                 </button>
                             </div>

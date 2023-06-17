@@ -2,8 +2,9 @@
 
 namespace App\Services;
 
-use App\Models\Administrator;
 use Illuminate\Support\Facades\Hash;
+use Arr;
+use App\Models\Administrator;
 
 class AdministratorService
 {
@@ -29,7 +30,13 @@ class AdministratorService
      */
     public function all()
     {
-        return $this->administrator->latest()->get();
+        return $this->administrator
+            // Filter status
+            ->when(request()->status !== null, function ($query) {
+                return $query->where('status', request()->status);
+            })
+            ->latest()
+            ->get();
     }
 
     /**
@@ -41,6 +48,17 @@ class AdministratorService
     public function find($id)
     {
         return $this->administrator->findOrFail($id);
+    }
+
+    /**
+     * Get administrator by credentials.
+     *
+     * @param  array  $credentials
+     * @return \App\Models\Administrator
+     */
+    public function findByCredentials($credentials)
+    {
+        return $this->administrator->where(Arr::except($credentials, 'password'));
     }
 
     /**
@@ -82,7 +100,7 @@ class AdministratorService
      */
     public function getStatus($credentials)
     {
-        $administrator = $this->administrator->where('username', $credentials['username'])->first();
+        $administrator = $this->findByCredentials($credentials)->first();
         $status = $administrator->status;
 
         return $status;
@@ -97,7 +115,7 @@ class AdministratorService
      */
     public function setStatus($credentials, $status)
     {
-        $administrator = $this->administrator->where('email', $credentials['email']);
+        $administrator = $this->findByCredentials($credentials);
         $result = $administrator->update(['status' => $status]);
 
         return $result;
@@ -112,7 +130,7 @@ class AdministratorService
     public function setPassword($credentials)
     {
         $password = Hash::make($credentials['password']);
-        $administrator = $this->administrator->where('email', $credentials['email']);
+        $administrator = $this->findByCredentials($credentials);
         $result = $administrator->update(['password' => $password]);
 
         return $result;
@@ -127,7 +145,7 @@ class AdministratorService
     public function toggleStatus($id)
     {
         $administrator = $this->find($id);
-        $result = $administrator->update(['status' => ! $administrator->status]);
+        $result = $administrator->update(['status' => !$administrator->status]);
 
         return $result;
     }

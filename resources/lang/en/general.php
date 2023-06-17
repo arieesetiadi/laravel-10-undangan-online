@@ -29,6 +29,13 @@ return [
         'toggle' => 'Toggle',
     ],
     'words' => [
+        'main' => 'Main',
+        'master' => 'Master',
+        'other' => 'Other',
+        'dashboard' => 'Dashboard',
+        'administrators' => 'Administrators',
+        'customers' => 'Customers',
+        'cms' => 'CMS',
         'web' => 'Website',
         'detail' => 'Detail',
         'transaction' => 'Transaction',

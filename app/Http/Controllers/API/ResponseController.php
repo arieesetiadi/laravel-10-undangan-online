@@ -16,7 +16,6 @@ class ResponseController extends Controller
     private static $response = [
         'code' => null,
         'message' => null,
-        'data' => null,
     ];
 
     /**
@@ -29,7 +28,7 @@ class ResponseController extends Controller
      */
     public static function success($message = 'SUCCESS', $data = null, $code = HttpStatus::OK)
     {
-        $code = $code === null || ! $code ? HttpStatus::OK : $code;
+        $code = $code === null || !$code ? HttpStatus::OK : $code;
 
         self::$response['code'] = $code;
         self::$response['message'] = $message;
@@ -42,17 +41,17 @@ class ResponseController extends Controller
      * Generating failed API response.
      *
      * @param  string  $message
-     * @param  array  $data
+     * @param  array  $errors
      * @param  int  $code
      * @return \Illuminate\Http\RedirectResponse
      */
-    public static function failed($message = 'FAILED', $data = null, $code = HttpStatus::BAD_REQUEST)
+    public static function failed($message = 'FAILED', $errors = null, $code = HttpStatus::BAD_REQUEST)
     {
-        $code = $code === null || ! $code ? HttpStatus::BAD_REQUEST : $code;
+        $code = $code === null || !$code ? HttpStatus::BAD_REQUEST : $code;
 
         self::$response['code'] = $code;
         self::$response['message'] = $message;
-        self::$response['data'] = $data;
+        self::$response['errors'] = $errors;
 
         $response = response()->json(self::$response, $code);
 

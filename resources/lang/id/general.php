@@ -29,6 +29,13 @@ return [
         'toggle' => 'Toggle',
     ],
     'words' => [
+        'main' => 'Utama',
+        'master' => 'Master',
+        'other' => 'Lainnya',
+        'dashboard' => 'Dashboard',
+        'administrators' => 'Administrators',
+        'customers' => 'Konsumen',
+        'cms' => 'CMS',
         'web' => 'Website',
         'detail' => 'Detail',
         'transaction' => 'Transaksi',

@@ -63,7 +63,7 @@
                 <div class="auth-submit">
                     {{-- Submit Button --}}
                     <button class="btn btn-primary" type="submit" role="button">
-                        {{ __('auth.login.word') }}
+                        {{ __('auth.login.word') }} 
                     </button>
                 </div>
             </form>
