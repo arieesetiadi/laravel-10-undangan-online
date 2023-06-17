@@ -47,7 +47,7 @@ class AdministratorService
      */
     public function find($id)
     {
-        return $this->administrator->findOrFail($id);
+        return $this->administrator->find($id);
     }
 
     /**

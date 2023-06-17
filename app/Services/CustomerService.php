@@ -41,7 +41,7 @@ class CustomerService
      */
     public function find($id)
     {
-        return $this->customer->findOrFail($id);
+        return $this->customer->find($id);
     }
 
     /**

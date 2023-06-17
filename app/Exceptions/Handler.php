@@ -2,13 +2,15 @@
 
 namespace App\Exceptions;
 
-use App\Constants\HttpStatus;
-use App\Http\Controllers\API\ResponseController;
-use Illuminate\Auth\AuthenticationException;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\Exceptions\ThrottleRequestsException;
-use Illuminate\Validation\ValidationException;
 use Throwable;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Auth\AuthenticationException;
+use App\Http\Controllers\API\ResponseController;
+use App\Constants\HttpStatus;
 
 class Handler extends ExceptionHandler
 {
@@ -58,6 +60,16 @@ class Handler extends ExceptionHandler
             if ($request->is('api/*')) {
                 throw ResponseController::failed(
                     code: HttpStatus::TOO_MANY_REQUESTS,
+                    message: $e->getMessage(),
+                );
+            }
+        });
+
+        // Handle model not found exception
+        $this->renderable(function (ModelNotFoundException $e, $request) {
+            if ($request->is('api/*')) {
+                throw ResponseController::failed(
+                    code: HttpStatus::NOT_FOUND,
                     message: $e->getMessage(),
                 );
             }

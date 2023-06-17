@@ -38,6 +38,7 @@ return [
         ],
         'get' => [
             'success' => 'Data administrator berhasil diterima.',
+            'not_found' => 'Data administrator tidak ditemukan.',
         ],
     ],
 ];

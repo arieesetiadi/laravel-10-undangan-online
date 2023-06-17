@@ -38,6 +38,7 @@ return [
         ],
         'get' => [
             'success' => 'Administrator data retrieved successfully.',
+            'not_found' => 'Administrator data is not found.',
         ],
     ],
 ];

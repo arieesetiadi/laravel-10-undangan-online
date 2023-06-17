@@ -7,6 +7,7 @@ use App\Http\Controllers\API\ResponseController;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Administrator\AdministratorResource;
 use App\Services\AdministratorService;
+use Exception;
 use Illuminate\Http\Request;
 
 class AdministratorController extends Controller
@@ -64,7 +65,29 @@ class AdministratorController extends Controller
      */
     public function show(string $id)
     {
+        try {
+            $administrator = $this->administratorService->find($id);
+
+            if(!$administrator) {
+                throw new Exception(__('response.administrators.get.not_found'), HttpStatus::NOT_FOUND);
+            }
+
+            $administrator = AdministratorResource::make($administrator);
+
+            return ResponseController::success(
+                code: HttpStatus::OK,
+                message: __('response.administrators.get.success'),
+                data: $administrator
+            );
+        }
         //
+        catch (\Throwable $error) {
+            return ResponseController::failed(
+                code: $error->getCode(),
+                message: $error->getMessage(),
+                errors: $error->getTrace(),
+            );
+        }
     }
 
     /**
