@@ -33,12 +33,11 @@ return [
         ],
     ],
     'administrators' => [
-        'get_all' => [
-            'success' => 'Data administrators berhasil diterima.',
-        ],
-        'get' => [
-            'success' => 'Data administrator berhasil diterima.',
-            'not_found' => 'Data administrator tidak ditemukan.',
-        ],
+        'not_found' => 'Data administrator tidak ditemukan.',
+        'success_get_all' => 'Data administrators berhasil diterima.',
+        'success_find' => 'Data administrator berhasil diterima.',
+        'success_create' => 'Data administrator berhasil dibuat.',
+        'success_update' => 'Data administrator berhasil diubah.',
+        'success_delete' => 'Data administrator berhasil dihapus.',
     ],
 ];

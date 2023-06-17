@@ -33,12 +33,11 @@ return [
         ],
     ],
     'administrators' => [
-        'get_all' => [
-            'success' => 'Administrators data retrieved successfully.',
-        ],
-        'get' => [
-            'success' => 'Administrator data retrieved successfully.',
-            'not_found' => 'Administrator data is not found.',
-        ],
+        'not_found' => 'Administrator data is not found.',
+        'success_get_all' => 'Administrators data retrieved successfully.',
+        'success_find' => 'Administrator data retrieved successfully.',
+        'success_create' => 'Administrator data created successfully.',
+        'success_update' => 'Administrator data updated successfully.',
+        'success_delete' => 'Administrator data deleted successfully.',
     ],
 ];

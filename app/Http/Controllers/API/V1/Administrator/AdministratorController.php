@@ -38,7 +38,7 @@ class AdministratorController extends Controller
 
             return ResponseController::success(
                 code: HttpStatus::OK,
-                message: __('response.administrators.get_all.success'),
+                message: __('response.administrators.success_get_all'),
                 data: $administrators
             );
         }
@@ -68,15 +68,15 @@ class AdministratorController extends Controller
         try {
             $administrator = $this->administratorService->find($id);
 
-            if(!$administrator) {
-                throw new Exception(__('response.administrators.get.not_found'), HttpStatus::NOT_FOUND);
+            if (!$administrator) {
+                throw new Exception(__('response.administrators.not_found'), HttpStatus::NOT_FOUND);
             }
 
             $administrator = AdministratorResource::make($administrator);
 
             return ResponseController::success(
                 code: HttpStatus::OK,
-                message: __('response.administrators.get.success'),
+                message: __('response.administrators.success_find'),
                 data: $administrator
             );
         }
@@ -103,6 +103,27 @@ class AdministratorController extends Controller
      */
     public function destroy(string $id)
     {
+        try {
+            $administrator = $this->administratorService->find($id);
+
+            if (!$administrator) {
+                throw new Exception(__('response.administrators.not_found'), HttpStatus::NOT_FOUND);
+            }
+
+            $administrator->delete();
+
+            return ResponseController::success(
+                code: HttpStatus::OK,
+                message: __('response.administrators.success_delete')
+            );
+        }
         //
+        catch (\Throwable $error) {
+            return ResponseController::failed(
+                code: $error->getCode(),
+                message: $error->getMessage(),
+                errors: $error->getTrace(),
+            );
+        }
     }
 }
