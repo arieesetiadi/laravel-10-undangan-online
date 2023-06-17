@@ -6,6 +6,7 @@ use App\Constants\HttpStatus;
 use App\Http\Controllers\API\ResponseController;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Illuminate\Validation\ValidationException;
 use Throwable;
 
@@ -48,6 +49,16 @@ class Handler extends ExceptionHandler
                     code: HttpStatus::UNPROCESSABLE_ENTITY,
                     message: $e->getMessage(),
                     errors: $e->validator->errors()
+                );
+            }
+        });
+
+        // Handle API rate-limiter exception
+        $this->renderable(function (ThrottleRequestsException $e, $request) {
+            if ($request->is('api/*')) {
+                throw ResponseController::failed(
+                    code: HttpStatus::TOO_MANY_REQUESTS,
+                    message: $e->getMessage(),
                 );
             }
         });

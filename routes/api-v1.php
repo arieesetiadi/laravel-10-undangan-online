@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // API Locale
-Route::middleware('locale.use.api')->group(function () {
+Route::middleware(['locale.use.api', 'throttle:100,1'])->group(function () {
     // API Guest
     Route::middleware('guest:sanctum')->group(function () {
         Route::post('/login/process', [LoginController::class, 'process']);
