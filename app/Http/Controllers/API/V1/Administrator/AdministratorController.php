@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\API\V1\Administrator;
 
 use App\Constants\HttpStatus;
-use Illuminate\Http\Request;
-use App\Services\AdministratorService;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\API\ResponseController;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\Administrator\AdministratorResource;
+use App\Services\AdministratorService;
+use Illuminate\Http\Request;
 
 class AdministratorController extends Controller
 {
@@ -41,7 +41,7 @@ class AdministratorController extends Controller
                 data: $administrators
             );
         }
-        // 
+        //
         catch (\Throwable $error) {
             return ResponseController::failed(
                 code: $error->getCode(),

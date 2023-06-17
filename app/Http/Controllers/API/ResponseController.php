@@ -28,7 +28,7 @@ class ResponseController extends Controller
      */
     public static function success($message = 'SUCCESS', $data = null, $code = HttpStatus::OK)
     {
-        $code = $code === null || !$code ? HttpStatus::OK : $code;
+        $code = $code === null || ! $code ? HttpStatus::OK : $code;
 
         self::$response['code'] = $code;
         self::$response['message'] = $message;
@@ -47,7 +47,7 @@ class ResponseController extends Controller
      */
     public static function failed($message = 'FAILED', $errors = null, $code = HttpStatus::BAD_REQUEST)
     {
-        $code = $code === null || !$code ? HttpStatus::BAD_REQUEST : $code;
+        $code = $code === null || ! $code ? HttpStatus::BAD_REQUEST : $code;
 
         self::$response['code'] = $code;
         self::$response['message'] = $message;

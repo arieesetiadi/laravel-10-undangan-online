@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\API\V1\Auth;
 
-use Illuminate\Http\Request;
-use App\Services\AdministratorService;
-use App\Http\Requests\API\V1\Auth\LogoutRequest;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\API\ResponseController;
 use App\Constants\HttpStatus;
+use App\Http\Controllers\API\ResponseController;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\API\V1\Auth\LogoutRequest;
+use App\Services\AdministratorService;
 
 class LogoutController extends Controller
 {
-     /**
+    /**
      * Default service class.
      *
      * @var \App\Services\AdministratorService
@@ -26,7 +25,6 @@ class LogoutController extends Controller
         $this->administratorService = new AdministratorService();
     }
 
-
     public function process(LogoutRequest $request)
     {
         try {
@@ -38,7 +36,7 @@ class LogoutController extends Controller
                 message: __('response.auth.logout.success')
             );
         }
-        // 
+        //
         catch (\Throwable $error) {
             return ResponseController::failed(
                 code: $error->getCode(),

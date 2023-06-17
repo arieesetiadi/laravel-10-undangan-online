@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Customer;
+use Arr;
 use Illuminate\Support\Facades\Hash;
 
 class CustomerService
@@ -44,6 +45,17 @@ class CustomerService
     }
 
     /**
+     * Get customers by credentials.
+     *
+     * @param  array  $credentials
+     * @return \App\Models\Customer
+     */
+    public function findByCredentials($credentials)
+    {
+        return $this->customer->where(Arr::except($credentials, 'password'));
+    }
+
+    /**
      * Store new customer data.
      *
      * @param  array  $credentials
@@ -82,7 +94,7 @@ class CustomerService
      */
     public function getStatus($credentials)
     {
-        $customer = $this->customer->where('username', $credentials['username'])->first();
+        $customer = $this->customer->findByCredentials($credentials)->first();
         $status = $customer->status;
 
         return $status;
@@ -108,7 +120,7 @@ class CustomerService
      */
     public function setStatus($credentials, $status)
     {
-        $customer = $this->customer->where('email', $credentials['email']);
+        $customer = $this->customer->findByCredentials($credentials);
         $result = $customer->update(['status' => $status]);
 
         return $result;
@@ -123,7 +135,7 @@ class CustomerService
     public function setPassword($credentials)
     {
         $password = Hash::make($credentials['password']);
-        $customer = $this->customer->where('email', $credentials['email']);
+        $customer = $this->findByCredentials($credentials);
         $result = $customer->update(['password' => $password]);
 
         return $result;

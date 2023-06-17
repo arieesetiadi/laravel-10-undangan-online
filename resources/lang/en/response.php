@@ -1,4 +1,5 @@
 <?php
+
 return [
 
     /*
@@ -14,7 +15,7 @@ return [
 
     'auth' => [
         'account' => [
-            'inactive' => 'Account is inactive.'
+            'inactive' => 'Account is inactive.',
         ],
         'login' => [
             'success' => 'Auth token generated successfully.',

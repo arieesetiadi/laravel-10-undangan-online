@@ -1,12 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use App\Http\Controllers\API\V1\Payment\PaymentController;
-use App\Http\Controllers\API\V1\Customer\CustomerController;
 use App\Http\Controllers\API\V1\Administrator\AdministratorController;
 use App\Http\Controllers\API\V1\Auth\LoginController;
 use App\Http\Controllers\API\V1\Auth\LogoutController;
+use App\Http\Controllers\API\V1\Customer\CustomerController;
+use App\Http\Controllers\API\V1\Payment\PaymentController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,12 +24,12 @@ Route::middleware('locale.use.api')->group(function () {
     Route::middleware('guest:sanctum')->group(function () {
         Route::post('/login/process', [LoginController::class, 'process']);
     });
-    
+
     // API Authenticated
     Route::middleware('auth:sanctum')->group(function () {
         // API Logout
         Route::post('/logout/process', [LogoutController::class, 'process']);
-        
+
         // API Payment
         Route::prefix('/payment')->group(function () {
             // Entry Point

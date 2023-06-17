@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\CMS\Modules;
 
-use Exception;
-use App\Services\AdministratorService;
-use App\Http\Requests\CMS\Administrator\UpdateRequest;
-use App\Http\Requests\CMS\Administrator\StoreRequest;
-use App\Http\Controllers\ResponseController;
-use App\Http\Controllers\Controller;
 use App\Exports\AdministratorsExport;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\ResponseController;
+use App\Http\Requests\CMS\Administrator\StoreRequest;
+use App\Http\Requests\CMS\Administrator\UpdateRequest;
+use App\Services\AdministratorService;
+use Exception;
 
 class AdministratorController extends Controller
 {
@@ -55,7 +55,7 @@ class AdministratorController extends Controller
     {
         try {
             $administrators = $this->administratorService->all();
-            $view = $this->module . '.index';
+            $view = $this->module.'.index';
             $data = [
                 'titles' => $this->titles,
                 'administrators' => $administrators,
@@ -77,7 +77,7 @@ class AdministratorController extends Controller
     public function create()
     {
         try {
-            $view = $this->module . '.create-or-edit';
+            $view = $this->module.'.create-or-edit';
             $data = [
                 'titles' => $this->titles,
                 'edit' => false,
@@ -104,7 +104,7 @@ class AdministratorController extends Controller
             // Store administrator data
             $result = $this->administratorService->create($credentials);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception(__('general.process.failed'));
             }
 
@@ -126,7 +126,7 @@ class AdministratorController extends Controller
     {
         try {
             $administrator = $this->administratorService->find($id);
-            $view = $this->module . '.detail';
+            $view = $this->module.'.detail';
             $data = [
                 'titles' => $this->titles,
                 'administrator' => $administrator,
@@ -150,7 +150,7 @@ class AdministratorController extends Controller
     {
         try {
             $administrator = $this->administratorService->find($id);
-            $view = $this->module . '.create-or-edit';
+            $view = $this->module.'.create-or-edit';
             $data = [
                 'titles' => $this->titles,
                 'administrator' => $administrator,
@@ -179,7 +179,7 @@ class AdministratorController extends Controller
             // Update administrator data
             $result = $this->administratorService->update($id, $credentials);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception(__('general.process.failed'));
             }
 
@@ -203,7 +203,7 @@ class AdministratorController extends Controller
             // Delete administrator data
             $result = $this->administratorService->delete($id);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception(__('general.process.failed'));
             }
 
@@ -227,7 +227,7 @@ class AdministratorController extends Controller
             // Toggle administrator status
             $result = $this->administratorService->toggleStatus($id);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception(__('general.process.failed'));
             }
 
@@ -263,7 +263,7 @@ class AdministratorController extends Controller
     public function excel()
     {
         try {
-            return \Maatwebsite\Excel\Facades\Excel::download(new AdministratorsExport(), 'export-administrators-' . now()->timestamp . '.xlsx');
+            return \Maatwebsite\Excel\Facades\Excel::download(new AdministratorsExport(), 'export-administrators-'.now()->timestamp.'.xlsx');
         }
         //
         catch (\Throwable $th) {

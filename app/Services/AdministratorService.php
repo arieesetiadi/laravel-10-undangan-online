@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Hash;
-use Arr;
 use App\Models\Administrator;
+use Arr;
+use Illuminate\Support\Facades\Hash;
 
 class AdministratorService
 {
@@ -145,7 +145,7 @@ class AdministratorService
     public function toggleStatus($id)
     {
         $administrator = $this->find($id);
-        $result = $administrator->update(['status' => !$administrator->status]);
+        $result = $administrator->update(['status' => ! $administrator->status]);
 
         return $result;
     }

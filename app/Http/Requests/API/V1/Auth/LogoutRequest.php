@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\API\V1\Auth;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\BaseFormRequest;
 use App\Services\AdministratorService;
 use Hash;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Validator;
 
 class LogoutRequest extends FormRequest
@@ -51,16 +51,15 @@ class LogoutRequest extends FormRequest
         $this->type = is_email($this->credential) ? 'email' : (is_phone(normalize_phone($this->credential)) ? 'phone' : 'username');
 
         return [
-            'credential' => 'required|exists:administrators,' . $this->type,
+            'credential' => 'required|exists:administrators,'.$this->type,
             'password' => 'required',
         ];
     }
 
-
     /**
      * Validate administrator data after main rules.
      *
-     * @param Illuminate\Validation\Validator $validator
+     * @param  Illuminate\Validation\Validator  $validator
      */
     public function withValidator(Validator $validator)
     {
@@ -68,14 +67,14 @@ class LogoutRequest extends FormRequest
             $validator->after(function ($validator) {
                 // Get administrator data
                 $administrator = $this->administratorService->findByCredentials($this->credentials())->first();
-                
+
                 // Cek administrator status
-                if (!$administrator->status) {
+                if (! $administrator->status) {
                     $validator->errors()->add('account', __('response.auth.account.inactive'));
                 }
 
                 // Verify administrator password
-                if (!Hash::check($this->password, $administrator->password)) {
+                if (! Hash::check($this->password, $administrator->password)) {
                     $validator->errors()->add('credentials', __('auth.login.failed'));
                 }
             });

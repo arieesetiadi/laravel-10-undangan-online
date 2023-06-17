@@ -1,20 +1,20 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\WEB\ProfileController as WEBProfileController;
-use App\Http\Controllers\WEB\HomeController;
-use App\Http\Controllers\WEB\Auth\RegisterController as WEBRegisterController;
-use App\Http\Controllers\WEB\Auth\OAuthController;
-use App\Http\Controllers\WEB\Auth\LogoutController as WEBLogoutController;
-use App\Http\Controllers\WEB\Auth\LoginController as WEBLoginController;
-use App\Http\Controllers\WEB\Auth\ForgotPasswordController as WEBForgotPasswordController;
-use App\Http\Controllers\LocaleController;
-use App\Http\Controllers\CMS\Modules\CustomerController;
-use App\Http\Controllers\CMS\Modules\AdministratorController;
-use App\Http\Controllers\CMS\DashboardController;
-use App\Http\Controllers\CMS\Auth\LogoutController as CMSLogoutController;
-use App\Http\Controllers\CMS\Auth\LoginController as CMSLoginController;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\CMS\Auth\LoginController as CMSLoginController;
+use App\Http\Controllers\CMS\Auth\LogoutController as CMSLogoutController;
+use App\Http\Controllers\CMS\DashboardController;
+use App\Http\Controllers\CMS\Modules\AdministratorController;
+use App\Http\Controllers\CMS\Modules\CustomerController;
+use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\WEB\Auth\ForgotPasswordController as WEBForgotPasswordController;
+use App\Http\Controllers\WEB\Auth\LoginController as WEBLoginController;
+use App\Http\Controllers\WEB\Auth\LogoutController as WEBLogoutController;
+use App\Http\Controllers\WEB\Auth\OAuthController;
+use App\Http\Controllers\WEB\Auth\RegisterController as WEBRegisterController;
+use App\Http\Controllers\WEB\HomeController;
+use App\Http\Controllers\WEB\ProfileController as WEBProfileController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

@@ -1,4 +1,5 @@
 <?php
+
 return [
 
     /*
@@ -14,7 +15,7 @@ return [
 
     'auth' => [
         'account' => [
-            'inactive' => 'Akun tidak aktif.'
+            'inactive' => 'Akun tidak aktif.',
         ],
         'login' => [
             'success' => 'Token autentikasi berhasil dibuat.',

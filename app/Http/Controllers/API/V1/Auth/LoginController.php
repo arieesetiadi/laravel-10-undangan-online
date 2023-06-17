@@ -3,14 +3,10 @@
 namespace App\Http\Controllers\API\V1\Auth;
 
 use App\Constants\HttpStatus;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\API\ResponseController;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Auth\LoginRequest;
-use App\Models\Administrator;
 use App\Services\AdministratorService;
-use Exception;
-use Illuminate\Auth\AuthenticationException;
 
 class LoginController extends Controller
 {
@@ -28,7 +24,6 @@ class LoginController extends Controller
     {
         $this->administratorService = new AdministratorService();
     }
-
 
     public function process(LoginRequest $request)
     {
@@ -52,7 +47,7 @@ class LoginController extends Controller
                 data: $data,
             );
         }
-        // 
+        //
         catch (\Throwable $error) {
             return ResponseController::failed(
                 code: $error->getCode(),
