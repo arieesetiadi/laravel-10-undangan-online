@@ -6,10 +6,10 @@ use App\Constants\HttpStatus;
 use App\Http\Controllers\API\ResponseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\V1\Administrator\StoreRequest;
+use App\Http\Requests\API\V1\Administrator\UpdateRequest;
 use App\Http\Resources\Administrator\AdministratorResource;
 use App\Services\AdministratorService;
 use Exception;
-use Illuminate\Http\Request;
 
 class AdministratorController extends Controller
 {
@@ -60,13 +60,13 @@ class AdministratorController extends Controller
     {
         try {
             $credentials = $request->credentials();
-            $administrators = $this->administratorService->create($credentials);
-            $administrators = AdministratorResource::make($administrators);
+            $administrator = $this->administratorService->create($credentials);
+            $administrator = AdministratorResource::make($administrator);
 
             return ResponseController::success(
                 code: HttpStatus::OK,
                 message: __('response.administrators.success_create'),
-                data: $administrators
+                data: $administrator
             );
         }
         //
@@ -87,6 +87,7 @@ class AdministratorController extends Controller
         try {
             $administrator = $this->administratorService->find($id);
 
+            // Check administrator existance
             if (!$administrator) {
                 throw new Exception(__('response.administrators.not_found'), HttpStatus::NOT_FOUND);
             }
@@ -112,9 +113,34 @@ class AdministratorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRequest $request, string $id)
     {
+        try {
+            $credentials = $request->credentials();
+            $administrator = $this->administratorService->find($id);
+
+            // Check administrator existance
+            if (!$administrator) {
+                throw new Exception(__('response.administrators.not_found'), HttpStatus::NOT_FOUND);
+            }
+
+            $administrator->update($credentials);
+            $administrator = AdministratorResource::make($administrator);
+
+            return ResponseController::success(
+                code: HttpStatus::OK,
+                message: __('response.administrators.success_update'),
+                data: $administrator
+            );
+        }
         //
+        catch (\Throwable $error) {
+            return ResponseController::failed(
+                code: $error->getCode(),
+                message: $error->getMessage(),
+                errors: $error->getTrace(),
+            );
+        }
     }
 
     /**
