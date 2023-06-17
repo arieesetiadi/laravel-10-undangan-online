@@ -20,6 +20,16 @@ class StoreRequest extends FormRequest
     }
 
     /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'phone' => normalize_phone($this->phone),
+        ]);
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -29,7 +39,7 @@ class StoreRequest extends FormRequest
         return [
             'username' => 'required|unique:administrators,username',
             'name' => 'required',
-            'email' => 'required|unique:administrators,email',
+            'email' => 'required|email|unique:administrators,email',
             'phone' => 'nullable|unique:administrators,phone',
             'password' => 'required',
         ];

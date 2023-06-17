@@ -1,23 +1,20 @@
 <?php
 
-namespace App\Http\Requests\CMS\Administrator;
+namespace App\Http\Requests\API\V1\Administrator;
 
-use App\Constants\GeneralStatus;
-use App\Http\Requests\BaseFormRequest;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseFormRequest;
+use App\Constants\GeneralStatus;
 
-class UpdateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return auth('cms')->check();
+        return true;
     }
 
     /**
@@ -35,13 +32,14 @@ class UpdateRequest extends FormRequest
      *
      * @return array
      */
-    public function rules(Request $request)
+    public function rules()
     {
         return [
-            'username' => 'required|unique:administrators,username,' . $request->administrator,
+            'username' => 'required|unique:administrators,username',
             'name' => 'required',
-            'email' => 'required|unique:administrators,email,' . $request->administrator,
-            'phone' => 'nullable|unique:administrators,phone,' . $request->administrator,
+            'email' => 'required|email|unique:administrators,email',
+            'phone' => 'nullable|unique:administrators,phone',
+            'password' => 'required',
         ];
     }
 
@@ -52,20 +50,14 @@ class UpdateRequest extends FormRequest
      */
     public function credentials()
     {
-        $credentials = [
+        return [
             'username' => $this->username,
             'name' => $this->name,
             'email' => $this->email,
             'phone' => normalize_phone($this->phone),
+            'password' => Hash::make($this->password),
             'status' => GeneralStatus::ACTIVE,
         ];
-
-        // Include new password if its edited
-        if ($this->password) {
-            $credentials['password'] = Hash::make($this->password);
-        }
-
-        return $credentials;
     }
 
     /**

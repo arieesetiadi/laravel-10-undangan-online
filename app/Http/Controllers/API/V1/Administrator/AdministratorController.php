@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1\Administrator;
 use App\Constants\HttpStatus;
 use App\Http\Controllers\API\ResponseController;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\V1\Administrator\StoreRequest;
 use App\Http\Resources\Administrator\AdministratorResource;
 use App\Services\AdministratorService;
 use Exception;
@@ -55,9 +56,27 @@ class AdministratorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
+        try {
+            $credentials = $request->credentials();
+            $administrators = $this->administratorService->create($credentials);
+            $administrators = AdministratorResource::make($administrators);
+
+            return ResponseController::success(
+                code: HttpStatus::OK,
+                message: __('response.administrators.success_create'),
+                data: $administrators
+            );
+        }
         //
+        catch (\Throwable $error) {
+            return ResponseController::failed(
+                code: $error->getCode(),
+                message: $error->getMessage(),
+                errors: $error->getTrace(),
+            );
+        }
     }
 
     /**
