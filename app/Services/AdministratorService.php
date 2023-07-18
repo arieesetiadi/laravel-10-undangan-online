@@ -45,7 +45,7 @@ class AdministratorService
      * @param int $perPage
      * @return array
      */
-    public function paginate(int $perPage = 2)
+    public function paginate(int $perPage = 10)
     {
         return $this->administrator
             // Filter status
@@ -53,7 +53,7 @@ class AdministratorService
                 return $query->where('status', request()->status);
             })
             ->latest()
-            ->simplePaginate($perPage);
+            ->paginate($perPage);
     }
 
     /**

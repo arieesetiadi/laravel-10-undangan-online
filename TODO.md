@@ -14,11 +14,7 @@
 - [x] Implement Animate on Scroll library
 - [x] Check jquery validator messages
 - [x] Adjust active-sidebar style
-- [ ] Implement API Authentication
-- [ ] Make API with Guard
-    - [x] Get Administrators
-    - [ ] Get Customers
-- [ ] W3 Validator
-- [ ] Check URL Speed
-- [ ] New github repository
 - [ ] Database migration
+- [ ] Create CMS Modules:
+    - [ ] Pricing
+    - [ ] FAQ

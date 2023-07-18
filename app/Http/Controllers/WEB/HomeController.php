@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->module = 'web';
-        $this->title = __('general.words.home');
+        $this->title = 'Beranda';
     }
 
     /**
@@ -38,7 +38,7 @@ class HomeController extends Controller
     public function home()
     {
         try {
-            $view = $this->module.'.home';
+            $view = $this->module . '.home';
             $data['title'] = $this->title;
 
             return view($view, $data);

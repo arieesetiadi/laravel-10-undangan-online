@@ -12,7 +12,7 @@
         <div class="row mb-3">
             <div class="col">
                 <div class="page-description">
-                    <h1>{{ $edit ? 'Ubah' : 'Tambah' }} {{ $title }}</h1>
+                    <h3 class="fw-bold">{{ $edit ? 'Ubah' : 'Tambah' }} {{ $title }}</h3>
                     <h6 class="mt-2">
                         {{ Breadcrumbs::render('cms.administrators.action', $edit ? 'Ubah' : 'Tambah') }}
                     </h6>
@@ -84,7 +84,7 @@
                             <div class="mb-4">
                                 <div class="d-flex">
                                     <label class="form-label d-block" id="label-password" for="password">
-                                        Kata Sandi <span class="text-danger">*</span>
+                                        Kata Sandi <span class="text-danger {{ $edit ? 'd-none' : '' }}">*</span>
                                     </label>
                                     <div class="d-inline-block form-check form-switch px-5">
                                         <input class="form-check-input" id="toggle-password" name="toggle-password" type="checkbox" tabindex="-1" onchange="togglePassword(event, 'password')">

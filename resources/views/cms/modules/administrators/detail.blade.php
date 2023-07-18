@@ -12,7 +12,7 @@
         <div class="row mb-3">
             <div class="col">
                 <div class="page-description">
-                    <h1>Detail {{ $title }}</h1>
+                    <h3 class="fw-bold">Detail {{ $title }}</h3>
                     <h6 class="mt-2">
                         {{ Breadcrumbs::render('cms.administrators.action', 'Detail') }}
                     </h6>

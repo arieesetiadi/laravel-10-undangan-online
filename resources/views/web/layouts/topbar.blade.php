@@ -14,49 +14,42 @@
         <div class="navbar-collapse collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-center mt-lg-0 ml-auto mt-2" id="navbar-navlist">
                 <li class="nav-item">
-                    <a class="nav-link" id="scrollElement" href="{{ route('web.home', app()->getLocale()) }}">{{ __('general.words.home') }}</a>
+                    <a class="nav-link" id="scrollElement" href="{{ route('web.home') }}">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('web.home', app()->getLocale()) }}#about">{{ __('general.words.about') }}</a>
+                    <a class="nav-link" href="{{ route('web.home') }}#about">Tentang</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('web.home', app()->getLocale()) }}#pricing">{{ __('general.words.pricing') }}</a>
+                    <a class="nav-link" href="{{ route('web.home') }}#pricing">Harga</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('web.home', app()->getLocale()) }}#contact">{{ __('general.words.contact') }}</a>
+                    <a class="nav-link" href="{{ route('web.home') }}#contact">Kontak</a>
                 </li>
             </ul>
 
             @if (!auth('web')->check())
                 {{-- Topbar Login --}}
-                <a class="btn btn-sm btn-primary navbar-btn my-lg-0 my-2" href="{{ route('web.auth.login.index', app()->getLocale()) }}">
-                    {{ __('auth.login.word') }}
+                <a class="btn btn-sm btn-primary navbar-btn my-lg-0 my-2" href="{{ route('web.auth.login.index') }}">
+                    Masuk
                 </a>
 
                 {{-- Topbar Register --}}
-                <a class="btn btn-sm btn-info navbar-btn my-lg-0 my-2" href="{{ route('web.auth.register.index', app()->getLocale()) }}">
-                    {{ __('auth.register.word') }}
+                <a class="btn btn-sm btn-info navbar-btn my-lg-0 my-2" href="{{ route('web.auth.register.index') }}">
+                    Daftar
                 </a>
             @else
                 {{-- Topbar Profile --}}
-                <a class="btn btn-sm btn-primary navbar-btn my-lg-0 {{ $topbar['profile'] ?? '' }} my-2" href="{{ route('web.profile.index', app()->getLocale()) }}" aria-current="page">
-                    <i class="fa-solid fa-user d-inline-block mr-1"></i> {{ customer()->name }}
+                <a class="btn btn-sm btn-primary navbar-btn my-lg-0 {{ $topbar['profile'] ?? '' }} my-2" href="{{ route('web.profile.index') }}" aria-current="page">
+                    <i class="fa-solid fa-user d-inline-block mr-1"></i> 
+                    {{ customer()->name }}
                 </a>
 
                 {{-- Topbar Logout --}}
-                <a class="btn btn-sm btn-primary navbar-btn my-lg-0 my-2" href="{{ route('web.logout.process', app()->getLocale()) }}">
-                    <i class="fa-solid fa-power-off d-inline-block mr-1"></i> {{ __('auth.logout.word') }}
+                <a class="btn btn-sm btn-primary navbar-btn my-lg-0 my-2" href="{{ route('web.logout.process') }}">
+                    <i class="fa-solid fa-power-off d-inline-block mr-1"></i> 
+                    Logout
                 </a>
             @endif
-
-            {{-- Locale Switcher --}}
-            <div class="btn-group navbar-btn my-lg-0 my-2" role="group" aria-label="Locale switcher button group">
-                @foreach (AppLocale::values() as $locale)
-                    <a class="btn btn-sm {{ app()->getLocale() == $locale ? 'btn-info' : 'btn-outline-info' }}" type="button" href="{{ route('locale.switch', $locale) }}">
-                        {{ AppLocale::label($locale) }}
-                    </a>
-                @endforeach
-            </div>
         </div>
     </div>
 </nav>

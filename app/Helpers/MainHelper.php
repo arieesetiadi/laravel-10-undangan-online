@@ -21,14 +21,14 @@ const TIME_FORMAT = 'h:i A';
  *
  * @var string
  */
-const DATE_TIME_FORMAT = DATE_FORMAT.' '.TIME_FORMAT;
+const DATE_TIME_FORMAT = DATE_FORMAT . ' ' . TIME_FORMAT;
 
 /**
  * Get authenticated user (web).
  *
  * @return \App\Models\Customer
  */
-if (! function_exists('customer')) {
+if (!function_exists('customer')) {
     function customer()
     {
         return auth('web')->user();
@@ -40,7 +40,7 @@ if (! function_exists('customer')) {
  *
  * @return \App\Models\Administrator
  */
-if (! function_exists('administrator')) {
+if (!function_exists('administrator')) {
     function administrator()
     {
         return auth('cms')->user();
@@ -54,7 +54,7 @@ if (! function_exists('administrator')) {
  * @param  string  $locale
  * @return string  $date
  */
-if (! function_exists('human_date')) {
+if (!function_exists('human_date')) {
     function human_date($datetime, $locale = null)
     {
         $carbon = Carbon::make($datetime);
@@ -73,7 +73,7 @@ if (! function_exists('human_date')) {
  * @param  string  $locale
  * @return string  $time
  */
-if (! function_exists('human_time')) {
+if (!function_exists('human_time')) {
     function human_time($datetime, $locale = null)
     {
         $carbon = Carbon::make($datetime);
@@ -92,7 +92,7 @@ if (! function_exists('human_time')) {
  * @param  string  $locale
  * @return string  $datetime
  */
-if (! function_exists('human_datetime')) {
+if (!function_exists('human_datetime')) {
     function human_datetime($datetime, $locale = null)
     {
         $carbon = Carbon::make($datetime);
@@ -111,7 +111,7 @@ if (! function_exists('human_datetime')) {
  * @param  string  $locale
  * @return string  $diff
  */
-if (! function_exists('human_datetime_diff')) {
+if (!function_exists('human_datetime_diff')) {
     function human_datetime_diff($datetime, $locale = null)
     {
         $carbon = Carbon::make($datetime);
@@ -128,7 +128,7 @@ if (! function_exists('human_datetime_diff')) {
  * @param  string  $string
  * @return bool $result
  */
-if (! function_exists('is_email')) {
+if (!function_exists('is_email')) {
     function is_email($string)
     {
         // Email regular expression pattern
@@ -145,7 +145,7 @@ if (! function_exists('is_email')) {
  * @param  string  $string
  * @return bool $result
  */
-if (! function_exists('is_phone')) {
+if (!function_exists('is_phone')) {
     function is_phone($string)
     {
         // Phone number regular expression pattern
@@ -162,7 +162,7 @@ if (! function_exists('is_phone')) {
  * @param  string  $phone
  * @return string  $phone
  */
-if (! function_exists('normalize_phone')) {
+if (!function_exists('normalize_phone')) {
     function normalize_phone($phone)
     {
         // Remove any non-digit characters from the phone number
@@ -171,7 +171,13 @@ if (! function_exists('normalize_phone')) {
         // Check if the phone number starts with '0'
         if (substr($phone, 0, 1) === '0') {
             // Replace the leading '0' with '+62'
-            $phone = '+62'.substr($phone, 1);
+            $phone = '+62' . substr($phone, 1);
+        }
+
+        // Check if the phone number starts with '62'
+        if (substr($phone, 0, 2) === '62') {
+            // Replace the leading '62' with '+62'
+            $phone = '+' . $phone;
         }
 
         return $phone;

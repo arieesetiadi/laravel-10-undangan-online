@@ -1,27 +1,27 @@
 @component('mail::message')
 {{-- Title --}}
-# {{ __('auth.password_reset.mail.title') }}
+# Permohonan Reset Kata Sandi
     
 @component('mail::panel')
 {{-- Description --}}
-{{ __('auth.password_reset.mail.description') }}
+Silakan klik tombol di bawah ini untuk melanjutkan proses pengaturan ulang kata sandi.
 @endcomponent
 
 {{-- Button --}}
 @component('mail::button', ['url' => $url])
-{{ __('general.actions.update') }} {{ __('general.words.attributes.password') }}
+Reset Kata Sandi
 @endcomponent
     
 <br>
 
 {{-- Noreply --}}
-{{ __('general.sentences.no-reply') }} 
+Ini adalah pesan otomatis. Mohon untuk tidak membalas email ini.
 
 <br>
 <br>
 
 {{-- Regard --}}
-{{ __('general.words.thank') }},
+Terimakasih,
 
 <br>
 

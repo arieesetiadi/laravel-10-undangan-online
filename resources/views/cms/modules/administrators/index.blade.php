@@ -13,7 +13,7 @@
             <div class="col">
                 <div class="page-description d-flex align-items-center">
                     <div class="page-description-content flex-grow-1">
-                        <h2 class="fw-bold">{{ $title }}</h2>
+                        <h3 class="fw-bold">{{ $title }}</h3>
                         <h6 class="text-dark mt-2">{{ Breadcrumbs::render('cms.administrators.index') }}</h6>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-start gap-2">
-                        <a class="btn btn-sm btn-light" href="{{ route('cms.administrators.create') }}">
+                        <a class="btn btn-sm btn-primary" href="{{ route('cms.administrators.create') }}">
                             Tambah {{ $title }}
                         </a>
                     </div>
@@ -46,7 +46,7 @@
                                             <a class="btn btn-sm btn-light" href="{{ route('cms.administrators.edit', $administrator->id) }}">
                                                 Ubah
                                             </a>
-                                            <a class="btn btn-sm btn-info" href="{{ route('cms.administrators.show', $administrator->id) }}">
+                                            <a class="btn btn-sm btn-light" href="{{ route('cms.administrators.show', $administrator->id) }}">
                                                 Detail
                                             </a>
                                             <form action="{{ route('cms.administrators.toggle', $administrator->id) }}" method="POST">
@@ -72,9 +72,13 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer">
-                        {{ $administrators->links() }}
-                    </div>
+                    
+                    {{-- Pagination Links --}}
+                    @if ($administrators->total() > $administrators->perPage())
+                        <div class="card-footer">
+                            {{ $administrators->links() }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

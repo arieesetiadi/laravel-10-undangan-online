@@ -40,10 +40,10 @@ class OAuthController extends Controller
     {
         try {
             $user = Socialite::driver($request->driver)->user();
-            $customer = $this->customerService->getByEmail('email', $user->email);
-
+            $customer = $this->customerService->getByEmail($user->getEmail());
+            
             // Register new customer if not already
-            if (! $customer) {
+            if (!$customer) {
                 $username = $user->nickname ?? explode('@', $user->email)[0];
                 $customer = $this->customerService->create([
                     'username' => $username,
@@ -51,10 +51,10 @@ class OAuthController extends Controller
                     'email' => $user->email,
                 ]);
 
-                $message = __('auth.register.success');
+                $message = 'Selamat, akun Anda telah berhasil didaftarkan.';
             }
 
-            $message ??= __('auth.login.success');
+            $message ??= 'Selamat datang, Anda berhasil masuk.';
 
             auth('web')->login($customer);
 

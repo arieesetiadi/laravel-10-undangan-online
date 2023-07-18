@@ -76,7 +76,7 @@ Route::prefix('/cms')->as('cms.')->group(function () {
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('/{locale?}')->as('web.')->group(function () {
+Route::as('web.')->group(function () {
     // WEB Home
     Route::get('/', [HomeController::class, 'home'])->name('home');
 

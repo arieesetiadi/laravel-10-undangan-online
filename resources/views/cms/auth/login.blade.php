@@ -9,7 +9,7 @@
     @include('cms.layouts.styles')
 
     {{-- Title --}}
-    <title>{{ config('app.name') }}</title>
+    <title>Masuk | {{ config('app.name') }}</title>
 </head>
 
 <body>
@@ -21,18 +21,18 @@
 
                 <div class="logo">
                     <a href="{{ request()->url() }}">
-                        {{ __('auth.login.word') }}
+                        Masuk
                     </a>
                 </div>
 
                 <p class="auth-description">
-                    {{ __('auth.login.description') }}
+                    Silahkan login untuk masuk ke website.
                 </p>
 
                 <div class="auth-credentials m-b-xxl">
                     {{-- Input Username --}}
                     <div class="m-b-md">
-                        <label class="form-label d-block" id="label-username" for="username">{{ __('general.words.attributes.username') }}</label>
+                        <label class="form-label d-block" id="label-username" for="username">Username</label>
                         <input class="form-control" id="username" name="username" type="text" aria-describedby="label-username" placeholder="e.g. robert">
                         @error('username')
                             <label class="text-danger mt-2" for="username">
@@ -45,7 +45,7 @@
                     <div class="m-b-md">
                         <div class="d-flex">
                             <label class="form-label d-block" id="label-password" for="password">
-                                {{ __('general.words.attributes.password') }}
+                                Kata Sandi
                             </label>
                             <div class="d-inline-block form-check form-switch px-5">
                                 <input class="form-check-input" id="toggle-password" name="toggle-password" type="checkbox" tabindex="-1" onchange="togglePassword(event, 'password')">
@@ -63,7 +63,7 @@
                 <div class="auth-submit">
                     {{-- Submit Button --}}
                     <button class="btn btn-primary" type="submit" role="button">
-                        {{ __('auth.login.word') }} 
+                        Masuk
                     </button>
                 </div>
             </form>
@@ -83,18 +83,6 @@
                 password: {
                     required: true
                 }
-            },
-            messages: {
-                username: {
-                    required: validatorRequiredMessage(`{{ __('validation.attributes.username') }}`),
-                },
-                password: {
-                    required: validatorRequiredMessage(`{{ __('validation.attributes.password') }}`),
-                }
-            },
-            errorPlacement: function(label, element) {
-                label.addClass(errorClasses());
-                element.parent().append(label);
             },
         });
     </script>

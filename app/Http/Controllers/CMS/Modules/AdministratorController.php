@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\CMS\Modules;
 
-use App\Exports\AdministratorsExport;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResponseController;
 use App\Http\Requests\CMS\Administrator\StoreRequest;

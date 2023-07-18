@@ -34,6 +34,23 @@ class CustomerService
     }
 
     /**
+     * Paginate all customers data.
+     *
+     * @param int $perPage
+     * @return array
+     */
+    public function paginate(int $perPage = 10)
+    {
+        return $this->customer
+            // Filter status
+            ->when(request()->status !== null, function ($query) {
+                return $query->where('status', request()->status);
+            })
+            ->latest()
+            ->paginate($perPage);
+    }
+
+    /**
      * Get customer by id.
      *
      * @param  int  $id
@@ -94,7 +111,7 @@ class CustomerService
      */
     public function getStatus($credentials)
     {
-        $customer = $this->customer->findByCredentials($credentials)->first();
+        $customer = $this->findByCredentials($credentials)->first();
         $status = $customer->status;
 
         return $status;
@@ -104,7 +121,7 @@ class CustomerService
      * Get customer by email.
      *
      * @param  string  $email
-     * @return \App\Models\Customer|null
+     * @return \App\Models\Customer
      */
     public function getByEmail($email)
     {
@@ -120,7 +137,7 @@ class CustomerService
      */
     public function setStatus($credentials, $status)
     {
-        $customer = $this->customer->findByCredentials($credentials);
+        $customer = $this->findByCredentials($credentials);
         $result = $customer->update(['status' => $status]);
 
         return $result;

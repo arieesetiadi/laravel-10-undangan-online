@@ -38,7 +38,7 @@ class LoginController extends Controller
     {
         $this->customerService = new CustomerService();
         $this->module = 'web.auth';
-        $this->title = __('auth.login.word');
+        $this->title = 'Masuk';
     }
 
     /**
@@ -49,7 +49,7 @@ class LoginController extends Controller
     public function index()
     {
         try {
-            $view = $this->module.'.login';
+            $view = $this->module . '.login';
             $data['title'] = $this->title;
 
             return view($view, $data);
@@ -74,19 +74,19 @@ class LoginController extends Controller
             // Check customer status
             $status = $this->customerService->getStatus($credentials);
 
-            if (! $status) {
-                throw new Exception(__('auth.account.inactive'));
+            if (!$status) {
+                throw new Exception('Akun Anda sedang tidak aktif.');
             }
 
             // Check auth result
             $result = auth('web')->attempt($credentials, $remember);
 
-            if (! $result) {
-                throw new Exception(__('auth.login.failed'));
+            if (!$result) {
+                throw new Exception('Informasi login atau kata sandi tidak valid. Silahkan coba lagi.');
             }
 
             // Redirect to WEB home
-            return ResponseController::success(__('auth.login.success'), route('web.home'));
+            return ResponseController::success('Selamat datang, Anda berhasil masuk.', route('web.home'));
         }
         //
         catch (\Throwable $th) {

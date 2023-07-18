@@ -3,8 +3,6 @@
 {{-- Scripts --}}
 <script type="application/javascript" src="{{ asset('assets/cms/plugins/jquery/jquery-3.5.1.min.js') }}"></script>
 <script type="application/javascript" src="{{ asset('assets/web/js/bootstrap.bundle.min.js') }}"></script>
-<script type="application/javascript" src="{{ asset('assets/cms/plugins/datatables/datatables.min.js') }}"></script>
-<script type="application/javascript" src="{{ asset('assets/cms/js/pages/datatables.js') }}"></script>
 
 <script type="application/javascript" src="https://unicons.iconscout.com/release/v2.1.11/script/monochrome/bundle.js"></script>
 <script type="application/javascript" src="{{ asset('assets/web/js/tiny-slider.min.js') }}"></script>
@@ -22,9 +20,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 {{-- Animate on Scroll --}}
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-{{-- Validator Helper --}}
-@include('libs.validator')
 
 {{-- Custom --}}
 <script type="application/javascript" src="{{ asset('assets/web/js/custom.js') }}"></script>

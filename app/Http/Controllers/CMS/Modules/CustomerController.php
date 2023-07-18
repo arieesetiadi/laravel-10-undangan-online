@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\CMS\Modules;
 
-use App\Exports\CustomersExport;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResponseController;
 use App\Http\Requests\CMS\Customer\StoreRequest;
@@ -51,7 +50,7 @@ class CustomerController extends Controller
     public function index()
     {
         try {
-            $customers = $this->customerService->all();
+            $customers = $this->customerService->paginate();
             $view = $this->module . '.index';
             $data = [
                 'title' => $this->title,

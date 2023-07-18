@@ -34,11 +34,11 @@ class RegisterController extends Controller
     /**
      * Initiate controller properties value.
      */
-    public function __construct(CustomerService $customerService)
+    public function __construct()
     {
-        $this->customerService = $customerService;
+        $this->customerService = new CustomerService();
         $this->module = 'web.auth';
-        $this->title = __('auth.register.word');
+        $this->title = 'Daftar';
     }
 
     /**
@@ -49,7 +49,7 @@ class RegisterController extends Controller
     public function index()
     {
         try {
-            $view = $this->module.'.register';
+            $view = $this->module . '.register';
             $data['title'] = $this->title;
 
             return view($view, $data);
@@ -73,14 +73,14 @@ class RegisterController extends Controller
             // Check registration result
             $result = $this->customerService->create($credentials);
 
-            if (! $result) {
-                throw new Exception(__('auth.register.failed'));
+            if (!$result) {
+                throw new Exception('Maaf, kami tidak dapat menyelesaikan pendaftaran Anda saat ini. Harap periksa informasi Anda dan coba lagi.');
             }
 
             // Login programmatically
             auth('web')->login($result);
 
-            return ResponseController::success(__('auth.register.success'), route('web.home'));
+            return ResponseController::success('Selamat, akun Anda telah berhasil didaftarkan', route('web.home'));
         }
         //
         catch (\Throwable $th) {
