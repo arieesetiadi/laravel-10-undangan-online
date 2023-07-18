@@ -4,6 +4,14 @@ AOS.init({
     delay: 100
 });
 
+// Jquery validator default configuration
+$.validator.setDefaults({
+    errorPlacement: function (label, element) {
+        label.addClass('mt-2 text-danger');
+        element.parent().append(label);
+    }
+});
+
 // Toggle password visibility
 function togglePassword(event, target) {
     const checked = event.target.checked;

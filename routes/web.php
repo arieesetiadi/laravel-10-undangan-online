@@ -23,7 +23,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/locale/switch/{locale}', [LocaleController::class, 'switch'])->name('locale.switch');
-Route::get('/app/clear', [AppController::class, 'clear'])->name('app.clear');
+Route::prefix('/app')->group(function () {
+    Route::get('/clear', [AppController::class, 'clear'])->name('app.clear');
+    Route::get('/optimize', [AppController::class, 'optimize'])->name('app.optimize');
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +34,7 @@ Route::get('/app/clear', [AppController::class, 'clear'])->name('app.clear');
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('/system')->as('cms.')->middleware('locale.use:en')->group(function () {
+Route::prefix('/cms')->as('cms.')->group(function () {
     // CMS Guest
     Route::middleware('guest:cms')->group(function () {
         Route::prefix('/auth')->as('auth.')->group(function () {
@@ -51,16 +54,12 @@ Route::prefix('/system')->as('cms.')->middleware('locale.use:en')->group(functio
         // CMS Module Administrators
         Route::prefix('/administrators')->as('administrators.')->group(function () {
             Route::post('/{administrator}/toggle', [AdministratorController::class, 'toggle'])->name('toggle');
-            Route::get('/pdf', [AdministratorController::class, 'pdf'])->name('pdf');
-            Route::get('/excel', [AdministratorController::class, 'excel'])->name('excel');
         });
         Route::resource('/administrators', AdministratorController::class);
 
         // CMS Module Customer
         Route::prefix('/customers')->as('customers.')->group(function () {
             Route::post('/{customer}/toggle', [CustomerController::class, 'toggle'])->name('toggle');
-            Route::get('/pdf', [CustomerController::class, 'pdf'])->name('pdf');
-            Route::get('/excel', [CustomerController::class, 'excel'])->name('excel');
         });
         Route::resource('/customers', CustomerController::class);
 
@@ -77,7 +76,7 @@ Route::prefix('/system')->as('cms.')->middleware('locale.use:en')->group(functio
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('/{locale?}')->as('web.')->middleware('locale.use')->group(function () {
+Route::prefix('/{locale?}')->as('web.')->group(function () {
     // WEB Home
     Route::get('/', [HomeController::class, 'home'])->name('home');
 

@@ -56,7 +56,7 @@ class UpdateRequest extends FormRequest
             'username' => $this->username,
             'name' => $this->name,
             'email' => $this->email,
-            'phone' => normalize_phone($this->phone),
+            'phone' => $this->phone,
             'status' => GeneralStatus::ACTIVE,
         ];
 
@@ -76,15 +76,5 @@ class UpdateRequest extends FormRequest
     public function attributes()
     {
         return BaseFormRequest::getI18nAttributes();
-    }
-
-    /**
-     * Global form request messages, with internationalization.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return BaseFormRequest::getI18nMessages();
     }
 }

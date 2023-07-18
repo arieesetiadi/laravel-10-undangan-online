@@ -40,6 +40,23 @@ class AdministratorService
     }
 
     /**
+     * Paginate all administrators data.
+     *
+     * @param int $perPage
+     * @return array
+     */
+    public function paginate(int $perPage = 2)
+    {
+        return $this->administrator
+            // Filter status
+            ->when(request()->status !== null, function ($query) {
+                return $query->where('status', request()->status);
+            })
+            ->latest()
+            ->simplePaginate($perPage);
+    }
+
+    /**
      * Get administrator by id.
      *
      * @param  int  $id
@@ -145,7 +162,7 @@ class AdministratorService
     public function toggleStatus($id)
     {
         $administrator = $this->find($id);
-        $result = $administrator->update(['status' => ! $administrator->status]);
+        $result = $administrator->update(['status' => !$administrator->status]);
 
         return $result;
     }

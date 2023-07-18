@@ -5,7 +5,6 @@ namespace App\Http\Controllers\CMS\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResponseController;
 use App\Http\Requests\CMS\Auth\LoginRequest;
-use App\Models\Administrator;
 use App\Services\AdministratorService;
 use Exception;
 
@@ -35,11 +34,11 @@ class LoginController extends Controller
     /**
      * Initiate controller properties value.
      */
-    public function __construct(AdministratorService $administratorService)
+    public function __construct()
     {
-        $this->administratorService = $administratorService;
+        $this->administratorService = new AdministratorService();
         $this->module = 'cms.auth';
-        $this->title = __('auth.login.word');
+        $this->title = 'Login';
     }
 
     /**
@@ -50,7 +49,7 @@ class LoginController extends Controller
     public function index()
     {
         try {
-            $view = $this->module.'.login';
+            $view = $this->module . '.login';
             $data['title'] = $this->title;
 
             return view($view, $data);
@@ -74,19 +73,19 @@ class LoginController extends Controller
             // Check administrator status
             $status = $this->administratorService->getStatus($credentials);
 
-            if (! $status) {
-                throw new Exception(__('auth.account.inactive'));
+            if (!$status) {
+                throw new Exception('Akun Anda sedang tidak aktif.');
             }
 
             // Check auth result
             $result = auth('cms')->attempt($credentials);
 
-            if (! $result) {
-                throw new Exception(__('auth.login.failed'));
+            if (!$result) {
+                throw new Exception('Informasi login atau kata sandi tidak valid. Silahkan coba lagi.');
             }
 
             // Redirect to CMS Dashboard
-            return ResponseController::success(__('auth.login.success'), route('cms.dashboard'));
+            return ResponseController::success('Selamat datang, Anda berhasil masuk.', route('cms.dashboard'));
         }
         //
         catch (\Throwable $th) {

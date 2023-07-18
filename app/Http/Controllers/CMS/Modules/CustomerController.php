@@ -31,7 +31,7 @@ class CustomerController extends Controller
      *
      * @var array
      */
-    private $titles;
+    private $title;
 
     /**
      * Initiate resource service class.
@@ -40,10 +40,7 @@ class CustomerController extends Controller
     {
         $this->customerService = new CustomerService();
         $this->module = 'cms.modules.customers';
-        $this->titles = [
-            'singular' => 'Customer',
-            'plural' => 'Customers',
-        ];
+        $this->title = 'Pelanggan';
     }
 
     /**
@@ -55,9 +52,9 @@ class CustomerController extends Controller
     {
         try {
             $customers = $this->customerService->all();
-            $view = $this->module.'.index';
+            $view = $this->module . '.index';
             $data = [
-                'titles' => $this->titles,
+                'title' => $this->title,
                 'customers' => $customers,
             ];
 
@@ -77,9 +74,9 @@ class CustomerController extends Controller
     public function create()
     {
         try {
-            $view = $this->module.'.create-or-edit';
+            $view = $this->module . '.create-or-edit';
             $data = [
-                'titles' => $this->titles,
+                'title' => $this->title,
                 'edit' => false,
             ];
 
@@ -104,11 +101,11 @@ class CustomerController extends Controller
             // Store customer data
             $result = $this->customerService->create($credentials);
 
-            if (! $result) {
-                throw new Exception(__('general.process.failed'));
+            if (!$result) {
+                throw new Exception('Gagal menambah data Pelanggan, silahkan coba lagi.');
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.customers.index'));
+            return ResponseController::success('Berhasil menambah data Pelanggan.', route('cms.customers.index'));
         }
         //
         catch (\Throwable $th) {
@@ -126,9 +123,9 @@ class CustomerController extends Controller
     {
         try {
             $customer = $this->customerService->find($id);
-            $view = $this->module.'.detail';
+            $view = $this->module . '.detail';
             $data = [
-                'titles' => $this->titles,
+                'title' => $this->title,
                 'customer' => $customer,
             ];
 
@@ -150,9 +147,9 @@ class CustomerController extends Controller
     {
         try {
             $customer = $this->customerService->find($id);
-            $view = $this->module.'.create-or-edit';
+            $view = $this->module . '.create-or-edit';
             $data = [
-                'titles' => $this->titles,
+                'title' => $this->title,
                 'customer' => $customer,
                 'edit' => true,
             ];
@@ -179,11 +176,11 @@ class CustomerController extends Controller
             // Update customer data
             $result = $this->customerService->update($id, $credentials);
 
-            if (! $result) {
-                throw new Exception(__('general.process.failed'));
+            if (!$result) {
+                throw new Exception('Gagal mengubah data Pelanggan, silahkan coba lagi.');
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.customers.index'));
+            return ResponseController::success('Berhasil mengubah data Pelanggan.', route('cms.customers.index'));
         }
         //
         catch (\Throwable $th) {
@@ -203,11 +200,11 @@ class CustomerController extends Controller
             // Delete customer data
             $result = $this->customerService->delete($id);
 
-            if (! $result) {
-                throw new Exception(__('general.process.failed'));
+            if (!$result) {
+                throw new Exception('Gagal menghapus data Pelanggan.');
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.customers.index'));
+            return ResponseController::success('Berhasil menghapus data Pelanggan.', route('cms.customers.index'));
         }
         //
         catch (\Throwable $th) {
@@ -227,43 +224,11 @@ class CustomerController extends Controller
             // Toggle customer status
             $result = $this->customerService->toggleStatus($id);
 
-            if (! $result) {
-                throw new Exception(__('general.process.failed'));
+            if (!$result) {
+                throw new Exception('Gagal mengubah status Pelanggan, silahkan coba lagi.');
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.customers.index'));
-        }
-        //
-        catch (\Throwable $th) {
-            return ResponseController::failed($th->getMessage());
-        }
-    }
-
-    /**
-     * Export as PDF.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function pdf()
-    {
-        try {
-            return 'Customers PDF';
-        }
-        //
-        catch (\Throwable $th) {
-            return ResponseController::failed($th->getMessage());
-        }
-    }
-
-    /**
-     * Export as Excel.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function excel()
-    {
-        try {
-            return \Maatwebsite\Excel\Facades\Excel::download(new CustomersExport(), 'export-customers-'.now()->timestamp.'.xlsx');
+            return ResponseController::success('Berhasil mengubah status Pelanggan.', route('cms.customers.index'));
         }
         //
         catch (\Throwable $th) {

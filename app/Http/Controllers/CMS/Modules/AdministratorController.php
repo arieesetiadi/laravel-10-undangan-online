@@ -27,11 +27,11 @@ class AdministratorController extends Controller
     private $module;
 
     /**
-     * Controller module titles.
+     * Controller module title.
      *
      * @var array
      */
-    private $titles;
+    private $title;
 
     /**
      * Initiate resource service class.
@@ -40,10 +40,7 @@ class AdministratorController extends Controller
     {
         $this->administratorService = new AdministratorService();
         $this->module = 'cms.modules.administrators';
-        $this->titles = [
-            'singular' => 'Administrator',
-            'plural' => 'Administrators',
-        ];
+        $this->title = 'Admin';
     }
 
     /**
@@ -54,10 +51,10 @@ class AdministratorController extends Controller
     public function index()
     {
         try {
-            $administrators = $this->administratorService->all();
-            $view = $this->module.'.index';
+            $administrators = $this->administratorService->paginate();
+            $view = $this->module . '.index';
             $data = [
-                'titles' => $this->titles,
+                'title' => $this->title,
                 'administrators' => $administrators,
             ];
 
@@ -77,9 +74,9 @@ class AdministratorController extends Controller
     public function create()
     {
         try {
-            $view = $this->module.'.create-or-edit';
+            $view = $this->module . '.create-or-edit';
             $data = [
-                'titles' => $this->titles,
+                'title' => $this->title,
                 'edit' => false,
             ];
 
@@ -104,11 +101,11 @@ class AdministratorController extends Controller
             // Store administrator data
             $result = $this->administratorService->create($credentials);
 
-            if (! $result) {
-                throw new Exception(__('general.process.failed'));
+            if (!$result) {
+                throw new Exception('Gagal menambah data Admin, silahkan coba lagi.');
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.administrators.index'));
+            return ResponseController::success('Berhasil menambah data Admin.', route('cms.administrators.index'));
         }
         //
         catch (\Throwable $th) {
@@ -126,9 +123,9 @@ class AdministratorController extends Controller
     {
         try {
             $administrator = $this->administratorService->find($id);
-            $view = $this->module.'.detail';
+            $view = $this->module . '.detail';
             $data = [
-                'titles' => $this->titles,
+                'title' => $this->title,
                 'administrator' => $administrator,
             ];
 
@@ -150,9 +147,9 @@ class AdministratorController extends Controller
     {
         try {
             $administrator = $this->administratorService->find($id);
-            $view = $this->module.'.create-or-edit';
+            $view = $this->module . '.create-or-edit';
             $data = [
-                'titles' => $this->titles,
+                'title' => $this->title,
                 'administrator' => $administrator,
                 'edit' => true,
             ];
@@ -179,11 +176,11 @@ class AdministratorController extends Controller
             // Update administrator data
             $result = $this->administratorService->update($id, $credentials);
 
-            if (! $result) {
-                throw new Exception(__('general.process.failed'));
+            if (!$result) {
+                throw new Exception('Gagal mengubah data Admin, silahkan coba lagi.');
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.administrators.index'));
+            return ResponseController::success('Berhasil mengubah data Admin.', route('cms.administrators.index'));
         }
         //
         catch (\Throwable $th) {
@@ -203,11 +200,11 @@ class AdministratorController extends Controller
             // Delete administrator data
             $result = $this->administratorService->delete($id);
 
-            if (! $result) {
-                throw new Exception(__('general.process.failed'));
+            if (!$result) {
+                throw new Exception('Gagal menghapus data Admin, silahkan coba lagi.');
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.administrators.index'));
+            return ResponseController::success('Berhasil menghapus data Admin.', route('cms.administrators.index'));
         }
         //
         catch (\Throwable $th) {
@@ -227,43 +224,11 @@ class AdministratorController extends Controller
             // Toggle administrator status
             $result = $this->administratorService->toggleStatus($id);
 
-            if (! $result) {
-                throw new Exception(__('general.process.failed'));
+            if (!$result) {
+                throw new Exception('Gagal mengubah status Admin, silahkan coba lagi.');
             }
 
-            return ResponseController::success(__('general.process.success'), route('cms.administrators.index'));
-        }
-        //
-        catch (\Throwable $th) {
-            return ResponseController::failed($th->getMessage());
-        }
-    }
-
-    /**
-     * Export as PDF.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function pdf()
-    {
-        try {
-            return 'Administrators PDF';
-        }
-        //
-        catch (\Throwable $th) {
-            return ResponseController::failed($th->getMessage());
-        }
-    }
-
-    /**
-     * Export as Excel.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function excel()
-    {
-        try {
-            return \Maatwebsite\Excel\Facades\Excel::download(new AdministratorsExport(), 'export-administrators-'.now()->timestamp.'.xlsx');
+            return ResponseController::success('Berhasil mengubah status Admin.', route('cms.administrators.index'));
         }
         //
         catch (\Throwable $th) {

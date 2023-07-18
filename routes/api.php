@@ -1,8 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
-| API Routes Version 2
+| API Routes Version 1
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
@@ -10,3 +12,7 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::get('/', function () {
+    return Response::json('Hello World');
+});

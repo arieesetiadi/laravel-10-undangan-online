@@ -50,8 +50,8 @@ class GeneralStatus
     public static function htmlLabels()
     {
         return [
-            self::ACTIVE => '<span class="badge badge-success w-100">'.self::label(self::ACTIVE).'</span>',
-            self::INACTIVE => '<span class="badge badge-dark w-100">'.self::label(self::INACTIVE).'</span>',
+            self::ACTIVE => '<span class="badge badge-success w-100">' . self::label(self::ACTIVE) . '</span>',
+            self::INACTIVE => '<span class="badge badge-dark w-100">' . self::label(self::INACTIVE) . '</span>',
         ];
     }
 

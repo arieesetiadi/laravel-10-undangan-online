@@ -12,9 +12,9 @@
         <div class="row mb-3">
             <div class="col">
                 <div class="page-description">
-                    <h1>{{ $edit ? __('general.actions.edit') : __('general.actions.add') }} {{ $titles['singular'] }}</h1>
+                    <h1>{{ $edit ? 'Ubah' : 'Tambah' }} {{ $title }}</h1>
                     <h6 class="mt-2">
-                        {{ Breadcrumbs::render('cms.administrators.action', $edit ? __('general.actions.edit') : __('general.actions.add')) }}
+                        {{ Breadcrumbs::render('cms.administrators.action', $edit ? 'Ubah' : 'Tambah') }}
                     </h6>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                             {{-- Input Username --}}
                             <div class="mb-4">
                                 <label class="form-label d-block" id="label-username" for="username">
-                                    {{ __('general.words.attributes.username') }}<span class="text-danger">*</span>
+                                    Username <span class="text-danger">*</span>
                                 </label>
                                 <input class="form-control" id="username" name="username" type="text" value="{{ old('username', $administrator->username ?? null) }}" aria-describedby="label-username" placeholder="e.g. robert">
                                 @error('username')
@@ -43,7 +43,7 @@
                             {{-- Input Name --}}
                             <div class="mb-4">
                                 <label class="form-label d-block" id="label-name" for="name">
-                                    {{ __('general.words.attributes.name') }}<span class="text-danger">*</span>
+                                    Nama <span class="text-danger">*</span>
                                 </label>
                                 <input class="form-control" id="name" name="name" type="text" value="{{ old('name', $administrator->name ?? null) }}" aria-describedby="label-name" placeholder="e.g. Robert Emerson">
                                 @error('name')
@@ -56,7 +56,7 @@
                             {{-- Input Email --}}
                             <div class="mb-4">
                                 <label class="form-label d-block" id="label-email" for="email">
-                                    {{ __('general.words.attributes.email') }}<span class="text-danger">*</span>
+                                    Email <span class="text-danger">*</span>
                                 </label>
                                 <input class="form-control" id="email" name="email" type="email" value="{{ old('email', $administrator->email ?? null) }}" aria-describedby="label-email" placeholder="e.g. robert@example.com">
                                 @error('email')
@@ -69,7 +69,7 @@
                             {{-- Input Phone --}}
                             <div class="mb-4">
                                 <label class="form-label d-block" id="label-phone" for="phone">
-                                    {{ __('general.words.attributes.phone') }}
+                                    Nomor Telepon
                                 </label>
                                 <input class="form-control input-number" id="phone" name="phone" type="text" value="{{ old('phone', $administrator->phone ?? null) }}" aria-describedby="label-phone"
                                     placeholder="e.g. 0821xxxxxxxx">
@@ -84,7 +84,7 @@
                             <div class="mb-4">
                                 <div class="d-flex">
                                     <label class="form-label d-block" id="label-password" for="password">
-                                        {{ __('general.words.attributes.password') }}<span class="text-danger">*</span>
+                                        Kata Sandi <span class="text-danger">*</span>
                                     </label>
                                     <div class="d-inline-block form-check form-switch px-5">
                                         <input class="form-check-input" id="toggle-password" name="toggle-password" type="checkbox" tabindex="-1" onchange="togglePassword(event, 'password')">
@@ -101,12 +101,12 @@
                             <div class="d-flex mt-4 gap-2">
                                 {{-- Back Button --}}
                                 <a class="btn btn-light" type="submit" href="{{ route('cms.administrators.index') }}">
-                                    {{ __('general.actions.back') }}
+                                    Kembali
                                 </a>
 
                                 {{-- Submit Button --}}
                                 <button class="btn btn-primary" type="submit">
-                                    {{ $edit ? __('general.actions.update') : __('general.actions.submit') }}
+                                    Simpan
                                 </button>
                             </div>
                         </form>
@@ -121,7 +121,7 @@
 @pushOnce('after-scripts')
     {{-- Form Validation --}}
     <script>
-        $('form#administrator-create').validate({
+        $('form#administrator-create, form#administrator-edit').validate({
             rules: {
                 username: {
                     required: true,
@@ -134,66 +134,9 @@
                     email: true,
                 },
                 password: {
-                    required: true,
+                    required: @json($edit) ? false : true, // Not required on edit mode
                     minlength: 4,
                 }
-            },
-            messages: {
-                username: {
-                    required: validatorRequiredMessage(`{{ __('validation.attributes.username') }}`),
-                },
-                name: {
-                    required: validatorRequiredMessage(`{{ __('validation.attributes.name') }}`),
-                },
-                email: {
-                    required: validatorRequiredMessage(`{{ __('validation.attributes.email') }}`),
-                    email: validatorEmailMessage(`{{ __('validation.attributes.email') }}`),
-                },
-                password: {
-                    required: validatorRequiredMessage(`{{ __('validation.attributes.password') }}`),
-                    minlength: validatorMinMessage(`{{ __('validation.attributes.password') }}`, 4, 'string'),
-                }
-            },
-            errorPlacement: function(label, element) {
-                label.addClass(errorClasses());
-                element.parent().append(label);
-            },
-        });
-
-        $('form#administrator-edit').validate({
-            rules: {
-                username: {
-                    required: true,
-                },
-                name: {
-                    required: true,
-                },
-                email: {
-                    required: true,
-                    email: true,
-                },
-                password: {
-                    minlength: 4,
-                }
-            },
-            messages: {
-                username: {
-                    required: validatorRequiredMessage(`{{ __('validation.attributes.username') }}`),
-                },
-                name: {
-                    required: validatorRequiredMessage(`{{ __('validation.attributes.name') }}`),
-                },
-                email: {
-                    required: validatorRequiredMessage(`{{ __('validation.attributes.email') }}`),
-                    email: validatorEmailMessage(`{{ __('validation.attributes.email') }}`),
-                },
-                password: {
-                    minlength: validatorMinMessage(`{{ __('validation.attributes.password') }}`, 4, 'string'),
-                }
-            },
-            errorPlacement: function(label, element) {
-                label.addClass(errorClasses());
-                element.parent().append(label);
             },
         });
     </script>

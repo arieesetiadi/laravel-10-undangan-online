@@ -22,8 +22,8 @@
 
         const clickable = $(event.target);
         const buttonText = clickable.data('button-text') ?? 'OK';
-        const title = clickable.data('title') ?? 'Are you sure?';
-        const text = clickable.data('text') ?? 'Press ' + buttonText + ' to continue!';
+        const title = clickable.data('title') ?? 'Apakah anda yakin?';
+        const text = clickable.data('text') ?? 'Tekan ' + buttonText + ' untuk melanjutkan!';
         const icon = clickable.data('icon') ?? 'warning';
         const type = clickable.data('type') ?? 'button';
 

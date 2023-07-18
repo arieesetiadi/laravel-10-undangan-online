@@ -61,14 +61,4 @@ class StoreRequest extends FormRequest
     {
         return BaseFormRequest::getI18nAttributes();
     }
-
-    /**
-     * Global form request messages, with internationalization.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return BaseFormRequest::getI18nMessages();
-    }
 }

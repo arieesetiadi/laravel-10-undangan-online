@@ -56,7 +56,7 @@ class StoreRequest extends FormRequest
             'username' => $this->username,
             'name' => $this->name,
             'email' => $this->email,
-            'phone' => normalize_phone($this->phone),
+            'phone' => $this->phone,
             'password' => Hash::make($this->password),
             'status' => GeneralStatus::ACTIVE,
         ];
@@ -70,15 +70,5 @@ class StoreRequest extends FormRequest
     public function attributes()
     {
         return BaseFormRequest::getI18nAttributes();
-    }
-
-    /**
-     * Global form request messages, with internationalization.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return BaseFormRequest::getI18nMessages();
     }
 }
