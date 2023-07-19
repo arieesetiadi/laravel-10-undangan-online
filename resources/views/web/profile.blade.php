@@ -109,7 +109,7 @@
                 {{-- Edit Phone --}}
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-3">
                     <h6 class="text-center">{{ __('general.words.attributes.phone') }}</h6>
-                    <input name="phone" type="text" class="form-control text-center input-number" id="phone" placeholder="e.g. 0821xxxxxxxx" value="{{ customer()->phone ?? 0 }}">
+                    <input name="phone" type="text" class="form-control text-center number-input" id="phone" placeholder="e.g. 0821xxxxxxxx" value="{{ customer()->phone ?? 0 }}">
                     @error('phone')
                         <label for="phone" class="mt-2 text-danger">
                             {{ $message }}

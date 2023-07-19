@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\WEB;
 
-use App\Http\Requests\BaseFormRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Hash;
 

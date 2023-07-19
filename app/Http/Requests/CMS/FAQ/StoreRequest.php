@@ -33,7 +33,7 @@ class StoreRequest extends FormRequest
     /**
      * Final result of the form request.
      *
-     * @return array $faq
+     * @return array
      */
     public function faq()
     {

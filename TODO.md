@@ -17,4 +17,7 @@
 - [ ] Database migration
 - [ ] Create CMS Modules:
     - [ ] Pricing
-    - [ ] FAQ
+        - [ ] Mekanisme form discount
+        - [ ] Mekanisme form galleries
+        - [ ] Mekanisme form videos
+    - [x] FAQ

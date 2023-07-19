@@ -32,6 +32,18 @@ Breadcrumbs::for('cms.customers.action', function (BreadcrumbTrail $trail, $acti
     $trail->push($action);
 });
 
+// Dashboard > Paket Harga
+Breadcrumbs::for('cms.variants.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('cms.dashboard');
+    $trail->push('Paket Harga', route('cms.variants.index'));
+});
+
+// Dashboard > Paket Harga > [Action]
+Breadcrumbs::for('cms.variants.action', function (BreadcrumbTrail $trail, $action) {
+    $trail->parent('cms.variants.index');
+    $trail->push($action);
+});
+
 // Dashboard > FAQ
 Breadcrumbs::for('cms.faqs.index', function (BreadcrumbTrail $trail) {
     $trail->parent('cms.dashboard');

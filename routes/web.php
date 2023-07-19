@@ -7,6 +7,7 @@ use App\Http\Controllers\CMS\DashboardController;
 use App\Http\Controllers\CMS\Modules\AdministratorController;
 use App\Http\Controllers\CMS\Modules\CustomerController;
 use App\Http\Controllers\CMS\Modules\FAQController;
+use App\Http\Controllers\CMS\Modules\VariantController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\WEB\Auth\ForgotPasswordController as WEBForgotPasswordController;
 use App\Http\Controllers\WEB\Auth\LoginController as WEBLoginController;
@@ -63,6 +64,12 @@ Route::prefix('/cms')->as('cms.')->group(function () {
             Route::post('/{customer}/toggle', [CustomerController::class, 'toggle'])->name('toggle');
         });
         Route::resource('/customers', CustomerController::class);
+
+        // CMS Module Variant
+        Route::prefix('/variants')->as('variants.')->group(function () {
+            Route::post('/{variant}/toggle', [VariantController::class, 'toggle'])->name('toggle');
+        });
+        Route::resource('/variants', VariantController::class);
 
         // CMS Module FAQ
         Route::prefix('/faqs')->as('faqs.')->group(function () {

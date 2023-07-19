@@ -35,14 +35,14 @@ function previewImageModal(event) {
 }
 
 // Validate number input only
-$('input.input-number').each(function () {
+$('input.number-input').each(function () {
     const value = parseFloat($(this).val());
     if (!isNaN(value)) {
         $(this).val(Math.floor(value));
     }
 });
 
-$('input.input-number').keypress(function (e) {
+$('input.number-input').keypress(function (e) {
     const keyCode = e.which ? e.which : e.keyCode;
     const inputChar = String.fromCharCode(keyCode);
 

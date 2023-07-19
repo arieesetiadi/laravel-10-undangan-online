@@ -3,7 +3,7 @@
 
 {{-- Sidebar Configuration --}}
 @php
-$sidebar['faqs'] = 'active-page';
+$sidebar['variants'] = 'active-page';
 @endphp
 
 {{-- Content --}}
@@ -14,7 +14,7 @@ $sidebar['faqs'] = 'active-page';
             <div class="page-description d-flex align-items-center">
                 <div class="page-description-content flex-grow-1">
                     <h3 class="fw-bold">{{ $title }}</h3>
-                    <h6 class="text-dark mt-2">{{ Breadcrumbs::render('cms.faqs.index') }}</h6>
+                    <h6 class="text-dark mt-2">{{ Breadcrumbs::render('cms.variants.index') }}</h6>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@ $sidebar['faqs'] = 'active-page';
         <div class="col-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-start gap-2">
-                    <a class="btn btn-sm btn-primary" href="{{ route('cms.faqs.create') }}">
+                    <a class="btn btn-sm btn-primary" href="{{ route('cms.variants.create') }}">
                         Tambah {{ $title }}
                     </a>
                 </div>
@@ -33,15 +33,11 @@ $sidebar['faqs'] = 'active-page';
                             <tr>
                                 <th class="align-top">Pilihan</th>
                                 <th class="align-top">#</th>
-                                <th class="align-top">
-                                    <span class="d-block">Pertanyaan</span>
-                                    <small>Klik pertanyaan untuk melihat jawaban!</small>
-                                </th>
                                 <th class="align-top">Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($faqs as $faq)
+                            @forelse ($variants as $variant)
                             <tr>
                                 <td>
                                     <div class="btn-group dropend">
@@ -51,20 +47,20 @@ $sidebar['faqs'] = 'active-page';
                                         <ul class="dropdown-menu">
                                             {{-- Edit Button --}}
                                             <li>
-                                                <a class="dropdown-item" href="{{ route('cms.faqs.edit', $faq->id) }}">Ubah</a>
+                                                <a class="dropdown-item" href="{{ route('cms.variants.edit', $variant->id) }}">Ubah</a>
                                             </li>
 
                                             {{-- Detail Button --}}
                                             <li>
-                                                <a class="dropdown-item" href="{{ route('cms.faqs.show', $faq->id) }}">Detail</a>
+                                                <a class="dropdown-item" href="{{ route('cms.variants.show', $variant->id) }}">Detail</a>
                                             </li>
 
                                             {{-- Toggle Status Button --}}
                                             <li>
-                                                <form action="{{ route('cms.faqs.toggle', $faq->id) }}" method="POST">
+                                                <form action="{{ route('cms.variants.toggle', $variant->id) }}" method="POST">
                                                     @csrf
                                                     <a class="dropdown-item" type="button" onclick="swalConfirm(event)">
-                                                        {{ $faq->status ? 'Nonaktifkan' : 'Aktifkan' }}
+                                                        {{ $variant->status ? 'Nonaktifkan' : 'Aktifkan' }}
                                                     </a>
                                                 </form>
                                             </li>
@@ -75,7 +71,7 @@ $sidebar['faqs'] = 'active-page';
 
                                             {{-- Delete Button --}}
                                             <li>
-                                                <form action="{{ route('cms.faqs.destroy', $faq->id) }}" method="POST">
+                                                <form action="{{ route('cms.variants.destroy', $variant->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <a class="dropdown-item" type="button" onclick="swalConfirm(event)">
@@ -86,13 +82,8 @@ $sidebar['faqs'] = 'active-page';
                                         </ul>
                                     </div>
                                 </td>
-                                <td class="text-nowrap">{{ ($faqs->currentPage() - 1) * $faqs->perPage() + $loop->iteration }}</td>
-                                <td class="text-nowrap">
-                                    <a tabindex="0" class="text-decoration-none text-dark" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-content="{{ $faq->answer }}">
-                                        {{ $faq->question }}
-                                    </a>
-                                </td>
-                                <td class="text-nowrap">{!! GeneralStatus::htmlLabel($faq->status) !!}</td>
+                                <td class="text-nowrap">{{ ($variants->currentPage() - 1) * $variants->perPage() + $loop->iteration }}</td>
+                                <td class="text-nowrap">{!! GeneralStatus::htmlLabel($variant->status) !!}</td>
                             </tr>
                             @empty
                             <tr>
@@ -106,9 +97,9 @@ $sidebar['faqs'] = 'active-page';
                 </div>
 
                 {{-- Pagination Links --}}
-                @if ($faqs->total() > $faqs->perPage())
+                @if ($variants->total() > $variants->perPage())
                 <div class="card-footer">
-                    {{ $faqs->links() }}
+                    {{ $variants->links() }}
                 </div>
                 @endif
             </div>

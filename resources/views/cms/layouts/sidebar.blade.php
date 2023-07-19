@@ -18,6 +18,7 @@
         <ul class="accordion-menu">
             <li class="sidebar-title">Main</li>
 
+            {{-- Sidebar Dashboard --}}
             <li class="{{ $sidebar['dashboard'] ?? '' }}">
                 <a href="{{ route('cms.dashboard') }}">
                     <i class="material-icons text-dark">dashboard</i>
@@ -27,12 +28,15 @@
 
             <li class="sidebar-title">Master</li>
             
+            {{-- Sidebar Administrators --}}
             <li class="{{ $sidebar['administrators'] ?? '' }}">
                 <a href="{{ route('cms.administrators.index') }}">
                     <i class="material-icons text-dark">people</i>
                     Admin
                 </a>
             </li>
+
+            {{-- Sidebar Customers --}}
             <li class="{{ $sidebar['customers'] ?? '' }}">
                 <a href="{{ route('cms.customers.index') }}">
                     <i class="material-icons text-dark">people</i>
@@ -42,6 +46,15 @@
 
             <li class="sidebar-title">Konten Web</li>
             
+            {{-- Sidebar Variants --}}
+            <li class="{{ $sidebar['variants'] ?? '' }}">
+                <a href="{{ route('cms.variants.index') }}">
+                    <i class="material-icons text-dark">local_offer</i>
+                    Paket Harga
+                </a>
+            </li>
+
+            {{-- Sidebar FAQs --}}
             <li class="{{ $sidebar['faqs'] ?? '' }}">
                 <a href="{{ route('cms.faqs.index') }}">
                     <i class="material-icons text-dark">question_answer</i>

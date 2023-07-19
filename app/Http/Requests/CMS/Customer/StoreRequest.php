@@ -37,7 +37,7 @@ class StoreRequest extends FormRequest
     /**
      * Final result of the form request.
      *
-     * @return array $credentials
+     * @return array
      */
     public function credentials()
     {

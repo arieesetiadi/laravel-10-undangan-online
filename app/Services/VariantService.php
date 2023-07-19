@@ -2,33 +2,33 @@
 
 namespace App\Services;
 
-use App\Models\FAQ;
+use App\Models\Variant;
 
-class FAQService
+class VariantService
 {
     /**
      * Default service class model.
      *
-     * @var \App\Models\FAQ
+     * @var \App\Models\Variant
      */
-    protected $faq;
+    protected $variant;
 
     /**
      * Init
      */
     public function __construct()
     {
-        $this->faq = new FAQ();
+        $this->variant = new Variant();
     }
 
     /**
-     * Get all faqs data.
+     * Get all variants data.
      *
      * @return array
      */
     public function all()
     {
-        return $this->faq
+        return $this->variant
             // Filter status
             ->when(request()->status !== null, function ($query) {
                 return $query->where('status', request()->status);
@@ -38,14 +38,14 @@ class FAQService
     }
 
     /**
-     * Paginate all faqs data.
+     * Paginate all variants data.
      *
      * @param int $perPage
      * @return array
      */
     public function paginate(int $perPage = 10)
     {
-        return $this->faq
+        return $this->variant
             // Filter status
             ->when(request()->status !== null, function ($query) {
                 return $query->where('status', request()->status);
@@ -55,28 +55,28 @@ class FAQService
     }
 
     /**
-     * Get faq by id.
+     * Get variant by id.
      *
      * @param  int  $id
      * @return object
      */
     public function find($id)
     {
-        return $this->faq->find($id);
+        return $this->variant->find($id);
     }
 
     /**
-     * Store new faq data.
+     * Store new variant data.
      *
      * @param  array  $credentials
      */
     public function create($credentials)
     {
-        return $this->faq->create($credentials);
+        return $this->variant->create($credentials);
     }
 
     /**
-     * Update faq data.
+     * Update variant data.
      *
      * @param  int  $id
      * @param  array  $credentials
@@ -87,7 +87,7 @@ class FAQService
     }
 
     /**
-     * Update faq data.
+     * Update variant data.
      *
      * @param  int  $id
      */
@@ -97,15 +97,15 @@ class FAQService
     }
 
     /**
-     * Toggle faq status.
+     * Toggle variant status.
      *
      * @param  int  $id
      * @return mixed $result
      */
     public function toggleStatus($id)
     {
-        $faq = $this->find($id);
-        $result = $faq->update(['status' => !$faq->status]);
+        $variant = $this->find($id);
+        $result = $variant->update(['status' => !$variant->status]);
 
         return $result;
     }

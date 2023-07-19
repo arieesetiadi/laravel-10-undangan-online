@@ -71,7 +71,7 @@
                                 <label class="form-label d-block" id="label-phone" for="phone">
                                     Nomor Telepon
                                 </label>
-                                <input class="form-control input-number" id="phone" name="phone" type="text" value="{{ old('phone', $administrator->phone ?? null) }}" aria-describedby="label-phone"
+                                <input class="form-control number-input" id="phone" name="phone" type="text" value="{{ old('phone', $administrator->phone ?? null) }}" aria-describedby="label-phone"
                                     placeholder="e.g. 0821xxxxxxxx">
                                 @error('phone')
                                     <label class="text-danger mt-2" for="phone">

@@ -3,7 +3,6 @@
 namespace App\Http\Requests\CMS\Customer;
 
 use App\Constants\GeneralStatus;
-use App\Http\Requests\BaseFormRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;

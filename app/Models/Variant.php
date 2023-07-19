@@ -5,14 +5,14 @@ namespace App\Models;
 use App\Constants\GeneralStatus;
 use Illuminate\Database\Eloquent\Model;
 
-class FAQ extends Model
+class Variant extends Model
 {
     /**
      * Model table name.
      *
      * @var string
      */
-    public $table = 'faqs';
+    public $table = 'variants';
 
     /**
      * Allowed field for mass assignment.
@@ -20,7 +20,22 @@ class FAQ extends Model
      * @var array
      */
     protected $fillable = [
-        'question', 'answer', 'status',
+        'name',
+        'price',
+        'discount_type',
+        'discount_amount',
+        'allow_couple_photos',
+        'allow_galleries',
+        'allow_videos',
+        'allow_google_maps',
+        'allow_countdown',
+        'allow_backsound',
+        'allow_guest_book',
+        'allow_guest_target',
+        'allow_rsvp',
+        'allow_gift',
+        'max_galleries',
+        'max_videos',
     ];
 
     /*
@@ -46,7 +61,7 @@ class FAQ extends Model
     */
 
     /**
-     * Filter the active faqs.
+     * Filter the active variants.
      *
      * @param object
      * @return object
@@ -57,7 +72,7 @@ class FAQ extends Model
     }
 
     /**
-     * Filter the inactive faqs.
+     * Filter the inactive variants.
      *
      * @param object
      * @return object
