@@ -62,14 +62,4 @@ class LoginRequest extends FormRequest
     {
         return $this->remember == 'on';
     }
-
-    /**
-     * Global form request attributes, with internationalization.
-     *
-     * @return array
-     */
-    public function attributes()
-    {
-        return BaseFormRequest::getI18nAttributes();
-    }
 }

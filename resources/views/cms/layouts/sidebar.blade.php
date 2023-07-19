@@ -40,6 +40,15 @@
                 </a>
             </li>
 
+            <li class="sidebar-title">Konten Web</li>
+            
+            <li class="{{ $sidebar['faqs'] ?? '' }}">
+                <a href="{{ route('cms.faqs.index') }}">
+                    <i class="material-icons text-dark">question_answer</i>
+                    FAQ
+                </a>
+            </li>
+
             <li class="sidebar-title">
                 Lainnya
             </li>

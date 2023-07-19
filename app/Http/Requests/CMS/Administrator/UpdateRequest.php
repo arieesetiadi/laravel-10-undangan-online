@@ -3,7 +3,6 @@
 namespace App\Http\Requests\CMS\Administrator;
 
 use App\Constants\GeneralStatus;
-use App\Http\Requests\BaseFormRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -66,15 +65,5 @@ class UpdateRequest extends FormRequest
         }
 
         return $credentials;
-    }
-
-    /**
-     * Global form request attributes, with internationalization.
-     *
-     * @return array
-     */
-    public function attributes()
-    {
-        return BaseFormRequest::getI18nAttributes();
     }
 }

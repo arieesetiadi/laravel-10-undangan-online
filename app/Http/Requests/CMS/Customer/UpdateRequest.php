@@ -57,14 +57,4 @@ class UpdateRequest extends FormRequest
 
         return $credentials;
     }
-
-    /**
-     * Global form request attributes, with internationalization.
-     *
-     * @return array
-     */
-    public function attributes()
-    {
-        return BaseFormRequest::getI18nAttributes();
-    }
 }

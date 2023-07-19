@@ -150,11 +150,11 @@ return [
         'credential' => 'informasi pengguna',
         'username' => 'username',
         'name' => 'nama',
-        'email' => 'alamat email',
+        'email' => 'email',
         'phone' => 'nomor telepon',
-        'avatar' => 'avatar',
         'password' => 'kata sandi',
         'password_confirmation' => 'konfirmasi kata sandi',
+        'question' => 'pertanyaan',
+        'answer' => 'jawaban',
     ],
-
 ];

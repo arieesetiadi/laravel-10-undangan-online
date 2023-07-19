@@ -5,6 +5,7 @@
 
 {{-- Styles --}}
 <link type="text/css" href="{{ asset('assets/cms/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+<link type="text/css" href="{{ asset('assets/cms/plugins/perfectscroll/perfect-scrollbar.css') }}" rel="stylesheet">
 <link type="text/css" href="{{ asset('assets/cms/css/main.min.css') }}" rel="stylesheet">
 <link type="text/css" href="{{ asset('assets/cms/css/custom.css') }}" rel="stylesheet">
 

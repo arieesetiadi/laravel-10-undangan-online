@@ -156,7 +156,7 @@ class AdministratorService
     /**
      * Toggle administrator status.
      *
-     * @param  array  $credentials
+     * @param  int  $id
      * @return mixed $result
      */
     public function toggleStatus($id)

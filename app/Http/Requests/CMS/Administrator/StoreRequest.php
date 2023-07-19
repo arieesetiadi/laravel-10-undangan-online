@@ -3,7 +3,6 @@
 namespace App\Http\Requests\CMS\Administrator;
 
 use App\Constants\GeneralStatus;
-use App\Http\Requests\BaseFormRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Hash;
 
@@ -60,15 +59,5 @@ class StoreRequest extends FormRequest
             'password' => Hash::make($this->password),
             'status' => GeneralStatus::ACTIVE,
         ];
-    }
-
-    /**
-     * Global form request attributes, with internationalization.
-     *
-     * @return array
-     */
-    public function attributes()
-    {
-        return BaseFormRequest::getI18nAttributes();
     }
 }

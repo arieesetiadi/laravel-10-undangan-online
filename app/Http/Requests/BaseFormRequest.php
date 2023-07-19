@@ -18,6 +18,8 @@ class BaseFormRequest
             'email' => 'email',
             'password' => 'kata sandi',
             'password_confirmation' => 'konfirmasi kata sandi',
+            'question' => 'pertanyaan',
+            'answer' => 'jawaban',
         ];
     }
 }

@@ -31,3 +31,15 @@ Breadcrumbs::for('cms.customers.action', function (BreadcrumbTrail $trail, $acti
     $trail->parent('cms.customers.index');
     $trail->push($action);
 });
+
+// Dashboard > FAQ
+Breadcrumbs::for('cms.faqs.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('cms.dashboard');
+    $trail->push('FAQ', route('cms.faqs.index'));
+});
+
+// Dashboard > FAQ > [Action]
+Breadcrumbs::for('cms.faqs.action', function (BreadcrumbTrail $trail, $action) {
+    $trail->parent('cms.faqs.index');
+    $trail->push($action);
+});

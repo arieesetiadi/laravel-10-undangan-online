@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\CMS\Auth;
+namespace App\Http\Requests\CMS\FAQ;
 
-use App\Http\Requests\BaseFormRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +13,7 @@ class LoginRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return auth('cms')->check();
     }
 
     /**
@@ -25,21 +24,21 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|exists:administrators,username',
-            'password' => 'required',
+            'question' => 'required',
+            'answer' => 'required',
         ];
     }
 
     /**
      * Final result of the form request.
      *
-     * @return array
+     * @return array $faq
      */
-    public function credentials()
+    public function faq()
     {
         return [
-            'username' => $this->username,
-            'password' => $this->password,
+            'question' => $this->question,
+            'answer' => $this->answer,
         ];
     }
 }

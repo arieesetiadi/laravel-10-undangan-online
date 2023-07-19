@@ -57,14 +57,4 @@ class RegisterRequest extends FormRequest
             'status' => true,
         ];
     }
-
-    /**
-     * Global form request attributes, with internationalization.
-     *
-     * @return array
-     */
-    public function attributes()
-    {
-        return BaseFormRequest::getI18nAttributes();
-    }
 }
