@@ -227,7 +227,7 @@ class CustomerController extends Controller
                 throw new Exception('Gagal mengubah status Pelanggan, silahkan coba lagi.');
             }
 
-            return ResponseController::success('Berhasil mengubah status Pelanggan.', route('cms.customers.index'));
+            return ResponseController::success('Berhasil mengubah status Pelanggan.');
         }
         //
         catch (\Throwable $th) {

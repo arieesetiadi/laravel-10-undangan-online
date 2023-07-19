@@ -227,7 +227,7 @@ class FAQController extends Controller
                 throw new Exception('Gagal mengubah status FAQ, silahkan coba lagi.');
             }
 
-            return ResponseController::success('Berhasil mengubah status FAQ.', route('cms.faqs.index'));
+            return ResponseController::success('Berhasil mengubah status FAQ.');
         }
         //
         catch (\Throwable $th) {

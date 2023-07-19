@@ -227,7 +227,7 @@ class AdministratorController extends Controller
                 throw new Exception('Gagal mengubah status Admin, silahkan coba lagi.');
             }
 
-            return ResponseController::success('Berhasil mengubah status Admin.', route('cms.administrators.index'));
+            return ResponseController::success('Berhasil mengubah status Admin.');
         }
         //
         catch (\Throwable $th) {

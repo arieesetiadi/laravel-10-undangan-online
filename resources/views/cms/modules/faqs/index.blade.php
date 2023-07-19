@@ -27,7 +27,7 @@ $sidebar['faqs'] = 'active-page';
                         Tambah {{ $title }}
                     </a>
                 </div>
-                <div class="card-body table-responsive">
+                <div class="card-body table-responsive overflow-y-hidden">
                     <table class="w-100 table">
                         <thead>
                             <tr>
@@ -42,19 +42,46 @@ $sidebar['faqs'] = 'active-page';
                         <tbody>
                             @forelse ($faqs as $faq)
                             <tr>
-                                <td class="d-flex text-nowrap gap-2">
-                                    <a class="btn btn-sm btn-light" href="{{ route('cms.faqs.edit', $faq->id) }}">
-                                        Ubah
-                                    </a>
-                                    <a class="btn btn-sm btn-light" href="{{ route('cms.faqs.show', $faq->id) }}">
-                                        Detail
-                                    </a>
-                                    <form action="{{ route('cms.faqs.toggle', $faq->id) }}" method="POST">
-                                        @csrf
-                                        <button class="btn btn-sm {{ $faq->status ? 'btn-dark' : 'btn-success' }}" type="button" onclick="swalConfirm(event)">
-                                            Toggle
+                                <td>
+                                    <div class="btn-group dropend">
+                                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Pilihan
                                         </button>
-                                    </form>
+                                        <ul class="dropdown-menu">
+                                            {{-- Edit Button --}}
+                                            <li>
+                                                <a class="dropdown-item" href="{{ route('cms.faqs.edit', $faq->id) }}">Ubah</a>
+                                            </li>
+
+                                            {{-- Detail Button --}}
+                                            <li>
+                                                <a class="dropdown-item" href="{{ route('cms.faqs.show', $faq->id) }}">Detail</a>
+                                            </li>
+
+                                            {{-- Toggle Status Button --}}
+                                            <li>
+                                                <form action="{{ route('cms.faqs.toggle', $faq->id) }}" method="POST">
+                                                    @csrf
+                                                    <a class="dropdown-item" type="button" onclick="swalConfirm(event)">
+                                                        {{ $faq->status ? 'Nonaktifkan' : 'Aktifkan' }}
+                                                    </a>
+                                                </form>
+                                            </li>
+
+                                            <li><hr class="dropdown-divider"></li>
+
+                                            {{-- Delete Button --}}
+                                            <li>
+                                                <form action="{{ route('cms.faqs.destroy', $faq->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <a class="dropdown-item" type="button" onclick="swalConfirm(event)">
+                                                        Hapus
+                                                    </a>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </td>
                                 <td class="text-nowrap">{{ ($faqs->currentPage() - 1) * $faqs->perPage() + $loop->iteration }}</td>
                                 <td class="text-nowrap">
