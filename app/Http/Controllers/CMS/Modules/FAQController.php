@@ -51,7 +51,7 @@ class FAQController extends Controller
     {
         try {
             $faqs = $this->faqService->paginate();
-            $view = $this->module . '.index';
+            $view = $this->module.'.index';
             $data = [
                 'title' => $this->title,
                 'faqs' => $faqs,
@@ -73,7 +73,7 @@ class FAQController extends Controller
     public function create()
     {
         try {
-            $view = $this->module . '.create-or-edit';
+            $view = $this->module.'.create-or-edit';
             $data = [
                 'title' => $this->title,
                 'edit' => false,
@@ -96,11 +96,11 @@ class FAQController extends Controller
     {
         try {
             $faq = $request->faq();
-            
+
             // Store faq data
             $result = $this->faqService->create($faq);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Gagal menambah data FAQ, silahkan coba lagi.');
             }
 
@@ -122,7 +122,7 @@ class FAQController extends Controller
     {
         try {
             $faq = $this->faqService->find($id);
-            $view = $this->module . '.detail';
+            $view = $this->module.'.detail';
             $data = [
                 'title' => $this->title,
                 'faq' => $faq,
@@ -146,7 +146,7 @@ class FAQController extends Controller
     {
         try {
             $faq = $this->faqService->find($id);
-            $view = $this->module . '.create-or-edit';
+            $view = $this->module.'.create-or-edit';
             $data = [
                 'title' => $this->title,
                 'faq' => $faq,
@@ -175,7 +175,7 @@ class FAQController extends Controller
             // Update faq data
             $result = $this->faqService->update($id, $faq);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Gagal mengubah data FAQ, silahkan coba lagi.');
             }
 
@@ -199,7 +199,7 @@ class FAQController extends Controller
             // Delete faq data
             $result = $this->faqService->delete($id);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Gagal menghapus data FAQ, silahkan coba lagi.');
             }
 
@@ -223,7 +223,7 @@ class FAQController extends Controller
             // Toggle faq status
             $result = $this->faqService->toggleStatus($id);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Gagal mengubah status FAQ, silahkan coba lagi.');
             }
 

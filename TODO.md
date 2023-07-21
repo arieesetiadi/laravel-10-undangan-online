@@ -17,7 +17,10 @@
 - [ ] Database migration
 - [ ] Create CMS Modules:
     - [ ] Pricing
-        - [ ] Mekanisme form discount
-        - [ ] Mekanisme form galleries
-        - [ ] Mekanisme form videos
+        - [x] Mekanisme form discount, enable discount type and amount if discount status == true.
+        - [x] Mekanisme form galleries
+        - [x] Mekanisme form videos
+        - [ ] Update
+        - [ ] Toggle
+        - [ ] Delete
     - [x] FAQ

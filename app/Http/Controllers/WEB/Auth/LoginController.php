@@ -49,7 +49,7 @@ class LoginController extends Controller
     public function index()
     {
         try {
-            $view = $this->module . '.login';
+            $view = $this->module.'.login';
             $data['title'] = $this->title;
 
             return view($view, $data);
@@ -74,14 +74,14 @@ class LoginController extends Controller
             // Check customer status
             $status = $this->customerService->getStatus($credentials);
 
-            if (!$status) {
+            if (! $status) {
                 throw new Exception('Akun Anda sedang tidak aktif.');
             }
 
             // Check auth result
             $result = auth('web')->attempt($credentials, $remember);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Informasi login atau kata sandi tidak valid. Silahkan coba lagi.');
             }
 

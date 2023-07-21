@@ -42,7 +42,6 @@ class AdministratorService
     /**
      * Paginate all administrators data.
      *
-     * @param int $perPage
      * @return array
      */
     public function paginate(int $perPage = 10)
@@ -162,7 +161,7 @@ class AdministratorService
     public function toggleStatus($id)
     {
         $administrator = $this->find($id);
-        $result = $administrator->update(['status' => !$administrator->status]);
+        $result = $administrator->update(['status' => ! $administrator->status]);
 
         return $result;
     }

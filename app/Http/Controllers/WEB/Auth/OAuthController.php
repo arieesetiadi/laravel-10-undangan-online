@@ -41,9 +41,9 @@ class OAuthController extends Controller
         try {
             $user = Socialite::driver($request->driver)->user();
             $customer = $this->customerService->getByEmail($user->getEmail());
-            
+
             // Register new customer if not already
-            if (!$customer) {
+            if (! $customer) {
                 $username = $user->nickname ?? explode('@', $user->email)[0];
                 $customer = $this->customerService->create([
                     'username' => $username,

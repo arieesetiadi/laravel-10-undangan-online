@@ -37,10 +37,10 @@ class UpdateRequest extends FormRequest
     public function rules(Request $request)
     {
         return [
-            'username' => 'required|unique:administrators,username,' . $request->administrator,
+            'username' => 'required|unique:administrators,username,'.$request->administrator,
             'name' => 'required',
-            'email' => 'required|unique:administrators,email,' . $request->administrator,
-            'phone' => 'nullable|unique:administrators,phone,' . $request->administrator,
+            'email' => 'required|unique:administrators,email,'.$request->administrator,
+            'phone' => 'nullable|unique:administrators,phone,'.$request->administrator,
         ];
     }
 

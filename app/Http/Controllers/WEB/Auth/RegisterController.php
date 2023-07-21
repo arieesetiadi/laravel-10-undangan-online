@@ -49,7 +49,7 @@ class RegisterController extends Controller
     public function index()
     {
         try {
-            $view = $this->module . '.register';
+            $view = $this->module.'.register';
             $data['title'] = $this->title;
 
             return view($view, $data);
@@ -73,7 +73,7 @@ class RegisterController extends Controller
             // Check registration result
             $result = $this->customerService->create($credentials);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Maaf, kami tidak dapat menyelesaikan pendaftaran Anda saat ini. Harap periksa informasi Anda dan coba lagi.');
             }
 

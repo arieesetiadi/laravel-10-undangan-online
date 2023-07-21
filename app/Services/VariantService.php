@@ -40,7 +40,6 @@ class VariantService
     /**
      * Paginate all variants data.
      *
-     * @param int $perPage
      * @return array
      */
     public function paginate(int $perPage = 10)
@@ -105,7 +104,7 @@ class VariantService
     public function toggleStatus($id)
     {
         $variant = $this->find($id);
-        $result = $variant->update(['status' => !$variant->status]);
+        $result = $variant->update(['status' => ! $variant->status]);
 
         return $result;
     }

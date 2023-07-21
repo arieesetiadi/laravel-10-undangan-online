@@ -40,7 +40,6 @@ class FAQService
     /**
      * Paginate all faqs data.
      *
-     * @param int $perPage
      * @return array
      */
     public function paginate(int $perPage = 10)
@@ -105,7 +104,7 @@ class FAQService
     public function toggleStatus($id)
     {
         $faq = $this->find($id);
-        $result = $faq->update(['status' => !$faq->status]);
+        $result = $faq->update(['status' => ! $faq->status]);
 
         return $result;
     }

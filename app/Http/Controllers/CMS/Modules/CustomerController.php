@@ -51,7 +51,7 @@ class CustomerController extends Controller
     {
         try {
             $customers = $this->customerService->paginate();
-            $view = $this->module . '.index';
+            $view = $this->module.'.index';
             $data = [
                 'title' => $this->title,
                 'customers' => $customers,
@@ -73,7 +73,7 @@ class CustomerController extends Controller
     public function create()
     {
         try {
-            $view = $this->module . '.create-or-edit';
+            $view = $this->module.'.create-or-edit';
             $data = [
                 'title' => $this->title,
                 'edit' => false,
@@ -100,7 +100,7 @@ class CustomerController extends Controller
             // Store customer data
             $result = $this->customerService->create($credentials);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Gagal menambah data Pelanggan, silahkan coba lagi.');
             }
 
@@ -122,7 +122,7 @@ class CustomerController extends Controller
     {
         try {
             $customer = $this->customerService->find($id);
-            $view = $this->module . '.detail';
+            $view = $this->module.'.detail';
             $data = [
                 'title' => $this->title,
                 'customer' => $customer,
@@ -146,7 +146,7 @@ class CustomerController extends Controller
     {
         try {
             $customer = $this->customerService->find($id);
-            $view = $this->module . '.create-or-edit';
+            $view = $this->module.'.create-or-edit';
             $data = [
                 'title' => $this->title,
                 'customer' => $customer,
@@ -175,7 +175,7 @@ class CustomerController extends Controller
             // Update customer data
             $result = $this->customerService->update($id, $credentials);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Gagal mengubah data Pelanggan, silahkan coba lagi.');
             }
 
@@ -199,7 +199,7 @@ class CustomerController extends Controller
             // Delete customer data
             $result = $this->customerService->delete($id);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Gagal menghapus data Pelanggan.');
             }
 
@@ -223,7 +223,7 @@ class CustomerController extends Controller
             // Toggle customer status
             $result = $this->customerService->toggleStatus($id);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Gagal mengubah status Pelanggan, silahkan coba lagi.');
             }
 

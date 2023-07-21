@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('price');
-            $table->string('discount_type');
-            $table->integer('discount_amount');
+            $table->boolean('discount_status');
+            $table->string('discount_type')->nullable();
+            $table->integer('discount_amount')->nullable();
             $table->boolean('allow_couple_photos');
             $table->boolean('allow_galleries');
             $table->boolean('allow_videos');
@@ -27,8 +28,8 @@ return new class extends Migration
             $table->boolean('allow_guest_target');
             $table->boolean('allow_rsvp');
             $table->boolean('allow_gift');
-            $table->tinyInteger('max_galleries');
-            $table->tinyInteger('max_videos');
+            $table->tinyInteger('max_galleries')->nullable();
+            $table->tinyInteger('max_videos')->nullable();
             $table->boolean('status');
             $table->timestamps();
         });

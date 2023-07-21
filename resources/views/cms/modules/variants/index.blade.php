@@ -33,6 +33,8 @@ $sidebar['variants'] = 'active-page';
                             <tr>
                                 <th class="align-top">Pilihan</th>
                                 <th class="align-top">#</th>
+                                <th class="align-top">Nama Paket</th>
+                                <th class="align-top">Harga Paket</th>
                                 <th class="align-top">Status</th>
                             </tr>
                         </thead>
@@ -83,6 +85,8 @@ $sidebar['variants'] = 'active-page';
                                     </div>
                                 </td>
                                 <td class="text-nowrap">{{ ($variants->currentPage() - 1) * $variants->perPage() + $loop->iteration }}</td>
+                                <td class="text-nowrap">{{ $variant->name }}</td>
+                                <td class="text-nowrap">{{ number_to_idr($variant->price) }}</td>
                                 <td class="text-nowrap">{!! GeneralStatus::htmlLabel($variant->status) !!}</td>
                             </tr>
                             @empty

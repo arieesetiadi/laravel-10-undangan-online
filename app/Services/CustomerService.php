@@ -36,7 +36,6 @@ class CustomerService
     /**
      * Paginate all customers data.
      *
-     * @param int $perPage
      * @return array
      */
     public function paginate(int $perPage = 10)
@@ -167,7 +166,7 @@ class CustomerService
     public function toggleStatus($id)
     {
         $customer = $this->find($id);
-        $result = $customer->update(['status' => !$customer->status]);
+        $result = $customer->update(['status' => ! $customer->status]);
 
         return $result;
     }

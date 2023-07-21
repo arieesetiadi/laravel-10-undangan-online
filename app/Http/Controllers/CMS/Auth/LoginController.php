@@ -49,7 +49,7 @@ class LoginController extends Controller
     public function index()
     {
         try {
-            $view = $this->module . '.login';
+            $view = $this->module.'.login';
             $data['title'] = $this->title;
 
             return view($view, $data);
@@ -73,14 +73,14 @@ class LoginController extends Controller
             // Check administrator status
             $status = $this->administratorService->getStatus($credentials);
 
-            if (!$status) {
+            if (! $status) {
                 throw new Exception('Akun Anda sedang tidak aktif.');
             }
 
             // Check auth result
             $result = auth('cms')->attempt($credentials);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Informasi login atau kata sandi tidak valid. Silahkan coba lagi.');
             }
 

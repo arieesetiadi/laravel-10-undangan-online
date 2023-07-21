@@ -34,7 +34,7 @@ class LoginRequest extends FormRequest
         $this->type = is_email($this->credential) ? 'email' : (is_phone(normalize_phone($this->credential)) ? 'phone' : 'username');
 
         return [
-            'credential' => 'required|exists:customers,' . $this->type,
+            'credential' => 'required|exists:customers,'.$this->type,
             'password' => 'required',
         ];
     }

@@ -22,6 +22,7 @@ class Variant extends Model
     protected $fillable = [
         'name',
         'price',
+        'discount_status',
         'discount_type',
         'discount_amount',
         'allow_couple_photos',
@@ -36,6 +37,7 @@ class Variant extends Model
         'allow_gift',
         'max_galleries',
         'max_videos',
+        'status',
     ];
 
     /*
@@ -44,7 +46,7 @@ class Variant extends Model
     |--------------------------------------------------------------------------
     */
 
-    // 
+    //
 
     /*
     |--------------------------------------------------------------------------

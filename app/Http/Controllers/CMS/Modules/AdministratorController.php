@@ -51,7 +51,7 @@ class AdministratorController extends Controller
     {
         try {
             $administrators = $this->administratorService->paginate();
-            $view = $this->module . '.index';
+            $view = $this->module.'.index';
             $data = [
                 'title' => $this->title,
                 'administrators' => $administrators,
@@ -73,7 +73,7 @@ class AdministratorController extends Controller
     public function create()
     {
         try {
-            $view = $this->module . '.create-or-edit';
+            $view = $this->module.'.create-or-edit';
             $data = [
                 'title' => $this->title,
                 'edit' => false,
@@ -100,7 +100,7 @@ class AdministratorController extends Controller
             // Store administrator data
             $result = $this->administratorService->create($credentials);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Gagal menambah data Admin, silahkan coba lagi.');
             }
 
@@ -122,7 +122,7 @@ class AdministratorController extends Controller
     {
         try {
             $administrator = $this->administratorService->find($id);
-            $view = $this->module . '.detail';
+            $view = $this->module.'.detail';
             $data = [
                 'title' => $this->title,
                 'administrator' => $administrator,
@@ -146,7 +146,7 @@ class AdministratorController extends Controller
     {
         try {
             $administrator = $this->administratorService->find($id);
-            $view = $this->module . '.create-or-edit';
+            $view = $this->module.'.create-or-edit';
             $data = [
                 'title' => $this->title,
                 'administrator' => $administrator,
@@ -175,7 +175,7 @@ class AdministratorController extends Controller
             // Update administrator data
             $result = $this->administratorService->update($id, $credentials);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Gagal mengubah data Admin, silahkan coba lagi.');
             }
 
@@ -199,7 +199,7 @@ class AdministratorController extends Controller
             // Delete administrator data
             $result = $this->administratorService->delete($id);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Gagal menghapus data Admin, silahkan coba lagi.');
             }
 
@@ -223,7 +223,7 @@ class AdministratorController extends Controller
             // Toggle administrator status
             $result = $this->administratorService->toggleStatus($id);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Gagal mengubah status Admin, silahkan coba lagi.');
             }
 

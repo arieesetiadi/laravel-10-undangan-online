@@ -51,7 +51,7 @@ class VariantController extends Controller
     {
         try {
             $variants = $this->variantService->paginate();
-            $view = $this->module . '.index';
+            $view = $this->module.'.index';
             $data = [
                 'title' => $this->title,
                 'variants' => $variants,
@@ -73,7 +73,7 @@ class VariantController extends Controller
     public function create()
     {
         try {
-            $view = $this->module . '.create-or-edit';
+            $view = $this->module.'.create-or-edit';
             $data = [
                 'title' => $this->title,
                 'edit' => false,
@@ -96,15 +96,15 @@ class VariantController extends Controller
     {
         try {
             $variant = $request->variant();
-            
+
             // Store variant data
             $result = $this->variantService->create($variant);
 
-            if (!$result) {
-                throw new Exception('Gagal menambah data Variant, silahkan coba lagi.');
+            if (! $result) {
+                throw new Exception('Gagal menambah data Paket Harga, silahkan coba lagi.');
             }
 
-            return ResponseController::success('Berhasil menambah data Variant.', route('cms.variants.index'));
+            return ResponseController::success('Berhasil menambah data Paket Harga.', route('cms.variants.index'));
         }
         //
         catch (\Throwable $th) {
@@ -122,7 +122,7 @@ class VariantController extends Controller
     {
         try {
             $variant = $this->variantService->find($id);
-            $view = $this->module . '.detail';
+            $view = $this->module.'.detail';
             $data = [
                 'title' => $this->title,
                 'variant' => $variant,
@@ -146,7 +146,7 @@ class VariantController extends Controller
     {
         try {
             $variant = $this->variantService->find($id);
-            $view = $this->module . '.create-or-edit';
+            $view = $this->module.'.create-or-edit';
             $data = [
                 'title' => $this->title,
                 'variant' => $variant,
@@ -175,7 +175,7 @@ class VariantController extends Controller
             // Update variant data
             $result = $this->variantService->update($id, $variant);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Gagal mengubah data Variant, silahkan coba lagi.');
             }
 
@@ -199,7 +199,7 @@ class VariantController extends Controller
             // Delete variant data
             $result = $this->variantService->delete($id);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Gagal menghapus data Variant, silahkan coba lagi.');
             }
 
@@ -223,7 +223,7 @@ class VariantController extends Controller
             // Toggle variant status
             $result = $this->variantService->toggleStatus($id);
 
-            if (!$result) {
+            if (! $result) {
                 throw new Exception('Gagal mengubah status Variant, silahkan coba lagi.');
             }
 
