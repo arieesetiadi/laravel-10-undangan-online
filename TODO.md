@@ -20,7 +20,8 @@
         - [x] Mekanisme form discount, enable discount type and amount if discount status == true.
         - [x] Mekanisme form galleries
         - [x] Mekanisme form videos
-        - [ ] Update
-        - [ ] Toggle
-        - [ ] Delete
+        - [x] Update
+        - [x] Toggle
+        - [x] Delete
+        - [ ] Detail
     - [x] FAQ

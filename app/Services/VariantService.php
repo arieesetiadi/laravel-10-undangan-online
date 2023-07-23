@@ -49,7 +49,7 @@ class VariantService
             ->when(request()->status !== null, function ($query) {
                 return $query->where('status', request()->status);
             })
-            ->orderBy('id')
+            ->latest()
             ->paginate($perPage);
     }
 

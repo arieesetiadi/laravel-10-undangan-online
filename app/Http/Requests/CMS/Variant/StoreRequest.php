@@ -54,10 +54,10 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => $this->name,
-            'price' => (int) $this->price,
+            'price' => $this->price,
             'discount_status' => (bool) $this->discount_status,
             'discount_type' => $this->discount_type,
-            'discount_amount' => (int) $this->discount_amount,
+            'discount_amount' => $this->discount_amount,
             'allow_couple_photos' => (bool) $this->allow_couple_photos,
             'allow_galleries' => (bool) $this->allow_galleries,
             'allow_videos' => (bool) $this->allow_videos,
@@ -68,8 +68,8 @@ class StoreRequest extends FormRequest
             'allow_guest_target' => (bool) $this->allow_guest_target,
             'allow_rsvp' => (bool) $this->allow_rsvp,
             'allow_gift' => (bool) $this->allow_gift,
-            'max_galleries' => (int) $this->max_galleries,
-            'max_videos' => (int) $this->max_videos,
+            'max_galleries' => $this->max_galleries,
+            'max_videos' => $this->max_videos,
             'status' => GeneralStatus::ACTIVE,
         ];
     }

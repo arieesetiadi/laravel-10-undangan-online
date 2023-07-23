@@ -176,10 +176,10 @@ class VariantController extends Controller
             $result = $this->variantService->update($id, $variant);
 
             if (! $result) {
-                throw new Exception('Gagal mengubah data Variant, silahkan coba lagi.');
+                throw new Exception('Gagal mengubah data Paket Harga, silahkan coba lagi.');
             }
 
-            return ResponseController::success('Berhasil mengubah data Variant.', route('cms.variants.index'));
+            return ResponseController::success('Berhasil mengubah data Paket Harga.', route('cms.variants.index'));
         }
         //
         catch (\Throwable $th) {
@@ -200,10 +200,10 @@ class VariantController extends Controller
             $result = $this->variantService->delete($id);
 
             if (! $result) {
-                throw new Exception('Gagal menghapus data Variant, silahkan coba lagi.');
+                throw new Exception('Gagal menghapus data Paket Harga, silahkan coba lagi.');
             }
 
-            return ResponseController::success('Berhasil menghapus data Variant.', route('cms.variants.index'));
+            return ResponseController::success('Berhasil menghapus data Paket Harga.', route('cms.variants.index'));
         }
         //
         catch (\Throwable $th) {

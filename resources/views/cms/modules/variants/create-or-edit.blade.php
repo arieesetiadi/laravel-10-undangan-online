@@ -23,7 +23,7 @@ $sidebar['variants'] = 'active-page';
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form class="row" id="variant-{{ $edit ? 'edit' : 'create' }}" action="{{ $edit ? route('cms.variants.update', $variant->id) : route('cms.variants.store') }}" method="POST" enctype="multipart/form-data">
+                    <form class="row" id="variant-{{ $edit ? 'edit' : 'create' }}" action="{{ $edit ? route('cms.variants.update', $variant->id) : route('cms.variants.store') }}" method="POST">
                         @csrf
                         @method($edit ? 'PUT' : 'POST')
 
@@ -66,8 +66,8 @@ $sidebar['variants'] = 'active-page';
                             <select onchange="toggleNextInput(event, '#discount-type, #discount-amount')" id="discount-status" name="discount_status" class="form-select" aria-label="Allow Discount Type"
                                 aria-describedby="label-discount-status">
                                 <option selected hidden disabled>Berisi Diskon?</option>
-                                <option value="1" {{ old('discount_status')==='1' ? 'selected' : '' }}>Iya</option>
-                                <option value="0" {{ old('discount_status')==='0' ? 'selected' : '' }}>Tidak</option>
+                                <option value="1" {{ old('discount_status', isset($variant) ? (string) $variant->discount_status : null)==='1' ? 'selected' : '' }}>Iya</option>
+                                <option value="0" {{ old('discount_status', isset($variant) ? (string) $variant->discount_status : null)==='0' ? 'selected' : '' }}>Tidak</option>
                             </select>
 
                             @error('discount_status')
@@ -83,11 +83,13 @@ $sidebar['variants'] = 'active-page';
                                 Jenis Diskon <span class="text-danger">*</span>
                             </label>
 
-                            <select {{ old('discount_status')==null || old('discount_status')==='0' ? 'disabled' : '' }} onchange="toggleNextInput(event, '#discount-amount')" id="discount-type" name="discount_type" class="form-select"
+                            <select {{ old('discount_status', isset($variant) ? (string) $variant->discount_status : (string) 0)==='0' ? 'disabled' : '' }} id="discount-type" name="discount_type" class="form-select"
                                 aria-label="Allow Discount Type" aria-describedby="label-discount-type">
                                 <option selected value="">Pilih Jenis Diskon</option>
                                 @foreach (DiscountType::values() as $discountType)
-                                <option value="{{ $discountType }}">{{ str($discountType)->lower()->ucfirst() }}</option>
+                                <option value="{{ $discountType }}" {{ old('discount_type', isset($variant) ? (string) $variant->discount_type : null)===$discountType ? 'selected' : '' }}>
+                                    {{ str($discountType)->lower()->ucfirst() }}
+                                </option>
                                 @endforeach
                             </select>
 
@@ -104,8 +106,8 @@ $sidebar['variants'] = 'active-page';
                                 Jumlah Diskon
                             </label>
 
-                            <input {{ old('discount_status')==null || old('discount_status')==='0' ? 'disabled' : '' }} class="form-control number-input" id="discount-amount" name="discount_amount" type="text"
-                                value="{{ old('discount_amount', $variant->discount_amount ?? null) }}" aria-describedby="label-discount_amount" placeholder="e.g. 50000">
+                            <input {{ old('discount_status', isset($variant) ? (string) $variant->discount_status : (string) 0)==='0' ? 'disabled' : '' }} class="form-control number-input" id="discount-amount" name="discount_amount" type="text"
+                                value="{{ old('discount_amount', isset($variant) ? $variant->discount_amount : null) }}" aria-describedby="label-discount-amount" placeholder="e.g. 50000">
 
                             @error('discount_amount')
                             <label class="text-danger mt-2" for="discount_amount">
@@ -126,8 +128,8 @@ $sidebar['variants'] = 'active-page';
 
                             <select onchange="toggleNextInput(event, '#max-galleries')" id="allow-galleries" name="allow_galleries" class="form-select" aria-label="Allow galleries" aria-describedby="label-allow-galleries">
                                 <option selected hidden disabled>Berisi Galeri?</option>
-                                <option value="1" {{ old('allow_galleries')==='1' ? 'selected' : '' }}>Iya</option>
-                                <option value="0" {{ old('allow_galleries')==='0' ? 'selected' : '' }}>Tidak</option>
+                                <option value="1" {{ old('allow_galleries', isset($variant) ? (string) $variant->allow_galleries : null)==='1' ? 'selected' : '' }}>Iya</option>
+                                <option value="0" {{ old('allow_galleries', isset($variant) ? (string) $variant->allow_galleries : null)==='0' ? 'selected' : '' }}>Tidak</option>
                             </select>
 
                             @error('allow_galleries')
@@ -143,8 +145,8 @@ $sidebar['variants'] = 'active-page';
                                 Batas Maksimal Galeri
                             </label>
 
-                            <input {{ old('allow_galleries')==null || old('allow_galleries')==='0' ? 'disabled' : '' }} class="form-control number-input" id="max-galleries" name="max_galleries" type="text"
-                                value="{{ old('max_galleries', $variant->max_galleries ?? null) }}" aria-describedby="label-max-galleries" placeholder="e.g. 15">
+                            <input {{ old('allow_galleries', isset($variant) ? (string) $variant->allow_galleries : (string) 0)==='0' ? 'disabled' : '' }} class="form-control number-input" id="max-galleries" name="max_galleries" type="text"
+                                value="{{ old('max_galleries', isset($variant) ? $variant->max_galleries : null) }}" aria-describedby="label-max-galleries" placeholder="e.g. 15">
 
                             @error('max_galleries')
                             <label class="text-danger mt-2" for="max_galleries">
@@ -161,8 +163,8 @@ $sidebar['variants'] = 'active-page';
 
                             <select onchange="toggleNextInput(event, '#max-videos')" id="allow-videos" name="allow_videos" class="form-select" aria-label="Allow videos" aria-describedby="label-allow-videos">
                                 <option selected hidden disabled>Berisi Video?</option>
-                                <option value="1" {{ old('allow_videos')==='1' ? 'selected' : '' }}>Iya</option>
-                                <option value="0" {{ old('allow_videos')==='0' ? 'selected' : '' }}>Tidak</option>
+                                <option value="1" {{ old('allow_videos', isset($variant) ? (string) $variant->allow_videos : null)==='1' ? 'selected' : '' }}>Iya</option>
+                                <option value="0" {{ old('allow_videos', isset($variant) ? (string) $variant->allow_videos : null)==='0' ? 'selected' : '' }}>Tidak</option>
                             </select>
 
                             @error('allow_videos')
@@ -178,8 +180,8 @@ $sidebar['variants'] = 'active-page';
                                 Batas Maksimal Video
                             </label>
 
-                            <input {{ old('allow_videos')==null || old('allow_videos')==='0' ? 'disabled' : '' }} class="form-control number-input" id="max-videos" name="max_videos" type="text"
-                                value="{{ old('max_videos', $variant->max_videos ?? null) }}" aria-describedby="label-max-videos" placeholder="e.g. 2">
+                            <input {{ old('allow_videos', isset($variant) ? (string) $variant->allow_videos : (string) 0)==='0' ? 'disabled' : '' }} class="form-control number-input" id="max-videos" name="max_videos" type="text"
+                                value="{{ old('max_videos', isset($variant) ? $variant->max_videos : null) }}" aria-describedby="label-max-videos" placeholder="e.g. 2">
 
                             @error('max_videos')
                             <label class="text-danger mt-2" for="max_videos">
@@ -196,8 +198,8 @@ $sidebar['variants'] = 'active-page';
 
                             <select id="allow-couple-photos" name="allow_couple_photos" class="form-select" aria-label="Allow couple photos" aria-describedby="label-allow-couple-photos">
                                 <option selected hidden disabled>Berisi Foto Pasangan?</option>
-                                <option value="1" {{ old('allow_couple_photos')==='1' ? 'selected' : '' }}>Iya</option>
-                                <option value="0" {{ old('allow_couple_photos')==='0' ? 'selected' : '' }}>Tidak</option>
+                                <option value="1" {{ old('allow_couple_photos', isset($variant) ? (string) $variant->allow_couple_photos : null)==='1' ? 'selected' : '' }}>Iya</option>
+                                <option value="0" {{ old('allow_couple_photos', isset($variant) ? (string) $variant->allow_couple_photos : null)==='0' ? 'selected' : '' }}>Tidak</option>
                             </select>
 
                             @error('allow_couple_photos')
@@ -215,8 +217,8 @@ $sidebar['variants'] = 'active-page';
 
                             <select id="allow-google-maps" name="allow_google_maps" class="form-select" aria-label="Allow Google Maps" aria-describedby="label-allow-google-maps">
                                 <option selected hidden disabled>Berisi Google Maps?</option>
-                                <option value="1" {{ old('allow_google_maps')==='1' ? 'selected' : '' }}>Iya</option>
-                                <option value="0" {{ old('allow_google_maps')==='0' ? 'selected' : '' }}>Tidak</option>
+                                <option value="1" {{ old('allow_google_maps', isset($variant) ? (string) $variant->allow_google_maps : null)==='1' ? 'selected' : '' }}>Iya</option>
+                                <option value="0" {{ old('allow_google_maps', isset($variant) ? (string) $variant->allow_google_maps : null)==='0' ? 'selected' : '' }}>Tidak</option>
                             </select>
 
                             @error('allow_google_maps')
@@ -234,8 +236,8 @@ $sidebar['variants'] = 'active-page';
 
                             <select id="allow-countdown" name="allow_countdown" class="form-select" aria-label="Allow Countdown" aria-describedby="label-allow-countdown">
                                 <option selected hidden disabled>Berisi Countdown?</option>
-                                <option value="1" {{ old('allow_countdown')==='1' ? 'selected' : '' }}>Iya</option>
-                                <option value="0" {{ old('allow_countdown')==='0' ? 'selected' : '' }}>Tidak</option>
+                                <option value="1" {{ old('allow_countdown', isset($variant) ? (string) $variant->allow_countdown : null)==='1' ? 'selected' : '' }}>Iya</option>
+                                <option value="0" {{ old('allow_countdown', isset($variant) ? (string) $variant->allow_countdown : null)==='0' ? 'selected' : '' }}>Tidak</option>
                             </select>
 
                             @error('allow_countdown')
@@ -253,8 +255,8 @@ $sidebar['variants'] = 'active-page';
 
                             <select id="allow-backsound" name="allow_backsound" class="form-select" aria-label="Allow Backsound" aria-describedby="label-allow-backsound">
                                 <option selected hidden disabled>Berisi Musik Latar?</option>
-                                <option value="1" {{ old('allow_backsound')==='1' ? 'selected' : '' }}>Iya</option>
-                                <option value="0" {{ old('allow_backsound')==='0' ? 'selected' : '' }}>Tidak</option>
+                                <option value="1" {{ old('allow_backsound', isset($variant) ? (string) $variant->allow_backsound : null)==='1' ? 'selected' : '' }}>Iya</option>
+                                <option value="0" {{ old('allow_backsound', isset($variant) ? (string) $variant->allow_backsound : null)==='0' ? 'selected' : '' }}>Tidak</option>
                             </select>
 
                             @error('allow_backsound')
@@ -272,8 +274,8 @@ $sidebar['variants'] = 'active-page';
 
                             <select id="allow-guest-book" name="allow_guest_book" class="form-select" aria-label="Allow Guest Book" aria-describedby="label-allow-guest-book">
                                 <option selected hidden disabled>Berisi Buku Tamu?</option>
-                                <option value="1" {{ old('allow_guest_book')==='1' ? 'selected' : '' }}>Iya</option>
-                                <option value="0" {{ old('allow_guest_book')==='0' ? 'selected' : '' }}>Tidak</option>
+                                <option value="1" {{ old('allow_guest_book', isset($variant) ? (string) $variant->allow_guest_book : null)==='1' ? 'selected' : '' }}>Iya</option>
+                                <option value="0" {{ old('allow_guest_book', isset($variant) ? (string) $variant->allow_guest_book : null)==='0' ? 'selected' : '' }}>Tidak</option>
                             </select>
 
                             @error('allow_guest_book')
@@ -291,8 +293,8 @@ $sidebar['variants'] = 'active-page';
 
                             <select id="allow-guest-target" name="allow_guest_target" class="form-select" aria-label="Allow Guest Target" aria-describedby="label-allow-guest-target">
                                 <option selected hidden disabled>Berisi Nama Tamu?</option>
-                                <option value="1" {{ old('allow_guest_target')==='1' ? 'selected' : '' }}>Iya</option>
-                                <option value="0" {{ old('allow_guest_target')==='0' ? 'selected' : '' }}>Tidak</option>
+                                <option value="1" {{ old('allow_guest_target', isset($variant) ? (string) $variant->allow_guest_target : null)==='1' ? 'selected' : '' }}>Iya</option>
+                                <option value="0" {{ old('allow_guest_target', isset($variant) ? (string) $variant->allow_guest_target : null)==='0' ? 'selected' : '' }}>Tidak</option>
                             </select>
 
                             @error('allow_guest_target')
@@ -310,8 +312,8 @@ $sidebar['variants'] = 'active-page';
 
                             <select id="allow-rsvp" name="allow_rsvp" class="form-select" aria-label="Allow RSVP" aria-describedby="label-allow-rsvp">
                                 <option selected hidden disabled>Berisi RSVP?</option>
-                                <option value="1" {{ old('allow_rsvp')==='1' ? 'selected' : '' }}>Iya</option>
-                                <option value="0" {{ old('allow_rsvp')==='0' ? 'selected' : '' }}>Tidak</option>
+                                <option value="1" {{ old('allow_rsvp', isset($variant) ? (string) $variant->allow_rsvp : null)==='1' ? 'selected' : '' }}>Iya</option>
+                                <option value="0" {{ old('allow_rsvp', isset($variant) ? (string) $variant->allow_rsvp : null)==='0' ? 'selected' : '' }}>Tidak</option>
                             </select>
 
                             @error('allow_rsvp')
@@ -329,8 +331,8 @@ $sidebar['variants'] = 'active-page';
 
                             <select id="allow-gift" name="allow_gift" class="form-select" aria-label="Allow Gift" aria-describedby="label-allow-gift">
                                 <option selected hidden disabled>Berisi Gift?</option>
-                                <option value="1" {{ old('allow_gift')==='1' ? 'selected' : '' }}>Iya</option>
-                                <option value="0" {{ old('allow_gift')==='0' ? 'selected' : '' }}>Tidak</option>
+                                <option value="1" {{ old('allow_gift', isset($variant) ? (string) $variant->allow_gift : null)==='1' ? 'selected' : '' }}>Iya</option>
+                                <option value="0" {{ old('allow_gift', isset($variant) ? (string) $variant->allow_gift : null)==='0' ? 'selected' : '' }}>Tidak</option>
                             </select>
 
                             @error('allow_gift')
