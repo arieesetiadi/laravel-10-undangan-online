@@ -9,7 +9,7 @@
     @include('cms.layouts.styles')
 
     <!-- Title -->
-    <title>CMS | {{ config('app.name') }}</title>
+    <title>{{ $title ?? 'CMS' }} | {{ config('app.name') }}</title>
 </head>
 
 <body>

@@ -5,6 +5,7 @@ use App\Http\Controllers\CMS\Auth\LoginController as CMSLoginController;
 use App\Http\Controllers\CMS\Auth\LogoutController as CMSLogoutController;
 use App\Http\Controllers\CMS\DashboardController;
 use App\Http\Controllers\CMS\Modules\AdministratorController;
+use App\Http\Controllers\CMS\Modules\AudioController;
 use App\Http\Controllers\CMS\Modules\CustomerController;
 use App\Http\Controllers\CMS\Modules\FAQController;
 use App\Http\Controllers\CMS\Modules\VariantController;
@@ -59,23 +60,29 @@ Route::prefix('/cms')->as('cms.')->group(function () {
         });
         Route::resource('/administrators', AdministratorController::class);
 
-        // CMS Module Customer
+        // CMS Module Customers
         Route::prefix('/customers')->as('customers.')->group(function () {
             Route::post('/{customer}/toggle', [CustomerController::class, 'toggle'])->name('toggle');
         });
         Route::resource('/customers', CustomerController::class);
 
-        // CMS Module Variant
+        // CMS Module Variants
         Route::prefix('/variants')->as('variants.')->group(function () {
             Route::post('/{variant}/toggle', [VariantController::class, 'toggle'])->name('toggle');
         });
         Route::resource('/variants', VariantController::class);
 
-        // CMS Module FAQ
+        // CMS Module FAQs
         Route::prefix('/faqs')->as('faqs.')->group(function () {
             Route::post('/{faq}/toggle', [FAQController::class, 'toggle'])->name('toggle');
         });
         Route::resource('/faqs', FAQController::class);
+
+        // CMS Module Audios
+        Route::prefix('/audios')->as('audios.')->group(function () {
+            Route::post('/{faq}/toggle', [AudioController::class, 'toggle'])->name('toggle');
+        });
+        Route::resource('/audios', AudioController::class);
 
         // CMS Logout
         Route::prefix('/auth/logout')->as('logout.')->group(function () {

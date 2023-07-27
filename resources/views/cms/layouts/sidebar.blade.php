@@ -62,6 +62,16 @@
                 </a>
             </li>
 
+            <li class="sidebar-title">Konten Undangan</li>
+            
+            {{-- Sidebar Audios --}}
+            <li class="{{ $sidebar['audios'] ?? '' }}">
+                <a href="{{ route('cms.audios.index') }}">
+                    <i class="material-icons text-dark">play_arrow</i>
+                    Audio
+                </a>
+            </li>
+
             <li class="sidebar-title">
                 Lainnya
             </li>

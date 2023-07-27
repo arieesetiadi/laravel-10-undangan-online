@@ -55,3 +55,15 @@ Breadcrumbs::for('cms.faqs.action', function (BreadcrumbTrail $trail, $action) {
     $trail->parent('cms.faqs.index');
     $trail->push($action);
 });
+
+// Dashboard > Audio
+Breadcrumbs::for('cms.audios.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('cms.dashboard');
+    $trail->push('Audio', route('cms.audios.index'));
+});
+
+// Dashboard > Audio > [Action]
+Breadcrumbs::for('cms.audios.action', function (BreadcrumbTrail $trail, $action) {
+    $trail->parent('cms.audios.index');
+    $trail->push($action);
+});

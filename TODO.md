@@ -16,12 +16,18 @@
 - [x] Adjust active-sidebar style
 - [ ] Database migration
 - [ ] Create CMS Modules:
-    - [ ] Pricing
+    - [x] Pricing
         - [x] Mekanisme form discount, enable discount type and amount if discount status == true.
         - [x] Mekanisme form galleries
         - [x] Mekanisme form videos
         - [x] Update
         - [x] Toggle
         - [x] Delete
-        - [ ] Detail
+        - [x] Detail
     - [x] FAQ
+    - [x] Audio
+        - [ ] Create
+        - [ ] Update
+        - [ ] Toggle
+        - [ ] Delete
+        - [ ] Detail

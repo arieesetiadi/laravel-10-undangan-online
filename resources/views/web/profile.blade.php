@@ -10,11 +10,11 @@
 {{-- Content --}}
 @section('content')
     {{-- Section Profile --}}
-    <section class="section" id="profile">
+    <section id="profile" class="section">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 mt-lg-5">
-                    <div class="text-center title mb-4">
+                    <div class="title mb-4 text-center">
                         <p class="text-muted text-uppercase fw-normal mb-2">{{ $title }}</p>
                         <h3 class="mb-3">{{ customer()->name }}</h3>
                         <div class="title-icon position-relative">
@@ -76,9 +76,9 @@
                 {{-- Edit Username --}}
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-3">
                     <h6 class="text-center">{{ __('general.words.attributes.username') }}</h6>
-                    <input name="username" type="text" class="form-control text-center" id="username" placeholder="e.g. robert" value="{{ customer()->username }}">
+                    <input id="username" name="username" type="text" class="form-control text-center" placeholder="e.g. robert" value="{{ customer()->username }}">
                     @error('username')
-                        <label for="username" class="mt-2 text-danger">
+                        <label for="username" class="text-danger mt-2">
                             {{ $message }}
                         </label>
                     @enderror
@@ -87,9 +87,9 @@
                 {{-- Edit Name --}}
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-3">
                     <h6 class="text-center">{{ __('general.words.attributes.name') }}</h6>
-                    <input name="name" type="text" class="form-control text-center" id="name" placeholder="e.g. Robert Emerson" value="{{ customer()->name }}">
+                    <input id="name" name="name" type="text" class="form-control text-center" placeholder="e.g. Robert Emerson" value="{{ customer()->name }}">
                     @error('name')
-                        <label for="name" class="mt-2 text-danger">
+                        <label for="name" class="text-danger mt-2">
                             {{ $message }}
                         </label>
                     @enderror
@@ -98,9 +98,9 @@
                 {{-- Edit Email --}}
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-3">
                     <h6 class="text-center">{{ __('general.words.attributes.email') }}</h6>
-                    <input name="email" type="email" class="form-control text-center" id="email" placeholder="e.g. robert@example.com" value="{{ customer()->email }}">
+                    <input id="email" name="email" type="email" class="form-control text-center" placeholder="e.g. robert@example.com" value="{{ customer()->email }}">
                     @error('email')
-                        <label for="email" class="mt-2 text-danger">
+                        <label for="email" class="text-danger mt-2">
                             {{ $message }}
                         </label>
                     @enderror
@@ -109,9 +109,9 @@
                 {{-- Edit Phone --}}
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-3">
                     <h6 class="text-center">{{ __('general.words.attributes.phone') }}</h6>
-                    <input name="phone" type="text" class="form-control text-center number-input" id="phone" placeholder="e.g. 0821xxxxxxxx" value="{{ customer()->phone ?? 0 }}">
+                    <input id="phone" name="phone" type="text" class="form-control number-input text-center" placeholder="e.g. 0821xxxxxxxx" value="{{ customer()->phone ?? 0 }}">
                     @error('phone')
-                        <label for="phone" class="mt-2 text-danger">
+                        <label for="phone" class="text-danger mt-2">
                             {{ $message }}
                         </label>
                     @enderror
@@ -120,9 +120,9 @@
                 {{-- Edit Password --}}
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-3">
                     <h6 class="text-center">{{ __('general.words.attributes.password') }}</h6>
-                    <input name="password" type="password" class="form-control text-center" id="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+                    <input id="password" name="password" type="password" class="form-control text-center" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
                     @error('password')
-                        <label for="password" class="mt-2 text-danger">
+                        <label for="password" class="text-danger mt-2">
                             {{ $message }}
                         </label>
                     @enderror
@@ -131,9 +131,9 @@
                 {{-- Edit Password Confirmation --}}
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 my-3">
                     <h6 class="text-center">{{ __('general.words.attributes.password_confirmation') }}</h6>
-                    <input name="password_confirmation" type="password" class="form-control text-center" id="password_confirmation" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+                    <input id="password_confirmation" name="password_confirmation" type="password" class="form-control text-center" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
                     @error('password')
-                        <label for="password" class="mt-2 text-danger">
+                        <label for="password" class="text-danger mt-2">
                             {{ $message }}
                         </label>
                     @enderror
@@ -143,11 +143,11 @@
     </section>
 
     {{-- Section Detail --}}
-    <section class="section bg-light" id="detail">
+    <section id="detail" class="section bg-light">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="text-center title mb-5">
+                    <div class="title mb-5 text-center">
                         <p class="text-muted text-uppercase fw-normal mb-2">{{ __('general.words.detail') }}</p>
                         <h3 class="mb-3">{{ __('general.words.transaction') }}</h3>
                         <div class="title-icon position-relative">
@@ -166,9 +166,10 @@
     </section>
 @endsection
 
+{{-- Custom Scripts --}}
 @pushOnce('after-scripts')
-    {{-- Form Validation --}}
     <script>
+        // Form Validation
         $('form#profile-edit').validate({
             rules: {
                 username: {
@@ -213,10 +214,8 @@
                 element.parent().append(label);
             },
         });
-    </script>
 
-    {{-- Profile toggle mode --}}
-    <script>
+        // Profile toggle mode
         function toggleProfileMode(mode) {
             switch (mode) {
                 case 'edit':
