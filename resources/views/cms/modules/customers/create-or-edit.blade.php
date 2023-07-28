@@ -97,7 +97,7 @@
                                 @enderror
                             </div>
 
-                            <div class="d-flex mt-4 gap-2">
+                            <div class="d-flex gap-2">
                                 {{-- Back Button --}}
                                 <a class="btn btn-light" type="submit" href="{{ route('cms.customers.index') }}">
                                     Kembali

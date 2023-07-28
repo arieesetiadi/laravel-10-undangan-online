@@ -26,8 +26,9 @@
         - [x] Detail
     - [x] FAQ
     - [x] Audio
-        - [ ] Create
-        - [ ] Update
-        - [ ] Toggle
-        - [ ] Delete
-        - [ ] Detail
+        - [x] Create
+        - [x] Update
+        - [x] Toggle
+        - [x] Delete
+        - [x] Detail
+    
